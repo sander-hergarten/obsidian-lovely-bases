@@ -1,4 +1,4 @@
-import { App, BasesPropertyId, Keymap, TFile } from "obsidian";
+import { App, BasesPropertyId, Keymap, normalizePath, TFile } from "obsidian";
 import { useMemo, useRef } from "react";
 
 import {
@@ -7,6 +7,7 @@ import {
 	GridItem
 } from '@/components/InfiniteDragScroll';
 import { ReactViewProps } from "@/types";
+import { getImageResourcePath } from "@/lib/links";
 
 export const INFINITE_GALLERY_TYPE_ID = 'infinite-gallery';
 
@@ -17,16 +18,19 @@ type Image = {
 	file: TFile;
 }
 
-const useImages = (data: ReactViewProps['data'], imageProperty: BasesPropertyId): Image[] => {
+const useImages = (app: App, data: ReactViewProps['data'], imageProperty: BasesPropertyId): Image[] => {
 	return useMemo(() => {
 		return data.groupedData.flatMap((group) => {
 			return group.entries.map((entry) => {
-				const imageUrl = entry.getValue(imageProperty)?.toString();
-				if (!imageUrl) return null;
+				const imageUrl = entry.getValue(imageProperty).toString();
+				if (!imageUrl || imageUrl === 'null') return null;
 
 				const imageSrc =
 					imageUrl.startsWith('http') ? imageUrl :
-					entry.file.vault.adapter.getResourcePath(imageUrl);
+					getImageResourcePath(app, imageUrl, entry.file.path);
+
+				if (!imageSrc) return null;
+
 				return {
 					id: entry.file.path,
 					src: imageSrc,
@@ -109,7 +113,7 @@ const GalleryImage = ({ image, app, containerEl }: GalleryImageProps) => {
 
 const InfiniteGallery = ({ app, config, containerEl, data }: ReactViewProps) => {
     const imageProperty = (String(config.get('imageProperty')) || 'note.cover') as BasesPropertyId;
-	const images = useImages(data, imageProperty);
+	const images = useImages(app, data, imageProperty);
 
 	return (
 		<div className="lovely-bases">
