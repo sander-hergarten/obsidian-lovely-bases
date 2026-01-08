@@ -112,9 +112,9 @@ export const LinearCalendar = ({ items, focus, referenceDate, onEventClick }: Li
         const monthIndices = getMonthIndicesToDisplay();
 
         return (
-            <div className="flex flex-col w-full h-full overflow-auto bg-card text-card-foreground p-4">
+            <div className="flex flex-col w-full h-full overflow-auto bg-background text-foreground p-4">
                  {/* Header Row: Days */}
-                <div className="flex border-b border-border sticky top-0 bg-card z-10">
+                <div className="flex border-b border-border sticky top-0 z-10">
                     <div className="w-32 shrink-0 font-bold p-2">{currentYear}</div>
                     <div className="grow flex relative">
                          {Array.from({ length: 31 }, (_, i) => (

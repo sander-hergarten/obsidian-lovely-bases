@@ -26,13 +26,13 @@
 :root {
   --radius: var(--radius-m);
 
-  --background: var(--color-base-00);
-  --foreground: var(--color-base-100);
+  --background: var(--background-primary);
+  --foreground: var(--text-normal);
 
   --card: var(--background-secondary);
-  --card-foreground: var(--color-base-100);
+  --card-foreground: var(--text-normal);
   --popover: var(--background-secondary-alt);
-  --popover-foreground: var(--color-base-100);
+  --popover-foreground: var(--text-normal);
 
   --primary: var(--interactive-accent);
   --primary-foreground: var(--text-on-accent);
@@ -47,7 +47,7 @@
   --accent-foreground: var(--text-on-accent);
 
   --destructive: var(--color-red);
-  --destructive-foreground: var(--color-base-00);
+  --destructive-foreground: var(--text-on-accent);
 
   --border: var(--background-modifier-border);
   --input: var(--background-modifier-border);
@@ -61,7 +61,7 @@
   --chart-5: var(--color-orange);
 
   --sidebar: var(--background-secondary);
-  --sidebar-foreground: var(--color-base-100);
+  --sidebar-foreground: var(--text-normal);
   --sidebar-primary: var(--interactive-accent);
   --sidebar-primary-foreground: var(--text-on-accent);
   --sidebar-accent: var(--background-modifier-hover);
