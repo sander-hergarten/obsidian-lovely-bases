@@ -18,6 +18,17 @@ export default class LovelyBasesPlugin extends Plugin {
 					containerEl
 				),
 			options: () => ([
+				{
+					type: 'dropdown',
+					displayName: 'Layout',
+					key: 'layout',
+					default: 'masonry',
+					options: {
+						default: 'Default',
+						masonry: 'Masonry',
+						polaroid: 'Polaroid',
+					}
+				},
 			  {
 				type: 'slider',
 				displayName: 'Card size',

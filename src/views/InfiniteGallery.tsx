@@ -20,6 +20,7 @@ type Item = {
 }
 
 type Config = {
+	layout: 'default' | 'masonry' | 'polaroid';
 	cardSize: number; // from 50 to 800
 	imageProperty: BasesPropertyId;
 	imageFit: 'cover' | 'contain';
@@ -176,6 +177,7 @@ const GalleryItem = memo(({ imageFit, item, app, containerEl, cardSize, shape }:
 GalleryItem.displayName = "GalleryItem";
 
 const InfiniteGallery = ({ app, config, containerEl, data }: ReactViewProps) => {
+	const layout = (config.get('layout') ?? 'masonry') as Config['layout'];
     const imageProperty = (String(config.get('imageProperty')) ?? 'note.cover') as Config['imageProperty'];
 	const cardSize = (config.get('cardSize') ?? 200) as Config['cardSize'];
 	const imageFit = (config.get('imageFit') ?? 'cover') as Config['imageFit'];
@@ -196,7 +198,7 @@ const InfiniteGallery = ({ app, config, containerEl, data }: ReactViewProps) => 
 
 	return (
 		<div className="lovely-bases h-full w-full">
-			<DraggableContainer variant="masonry">
+			<DraggableContainer variant={layout}>
 				<VirtualGrid
 					items={items}
 					columns={columns}
