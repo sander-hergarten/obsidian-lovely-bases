@@ -68,7 +68,7 @@ export const HeatmapCalendar = ({ data, date = new Date(), classNames = ["bg-[#e
 					`w-3 h-3 rounded-[4px]`,
 					className
 				)}
-                title={`${format(day, "PPP")}: ${occurrence?.count || 0} contributions`}
+                title={`${format(day, "PPP")}: ${occurrence?.count || 0} occurrences`}
                 onClick={() => occurrence && onClick?.(occurrence)}
               />
             );
