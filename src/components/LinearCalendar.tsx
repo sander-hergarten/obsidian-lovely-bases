@@ -179,7 +179,7 @@ export const LinearCalendar = ({ items, focus, referenceDate, onEventClick }: Li
                                                 key={event.id + '-' + monthIndex}
                                                 className={
                                                   cn(
-                                                    "absolute h-[20px] rounded-sm text-[10px] text-white overflow-hidden whitespace-nowrap px-1 cursor-pointer hover:brightness-110 shadow-sm transition-all pt-[0.125rem]",
+                                                    "absolute h-[20px] rounded-sm text-[10px] text-white overflow-hidden whitespace-nowrap px-1 cursor-pointer hover:brightness-110 shadow-sm transition-all pt-0.5",
                                                     !event.color && "bg-primary"
                                                   )
                                                 }

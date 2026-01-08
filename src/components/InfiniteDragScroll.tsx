@@ -292,22 +292,56 @@ export const DraggableContainer = ({
 	}, [isDragging, scrollX, scrollY]);
 
 	useEffect(() => {
+		const container = containerRef.current;
+		if (!container) return;
+
 		const handleWheelScroll = (event: WheelEvent) => {
 			if (!isDragging) {
-				const targetY = scrollY.get() - event.deltaY * 2.7;
-				animate(scrollY, targetY, {
-					type: "tween",
-					duration: 1.2,
-					ease: cubicBezier(0.18, 0.71, 0.11, 1),
-				});
+				const absDeltaX = Math.abs(event.deltaX);
+				const absDeltaY = Math.abs(event.deltaY);
+				const hasHorizontalDelta = absDeltaX > 0;
+				const hasVerticalDelta = absDeltaY > 0;
+
+				// Si Shift está presionado, convertir scroll vertical en horizontal
+				if (event.shiftKey && hasVerticalDelta && !hasHorizontalDelta) {
+					event.preventDefault();
+					const targetX = scrollX.get() - event.deltaY * 2.7;
+					animate(scrollX, targetX, {
+						type: "tween",
+						duration: 1.2,
+						ease: cubicBezier(0.18, 0.71, 0.11, 1),
+					});
+					return;
+				}
+
+				// Manejar scroll horizontal (trackpad o diagonal)
+				if (hasHorizontalDelta) {
+					event.preventDefault();
+					const targetX = scrollX.get() - event.deltaX * 2.7;
+					animate(scrollX, targetX, {
+						type: "tween",
+						duration: 1.2,
+						ease: cubicBezier(0.18, 0.71, 0.11, 1),
+					});
+				}
+
+				// Manejar scroll vertical (puede ser simultáneo con horizontal para scroll diagonal)
+				if (hasVerticalDelta) {
+					const targetY = scrollY.get() - event.deltaY * 2.7;
+					animate(scrollY, targetY, {
+						type: "tween",
+						duration: 1.2,
+						ease: cubicBezier(0.18, 0.71, 0.11, 1),
+					});
+				}
 			}
 		};
 
-		window.addEventListener("wheel", handleWheelScroll, { passive: true });
+		container.addEventListener("wheel", handleWheelScroll, { passive: false });
 		return () => {
-			window.removeEventListener("wheel", handleWheelScroll);
+			container.removeEventListener("wheel", handleWheelScroll);
 		};
-	}, [scrollY, isDragging]);
+	}, [scrollX, scrollY, isDragging]);
 
 	return (
 		<GridVariantContext.Provider value={variant}>
