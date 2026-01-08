@@ -1,5 +1,5 @@
 import { App, BasesPropertyId, Keymap, TFile } from "obsidian";
-import { useMemo, useRef, memo } from "react";
+import { useMemo, useRef, memo, useCallback } from "react";
 
 import {
 	DraggableContainer,
@@ -196,6 +196,18 @@ const InfiniteGallery = ({ app, config, containerEl, data }: ReactViewProps) => 
 	const gapY = 0; // Masonry doesn't use vertical gap, uses offset instead
 	const columns = Math.floor(containerEl.clientWidth / cellWidth);
 
+	// Memoized render function to prevent unnecessary re-renders during scroll
+	const renderItem = useCallback((item: Item) => (
+		<GalleryItem
+			item={item}
+			app={app}
+			containerEl={containerEl}
+			cardSize={cardSize}
+			imageFit={imageFit}
+			shape={shape}
+		/>
+	), [app, containerEl, cardSize, imageFit, shape]);
+
 	return (
 		<div className="lovely-bases h-full w-full">
 			<DraggableContainer variant={layout}>
@@ -206,16 +218,7 @@ const InfiniteGallery = ({ app, config, containerEl, data }: ReactViewProps) => 
 					cellHeight={cellHeight}
 					gapX={gapX}
 					gapY={gapY}
-					renderItem={(item) => (
-						<GalleryItem
-							item={item}
-							app={app}
-							containerEl={containerEl}
-							cardSize={cardSize}
-							imageFit={imageFit}
-							shape={shape}
-						/>
-					)}
+					renderItem={renderItem}
 				/>
 			</DraggableContainer>
 		</div>

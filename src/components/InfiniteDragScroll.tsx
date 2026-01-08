@@ -412,7 +412,7 @@ export const VirtualGrid = <T,>({
 		const scheduleUpdate = () => {
 			const now = Date.now();
 			// Throttle updates to ~60fps max
-			if (now - lastUpdateRef.current > 16) {
+			if (now - lastUpdateRef.current > 8) {
 				lastUpdateRef.current = now;
 				forceUpdate((n) => n + 1);
 			} else if (!rafRef.current) {
@@ -485,6 +485,7 @@ export const VirtualGrid = <T,>({
 						transform: `translate3d(${x}px, ${y}px, 0)`,
 						width: cellWidth,
 						height: cellHeight,
+						willChange: "transform",
 					}}
 				>
 					{renderItem(items[realIndex], realIndex)}
