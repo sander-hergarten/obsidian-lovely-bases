@@ -3,6 +3,7 @@ import { Plugin } from "obsidian";
 import { ReactView } from "@/lib/view-class";
 
 import InfiniteGallery, { INFINITE_GALLERY_TYPE_ID } from "@/views/InfiniteGallery";
+import HeatmapCalendar, { HEATMAP_CALENDAR_TYPE_ID } from "@/views/HeatmapCalendar";
 import LinearCalendar, { LINEAR_CALENDAR_TYPE_ID } from "@/views/LinearCalendar";
 
 export default class LovelyBasesPlugin extends Plugin {
@@ -122,5 +123,53 @@ export default class LovelyBasesPlugin extends Plugin {
 				},
 			])
 		});
+
+    this.registerBasesView(HEATMAP_CALENDAR_TYPE_ID, {
+      name: "Heatmap Calendar",
+      icon: 'lucide-flame',
+      factory: (controller, containerEl) =>
+        new ReactView(
+          HEATMAP_CALENDAR_TYPE_ID,
+          HeatmapCalendar,
+          controller,
+          containerEl
+        ),
+      options: () => ([
+        {
+          type: 'property',
+          displayName: 'Date Property',
+          key: 'dateProperty',
+        },
+        {
+          type: 'property',
+          displayName: 'Track Property',
+          key: 'trackProperty',
+        },
+        {
+          type: 'text',
+          displayName: 'Reference Date (YYYY-MM-DD)',
+          key: 'date',
+          default: '',
+          placeholder: 'YYYY-MM-DD',
+        },
+		{
+			type: 'dropdown',
+			displayName: 'Color Scheme',
+			key: 'colorScheme',
+			default: 'primary',
+			options: {
+				primary: 'Primary',
+				red: 'Red',
+				orange: 'Orange',
+				yellow: 'Yellow',
+				green: 'Green',
+				cyan: 'Cyan',
+				blue: 'Blue',
+				purple: 'Purple',
+				magenta: 'Magenta',
+			}
+		}
+      ])
+    })
 	}
 }

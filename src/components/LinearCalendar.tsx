@@ -1,5 +1,6 @@
 import { TFile } from "obsidian";
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 
 export type CalendarItem = {
     id: string;
@@ -19,7 +20,7 @@ export type LinearCalendarProps = {
 
 const getMonthName = (monthIndex: number) => {
     const date = new Date(2000, monthIndex, 1);
-    return new Intl.DateTimeFormat('es', { month: 'long' }).format(date);
+	return format(date, 'MMMM');
 };
 
 export const LinearCalendar = ({ items, focus, referenceDate, onEventClick }: LinearCalendarProps) => {
