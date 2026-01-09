@@ -1,23 +1,16 @@
 import type {
-	App,
-	BasesEntry,
-	BasesPropertyId,
-	BasesViewConfig,
+  BasesPropertyId,
+  BasesViewConfig
 } from "obsidian";
+import { type ComponentType, useCallback } from "react";
 
 import Card from "@/components/Card";
-import { useItem } from "@/components/Card/hooks/use-item";
+import { useItems } from "@/components/Card/hooks/use-item";
+import type { CardItem } from "@/components/Card/types";
+import VirtualGrid from "@/components/VirtualGrid";
 import type { ReactBaseViewProps } from "@/types";
 
 export const FACET_CARDS_TYPE_ID = "facet-cards";
-
-type FacetCardProps = {
-	app: App;
-	config: BasesViewConfig;
-	containerEl: HTMLElement;
-	entry: BasesEntry;
-	facetCardsConfig: FacetCardsConfig;
-};
 
 type FacetCardsConfig = {
 	layout: "horizontal" | "vertical";
@@ -72,7 +65,7 @@ const useFacetCardsConfig = (config: BasesViewConfig): FacetCardsConfig => {
 
 	return {
 		layout,
-		cardSize,
+		cardSize: cardSize - PADDING,
 		imageProperty,
 		imageFit,
 		imageAspectRatio,
@@ -84,52 +77,39 @@ const useFacetCardsConfig = (config: BasesViewConfig): FacetCardsConfig => {
 	};
 };
 
-const FacetCard = ({
-	app,
-	config,
-	containerEl,
-	entry,
-	facetCardsConfig,
-}: FacetCardProps) => {
-	const {
-		layout,
-		cardSize,
-		imageProperty,
-		imageFit,
-		imageAspectRatio,
-		imageWidthPercent,
-		showPropertyTitles,
-		hoverProperty,
-		hoverStyle,
-		properties,
-	} = facetCardsConfig;
-
-	const item = useItem({
-		app,
-		config,
-		entry,
-		propertiesToDisplay: properties,
-		hoverPropertyDisplay: hoverProperty,
-		imageProperty,
-	});
-
-	return (
-		<Card
-			layout={layout}
-			item={item}
-			cardSize={cardSize}
-			imageFit={imageFit}
-			imageAspectRatio={imageAspectRatio}
-			imageWidthPercent={imageWidthPercent}
-			showPropertyTitles={showPropertyTitles}
-			hoverStyle={hoverStyle}
-			app={app}
-			containerEl={containerEl}
-		/>
-	);
-};
-
 const PADDING = 12;
+
+const TITLE_ESTIMATED_HEIGHT = 30;
+const PROPERTY_TITLE_ESTIMATED_HEIGHT = 15;
+const PROPERTY_VALUE_ESTIMATED_HEIGHT = 30;
+
+const getEstimatedRowHeight = (
+  facetCardsConfig: FacetCardsConfig
+): number => {
+  const { layout, imageAspectRatio, properties, showPropertyTitles, cardSize, imageWidthPercent } = facetCardsConfig;
+
+  let contentHeight = TITLE_ESTIMATED_HEIGHT;
+
+  if (properties.length > 0) {
+    let propertyHeight = PROPERTY_VALUE_ESTIMATED_HEIGHT;
+    if (showPropertyTitles) {
+      propertyHeight += PROPERTY_TITLE_ESTIMATED_HEIGHT;
+    }
+    contentHeight += propertyHeight * properties.length;
+  }
+
+  let imageHeight = 0;
+
+  if (layout === "vertical") {
+    imageHeight = imageAspectRatio * cardSize;
+  } else {
+    const imageWidth = cardSize * imageWidthPercent / 100;
+    imageHeight = imageWidth / imageAspectRatio;
+  }
+
+  const estimatedRowHeight = layout === "horizontal" ? Math.max(imageHeight, contentHeight) : imageHeight + contentHeight;
+  return estimatedRowHeight + (PADDING * 2);
+};
 
 const FacetCardsView = ({
 	app,
@@ -138,35 +118,42 @@ const FacetCardsView = ({
 	data,
 }: ReactBaseViewProps) => {
 	const facetCardsConfig = useFacetCardsConfig(config);
+  const estimatedRowHeight = getEstimatedRowHeight(facetCardsConfig);
 
-	const cardSize = facetCardsConfig.cardSize - PADDING;
+  const items = useItems({
+    app,
+    config,
+    entries: data.data,
+    propertiesToDisplay: facetCardsConfig.properties,
+    hoverPropertyDisplay: facetCardsConfig.hoverProperty,
+    imageProperty: facetCardsConfig.imageProperty,
+  });
+
+  const RenderItem = useCallback((item: CardItem) => (
+		<Card
+      className="mb-3"
+			layout={facetCardsConfig.layout}
+			item={item}
+			cardSize={facetCardsConfig.cardSize}
+			imageFit={facetCardsConfig.imageFit}
+			imageAspectRatio={facetCardsConfig.imageAspectRatio}
+			imageWidthPercent={facetCardsConfig.imageWidthPercent}
+			showPropertyTitles={facetCardsConfig.showPropertyTitles}
+			hoverStyle={facetCardsConfig.hoverStyle}
+			app={app}
+			containerEl={containerEl}
+		/>
+  ), [app, containerEl, facetCardsConfig]);
 
 	return (
-		<div className="lovely-bases" style={{ height: "100%", width: "100%", padding: 'var(--size-4-3)', overflowY: 'auto' }}>
-			<div
-				style={{
-					columnWidth: `${cardSize}px`,
-					columnGap: '12px',
-				}}
-			>
-				{data.data.map((entry) => (
-					<div
-						key={entry.file.path}
-						style={{
-							breakInside: 'avoid',
-							marginBottom: '12px',
-						}}
-					>
-						<FacetCard
-							app={app}
-							config={config}
-							containerEl={containerEl}
-							entry={entry}
-							facetCardsConfig={facetCardsConfig}
-						/>
-					</div>
-				))}
-			</div>
+		<div className="lovely-bases" style={{ height: "100%", width: "100%", overflowY: 'auto' }}>
+      <VirtualGrid
+        minCardWidth={facetCardsConfig.cardSize}
+        component={RenderItem as unknown as ComponentType<{ id: string }>}
+        items={items}
+        gap={PADDING}
+        estimateRowHeight={estimatedRowHeight}
+      />
 		</div>
 	);
 };

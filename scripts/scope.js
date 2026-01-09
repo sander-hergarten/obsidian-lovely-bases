@@ -10,6 +10,9 @@ const out = postcss()
 		prefixer({
 			prefix: `.${manifest.id}`,
 			transform: function (prefix, selector, prefixedSelector, filePath, rule) {
+				if (selector.includes(':global')) {
+					return selector.replace(/:global\(([^)]+)\)/g, '$1');
+				}
 				if (selector === ':root' || selector === ':host') {
 					return prefix;
 				}

@@ -10,6 +10,7 @@ import type { CardItem } from "./types";
 
 
 type Props = {
+  className?: string;
 	layout: "horizontal" | "vertical";
 	item: CardItem;
 	cardSize: number;
@@ -24,6 +25,7 @@ type Props = {
 
 const Card = memo(
 	({
+		className,
 		layout,
 		item,
 		cardSize,
@@ -71,6 +73,7 @@ const Card = memo(
 				className={cn(
 					"relative bg-card rounded shadow-md overflow-hidden transition-shadow hover:shadow-lg cursor-pointer border border-border",
 					layout === "horizontal" ? "flex flex-row" : "flex flex-col",
+          className,
 				)}
 				onPointerDown={onPointerDown}
 				onClick={onClick}
@@ -95,7 +98,7 @@ const Card = memo(
 						renderContext={app.renderContext}
 						property={item.hoverProperty}
 						style={hoverStyle}
-						cardSize={cardSize}
+            showTitle={showPropertyTitles}
 					/>
 				)}
 			</div>

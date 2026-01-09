@@ -125,3 +125,16 @@
 .value-list-element:not(:has(.tag)) {
   color: var(--pill-color);
 }
+
+/**
+ * GLOBAL STYLES EXAMPLE
+ * Use :global() to define styles that won't be scoped to the plugin ID.
+ * This is useful for variables that need to be available globally in Obsidian.
+ */
+:global(.bases-view[data-view-type="facet-cards"],
+.bases-view[data-view-type="infinite-gallery"],
+.bases-view[data-view-type="linear-calendar"],
+.bases-view[data-view-type="heatmap-calendar"]) {
+  --bases-view-padding: var(--size-4-3);
+  --bases-embed-padding: var(--size-4-1) 1px;
+}
