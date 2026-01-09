@@ -14,7 +14,7 @@ const FACET_CARDS_VIEW: BaseViewDef = {
 	options: () => [
 		{
 			type: "dropdown",
-			displayName: "layout",
+			displayName: "Layout",
 			key: "layout",
 			default: "vertical",
 			options: {
@@ -56,37 +56,34 @@ const FACET_CARDS_VIEW: BaseViewDef = {
 			step: 0.05,
 		},
 		{
-			type: "slider",
-			displayName: "Image Width %",
-			min: 20,
-			max: 50,
-			key: "imageWidthPercent",
-			default: 35,
-			step: 5,
-		},
-		{
 			type: "toggle",
 			displayName: "Show Property Titles",
 			key: "showPropertyTitles",
 			default: true,
 		},
+    {
+      type: "toggle",
+      displayName: "Show Title",
+      key: "showTitle",
+      default: true,
+    },
 		{
 			type: "property",
 			displayName: "Hover Property",
 			key: "hoverProperty",
 			default: "",
 		},
-		{
-			type: "dropdown",
-			displayName: "Hover Style",
-			key: "hoverStyle",
-			default: "overlay",
-			options: {
-				overlay: "Overlay (Bottom)",
-				tooltip: "Tooltip",
-				none: "None",
-			},
-		},
+		// {
+		// 	type: "dropdown",
+		// 	displayName: "Hover Style",
+		// 	key: "hoverStyle",
+		// 	default: "overlay",
+		// 	options: {
+		// 		overlay: "Overlay (Bottom)",
+		// 		tooltip: "Tooltip",
+		// 		none: "None",
+		// 	},
+		// },
 	],
 };
 

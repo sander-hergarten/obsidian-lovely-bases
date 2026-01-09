@@ -52,6 +52,7 @@ const VirtualGrid = ({
 		overscan: 6,
 	});
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: needed to measure the height of the rows
 	useLayoutEffect(() => {
 		virtualizer.measure();
 	}, [columnCount, virtualizer]);
@@ -62,6 +63,7 @@ const VirtualGrid = ({
 			style={{
 				height: "100%",
 				overflow: "auto",
+        opacity: width === null ? 0 : 1,
 				padding,
 			}}
 		>

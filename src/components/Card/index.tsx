@@ -16,8 +16,8 @@ type Props = {
 	cardSize: number;
 	imageFit: "cover" | "contain";
 	imageAspectRatio: number;
-	imageWidthPercent: number;
 	showPropertyTitles: boolean;
+  showTitle: boolean;
 	hoverStyle: "overlay" | "tooltip" | "none";
 	app: App;
 	containerEl: HTMLElement;
@@ -31,8 +31,8 @@ const Card = memo(
 		cardSize,
 		imageFit,
 		imageAspectRatio,
-		imageWidthPercent,
 		showPropertyTitles,
+    showTitle,
 		hoverStyle,
 		app,
 		containerEl,
@@ -89,9 +89,9 @@ const Card = memo(
 					draggable={false}
 				/>
 
-				<Image layout={layout} imageWidthPercent={imageWidthPercent} imageAspectRatio={imageAspectRatio} item={item} imageFit={imageFit} />
+				<Image layout={layout} imageAspectRatio={imageAspectRatio} item={item} imageFit={imageFit} />
 
-        <Content layout={layout} cardSize={cardSize} item={item} imageWidthPercent={imageWidthPercent} showPropertyTitles={showPropertyTitles} app={app} />
+        <Content layout={layout} cardSize={cardSize} item={item} showPropertyTitles={showPropertyTitles} app={app} showTitle={showTitle} />
 
 				{isHovered && item.hoverProperty && hoverStyle !== "none" && (
 					<HoverOverlay
@@ -109,7 +109,6 @@ const Card = memo(
 			prevProps.item.id === nextProps.item.id &&
 			prevProps.cardSize === nextProps.cardSize &&
 			prevProps.showPropertyTitles === nextProps.showPropertyTitles &&
-			prevProps.imageWidthPercent === nextProps.imageWidthPercent &&
 			prevProps.imageFit === nextProps.imageFit &&
 			prevProps.hoverStyle === nextProps.hoverStyle &&
 			prevProps.item.hoverProperty === nextProps.item.hoverProperty &&

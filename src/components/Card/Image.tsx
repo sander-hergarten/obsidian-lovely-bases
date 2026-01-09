@@ -5,7 +5,6 @@ import type { CardItem } from "./types";
 
 type Props = {
 	layout: "horizontal" | "vertical";
-	imageWidthPercent: number;
 	imageAspectRatio: number;
 	item: CardItem;
 	imageFit: "cover" | "contain";
@@ -13,7 +12,6 @@ type Props = {
 
 const Image = ({
 	layout,
-	imageWidthPercent,
 	imageAspectRatio,
 	item,
 	imageFit,
@@ -23,8 +21,12 @@ const Image = ({
 			className="relative shrink-0 bg-(--bases-cards-cover-background)"
 			style={{
 				...(layout === "horizontal"
-					? { width: `${imageWidthPercent}%`, height: "100%" }
-					: { width: "100%", aspectRatio: `1 / ${imageAspectRatio}` }),
+					? {
+							aspectRatio: 1 / imageAspectRatio,
+							height: 0,
+							minHeight: "100%",
+						}
+					: { width: "100%", aspectRatio: 1 / imageAspectRatio }),
 			}}
 		>
 			{item.image ? (

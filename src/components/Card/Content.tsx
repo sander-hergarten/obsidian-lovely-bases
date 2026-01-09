@@ -10,22 +10,17 @@ type Props = {
   layout: "horizontal" | "vertical";
   cardSize: number;
   item: CardItem;
-  imageWidthPercent: number;
   showPropertyTitles: boolean;
+  showTitle: boolean;
   app: App;
 }
 
-const Content = ({ layout, cardSize, item, imageWidthPercent, showPropertyTitles, app }: Props) => {
+const Content = ({ layout, cardSize, item, showPropertyTitles, showTitle, app }: Props) => {
   return (
     <div
       className="flex flex-col flex-1 min-h-0 overflow-hidden"
-      style={{
-        ...(layout === "horizontal"
-          ? { width: `${100 - imageWidthPercent}%` }
-          : { height: `${100 - imageWidthPercent}%` }),
-      }}
     >
-      <Title layout={layout} cardSize={cardSize} item={item} />
+      {showTitle && <Title layout={layout} cardSize={cardSize} item={item} />}
 
       <div className="flex-1 min-h-0">
         <PropertyList

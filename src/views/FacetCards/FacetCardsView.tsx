@@ -18,7 +18,6 @@ type FacetCardsConfig = {
 	imageProperty?: BasesPropertyId;
 	imageFit: "cover" | "contain";
 	imageAspectRatio: number;
-	imageWidthPercent: number;
 	showPropertyTitles: boolean;
 	hoverProperty: {
 		id: BasesPropertyId;
@@ -29,6 +28,7 @@ type FacetCardsConfig = {
 		id: BasesPropertyId;
 		displayName: string;
 	}[];
+	showTitle: boolean;
 };
 
 const useFacetCardsConfig = (config: BasesViewConfig): FacetCardsConfig => {
@@ -41,9 +41,9 @@ const useFacetCardsConfig = (config: BasesViewConfig): FacetCardsConfig => {
 		| undefined;
 	const imageFit = (config.get("imageFit") ?? "cover") as "cover" | "contain";
 	const imageAspectRatio = (config.get("imageAspectRatio") ?? 1.5) as number;
-	const imageWidthPercent = (config.get("imageWidthPercent") ?? 35) as number;
 	const showPropertyTitles = (config.get("showPropertyTitles") ??
 		true) as boolean;
+	const showTitle = (config.get("showTitle") ?? true) as boolean;
 
 	const hoverPropertyId = (config.get("hoverProperty") ??
 		"") as BasesPropertyId;
@@ -69,8 +69,8 @@ const useFacetCardsConfig = (config: BasesViewConfig): FacetCardsConfig => {
 		imageProperty,
 		imageFit,
 		imageAspectRatio,
-		imageWidthPercent,
 		showPropertyTitles,
+		showTitle,
 		hoverProperty,
 		hoverStyle,
 		properties,
@@ -86,7 +86,7 @@ const PROPERTY_VALUE_ESTIMATED_HEIGHT = 30;
 const getEstimatedRowHeight = (
   facetCardsConfig: FacetCardsConfig
 ): number => {
-  const { layout, imageAspectRatio, properties, showPropertyTitles, cardSize, imageWidthPercent } = facetCardsConfig;
+  const { layout, imageAspectRatio, properties, showPropertyTitles, cardSize } = facetCardsConfig;
 
   let contentHeight = TITLE_ESTIMATED_HEIGHT;
 
@@ -103,8 +103,7 @@ const getEstimatedRowHeight = (
   if (layout === "vertical") {
     imageHeight = imageAspectRatio * cardSize;
   } else {
-    const imageWidth = cardSize * imageWidthPercent / 100;
-    imageHeight = imageWidth / imageAspectRatio;
+    imageHeight = contentHeight;
   }
 
   const estimatedRowHeight = layout === "horizontal" ? Math.max(imageHeight, contentHeight) : imageHeight + contentHeight;
@@ -137,8 +136,8 @@ const FacetCardsView = ({
 			cardSize={facetCardsConfig.cardSize}
 			imageFit={facetCardsConfig.imageFit}
 			imageAspectRatio={facetCardsConfig.imageAspectRatio}
-			imageWidthPercent={facetCardsConfig.imageWidthPercent}
 			showPropertyTitles={facetCardsConfig.showPropertyTitles}
+      showTitle={facetCardsConfig.showTitle}
 			hoverStyle={facetCardsConfig.hoverStyle}
 			app={app}
 			containerEl={containerEl}
