@@ -102,6 +102,26 @@ A structured, property-rich card view that gives you more control over how your 
 - **Show Property Titles**: Toggle whether to show the names of the displayed properties.
 - **Show Title**: Toggle the visibility of the note's main title.
 
+### Carousel
+
+<img src="docs/assets/screenshots/carousel.webp" alt="Carousel View">
+
+A dynamic, horizontal scrolling experience that showcases your notes in a continuous flow. Perfect for highlight reels, featured notes, or visual storytelling.
+
+#### Features
+
+- **Horizontal Sliding**: Fluid, touch-friendly scrolling through your note collection.
+- **Smart Navigation**: Intuitive arrows and momentum support for easy browsing.
+- **Title & Context**: Dedicated space for a section title and subtitle to provide context.
+- **Rich Card Support**: Leverages the full power of the Facet Cards system for content display.
+- **Entrance Animations**: Staggered motion effects as the carousel enters the view.
+
+#### Configuration
+
+- **Title**: A main heading to display above the carousel.
+- **Subtitle**: A smaller description text below the title.
+- **Facet Card Options**: Inherits most configuration from Facet Cards to customize the individual items.
+
 ### Linear Calendar
 
 <img src="docs/assets/screenshots/linear-calendar.webp" alt="Linear Calendar View">
