@@ -24,10 +24,11 @@ type Props<
 	items: T[];
 	component: ComponentType<T>;
 	cardSize: number;
+	cardHeight: number;
 };
 
 const Carousel = forwardRef<HTMLDivElement, Props>(
-	({ cardSize = 280, component: Component, title, subtitle, items }, ref) => {
+	({ cardSize = 280, cardHeight, component: Component, title, subtitle, items }, ref) => {
 		const controls = useAnimation();
 		const carouselRef = useRef<HTMLDivElement>(null);
 		const [isAtStart, setIsAtStart] = useState(true);
@@ -109,16 +110,16 @@ const Carousel = forwardRef<HTMLDivElement, Props>(
 							className="flex w-full space-x-4 overflow-x-auto pb-4 scrollbar-hide"
 						>
 							{items.map((item, index) => (
-								<motion.div
-									key={item.id}
-									className="shrink-0"
-									style={{ width: cardSize }}
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.5, delay: index * 0.1 }}
-								>
-									<Component {...item} />
-								</motion.div>
+							<motion.div
+								key={item.id}
+								className="shrink-0"
+								style={{ width: cardSize, height: cardHeight }}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.5, delay: index * 0.1 }}
+							>
+								<Component {...item} />
+							</motion.div>
 							))}
 						</div>
 

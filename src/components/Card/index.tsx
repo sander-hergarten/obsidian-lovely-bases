@@ -73,7 +73,7 @@ const Card = memo(
 		return (
 			<div
 				className={cn(
-					"relative bg-card rounded shadow-md overflow-hidden transition-shadow hover:shadow-lg cursor-pointer border border-border",
+					"relative h-full bg-card rounded shadow-md overflow-hidden transition-shadow hover:shadow-lg cursor-pointer border border-border",
 					layout === "horizontal" ? "flex flex-row" : "flex flex-col",
           className,
 				)}

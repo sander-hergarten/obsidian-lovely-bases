@@ -19,9 +19,13 @@ const PROPERTY_VALUE_ESTIMATED_HEIGHT = 30;
 const getEstimatedRowHeight = (
   facetCardsConfig: FacetCardsConfig
 ): number => {
-  const { layout, imageAspectRatio, properties, showPropertyTitles, cardSize } = facetCardsConfig;
+  const { layout, imageAspectRatio, properties, showPropertyTitles, showTitle, cardSize } = facetCardsConfig;
 
-  let contentHeight = TITLE_ESTIMATED_HEIGHT;
+  let contentHeight = PADDING;
+
+  if (showTitle) {
+    contentHeight += TITLE_ESTIMATED_HEIGHT;
+  }
 
   if (properties.length > 0) {
     let propertyHeight = PROPERTY_VALUE_ESTIMATED_HEIGHT;
@@ -31,15 +35,14 @@ const getEstimatedRowHeight = (
     contentHeight += propertyHeight * properties.length;
   }
 
-  let imageHeight = 0;
+  // En vertical, la imagen ocupa todo el ancho y su altura es proporcional
+  const verticalImageHeight = imageAspectRatio * cardSize;
 
-  if (layout === "vertical") {
-    imageHeight = imageAspectRatio * cardSize;
-  } else {
-    imageHeight = contentHeight;
-  }
+  // En horizontal, la altura se basa en el contenido (la imagen se adapta al alto)
+  const estimatedRowHeight = layout === "horizontal"
+    ? contentHeight
+    : verticalImageHeight + contentHeight;
 
-  const estimatedRowHeight = layout === "horizontal" ? Math.max(imageHeight, contentHeight) : imageHeight + contentHeight;
   return estimatedRowHeight + (PADDING * 2);
 };
 
@@ -76,7 +79,18 @@ const FacetCardsView = ({
 			containerEl={containerEl}
       reverseContent={facetCardsConfig.reverseContent}
 		/>
-  ), [app, containerEl, facetCardsConfig]);
+  ), [
+    app,
+    containerEl,
+    facetCardsConfig.layout,
+    facetCardsConfig.cardSize,
+    facetCardsConfig.imageFit,
+    facetCardsConfig.imageAspectRatio,
+    facetCardsConfig.showPropertyTitles,
+    facetCardsConfig.showTitle,
+    facetCardsConfig.hoverStyle,
+    facetCardsConfig.reverseContent,
+  ]);
 
 	return (
 		<div className="lovely-bases" style={{ height: "100%", width: "100%", overflowY: 'auto' }}>

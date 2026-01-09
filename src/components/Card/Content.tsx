@@ -18,7 +18,7 @@ type Props = {
 const Content = ({ layout, cardSize, item, showPropertyTitles, showTitle, app }: Props) => {
   return (
     <div
-      className="flex flex-col flex-1 min-h-0 overflow-hidden"
+      className="flex flex-col flex-1 min-h-0 min-w-0 h-full overflow-hidden"
     >
       {showTitle && <Title layout={layout} cardSize={cardSize} item={item} />}
 

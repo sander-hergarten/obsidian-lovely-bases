@@ -22,9 +22,9 @@ const Image = ({
 			style={{
 				...(layout === "horizontal"
 					? {
-							aspectRatio: 1 / imageAspectRatio,
-							height: 0,
-							minHeight: "100%",
+							// En horizontal, aspect ratio 2.5 = 100% del ancho, 0.25 = 10%
+							width: `${(imageAspectRatio / 2.5) * 100}%`,
+							height: "100%",
 						}
 					: { width: "100%", aspectRatio: 1 / imageAspectRatio }),
 			}}

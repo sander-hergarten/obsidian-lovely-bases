@@ -50,6 +50,7 @@ const VirtualGrid = ({
 		getScrollElement: () => scrollRef.current,
 		estimateSize: () => estimateRowHeight,
 		overscan: 6,
+    gap,
 	});
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: needed to measure the height of the rows
