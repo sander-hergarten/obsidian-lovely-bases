@@ -29,6 +29,7 @@ type FacetCardsConfig = {
 		displayName: string;
 	}[];
 	showTitle: boolean;
+  reverseContent: boolean;
 };
 
 const useFacetCardsConfig = (config: BasesViewConfig): FacetCardsConfig => {
@@ -44,6 +45,7 @@ const useFacetCardsConfig = (config: BasesViewConfig): FacetCardsConfig => {
 	const showPropertyTitles = (config.get("showPropertyTitles") ??
 		true) as boolean;
 	const showTitle = (config.get("showTitle") ?? true) as boolean;
+  const reverseContent = (config.get("reverseContent") ?? false) as boolean;
 
 	const hoverPropertyId = (config.get("hoverProperty") ??
 		"") as BasesPropertyId;
@@ -74,6 +76,7 @@ const useFacetCardsConfig = (config: BasesViewConfig): FacetCardsConfig => {
 		hoverProperty,
 		hoverStyle,
 		properties,
+    reverseContent,
 	};
 };
 
@@ -141,6 +144,7 @@ const FacetCardsView = ({
 			hoverStyle={facetCardsConfig.hoverStyle}
 			app={app}
 			containerEl={containerEl}
+      reverseContent={facetCardsConfig.reverseContent}
 		/>
   ), [app, containerEl, facetCardsConfig]);
 

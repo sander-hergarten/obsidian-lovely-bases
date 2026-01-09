@@ -22,6 +22,12 @@ const FACET_CARDS_VIEW: BaseViewDef = {
 				vertical: "Vertical",
 			},
 		},
+    {
+      type: "toggle",
+      displayName: "Reverse Image and Content",
+      key: "reverseContent",
+      default: false,
+    },
 		{
 			type: "slider",
 			displayName: "Card size",

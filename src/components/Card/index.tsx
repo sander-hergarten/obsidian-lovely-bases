@@ -21,6 +21,7 @@ type Props = {
 	hoverStyle: "overlay" | "tooltip" | "none";
 	app: App;
 	containerEl: HTMLElement;
+  reverseContent: boolean;
 };
 
 const Card = memo(
@@ -36,6 +37,7 @@ const Card = memo(
 		hoverStyle,
 		app,
 		containerEl,
+    reverseContent,
 	}: Props) => {
 		const [isHovered, setIsHovered] = useState(false);
 		const dragStartPos = useRef<{ x: number; y: number } | null>(null);
@@ -89,9 +91,17 @@ const Card = memo(
 					draggable={false}
 				/>
 
-				<Image layout={layout} imageAspectRatio={imageAspectRatio} item={item} imageFit={imageFit} />
+				{!reverseContent ? (
+          <Image layout={layout} imageAspectRatio={imageAspectRatio} item={item} imageFit={imageFit} />
+        ) : (
+          <Content layout={layout} cardSize={cardSize} item={item} showPropertyTitles={showPropertyTitles} app={app} showTitle={showTitle} />
+        )}
 
-        <Content layout={layout} cardSize={cardSize} item={item} showPropertyTitles={showPropertyTitles} app={app} showTitle={showTitle} />
+        {reverseContent ? (
+          <Image layout={layout} imageAspectRatio={imageAspectRatio} item={item} imageFit={imageFit} />
+        ) : (
+          <Content layout={layout} cardSize={cardSize} item={item} showPropertyTitles={showPropertyTitles} app={app} showTitle={showTitle} />
+        )}
 
 				{isHovered && item.hoverProperty && hoverStyle !== "none" && (
 					<HoverOverlay
