@@ -96,8 +96,8 @@ const colors = {
 };
 
 const HeatmapCalendarView = ({ app, config, data }: ReactBaseViewProps) => {
-	const dateProperty = config.get("dateProperty") as Config["dateProperty"];
-	const trackProperty = config.get("trackProperty") as Config["trackProperty"];
+	const dateProperty = config.get("dateProperty") as Config["dateProperty"] | undefined;
+	const trackProperty = config.get("trackProperty") as Config["trackProperty"] | undefined;
 	const colorScheme = (config.get("colorScheme") ??
 		"primary") as keyof typeof colors;
 	const reverseColors = (config.get("reverseColors") ?? false) as boolean;
@@ -123,6 +123,9 @@ const HeatmapCalendarView = ({ app, config, data }: ReactBaseViewProps) => {
 			entries: Occurrence[];
 		}[]
 	>(() => {
+		if (!dateProperty) return [];
+    if (!trackProperty) return [];
+
 		return data.groupedData.map((group) => {
 			return {
 				key: group.key?.toString() ?? "",

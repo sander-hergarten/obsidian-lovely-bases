@@ -21,14 +21,13 @@ const PropertyValue = memo(
 			value.renderTo(el.current, renderContext);
 
 			return () => {
-				if (!el.current) {
-					return;
+				if (el.current) {
+					el.current.innerHTML = "";
 				}
-				el.current.innerHTML = "";
 			};
 		}, [value, renderContext]);
 
-		return createElement(as, { ref: el, className }, el.current?.innerHTML);
+		return createElement(as, { ref: el, className });
 	},
 	(prevProps, nextProps) => {
 		return prevProps.value === nextProps.value;

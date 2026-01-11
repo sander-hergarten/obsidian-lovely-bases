@@ -61,7 +61,7 @@ const HoverOverlay = memo(
 
 		if (style === "overlay") {
 			return (
-				<div className="absolute bottom-0 left-0 right-0 bg-card/95 backdrop-blur-sm p-3 animate-in fade-in slide-in-from-bottom-2 duration-200 border-t border-border">
+				<div className="absolute bottom-0 left-0 right-0 bg-popover backdrop-blur-sm p-3 animate-in fade-in slide-in-from-bottom-2 duration-200 border-t border-border">
 					<OverlayContent
 						renderContext={renderContext}
 						property={property}

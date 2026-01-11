@@ -1,11 +1,12 @@
-import { ReactBaseViewProps } from "@/types";
 
-import Carousel from "@/components/Carousel";
+import { type ComponentType, useCallback } from "react";
 
 import Card from "@/components/Card";
 import { useItems } from "@/components/Card/hooks/use-item";
 import type { CardItem } from "@/components/Card/types";
-import { ComponentType, useCallback } from "react";
+import Carousel from "@/components/Carousel";
+import type { ReactBaseViewProps } from "@/types";
+
 import { type FacetCardsConfig, useFacetCardsConfig } from "../FacetCards/hooks/use-facet-cards-config";
 
 const CONTENT_PADDING = 32;

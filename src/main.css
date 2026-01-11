@@ -29,7 +29,7 @@
   --background: var(--background-primary);
   --foreground: var(--text-normal);
 
-  --card: var(--bases-cards-background, var(--background-secondary));
+  --card: var(--background-secondary);
   --card-foreground: var(--text-normal);
   --popover: var(--background-secondary-alt);
   --popover-foreground: var(--text-normal);

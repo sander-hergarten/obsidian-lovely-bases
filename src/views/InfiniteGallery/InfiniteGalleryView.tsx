@@ -6,7 +6,7 @@ import {
 	GridItem,
 	VirtualGrid,
 } from "@/components/InfiniteDragScroll";
-import { getImageResourcePath } from "@/lib/links";
+import { getImageResourcePath } from "@/lib/properties";
 import { cn } from "@/lib/utils";
 import type { ReactBaseViewProps } from "@/types";
 

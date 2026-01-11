@@ -6,6 +6,7 @@ export type ReactBaseViewProps = {
 	config: BasesViewConfig;
 	containerEl: HTMLElement;
 	data: BasesQueryResult;
+  isEmbedded: boolean;
 }
 
 export type BaseViewDef = {

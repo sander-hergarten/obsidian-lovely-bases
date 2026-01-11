@@ -6,8 +6,10 @@ import type { ReactBaseViewProps } from "@/types";
 import { ObsidianProvider } from "@/components/Obsidian/Context";
 
 export class ReactBasesView extends BasesView {
-	// private containerEl: HTMLElement;
+	private containerEl: HTMLElement;
 	private root: Root;
+
+  private isEmbedded: boolean;
 
 	constructor(
 		public readonly type: string,
@@ -17,14 +19,17 @@ export class ReactBasesView extends BasesView {
 		private readonly parentEl: HTMLElement,
 	) {
 		super(controller);
-		// this.containerEl = parentEl.createDiv(`bases-${this.type}-view-container`);
+		this.containerEl = parentEl.createDiv(`bases-${this.type}-view-container`);
+    this.isEmbedded = !!this.containerEl.closest(".internal-embed, .markdown-embed, .cm-embed-block, .markdown-embed-content");
 	}
 
 	public onDataUpdated(): void {
 		const { Component } = this;
-		this.root?.unmount();
-		this.parentEl.empty();
-		this.root = createRoot(this.parentEl);
+
+		// Only create the root once - reuse it for subsequent updates
+		if (!this.root) {
+			this.root = createRoot(this.containerEl);
+		}
 
 		this.root.render(
 			<React.StrictMode>
@@ -35,6 +40,7 @@ export class ReactBasesView extends BasesView {
 						config: this.config,
 						containerEl: this.parentEl,
 						data: this.data,
+						isEmbedded: this.isEmbedded,
 					}}
 				>
 					<Component
@@ -43,6 +49,7 @@ export class ReactBasesView extends BasesView {
 						containerEl={this.parentEl}
 						config={this.config}
 						data={this.data}
+            isEmbedded={this.isEmbedded}
 					/>
 				</ObsidianProvider>
 			</React.StrictMode>,
@@ -51,6 +58,6 @@ export class ReactBasesView extends BasesView {
 
 	public onunload(): void {
 		this.root?.unmount();
-		this.parentEl.empty();
+		this.containerEl.empty();
 	}
 }

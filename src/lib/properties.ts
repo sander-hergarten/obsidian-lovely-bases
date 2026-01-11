@@ -69,10 +69,8 @@ export const resolveAttachment = (
   const link = parseWikilink(rawLink);
 
   const dest = app.metadataCache.getFirstLinkpathDest(link, sourcePath);
-  if (dest instanceof TFile) return dest;
 
-  const target = link.split("/").pop()?.toLowerCase();
-  return app.vault.getFiles().find(f => f.name.toLowerCase() === target) ?? null;
+  return dest instanceof TFile ? dest : null;
 }
 
 export const getImageResourcePath = (app: App, rawLink: string, sourcePath: string): string | null => {

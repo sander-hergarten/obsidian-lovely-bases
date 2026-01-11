@@ -68,16 +68,16 @@ const PropertyList = memo(
 		);
 	},
 	(prevProps, nextProps) => {
-		return (
-			prevProps.properties.every((prop, index) => {
-				return (
-					prop.value.toString() ===
-						nextProps.properties[index].value.toString() &&
-					prop.displayName === nextProps.properties[index].displayName
-				);
-			}) &&
-			prevProps.showTitles === nextProps.showTitles
-		);
+		if (prevProps.properties.length !== nextProps.properties.length) return false;
+		if (prevProps.showTitles !== nextProps.showTitles) return false;
+
+		return prevProps.properties.every((prop, index) => {
+			const next = nextProps.properties[index];
+			return (
+				prop.value.toString() === next.value.toString() &&
+				prop.displayName === next.displayName
+			);
+		});
 	},
 );
 

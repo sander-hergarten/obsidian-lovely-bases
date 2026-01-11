@@ -73,7 +73,7 @@ const Card = memo(
 		return (
 			<div
 				className={cn(
-					"relative h-full bg-card rounded shadow-md overflow-hidden transition-shadow hover:shadow-lg cursor-pointer border border-border",
+					"relative h-full bg-(--bases-cards-background) rounded shadow-md overflow-hidden transition-shadow hover:shadow-lg cursor-pointer border border-border",
 					layout === "horizontal" ? "flex flex-row" : "flex flex-col",
           className,
 				)}
@@ -119,14 +119,19 @@ const Card = memo(
 			prevProps.item.id === nextProps.item.id &&
 			prevProps.cardSize === nextProps.cardSize &&
 			prevProps.showPropertyTitles === nextProps.showPropertyTitles &&
+			prevProps.showTitle === nextProps.showTitle &&
 			prevProps.imageFit === nextProps.imageFit &&
+			prevProps.imageAspectRatio === nextProps.imageAspectRatio &&
+			prevProps.layout === nextProps.layout &&
+			prevProps.reverseContent === nextProps.reverseContent &&
 			prevProps.hoverStyle === nextProps.hoverStyle &&
 			prevProps.item.hoverProperty === nextProps.item.hoverProperty &&
+			prevProps.item.properties.length === nextProps.item.properties.length &&
 			prevProps.item.properties.every((prop, index) => {
+				const next = nextProps.item.properties[index];
 				return (
-					prop.value.toString() ===
-						nextProps.item.properties[index].value.toString() &&
-					prop.displayName === nextProps.item.properties[index].displayName
+					prop.value.toString() === next.value.toString() &&
+					prop.displayName === next.displayName
 				);
 			})
 		);

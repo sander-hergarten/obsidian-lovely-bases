@@ -1,5 +1,5 @@
 
-import { type ComponentType, useCallback } from "react";
+import { type ComponentType, useMemo } from "react";
 
 import Card from "@/components/Card";
 import { useItems } from "@/components/Card/hooks/use-item";
@@ -51,6 +51,7 @@ const FacetCardsView = ({
 	config,
 	containerEl,
 	data,
+  isEmbedded,
 }: ReactBaseViewProps) => {
 	const facetCardsConfig = useFacetCardsConfig(config);
   const estimatedRowHeight = getEstimatedRowHeight(facetCardsConfig);
@@ -64,36 +65,34 @@ const FacetCardsView = ({
     imageProperty: facetCardsConfig.imageProperty,
   });
 
-  const RenderItem = useCallback((item: CardItem) => (
-		<Card
-      className="mb-3"
-			layout={facetCardsConfig.layout}
-			item={item}
-			cardSize={facetCardsConfig.cardSize}
-			imageFit={facetCardsConfig.imageFit}
-			imageAspectRatio={facetCardsConfig.imageAspectRatio}
-			showPropertyTitles={facetCardsConfig.showPropertyTitles}
-      showTitle={facetCardsConfig.showTitle}
-			hoverStyle={facetCardsConfig.hoverStyle}
-			app={app}
-			containerEl={containerEl}
-      reverseContent={facetCardsConfig.reverseContent}
-		/>
-  ), [
-    app,
-    containerEl,
-    facetCardsConfig.layout,
-    facetCardsConfig.cardSize,
-    facetCardsConfig.imageFit,
-    facetCardsConfig.imageAspectRatio,
-    facetCardsConfig.showPropertyTitles,
-    facetCardsConfig.showTitle,
-    facetCardsConfig.hoverStyle,
-    facetCardsConfig.reverseContent,
-  ]);
+  const RenderItem = useMemo(() => {
+    const Component = (item: CardItem) => (
+      <Card
+        className="mb-3"
+        layout={facetCardsConfig.layout}
+        item={item}
+        cardSize={facetCardsConfig.cardSize}
+        imageFit={facetCardsConfig.imageFit}
+        imageAspectRatio={facetCardsConfig.imageAspectRatio}
+        showPropertyTitles={facetCardsConfig.showPropertyTitles}
+        showTitle={facetCardsConfig.showTitle}
+        hoverStyle={facetCardsConfig.hoverStyle}
+        app={app}
+        containerEl={containerEl}
+        reverseContent={facetCardsConfig.reverseContent}
+      />
+    );
+    Component.displayName = 'RenderItem';
+    return Component;
+  }, [app, containerEl, facetCardsConfig]);
 
 	return (
-		<div className="lovely-bases" style={{ height: "100%", width: "100%", overflowY: 'auto' }}>
+		<div className="lovely-bases" style={{
+      height: "100%",
+      width: "100%",
+      overflowY: 'auto',
+      ...(isEmbedded ? { maxHeight: '60vh' } : {}),
+    }}>
       <VirtualGrid
         minCardWidth={facetCardsConfig.cardSize}
         component={RenderItem as unknown as ComponentType<{ id: string }>}
