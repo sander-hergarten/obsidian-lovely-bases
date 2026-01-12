@@ -25,3 +25,6 @@ workspace.json
 build
 
 TODO.md
+
+*storybook.log
+storybook-static

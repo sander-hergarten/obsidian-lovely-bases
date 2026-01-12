@@ -1,0 +1,61 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+@import "colors.css";
+@import "../src/main.css";
+
+:root {
+  --radius: var(--radius-m, 8px);
+
+  --background: var(--color-paper);
+  --foreground: var(--color-base-900);
+
+  --card: var(--color-base-50);
+  --card-foreground: var(--color-base-950);
+  --popover: var(--color-base-100);
+  --popover-foreground: var(--color-base-900);
+
+  --primary: var(--color-red-400);
+  --primary-foreground: var(--color-paper);
+
+  --secondary: var(--color-green-400);
+  --secondary-foreground: var(--color-paper);
+
+  --muted: var(--color-base-300);
+  --muted-foreground: var(--color-base-700);
+
+  --accent: var(--color-purple-500);
+  --accent-foreground: var(--color-paper);
+
+  --destructive: var(--color-red-700);
+  --destructive-foreground: var(--color-red-50);
+
+  --border: var(--background-modifier-border, #e6e4d9);
+  --input: var(--background-modifier-border, #e6e4d9);
+  --ring: var(--interactive-accent, hsl( 5, 61%, calc(54% + 6%) ));
+
+
+  --chart-1: var(--color-purple-500);
+  --chart-2: var(--color-cyan-500);
+  --chart-3: var(--color-yellow-500);
+  --chart-4: var(--color-pink-500);
+  --chart-5: var(--color-orange-500);
+
+  --sidebar: var(--color-base-100);
+  --sidebar-foreground: var(--color-base-900);
+  --sidebar-primary: var(--interactive-accent);
+  --sidebar-primary-foreground: var(--color-paper);
+  --sidebar-accent: var(--background-modifier-hover);
+  --sidebar-accent-foreground: var(--color-base-100);
+  --sidebar-border: var(--background-modifier-border);
+  --sidebar-ring: var(--color-purple-500);
+
+  --color-red: var(--color-red-400);
+  --color-orange: var(--color-orange-400);
+  --color-yellow: var(--color-yellow-400);
+  --color-green: var(--color-green-400);
+  --color-cyan: var(--color-cyan-400);
+  --color-blue: var(--color-blue-400);
+  --color-purple: var(--color-purple-400);
+  --color-pink: var(--color-pink-400);
+}

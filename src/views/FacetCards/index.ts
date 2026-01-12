@@ -1,8 +1,10 @@
-import { ReactBasesView } from "@/lib/view-class";
-import type { BaseViewDef } from "@/types";
 
 import { DEFAULT_CARD_SIZE } from "@/components/Card/config/constants";
 import { CARD_CONFIG_OPTIONS } from "@/components/Card/config/options";
+
+import { ReactBasesView } from "@/lib/view-class";
+
+import type { BaseViewDef } from "@/types";
 
 import FacetCardsView from "./FacetCardsView";
 
