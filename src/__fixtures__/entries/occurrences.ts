@@ -1,10 +1,10 @@
 
-import type { BasesEntry, BasesEntryGroup } from "obsidian";
 import { addDays, startOfYear } from "date-fns";
+import type { BasesEntry, BasesEntryGroup } from "obsidian";
 
-import { aBasesEntry } from "../../__mocks__/aBasesEntry";
-import { aBasesEntryGroup } from "../../__mocks__/aBasesEntryGroup";
-import { aFile } from "../../__mocks__/aFile";
+import { aBasesEntry } from "@/__mocks__/aBasesEntry";
+import { aBasesEntryGroup } from "@/__mocks__/aBasesEntryGroup";
+import { aFile } from "@/__mocks__/aFile";
 
 const today = new Date();
 const startDate = startOfYear(today);
@@ -15,22 +15,20 @@ const randomOccurrence = (startDate: Date, index: number) => {
       basename: addDays(startDate, index).toISOString().split('T')[0],
     }),
   }, {
-    // from 0 to 5, random
     dietQuality: Math.floor(Math.random() * 6),
   });
 };
 
-const indexedOccurrence = (startDate: Date, index: number) => {
-  return aBasesEntry({
-    file: aFile({
-      basename: addDays(startDate, index).toISOString().split('T')[0],
-    }),
-  }, {
-    dietQuality: index % 6,
-  });
-};
+// const indexedOccurrence = (startDate: Date, index: number) => {
+//   return aBasesEntry({
+//     file: aFile({
+//       basename: addDays(startDate, index).toISOString().split('T')[0],
+//     }),
+//   }, {
+//     dietQuality: index % 6,
+//   });
+// };
 
-// generate 365 entries
 export const OCCURRENCES: BasesEntry[] = Array.from({ length: 365 }, (_, index) => {
   return randomOccurrence(startDate, index);
 });

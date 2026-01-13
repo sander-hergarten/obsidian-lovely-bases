@@ -1,35 +1,35 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { expect } from "storybook/test";
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { expect, fn } from 'storybook/test';
+import {
+  APPLICATION_ENTRIES,
+  ARTICLE_ENTRIES,
+  BOOK_ENTRIES,
+  MOVIES_ENTRIES,
+  PERSON_ENTRIES,
+} from "@/__fixtures__/entries";
+import { aBasesQueryResult, aReactBaseViewProps } from "@/__mocks__";
+import { Providers, ViewWrapper } from "@/stories/decorators";
 
-// biome-ignore lint/correctness/noUnusedImports: React is needed for JSX type checking in this context
-import React from 'react';
+import {
+  APPLICATIONS_BASE_CONFIG,
+  ARTICLES_BASE_CONFIG,
+  BOOKS_BASE_CONFIG,
+  MOVIES_BASE_CONFIG,
+  PEOPLE_BASE_CONFIG,
+} from "./__fixtures__/configs";
 
-import { ARTICLES_BASE_CONFIG } from '../../__fixtures__/configs/articles';
-import { ARTICLE_ENTRIES } from '../../__fixtures__/entries/articles';
-import { MOVIES_BASE_CONFIG } from '../../__fixtures__/configs/movies';
-import { MOVIES_ENTRIES } from '../../__fixtures__/entries/movies';
-import Providers from '../../stories/decorators/Providers';
-import ViewWrapper from '../../stories/decorators/ViewWrapper';
-import FacetCardsView from './FacetCardsView';
-import { BOOKS_BASE_CONFIG } from '../../__fixtures__/configs/books';
-import { BOOK_ENTRIES } from '../../__fixtures__/entries/books';
-import { PEOPLE_BASE_CONFIG } from '../../__fixtures__/configs/people';
-import { PERSON_ENTRIES } from '../../__fixtures__/entries/people';
-import { APPLICATIONS_BASE_CONFIG } from '../../__fixtures__/configs/application';
-import { APPLICATION_ENTRIES } from '../../__fixtures__/entries/application';
+import FacetCardsView from "./FacetCardsView";
 
 const meta = {
-  title: 'Views/Facet Cards',
+  title: "Views/Facet Cards",
   component: FacetCardsView,
-  tags: ['autodocs'],
-  decorators: [
-    Providers,
-    ViewWrapper,
-  ],
+  tags: ["autodocs"],
+  decorators: [Providers, ViewWrapper],
   parameters: {
     docs: {
-      subtitle: 'A structured, property-rich card view that gives you more control over how your note data is displayed. Perfect for databases, catalogs, or property-heavy notes.',
+      subtitle:
+        "A structured, property-rich card view that gives you more control over how your note data is displayed. Perfect for databases, catalogs, or property-heavy notes.",
       description: {
         component: `### Features
 
@@ -61,61 +61,63 @@ type Story = StoryObj<typeof meta>;
 
 export const Articles: Story = {
   args: {
-    data: {
-      data: ARTICLE_ENTRIES,
-    },
-    config: ARTICLES_BASE_CONFIG,
-    isEmbedded: false,
-  }
+    ...aReactBaseViewProps({
+      data: aBasesQueryResult({
+        data: ARTICLE_ENTRIES,
+      }),
+      config: ARTICLES_BASE_CONFIG,
+    }),
+  },
 };
 
 export const Movies: Story = {
   args: {
-    data: {
-      data: MOVIES_ENTRIES,
-    },
-    config: MOVIES_BASE_CONFIG,
-    isEmbedded: false,
+    ...aReactBaseViewProps({
+      data: aBasesQueryResult({
+        data: MOVIES_ENTRIES,
+      }),
+      config: MOVIES_BASE_CONFIG,
+    }),
   },
-  play: async ({ args, canvas, userEvent }): Promise<void> => {
-    const container = canvas.getByTestId('lovely-bases') as HTMLElement;
+  play: async ({ args, canvas }): Promise<void> => {
+    const container = canvas.getByTestId("lovely-bases") as HTMLElement;
 
-    // 👇 Simulate behavior
-    console.log(userEvent, container)
     container.scrollTop = 100;
 
-    const cards = canvas.getAllByTestId('lovely-card');
+    const cards = canvas.getAllByTestId("lovely-card");
     await expect(cards).toHaveLength(args.data.data.length);
-  }
+  },
 };
-
 
 export const Books: Story = {
   args: {
-    data: {
-      data: BOOK_ENTRIES,
-    },
-    config: BOOKS_BASE_CONFIG,
-    isEmbedded: false,
+    ...aReactBaseViewProps({
+      data: aBasesQueryResult({
+        data: BOOK_ENTRIES,
+      }),
+      config: BOOKS_BASE_CONFIG,
+    }),
   },
 };
 
 export const People: Story = {
   args: {
-    data: {
-      data: PERSON_ENTRIES,
-    },
-    config: PEOPLE_BASE_CONFIG,
-    isEmbedded: false,
+    ...aReactBaseViewProps({
+      data: aBasesQueryResult({
+        data: PERSON_ENTRIES,
+      }),
+      config: PEOPLE_BASE_CONFIG,
+    }),
   },
 };
 
 export const Applications: Story = {
   args: {
-    data: {
-      data: APPLICATION_ENTRIES,
-    },
-    config: APPLICATIONS_BASE_CONFIG,
-    isEmbedded: false,
+    ...aReactBaseViewProps({
+      data: aBasesQueryResult({
+        data: APPLICATION_ENTRIES,
+      }),
+      config: APPLICATIONS_BASE_CONFIG,
+    }),
   },
 };

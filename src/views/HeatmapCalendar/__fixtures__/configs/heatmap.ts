@@ -1,6 +1,7 @@
-import type { BasesViewConfig } from "obsidian";
-import { aBasesViewConfig } from "../../__mocks__/aBasesViewConfig";
 
+import type { BasesViewConfig } from "obsidian";
+
+import { aBasesViewConfig } from "@/__mocks__/aBasesViewConfig";
 
 export const SEMAPHOR_HEATMAP_BASE_CONFIG: BasesViewConfig = aBasesViewConfig({
   dateProperty: 'file.name',

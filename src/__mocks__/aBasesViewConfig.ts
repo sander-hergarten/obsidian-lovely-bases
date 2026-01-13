@@ -2,7 +2,7 @@ import type { BasesPropertyId, BasesViewConfig } from "obsidian";
 
 
 export const aBasesViewConfig = <T extends Record<string, unknown>>(
-  config: T,
+  config?: T,
   order: BasesPropertyId[] = [],
 ): BasesViewConfig => {
   return {
@@ -17,7 +17,7 @@ export const aBasesViewConfig = <T extends Record<string, unknown>>(
       throw new Error('Not implemented')
     },
     getDisplayName(propertyId) {
-      const [source, property] = propertyId.split('.');
+      const [_, property] = propertyId.split('.');
       return property;
     },
     getOrder() {

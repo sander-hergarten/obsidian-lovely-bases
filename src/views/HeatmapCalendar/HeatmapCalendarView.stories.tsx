@@ -1,12 +1,12 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-// biome-ignore lint/correctness/noUnusedImports: React is needed for JSX type checking in this context
-import React from 'react';
 
-import { GREEN_HEATMAP_BASE_CONFIG, SEMAPHOR_HEATMAP_BASE_CONFIG } from '../../__fixtures__/configs/heatmap';
-import { GROUPED_OCCURRENCES, OCCURRENCES } from '../../__fixtures__/entries/occurrences';
-import Providers from '../../stories/decorators/Providers';
-import ViewWrapper from '../../stories/decorators/ViewWrapper';
+import { GROUPED_OCCURRENCES, OCCURRENCES } from '@/__fixtures__/entries';
+import { aBasesQueryResult, aReactBaseViewProps } from '@/__mocks__';
+import { Providers, ViewWrapper } from "@/stories/decorators";
+
+import { SEMAPHOR_HEATMAP_BASE_CONFIG } from './__fixtures__/configs/heatmap';
+
 import HeatmapCalendarView from './HeatmapCalendarView';
 
 
@@ -45,12 +45,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Semaphor: Story = {
-  args: {
-    data: {
+  args: aReactBaseViewProps({
+    data: aBasesQueryResult({
       data: OCCURRENCES,
       groupedData: GROUPED_OCCURRENCES,
-    },
+    }),
     config: SEMAPHOR_HEATMAP_BASE_CONFIG,
-    isEmbedded: false,
-  },
+  }),
 };

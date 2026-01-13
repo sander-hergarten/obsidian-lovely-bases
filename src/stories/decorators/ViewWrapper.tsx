@@ -1,10 +1,11 @@
-import { StoryFn } from "@storybook/react-vite";
+import type { Decorator } from "@storybook/react-vite";
 
-
-export default function ViewWrapper(Story: StoryFn) {
+const ViewWrapper: Decorator = (Story) => {
   return (
     <div style={{ height: 'calc(100vh - 40px)', overflowY: 'auto' }} data-testid="lovely-bases">
       <Story />
     </div>
   );
-}
+};
+
+export default ViewWrapper;

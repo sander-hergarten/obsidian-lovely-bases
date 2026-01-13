@@ -12,23 +12,13 @@
 		"allowJs": true,
 		// "noImplicitAny": true,
 		"allowSyntheticDefaultImports": true,
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"importHelpers": true,
 		"isolatedModules": true,
 		"lib": ["DOM", "ES5", "ES6", "ES7"]
 	},
 	"include": ["src/**/*.ts", "src/**/*.tsx"],
 	"exclude": [
-		"node_modules",
-		"**/*.stories.ts",
-		"**/*.stories.tsx",
-		"**/*.test.ts",
-		"**/*.test.tsx",
-		"**/*.spec.ts",
-		"**/*.spec.tsx",
-		"src/__mocks__",
-		"src/__fixtures__",
-		"src/stories",
-		"vitest.config.ts"
+		"node_modules"
 	]
 }

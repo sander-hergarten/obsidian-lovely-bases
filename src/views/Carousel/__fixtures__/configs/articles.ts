@@ -1,10 +1,9 @@
 
-import type { CardConfig } from "@/components/Card/types"
+import { aBasesViewConfig } from "@/__mocks__/aBasesViewConfig"
 
-import { aBasesViewConfig } from "../../__mocks__/aBasesViewConfig"
-
-export const ARTICLES_CARD_CONFIG: CardConfig = {
+export const ARTICLES_BASE_CONFIG = aBasesViewConfig({
   layout: 'horizontal',
+  shape: 'square',
   hoverProperty: 'note.url',
   hoverStyle: 'overlay',
   properties: [
@@ -19,6 +18,4 @@ export const ARTICLES_CARD_CONFIG: CardConfig = {
   reverseContent: true,
   showPropertyTitles: false,
   showTitle: true,
-};
-
-export const ARTICLES_BASE_CONFIG = aBasesViewConfig(ARTICLES_CARD_CONFIG)
+})

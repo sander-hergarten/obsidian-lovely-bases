@@ -6,16 +6,19 @@ export default create({
   brandImage: './logo.png',
   brandTarget: '_self',
 
+
   colorPrimary: '#879A39',
   colorSecondary: '#D14D41',
 
   appBg: '#FFFCF0',
   appContentBg: '#FFFCF0',
+  appHoverBg: '#e6e4d9',
   appPreviewBg: '#FFFCF0',
   appBorderColor: "#e6e4d9",
 
   textColor: '#282726',
   textInverseColor: '#FFFCF0',
+  textMutedColor: '#575653',
 
   barTextColor: '#B7B5AC',
   barSelectedColor: '#585C6D',
@@ -25,4 +28,9 @@ export default create({
   inputBg: '#F2F0E5',
   inputBorder: '#BEC97E',
   inputTextColor: '#BEC97E',
+
+  booleanBg: '#E6E4D9',
+  booleanSelectedBg: '#BEC97E',
+
+  buttonBg: '#e6e4d9',
 });
