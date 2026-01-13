@@ -62,6 +62,7 @@ const Card = memo(
 
 		return (
 			<div
+       data-testid="lovely-card"
 				className={cn(
 					classes,
 					className,

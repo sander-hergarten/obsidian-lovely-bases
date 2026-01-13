@@ -1,7 +1,5 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
-// biome-ignore lint/correctness/noUnusedImports: React is needed for JSX type checking in this context
-import React from 'react';
 
 import { ARTICLES_BASE_CONFIG } from '../../__fixtures__/configs/articles';
 import { ARTICLE_ENTRIES } from '../../__fixtures__/entries/articles';
@@ -15,38 +13,18 @@ import { APPLICATIONS_BASE_CONFIG } from '../../__fixtures__/configs/application
 import { APPLICATION_ENTRIES } from '../../__fixtures__/entries/application';
 import Providers from '../../stories/decorators/Providers';
 import ViewWrapper from '../../stories/decorators/ViewWrapper';
-import CarouselView from './CarouselView';
+import ThreeDCarouselView from './3DCarouselView';
 
 
 const meta = {
-  title: 'Views/Carousel',
-  tags: ['autodocs'],
-  component: CarouselView,
+  title: 'Views/3D Carousel',
+  tags: ['autodocs', 'experimental'],
+  component: ThreeDCarouselView,
   decorators: [
     Providers,
     ViewWrapper,
-  ],
-  parameters: {
-    docs: {
-      subtitle: `A dynamic, horizontal scrolling experience that showcases your notes in a continuous flow. Perfect for highlight reels, featured notes, or visual storytelling.`,
-      description: {
-        component: `### Features
-
-- **Horizontal Sliding**: Fluid, touch-friendly scrolling through your note collection.
-- **Smart Navigation**: Intuitive arrows and momentum support for easy browsing.
-- **Title & Context**: Dedicated space for a section title and subtitle to provide context.
-- **Rich Card Support**: Leverages the full power of the Facet Cards system for content display.
-- **Entrance Animations**: Staggered motion effects as the carousel enters the view.
-
-### Configuration
-
-- **Title**: A main heading to display above the carousel.
-- **Subtitle**: A smaller description text below the title.
-- **Facet Card Options**: Inherits most configuration from Facet Cards to customize the individual items.`
-      },
-    },
-  }
-} satisfies Meta<typeof CarouselView>;
+  ]
+} satisfies Meta<typeof ThreeDCarouselView>;
 
 export default meta;
 

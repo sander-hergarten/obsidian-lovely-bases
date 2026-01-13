@@ -17,7 +17,29 @@ const meta = {
   decorators: [
     Providers,
     ViewWrapper,
-  ]
+  ],
+  parameters: {
+    docs: {
+      subtitle: 'A sleek, horizontal timeline view that displays your notes as events across a calendar, perfect for visualizing schedules, projects, or journals.',
+      description: {
+        component: `
+### Features
+
+- **Adjustable Focus**: Switch between **Annual**, **Semestral** (6 months), and **Trimestral** (3 months) views.
+- **Event Visualization**: Notes are displayed as bars spanning from their start to end dates.
+- **Auto-Stacking**: Overlapping events are automatically stacked vertically for clear visibility.
+- **Color Coding**: Automatically uses the \`note.color\` property to style the event bars.
+- **Interactive**: Click on any event bar to immediately open the associated note.
+
+### Configuration
+
+- **Focus**: Choose the time span to display ('Anual', 'Semestral', or 'Trimestral').
+- **Start Date Property**: The property used for the event's start date (required).
+- **End Date Property**: The property used for the event's end date (optional, defaults to start date).
+- **Reference Date**: The date around which the calendar centers (optional, defaults to today).`
+      },
+    },
+  }
 } satisfies Meta<typeof LinearCalendarView>;
 
 export default meta;

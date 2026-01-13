@@ -11,6 +11,9 @@ const config: StorybookConfig = {
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
+  tags: {
+    experimental: { defaultFilterSelection: 'exclude' },
+  },
   "addons": [
     "@chromatic-com/storybook",
     "@storybook/addon-vitest",

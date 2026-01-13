@@ -1,5 +1,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, fn } from 'storybook/test';
+
 // biome-ignore lint/correctness/noUnusedImports: React is needed for JSX type checking in this context
 import React from 'react';
 
@@ -24,7 +26,33 @@ const meta = {
   decorators: [
     Providers,
     ViewWrapper,
-  ]
+  ],
+  parameters: {
+    docs: {
+      subtitle: 'A structured, property-rich card view that gives you more control over how your note data is displayed. Perfect for databases, catalogs, or property-heavy notes.',
+      description: {
+        component: `### Features
+
+- **Flexible Layouts**: Choose between **Vertical** (image on top) or **Horizontal** (image on the side) layouts.
+- **Rich Media Integration**: Display images from any note property with precise control over aspect ratio and fit.
+- **Property-Focused**: Dedicated space for displaying multiple note properties with optional labels.
+- **Interactive Effects**: Enhance your cards with hover-activated overlays for extra information.
+- **Highly Responsive**: Automatically scales and adapts to any screen size while maintaining performance.
+
+### Configuration
+
+- **Layout**: Switch between 'Horizontal' or 'Vertical' card styles.
+- **Reverse Content**: Flip the position of the image and the content (useful for alternating designs).
+- **Card Size**: Control the base width of each card in the grid.
+- **Image Property**: Select the property that contains your note's featured image.
+- **Image Fit**: Choose between 'Cover' (fill) or 'Contain' (fit within).
+- **Aspect Ratio**: Fine-tune the proportions of your images.
+- **Show Property Titles**: Toggle whether to show the names of the displayed properties.
+- **Show Title**: Toggle the visibility of the note's main title.
+`,
+      },
+    },
+  },
 } satisfies Meta<typeof FacetCardsView>;
 
 export default meta;
@@ -38,7 +66,7 @@ export const Articles: Story = {
     },
     config: ARTICLES_BASE_CONFIG,
     isEmbedded: false,
-  },
+  }
 };
 
 export const Movies: Story = {
@@ -49,6 +77,16 @@ export const Movies: Story = {
     config: MOVIES_BASE_CONFIG,
     isEmbedded: false,
   },
+  play: async ({ args, canvas, userEvent }): Promise<void> => {
+    const container = canvas.getByTestId('lovely-bases') as HTMLElement;
+
+    // 👇 Simulate behavior
+    console.log(userEvent, container)
+    container.scrollTop = 100;
+
+    const cards = canvas.getAllByTestId('lovely-card');
+    await expect(cards).toHaveLength(args.data.data.length);
+  }
 };
 
 

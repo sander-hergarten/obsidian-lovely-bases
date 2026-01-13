@@ -7,12 +7,12 @@
     "css": "npx @tailwindcss/cli -i src/main.css -o build/lovely-bases/styles.css --watch",
     "css:build": "npx @tailwindcss/cli -i src/main.css -o build/lovely-bases/styles.css --minify",
     "dev": "node esbuild.config.mjs",
+    "dev:plugin": "node scripts/dev-install.mjs",
     "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production && npm run css:build && node scripts/scope.js",
-    "dev-install": "node scripts/dev-install.mjs",
-    "init": "node scripts/init.mjs",
+    "test": "vitest --project storybook",
     "version": "node version-bump.mjs && git add manifest.json versions.json",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "docs:serve": "storybook dev -p 6006",
+    "docs:build": "storybook build"
   },
   "keywords": [],
   "author": "",
