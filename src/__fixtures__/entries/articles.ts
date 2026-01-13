@@ -23,3 +23,10 @@ export const ARTICLE_ENTRIES: BasesEntry[] = [
     }
   ),
 ];
+
+export const VIRTUAL_SCROLL_ARTICLES_ENTRIES: BasesEntry[] = []
+
+Array.from({ length: 25 }, (_) => VIRTUAL_SCROLL_ARTICLES_ENTRIES.push(
+  ...ARTICLE_ENTRIES,
+));
+

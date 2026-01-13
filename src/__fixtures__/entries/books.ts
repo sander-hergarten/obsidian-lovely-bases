@@ -21,3 +21,10 @@ export const BOOK_ENTRIES: BasesEntry[] = [
     }
   ),
 ];
+
+export const VIRTUAL_SCROLL_BOOKS_ENTRIES: BasesEntry[] = []
+
+Array.from({ length: 25 }, (_) => VIRTUAL_SCROLL_BOOKS_ENTRIES.push(
+  ...BOOK_ENTRIES,
+));
+

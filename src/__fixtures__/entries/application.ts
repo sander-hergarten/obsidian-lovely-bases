@@ -15,3 +15,9 @@ export const APPLICATION_ENTRIES: BasesEntry[] = [
     }
   ),
 ];
+
+export const VIRTUAL_SCROLL_APPLICATION_ENTRIES: BasesEntry[] = []
+
+Array.from({ length: 25 }, (_) => VIRTUAL_SCROLL_APPLICATION_ENTRIES.push(
+  ...APPLICATION_ENTRIES,
+));

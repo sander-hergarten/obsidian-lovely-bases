@@ -15,3 +15,10 @@ export const PERSON_ENTRIES: BasesEntry[] = [
     }
   ),
 ];
+
+export const VIRTUAL_SCROLL_PERSON_ENTRIES: BasesEntry[] = []
+
+Array.from({ length: 25 }, (_) => VIRTUAL_SCROLL_PERSON_ENTRIES.push(
+  ...PERSON_ENTRIES,
+));
+

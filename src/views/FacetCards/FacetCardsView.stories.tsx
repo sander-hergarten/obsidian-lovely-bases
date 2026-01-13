@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect } from "storybook/test";
 
 import {
-  APPLICATION_ENTRIES,
-  ARTICLE_ENTRIES,
-  BOOK_ENTRIES,
-  MOVIES_ENTRIES,
-  PERSON_ENTRIES,
+  VIRTUAL_SCROLL_APPLICATION_ENTRIES,
+  VIRTUAL_SCROLL_ARTICLES_ENTRIES,
+  VIRTUAL_SCROLL_BOOKS_ENTRIES,
+  VIRTUAL_SCROLL_MOVIES_ENTRIES,
+  VIRTUAL_SCROLL_PERSON_ENTRIES,
 } from "@/__fixtures__/entries";
-import { createViewRenderer, Providers, ViewWrapper } from "@/stories/decorators";
+import { createViewRenderer, Providers, ScrollViewWrapper } from "@/stories/decorators";
 
 import {
   APPLICATIONS_BASE_CONFIG,
@@ -26,7 +26,7 @@ const meta = {
   title: "Views/Facet Cards",
   component: View,
   tags: ["autodocs"],
-  decorators: [Providers, ViewWrapper],
+  decorators: [Providers, ScrollViewWrapper],
   parameters: {
     docs: {
       subtitle:
@@ -78,14 +78,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Articles: Story = {
   args: {
-    data: ARTICLE_ENTRIES,
+    data: VIRTUAL_SCROLL_ARTICLES_ENTRIES,
     ...ARTICLES_BASE_CONFIG,
   },
 };
 
 export const Movies: Story = {
   args: {
-    data: MOVIES_ENTRIES,
+    data: VIRTUAL_SCROLL_MOVIES_ENTRIES,
     ...MOVIES_BASE_CONFIG,
   },
   play: async ({ args, canvas }): Promise<void> => {
@@ -100,21 +100,21 @@ export const Movies: Story = {
 
 export const Books: Story = {
   args: {
-    data: BOOK_ENTRIES,
+    data: VIRTUAL_SCROLL_BOOKS_ENTRIES,
     ...BOOKS_BASE_CONFIG,
   },
 };
 
 export const People: Story = {
   args: {
-    data: PERSON_ENTRIES,
+    data: VIRTUAL_SCROLL_PERSON_ENTRIES,
     ...PEOPLE_BASE_CONFIG,
   },
 };
 
 export const Applications: Story = {
   args: {
-    data: APPLICATION_ENTRIES,
+    data: VIRTUAL_SCROLL_APPLICATION_ENTRIES,
     ...APPLICATIONS_BASE_CONFIG,
   },
 };
