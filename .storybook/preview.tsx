@@ -1,14 +1,14 @@
 
-import * as React from 'react';
-import type { Preview } from "@storybook/react-vite";
 import {
-  Title,
-  Subtitle,
+  Controls,
   Description,
   Primary,
-  Controls,
   Stories,
+  Subtitle,
+  Title,
 } from '@storybook/addon-docs/blocks';
+import type { Preview } from "@storybook/react-vite";
+import React from 'react';
 
 import "./styles.css";
 

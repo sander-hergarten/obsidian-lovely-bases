@@ -101,7 +101,7 @@ export const RightArrow = () => <svg
       <div className="sb-grid-item">
         <img src={ProjectFolders} alt="A screenshot showing the Project Folders view" />
         <h4 className="sb-section-item-heading">Project Folders</h4>
-          <p className="sb-section-item-paragraph">Display your data grouped in fancy folders.</p>
+          <p className="sb-section-item-paragraph">A tactile, organization-focused view that groups your notes into beautiful 3D interactive folders. Perfect for managing projects, areas, or any hierarchical collection.</p>
         <a
           href="/?path=/docs/views-project-folders--docs"
         >See it in action<RightArrow /></a>
@@ -117,7 +117,7 @@ export const RightArrow = () => <svg
       <div className="sb-grid-item">
         <img src={FacetCards} alt="A screenshot showing the Facet Cards view" />
         <h4 className="sb-section-item-heading">Facet Cards</h4>
-        <p className="sb-section-item-paragraph">Display your data in a beautiful, facetted gallery.</p>
+        <p className="sb-section-item-paragraph">A structured, property-rich card view that gives you more control over how your note data is displayed. Perfect for databases, catalogs, or property-heavy notes.</p>
         <a
           href="/?path=/docs/views-facet-cards--docs"
         >See it in action<RightArrow /></a>
@@ -125,7 +125,7 @@ export const RightArrow = () => <svg
       <div className="sb-grid-item">
         <img src={LinearCalendar} alt="A screenshot showing the Linear Calendar view" />
         <h4 className="sb-section-item-heading">Linear Calendar</h4>
-        <p className="sb-section-item-paragraph">Display your data in a beautiful, linear calendar.</p>
+        <p className="sb-section-item-paragraph">A sleek, horizontal timeline view that displays your notes as events across a calendar, perfect for visualizing schedules, projects, or journals..</p>
         <a
           href="/?path=/docs/views-linear-calendar--docs"
         >See it in action<RightArrow /></a>
@@ -133,7 +133,7 @@ export const RightArrow = () => <svg
       <div className="sb-grid-item">
         <img src={HeatmapCalendar} alt="A screenshot showing the Heatmap Calendar view" />
         <h4 className="sb-section-item-heading">Heatmap Calendar</h4>
-        <p className="sb-section-item-paragraph">Display your data in a beautiful, heatmap calendar.</p>
+        <p className="sb-section-item-paragraph">A sleek, horizontal timeline view that displays your notes as events across a calendar, perfect for visualizing schedules, projects, or journals.</p>
         <a
           href="/?path=/docs/views-heatmap-calendar--docs"
         >See it in action<RightArrow /></a>
@@ -141,6 +141,8 @@ export const RightArrow = () => <svg
     </div>
   </div>
 </div>
+
+<hr className="sb-separator" />
 
 <div className="sb-section sb-socials">
     <div className="sb-section-item">
@@ -214,6 +216,12 @@ export const RightArrow = () => <svg
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 32px 20px;
+  }
+
+  .sb-separator {
+    margin-top: 48px;
+    margin-bottom: 48px;
+    border-top: 1px solid #e6e4d9;
   }
 
   .sb-socials {
