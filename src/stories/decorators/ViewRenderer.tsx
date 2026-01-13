@@ -12,13 +12,13 @@ type ViewRenderer<T extends Record<string, unknown> = Record<string, unknown>> =
 export const createViewRenderer = <T extends Record<string, unknown> = Record<string, unknown>>(
   Component: React.ComponentType<ReactBaseViewProps>,
 ) => {
-  return ({ data = [], groupedData = [], ...config }: ViewRenderer<T>) => {
+  return ({ data = [], groupedData = [], properties = [], ...config }: ViewRenderer<T>) => {
     const props = aReactBaseViewProps({
       data: aBasesQueryResult({
         data,
         groupedData,
       }),
-      config: aBasesViewConfig(config),
+      config: aBasesViewConfig(config, properties),
     });
     return <Component {...props} />;
   };
