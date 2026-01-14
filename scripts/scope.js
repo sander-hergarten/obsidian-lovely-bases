@@ -9,7 +9,7 @@ const out = postcss()
 	.use(
 		prefixer({
 			prefix: `.${manifest.id}`,
-			transform: function (prefix, selector, prefixedSelector, filePath, rule) {
+			transform: (prefix, selector, prefixedSelector) => {
 				if (selector.includes(':global')) {
 					return selector.replace(/:global\(([^)]+)\)/g, '$1');
 				}
@@ -24,8 +24,23 @@ const out = postcss()
 		})
 	)
 	.use({
+		postcssPlugin: 'dedupe-selectors',
+		Rule(rule) {
+			// Deduplicate comma-separated selectors (e.g., ".lovely-bases,.lovely-bases" -> ".lovely-bases")
+			const selectors = rule.selectors;
+			const unique = [...new Set(selectors)];
+			if (unique.length !== selectors.length) {
+				rule.selectors = unique;
+			}
+		}
+	})
+	.use({
 		postcssPlugin: 'add-important',
 		Declaration(decl) {
+      // do not include it in css varialbles definitions
+      if (decl.prop.startsWith('--')) {
+        return;
+      }
 			if (!decl.important) {
 				decl.important = true;
 			}
