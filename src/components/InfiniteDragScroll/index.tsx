@@ -33,12 +33,8 @@ const InfiniteDragScroll = ({
 
 	// Calculate columns reactively based on container width
 	// Formula: (width + gapX) / (cellWidth + gapX) to account for gaps between items
-	const [columns, setColumns] = useState(() => {
-		if (!containerEl) return 1;
-		const width = containerEl.clientWidth;
-		const calculatedColumns = Math.floor((width + gapX) / (cellWidth + gapX));
-		return Math.max(1, calculatedColumns);
-	});
+	// Start with 1 as safe default, will be updated once container has valid dimensions
+	const [columns, setColumns] = useState(1);
 
 	// Update columns when container size changes
 	useEffect(() => {
@@ -46,21 +42,37 @@ const InfiniteDragScroll = ({
 
 		const updateColumns = () => {
 			const width = containerEl.clientWidth;
-			const calculatedColumns = Math.floor((width + gapX) / (cellWidth + gapX));
-			setColumns(Math.max(1, calculatedColumns));
+			// Only update if we have a valid width (prevents incorrect calculations on mount)
+			// This is critical on mobile where layout calculation can be delayed
+			if (width > 0 && cellWidth > 0) {
+				const calculatedColumns = Math.floor((width + gapX) / (cellWidth + gapX));
+				const newColumns = Math.max(1, calculatedColumns);
+				// Only update if the value actually changed to avoid unnecessary re-renders
+				setColumns((prev) => (prev !== newColumns ? newColumns : prev));
+			}
 		};
 
-		// Initial calculation
-		updateColumns();
-
 		// Use ResizeObserver to react to container size changes
-		const resizeObserver = new ResizeObserver(() => {
-			updateColumns();
+		const resizeObserver = new ResizeObserver((entries) => {
+			// Only update if the size actually changed
+			for (const entry of entries) {
+				if (entry.contentRect.width > 0) {
+					updateColumns();
+					break;
+				}
+			}
 		});
 
 		resizeObserver.observe(containerEl);
 
+		// Initial calculation - use requestAnimationFrame to ensure layout is complete
+		// This is especially important on mobile where layout calculation can be delayed
+		const rafId = requestAnimationFrame(() => {
+			updateColumns();
+		});
+
 		return () => {
+			cancelAnimationFrame(rafId);
 			resizeObserver.disconnect();
 		};
 	}, [containerEl, cellWidth, gapX]);

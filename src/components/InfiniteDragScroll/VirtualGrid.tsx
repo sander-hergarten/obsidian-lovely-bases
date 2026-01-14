@@ -93,21 +93,37 @@ export const VirtualGrid = ({
 		if (!container) return;
 
 		const updateViewport = () => {
-			setViewportWidth(container.clientWidth);
-			setViewportHeight(container.clientHeight);
+			const width = container.clientWidth;
+			const height = container.clientHeight;
+			// Only update if we have valid dimensions (prevents incorrect calculations on mount)
+			// This is critical on mobile where layout calculation can be delayed
+			if (width > 0 && height > 0) {
+				setViewportWidth(width);
+				setViewportHeight(height);
+			}
 		};
 
-		// Initial update
-		updateViewport();
-
 		// Use ResizeObserver to react to container size changes
-		const resizeObserver = new ResizeObserver(() => {
-			updateViewport();
+		const resizeObserver = new ResizeObserver((entries) => {
+			// Only update if the size actually changed
+			for (const entry of entries) {
+				if (entry.contentRect.width > 0 && entry.contentRect.height > 0) {
+					updateViewport();
+					break;
+				}
+			}
 		});
 
 		resizeObserver.observe(container);
 
+		// Initial update - use requestAnimationFrame to ensure layout is complete
+		// This is especially important on mobile where layout calculation can be delayed
+		const rafId = requestAnimationFrame(() => {
+			updateViewport();
+		});
+
 		return () => {
+			cancelAnimationFrame(rafId);
 			resizeObserver.disconnect();
 		};
 	}, []);

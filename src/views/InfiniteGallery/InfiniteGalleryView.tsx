@@ -7,6 +7,7 @@ export const INFINITE_GALLERY_TYPE_ID = "infinite-gallery";
 import InfiniteDragScroll from "@/components/InfiniteDragScroll";
 import type { ItemConfig } from "@/components/InfiniteDragScroll/ItemContent";
 import { Container } from "@/components/Obsidian/Container";
+import InfiniteDragScrollV2 from "@/components/InfiniteDragScrollV2";
 
 export type InfiniteGalleryConfig = ItemConfig & {
   layout: "default" | "masonry" | "polaroid";
@@ -28,7 +29,7 @@ const InfiniteGalleryView = ({ config, data, isEmbedded }: ReactBaseViewProps) =
 
   return (
     <Container isEmbedded={isEmbedded} embeddedStyle={{ height: "60vh", overflowY: "auto" }}>
-      <InfiniteDragScroll
+      <InfiniteDragScrollV2
         items={data.data}
         itemConfig={galleryConfig}
         variant={galleryConfig.layout}
