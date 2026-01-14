@@ -15,6 +15,7 @@ import LinearCalendar from "./assets/screenshots/linear-calendar.webp";
 import HeatmapCalendar from "./assets/screenshots/heatmap.webp";
 import Theming from "./assets/theming.png";
 import AddonLibrary from "./assets/addon-library.png";
+import Carousel from "./assets/screenshots/carousel.webp";
 
 export const RightArrow = () => <svg
     viewBox="0 0 14 14"
@@ -123,6 +124,14 @@ export const RightArrow = () => <svg
         >See it in action<RightArrow /></a>
       </div>
       <div className="sb-grid-item">
+        <img src={Carousel} alt="A screenshot showing the Carousel view" />
+        <h4 className="sb-section-item-heading">Carousel</h4>
+        <p className="sb-section-item-paragraph">A dynamic, horizontal scrolling experience that showcases your notes in a continuous flow. Perfect for highlight reels, featured notes, or visual storytelling.</p>
+        <a
+          href="/?path=/docs/views-carousel--docs"
+        >See it in action<RightArrow /></a>
+      </div>
+      <div className="sb-grid-item">
         <img src={LinearCalendar} alt="A screenshot showing the Linear Calendar view" />
         <h4 className="sb-section-item-heading">Linear Calendar</h4>
         <p className="sb-section-item-paragraph">A sleek, horizontal timeline view that displays your notes as events across a calendar, perfect for visualizing schedules, projects, or journals..</p>
@@ -133,7 +142,7 @@ export const RightArrow = () => <svg
       <div className="sb-grid-item">
         <img src={HeatmapCalendar} alt="A screenshot showing the Heatmap Calendar view" />
         <h4 className="sb-section-item-heading">Heatmap Calendar</h4>
-        <p className="sb-section-item-paragraph">A sleek, horizontal timeline view that displays your notes as events across a calendar, perfect for visualizing schedules, projects, or journals.</p>
+        <p className="sb-section-item-paragraph">A GitHub-style activity tracker that visualizes the frequency of notes or events over time, perfect for habit tracking or monitoring daily productivity.</p>
         <a
           href="/?path=/docs/views-heatmap-calendar--docs"
         >See it in action<RightArrow /></a>
@@ -150,21 +159,20 @@ export const RightArrow = () => <svg
       Join our contributors building the future of Obsidian Bases.
 
       <a
-        href="https://github.com/storybookjs/storybook"
+        href="https://github.com/aitorllj93/obsidian-lovely-bases"
         target="_blank"
       >Star on GitHub<RightArrow /></a>
     </div>
-    <div className="sb-section-item">
+    {/*<div cla ssName="sb-section-item">
       <img src={Discord} alt="Discord logo" className="sb-explore-image"/>
       <div>
         Get support and chat with frontend developers.
-
         <a
           href="https://discord.gg/storybook"
           target="_blank"
         >Join Discord server<RightArrow /></a>
       </div>
-    </div>
+    </div> */}
 </div>
 
 <style>
