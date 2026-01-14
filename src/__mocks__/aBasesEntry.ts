@@ -19,6 +19,7 @@ export const aBasesEntry = (
       }
       return aValue(sourceData[property])
     },
+    _frontmatter: fm,
     ...overrides,
-  };
+  } as BasesEntry;
 }

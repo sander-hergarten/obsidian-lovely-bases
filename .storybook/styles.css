@@ -5,6 +5,14 @@
 @import "../src/main.css";
 
 :root {
+
+  /** Override Obsidian variables */
+  --interactive-accent: var(--color-red-400);
+  --bases-cards-background: var(--color-paper);
+  --input-padding: 4px 8px;
+
+  /** Internal variables */
+
   --radius: var(--radius-m, 8px);
 
   --background: var(--color-paper);
@@ -58,9 +66,6 @@
   --color-blue: var(--color-blue-400);
   --color-purple: var(--color-purple-400);
   --color-pink: var(--color-pink-400);
-
-  --bases-cards-background: var(--color-paper);
-  --input-padding: 4px 8px;
 }
 
 h3 {

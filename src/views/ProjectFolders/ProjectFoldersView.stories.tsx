@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import { MOVIES_ENTRIES } from "@/__fixtures__/entries";
+import { APPLICATION_ENTRIES, ARTICLE_ENTRIES, BOOK_ENTRIES, MOVIES_ENTRIES, PERSON_ENTRIES } from "@/__fixtures__/entries";
 import {
   createViewRenderer,
   Providers,
@@ -15,6 +15,7 @@ import {
 import ProjectFoldersView, {
   type ProjectFoldersConfig,
 } from "./ProjectFoldersView";
+import { aBasesEntryGroup } from "@/__mocks__";
 
 const View = createViewRenderer<ProjectFoldersConfig>(ProjectFoldersView);
 
@@ -46,7 +47,14 @@ const meta = {
         disable: true,
       },
     },
+    groupedData: {
+      table: {
+        disable: true,
+      },
+    },
     imageProperty: { control: "text", name: "Image Property", description: "The property that contains the image to display on the folders." },
+    colorProperty: { control: "text", name: "Color Property", description: "The property that contains the color to display on the folders. (On the frontmatter of the note representing the folder)", table: { defaultValue: { summary: "note.color" } } },
+    iconProperty: { control: "text", name: "Icon Property", description: "The property that contains the icon to display on the folders. (On the frontmatter of the note representing the folder)", table: { defaultValue: { summary: "note.icon" } } },
     colorizeFiles: { control: "boolean", name: "Colorize Files", description: "Whether to colorize the files based on the folder color.", table: { defaultValue: { summary: "false" } } },
   },
 } satisfies Meta<typeof View>;
@@ -57,7 +65,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    data: MOVIES_ENTRIES,
+    data: [],
+    groupedData: [
+      aBasesEntryGroup('[[Movies]]', MOVIES_ENTRIES),
+      aBasesEntryGroup('[[Books]]', BOOK_ENTRIES),
+      aBasesEntryGroup('[[People]]', PERSON_ENTRIES),
+      aBasesEntryGroup('[[Applications]]', APPLICATION_ENTRIES),
+      aBasesEntryGroup('[[Articles]]', ARTICLE_ENTRIES),
+    ],
     ...DEFAULT_BASE_CONFIG,
   },
 };
@@ -65,6 +80,13 @@ export const Default: Story = {
 export const ColorizedFiles: Story = {
   args: {
     data: MOVIES_ENTRIES,
+    groupedData: [
+      aBasesEntryGroup('[[Movies]]', MOVIES_ENTRIES),
+      aBasesEntryGroup('[[Books]]', BOOK_ENTRIES),
+      aBasesEntryGroup('[[People]]', PERSON_ENTRIES),
+      aBasesEntryGroup('[[Applications]]', APPLICATION_ENTRIES),
+      aBasesEntryGroup('[[Articles]]', ARTICLE_ENTRIES),
+    ],
     ...COLORIZED_FILES_BASE_CONFIG,
   },
 };

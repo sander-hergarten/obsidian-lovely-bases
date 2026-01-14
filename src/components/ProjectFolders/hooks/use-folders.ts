@@ -14,6 +14,12 @@ export const useFolders = (
 ): Folder[] => {
   const accentColor = accent();
   const imageProperty = config.get("imageProperty") as BasesPropertyId;
+  const colorConfigProperty = (config.get("colorProperty") ?? "note.color") as BasesPropertyId;
+  const iconConfigProperty = (config.get("iconProperty") ?? "note.icon") as BasesPropertyId;
+
+  const [, colorProperty] = colorConfigProperty.split(".");
+  const [, iconProperty] = iconConfigProperty.split(".");
+
   return useMemo(() => {
     const folders: Folder[] = [];
 
@@ -40,8 +46,8 @@ export const useFolders = (
           if (projectFile instanceof TFile) {
             const frontmatter =
               app.metadataCache.getFileCache(projectFile)?.frontmatter;
-            color = (frontmatter?.color as string | null) ?? accentColor;
-            icon = (frontmatter?.icon as string | null) ?? null;
+            color = (frontmatter?.[colorProperty] as string | null) ?? accentColor;
+            icon = (frontmatter?.[iconProperty] as string | null) ?? null;
           }
         }
 
@@ -85,5 +91,5 @@ export const useFolders = (
       }
     }
     return folders;
-  }, [data, app, accentColor, imageProperty]);
+  }, [data, app, accentColor, imageProperty, colorProperty, iconProperty]);
 };

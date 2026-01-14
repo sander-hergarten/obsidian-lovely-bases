@@ -8,6 +8,8 @@ import type { ReactBaseViewProps } from "@/types";
 export type ProjectFoldersConfig = {
   colorizeFiles: boolean;
   imageProperty?: BasesPropertyId;
+  iconProperty?: BasesPropertyId;
+  colorProperty?: BasesPropertyId;
 };
 
 const ProjectFoldersView = ({ app, config, data }: ReactBaseViewProps) => {

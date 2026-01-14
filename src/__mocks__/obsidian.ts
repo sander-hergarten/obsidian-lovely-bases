@@ -29,6 +29,8 @@ export type {
 // Importar Value como tipo para usarlo en ListValue
 import type { Value } from 'obsidian';
 
+export { MockTFile as TFile } from './aFile'
+
 // Clases Value mockeadas
 // Estas se usan con `new` en el código, así que necesitan implementación real
 export class StringValue {
@@ -75,29 +77,6 @@ export class NullValue {
   toString(): string {
     return 'null';
   }
-}
-
-// Clase TFile mockeada
-// Se usa con `instanceof TFile`, así que necesita ser una clase real
-// No re-exportamos el tipo TFile porque también exportamos la clase
-export class TFile {
-	// biome-ignore lint/suspicious/noExplicitAny: Mock para Storybook, necesita compatibilidad con tipos de Obsidian
-	vault: any = null;
-	basename: string = '';
-	path: string = '';
-	extension: string = '';
-	name: string = '';
-	// biome-ignore lint/suspicious/noExplicitAny: Mock para Storybook, necesita compatibilidad con tipos de Obsidian
-	parent: any = null;
-	stat: {
-		ctime: number;
-		mtime: number;
-		size: number;
-	} = {
-		ctime: 0,
-		mtime: 0,
-		size: 0,
-	};
 }
 
 // Re-exportar TFile como tipo también para compatibilidad
