@@ -1,6 +1,6 @@
 import type { BasesEntry } from "obsidian";
 
-import LucideIcon from "@/components/LucideIcon";
+import LucideIcon from "@/components/Obsidian/LucideIcon";
 import { accent, linear } from "@/lib/colors";
 
 type Props = {

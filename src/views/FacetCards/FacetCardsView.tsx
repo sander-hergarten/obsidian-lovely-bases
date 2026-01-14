@@ -1,7 +1,7 @@
 
 import { getCardConfig } from "@/components/Card/config/get-config";
 import type { CardConfig } from "@/components/Card/types";
-import { Container } from "@/components/Container";
+import { Container } from "@/components/Obsidian/Container";
 import VirtualGrid from "@/components/VirtualGrid";
 import type { ReactBaseViewProps } from "@/types";
 

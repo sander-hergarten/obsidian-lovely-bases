@@ -1,6 +1,6 @@
 import { type MouseEventHandler, useRef, useState } from "react";
 
-import LucideIcon from "@/components/LucideIcon";
+import LucideIcon from "@/components/Obsidian/LucideIcon";
 import { desaturate, gradientColors, saturate } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
