@@ -23,8 +23,22 @@ const meta = {
   decorators: [Providers, ViewWrapper],
   parameters: {
     docs: {
-      subtitle:``,
+      subtitle:
+        "An immersive, infinite virtualized grid for exploring your notes visually. It handles large collections smoothly with momentum-based navigation and multiple artistic layouts.",
+      description: {
+        component: `### Features
+
+- **Infinite Virtual Grid**: Seamlessly navigate through any number of notes without performance lag.
+- **Momentum Drag & Scroll**: Fluid, natural-feeling navigation with momentum and smooth wheel support.
+- **Artistic Layouts**:
+  - **Default**: A clean, balanced grid.
+  - **Masonry**: A dynamic, staggered layout.
+  - **Polaroid**: A classic photo-album aesthetic with borders and playful rotations.
+- **Geometric Shapes**: Custom card shapes including **Square**, **Circle** and **Rounded**.
+
+### Configuration`,
       },
+    },
   },
   argTypes: {
     data: {
