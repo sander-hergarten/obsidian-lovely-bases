@@ -1,6 +1,7 @@
 
 import { addDays, eachDayOfInterval, endOfWeek, format, isSameDay, startOfWeek } from "@/lib/date";
 import { cn } from "@/lib/utils";
+import type { EntryClickEventHandler } from "@/types";
 
 import type { Occurrence } from "../index";
 
@@ -9,7 +10,7 @@ type Props = {
   startDate: Date;
   weeks: number;
   classNames: string[];
-  onClick?: (item: Occurrence) => void;
+  onEntryClick?: EntryClickEventHandler;
 };
 
 const getClassName = (count: number, classNames: string[]) =>
@@ -20,7 +21,7 @@ export const HeatmapGrid = ({
   startDate,
   weeks,
   classNames,
-  onClick,
+  onEntryClick,
 }: Props) => {
   const renderWeeks = () => {
     const weeksArray = [];
@@ -49,8 +50,8 @@ export const HeatmapGrid = ({
               <div
                 key={`d-${day.toISOString()}`}
                 className={cn(`w-3 h-3 rounded-[4px]`, className)}
-                title={`${format(day, "PPP")}: ${occurrence?.count || 0} occurrences`}
-                onClick={() => occurrence && onClick?.(occurrence)}
+                title={`${format(day, "PPP")}: ${occurrence?.count || 0}`}
+                onClick={(evt) => onEntryClick?.(occurrence.file.path, evt)}
               />
             );
           })}

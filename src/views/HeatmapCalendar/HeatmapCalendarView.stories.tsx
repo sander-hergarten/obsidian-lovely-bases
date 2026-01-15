@@ -14,6 +14,7 @@ import { DEFAULT_HEATMAP_BASE_CONFIG, FULL_HEATMAP_BASE_CONFIG, THIRTEEN_WEEKS_H
 import HeatmapCalendarView, {
   type HeatmapCalendarConfig,
 } from "./HeatmapCalendarView";
+import { fn } from "storybook/test";
 
 const View = createViewRenderer<HeatmapCalendarConfig>(HeatmapCalendarView);
 
@@ -98,6 +99,7 @@ export const Full: Story = {
   args: {
     data: OCCURRENCES,
     groupedData: GROUPED_OCCURRENCES,
+    onEntryClick: fn(),
     ...FULL_HEATMAP_BASE_CONFIG,
   },
 };
@@ -106,6 +108,7 @@ export const Default: Story = {
   args: {
     data: OCCURRENCES,
     groupedData: GROUPED_OCCURRENCES,
+    onEntryClick: fn(),
     ...DEFAULT_HEATMAP_BASE_CONFIG,
   },
 };
@@ -114,6 +117,7 @@ export const CustomWeeks: Story = {
   args: {
     data: OCCURRENCES,
     groupedData: GROUPED_OCCURRENCES,
+    onEntryClick: fn(),
     ...THIRTEEN_WEEKS_HEATMAP_BASE_CONFIG,
   },
 };

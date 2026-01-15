@@ -3,6 +3,7 @@
 import type { TFile } from "obsidian";
 
 import { startOfWeek, subWeeks } from "@/lib/date";
+import type { EntryClickEventHandler } from "@/types";
 
 import { DayLabels } from "./components/DayLabels";
 import { HeatmapGrid } from "./components/HeatmapGrid";
@@ -24,7 +25,7 @@ type Props = {
   classNames?: string[];
   colorScheme?: keyof typeof COLOR_SCHEMES;
   reverseColors?: boolean;
-  onClick?: (item: Occurrence) => void;
+  onEntryClick?: EntryClickEventHandler;
   weeks?: number;
 };
 
@@ -33,7 +34,7 @@ export const HeatmapCalendar = ({
   date = new Date(),
   colorScheme = "primary",
   reverseColors = false,
-  onClick,
+  onEntryClick,
   weeks = 53,
 }: Props) => {
   const startDate = startOfWeek(subWeeks(date, weeks - 1));
@@ -57,7 +58,7 @@ export const HeatmapCalendar = ({
             startDate={startDate}
             weeks={weeks}
             classNames={classNames}
-            onClick={onClick}
+            onEntryClick={onEntryClick}
           />
         </div>
       </div>

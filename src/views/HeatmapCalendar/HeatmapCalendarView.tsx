@@ -2,11 +2,10 @@ import type { BasesPropertyId } from "obsidian";
 import { useMemo } from "react";
 
 import { HeatmapCalendar, type Occurrence } from "@/components/HeatmapCalendar";
+import type { COLOR_SCHEMES } from "@/components/HeatmapCalendar/utils";
 import { Container } from "@/components/Obsidian/Container";
-import { useObsidian } from "@/components/Obsidian/Context";
 import { useConfig } from "@/hooks/use-config";
 import type { ReactBaseViewProps } from "@/types";
-import type { COLOR_SCHEMES } from "@/components/HeatmapCalendar/utils";
 
 export const HEATMAP_CALENDAR_TYPE_ID = "heatmap-calendar";
 
@@ -19,8 +18,7 @@ export type HeatmapCalendarConfig = {
   weeks?: number;
 };
 
-const HeatmapCalendarView = ({ config, data, isEmbedded }: ReactBaseViewProps) => {
-  const { app } = useObsidian();
+const HeatmapCalendarView = ({ config, data, isEmbedded, onEntryClick }: ReactBaseViewProps) => {
   const viewConfig = useConfig<HeatmapCalendarConfig>(config, {
     dateProperty: undefined,
     trackProperty: undefined,
@@ -93,10 +91,6 @@ const HeatmapCalendarView = ({ config, data, isEmbedded }: ReactBaseViewProps) =
 		});
 	}, [data, viewConfig.dateProperty, viewConfig.trackProperty]);
 
-	const handleEventClick = (item: Occurrence) => {
-		app.workspace.openLinkText(item.file.path, "", false);
-	};
-
 	return (
     <Container isEmbedded={isEmbedded} style={{ userSelect: 'none' }}>
 			{groups.map((g) => (
@@ -107,7 +101,7 @@ const HeatmapCalendarView = ({ config, data, isEmbedded }: ReactBaseViewProps) =
 					data={g.entries}
 					date={referenceDate}
           weeks={viewConfig.weeks}
-					onClick={handleEventClick}
+					onEntryClick={onEntryClick}
 				/>
 			))}
 		</Container>
