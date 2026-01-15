@@ -5,6 +5,7 @@ import type { TFile } from "obsidian";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { COLOR_SCHEMES } from "./utils";
 
 export type Occurrence = {
   date: string; // ISO date string (e.g., "2025-09-13")
@@ -17,13 +18,23 @@ type HeatmapCalendarProps = {
   data: Occurrence[];
   date?: Date;
   classNames?: string[];
+  colorScheme?: keyof typeof COLOR_SCHEMES;
+  reverseColors?: boolean;
   onClick?: (item: Occurrence) => void;
 }
 
-export const HeatmapCalendar = ({ data, date = new Date(), classNames = ["bg-[#ebedf0]", "bg-[#9be9a8]", "bg-[#40c463]", "bg-[#30a14e]", "bg-[#216e39]"], onClick }: HeatmapCalendarProps) => {
+export const HeatmapCalendar = ({ data, date = new Date(), colorScheme = 'primary', reverseColors = false, onClick }: HeatmapCalendarProps) => {
   const [occurrences, setOccurrences] = useState<Occurrence[]>([]);
   const startDate = startOfYear(date);
   const weeks = 53;
+
+
+
+	let classNames = COLOR_SCHEMES[colorScheme] as string[];
+	if (reverseColors) {
+		// we need to keep the first color as bg-card and reverse the rest
+		classNames = [classNames[0], ...classNames.slice(1).reverse()];
+	}
 
   // Process data prop
   useEffect(() => {

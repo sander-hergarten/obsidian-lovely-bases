@@ -5,6 +5,7 @@ import { HeatmapCalendar, type Occurrence } from "@/components/HeatmapCalendar";
 import { Container } from "@/components/Obsidian/Container";
 import { useObsidian } from "@/components/Obsidian/Context";
 import type { ReactBaseViewProps } from "@/types";
+import { useConfig } from "@/hooks/use-config";
 
 export const HEATMAP_CALENDAR_TYPE_ID = "heatmap-calendar";
 
@@ -12,6 +13,7 @@ export type HeatmapCalendarConfig = {
 	dateProperty: BasesPropertyId;
 	trackProperty: BasesPropertyId;
   colorScheme?: keyof typeof colors;
+  reverseColors?: boolean;
 	date?: string;
 };
 
@@ -100,26 +102,21 @@ const colors = {
 
 const HeatmapCalendarView = ({ config, data, isEmbedded }: ReactBaseViewProps) => {
   const { app } = useObsidian();
-	const dateProperty = config.get("dateProperty") as HeatmapCalendarConfig["dateProperty"] | undefined;
-	const trackProperty = config.get("trackProperty") as HeatmapCalendarConfig["trackProperty"] | undefined;
-	const colorScheme = (config.get("colorScheme") ??
-		"primary") as keyof typeof colors;
-	const reverseColors = (config.get("reverseColors") ?? false) as boolean;
-	const dateStr = config.get("date") as string;
-
-	let classNames = colors[colorScheme] as string[];
-	if (reverseColors) {
-		// we need to keep the first color as bg-card and reverse the rest
-		classNames = [classNames[0], ...classNames.slice(1).reverse()];
-	}
+  const viewConfig = useConfig<HeatmapCalendarConfig>(config, {
+    dateProperty: undefined,
+    trackProperty: undefined,
+    colorScheme: 'primary',
+    reverseColors: false,
+    date: new Date().getFullYear().toString(),
+  });
 
 	const referenceDate = useMemo(() => {
-		if (dateStr) {
-			const parsed = new Date(dateStr);
+		if (viewConfig.date) {
+			const parsed = new Date(viewConfig.date);
 			if (!Number.isNaN(parsed.getTime())) return parsed;
 		}
 		return new Date();
-	}, [dateStr]);
+	}, [viewConfig.date]);
 
 	const groups = useMemo<
 		{
@@ -127,16 +124,16 @@ const HeatmapCalendarView = ({ config, data, isEmbedded }: ReactBaseViewProps) =
 			entries: Occurrence[];
 		}[]
 	>(() => {
-		if (!dateProperty) return [];
-    if (!trackProperty) return [];
+		if (!viewConfig.dateProperty) return [];
+    if (!viewConfig.trackProperty) return [];
 
 		return data.groupedData.map((group) => {
 			return {
 				key: group.key?.toString() ?? "",
 				entries: group.entries
 					.map((entry) => {
-						const dateValue = entry.getValue(dateProperty);
-						const countValue = entry.getValue(trackProperty);
+						const dateValue = entry.getValue(viewConfig.dateProperty);
+						const countValue = entry.getValue(viewConfig.trackProperty);
 
 						if (!dateValue) return null;
 
@@ -174,7 +171,7 @@ const HeatmapCalendarView = ({ config, data, isEmbedded }: ReactBaseViewProps) =
 					.filter(Boolean) as Occurrence[],
 			};
 		});
-	}, [data, dateProperty, trackProperty]);
+	}, [data, viewConfig.dateProperty, viewConfig.trackProperty]);
 
 	const handleEventClick = (item: Occurrence) => {
 		app.workspace.openLinkText(item.file.path, "", false);
@@ -185,7 +182,8 @@ const HeatmapCalendarView = ({ config, data, isEmbedded }: ReactBaseViewProps) =
 			{groups.map((g) => (
 				<HeatmapCalendar
 					key={g.key}
-					classNames={classNames}
+					colorScheme={viewConfig.colorScheme}
+					reverseColors={viewConfig.reverseColors}
 					data={g.entries}
 					date={referenceDate}
 					onClick={handleEventClick}

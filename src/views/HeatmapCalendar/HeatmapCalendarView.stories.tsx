@@ -9,7 +9,7 @@ import {
 
 import HEATMAP_CALENDAR_VIEW from ".";
 
-import { SEMAPHOR_HEATMAP_BASE_CONFIG } from "./__fixtures__/configs/heatmap";
+import { DEFAULT_HEATMAP_BASE_CONFIG, FULL_HEATMAP_BASE_CONFIG } from "./__fixtures__/configs/heatmap";
 
 import HeatmapCalendarView, {
   type HeatmapCalendarConfig,
@@ -94,10 +94,19 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Semaphor: Story = {
+export const Full: Story = {
   args: {
     data: OCCURRENCES,
     groupedData: GROUPED_OCCURRENCES,
-    ...SEMAPHOR_HEATMAP_BASE_CONFIG,
+    ...FULL_HEATMAP_BASE_CONFIG,
+  },
+};
+
+
+export const Default: Story = {
+  args: {
+    data: OCCURRENCES,
+    groupedData: GROUPED_OCCURRENCES,
+    ...DEFAULT_HEATMAP_BASE_CONFIG,
   },
 };

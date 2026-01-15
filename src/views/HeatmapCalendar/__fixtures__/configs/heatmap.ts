@@ -2,7 +2,14 @@
 
 import type { HeatmapCalendarConfig } from "../../HeatmapCalendarView";
 
-export const SEMAPHOR_HEATMAP_BASE_CONFIG: HeatmapCalendarConfig = {
+export const DEFAULT_HEATMAP_BASE_CONFIG: HeatmapCalendarConfig = {
+  dateProperty: 'file.name',
+  trackProperty: 'note.dietQuality',
+  colorScheme: 'primary',
+  date: new Date().getFullYear().toString(),
+};
+
+export const FULL_HEATMAP_BASE_CONFIG: HeatmapCalendarConfig = {
   dateProperty: 'file.name',
   trackProperty: 'note.dietQuality',
   colorScheme: 'semaphor',
