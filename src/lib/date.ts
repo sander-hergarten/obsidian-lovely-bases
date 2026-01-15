@@ -57,6 +57,10 @@ export function startOfYear(date: Date) {
   return moment(date).startOf('year').toDate();
 }
 
+export function subtractDays(date: Date, days: number) {
+  return moment(date).subtract(days, 'days').toDate();
+}
+
 export function subWeeks(date: Date, weeks: number) {
   return moment(date).subtract(weeks, 'weeks').toDate();
 }

@@ -9,7 +9,7 @@ import {
 
 import HEATMAP_CALENDAR_VIEW from ".";
 
-import { DEFAULT_HEATMAP_BASE_CONFIG, FULL_HEATMAP_BASE_CONFIG, THIRTEEN_WEEKS_HEATMAP_BASE_CONFIG } from "./__fixtures__/configs/heatmap";
+import { DEFAULT_HEATMAP_BASE_CONFIG, FULL_HEATMAP_BASE_CONFIG, REVERSE_COLORS_HEATMAP_BASE_CONFIG, THIRTEEN_WEEKS_HEATMAP_BASE_CONFIG } from "./__fixtures__/configs/heatmap";
 
 import HeatmapCalendarView, {
   type HeatmapCalendarConfig,
@@ -119,5 +119,14 @@ export const CustomWeeks: Story = {
     groupedData: GROUPED_OCCURRENCES,
     onEntryClick: fn(),
     ...THIRTEEN_WEEKS_HEATMAP_BASE_CONFIG,
+  },
+};
+
+export const ReverseColors: Story = {
+  args: {
+    data: OCCURRENCES,
+    groupedData: GROUPED_OCCURRENCES,
+    onEntryClick: fn(),
+    ...REVERSE_COLORS_HEATMAP_BASE_CONFIG,
   },
 };
