@@ -1,5 +1,7 @@
 import type { TFile } from "obsidian";
 
+import type { EntryClickEventHandler, EntryHoverEventHandler } from "@/types";
+
 import { CalendarHeader } from "./CalendarHeader";
 import { MonthRow } from "./MonthRow";
 import { daysInMonth, getDisplayedMonthIndices, getEventsForMonth, getMonthName } from "./utils";
@@ -17,14 +19,15 @@ type Props = {
   items: CalendarItem[];
   focus: "full" | "half" | "quarter";
   referenceDate: Date;
-  onEventClick: (item: CalendarItem) => void;
+  onEntryClick: EntryClickEventHandler;
+  onEntryHover: EntryHoverEventHandler;
 };
 
 export const LinearCalendar = ({
   items,
   focus,
   referenceDate,
-  onEventClick,
+  onEntryClick,
 }: Props) => {
   const currentYear = referenceDate.getFullYear();
   const monthIndices = getDisplayedMonthIndices(focus, referenceDate);
@@ -60,7 +63,7 @@ export const LinearCalendar = ({
             rowHeight={rowHeight}
             daysCount={daysCount}
             events={events}
-            onEventClick={onEventClick}
+            onEntryClick={onEntryClick}
           />
         );
       })}

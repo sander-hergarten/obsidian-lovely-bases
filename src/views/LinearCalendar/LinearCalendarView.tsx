@@ -3,7 +3,6 @@ import { useMemo } from "react";
 
 import { type CalendarItem, LinearCalendar } from "@/components/LinearCalendar";
 import { Container } from "@/components/Obsidian/Container";
-import { useObsidian } from "@/components/Obsidian/Context";
 import { useConfig } from "@/hooks/use-config";
 import type { ReactBaseViewProps } from "@/types";
 
@@ -20,8 +19,9 @@ const LinearCalendarView = ({
   config,
   data,
   isEmbedded,
+  onEntryClick,
+  onEntryHover,
 }: ReactBaseViewProps) => {
-  const { app } = useObsidian();
   const linearCalendarConfig = useConfig<LinearCalendarConfig>(config, {
     focus: "full",
     startDateProperty: "note.start_date",
@@ -81,17 +81,14 @@ const LinearCalendarView = ({
     linearCalendarConfig.endDateProperty,
   ]);
 
-  const handleEventClick = (item: CalendarItem) => {
-    app.workspace.openLinkText(item.file.path, "", false);
-  };
-
   return (
     <Container isEmbedded={isEmbedded} style={{ userSelect: "none" }}>
       <LinearCalendar
         items={items}
         focus={linearCalendarConfig.focus}
         referenceDate={referenceDate}
-        onEventClick={handleEventClick}
+        onEntryClick={onEntryClick}
+        onEntryHover={onEntryHover}
       />
     </Container>
   );

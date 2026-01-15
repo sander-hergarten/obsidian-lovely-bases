@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
+import type { EntryClickEventHandler } from "@/types";
+
 import { EventBar } from "./EventBar";
-import type { CalendarItem } from "./index";
 import { MonthGrid } from "./MonthGrid";
 import type { StackedEvent } from "./utils";
 
@@ -11,7 +12,7 @@ type Props = {
   rowHeight: number;
   daysCount: number;
   events: StackedEvent[];
-  onEventClick: (item: CalendarItem) => void;
+  onEntryClick: EntryClickEventHandler;
 };
 
 export const MonthRow = ({
@@ -21,7 +22,7 @@ export const MonthRow = ({
   rowHeight,
   daysCount,
   events,
-  onEventClick,
+  onEntryClick,
 }: Props) => {
   return (
     <div
@@ -46,7 +47,7 @@ export const MonthRow = ({
               key={`${event.id}-${monthIndex}`}
               event={event}
               monthIndex={monthIndex}
-              onEventClick={onEventClick}
+              onEntryClick={onEntryClick}
             />
           ))}
         </div>

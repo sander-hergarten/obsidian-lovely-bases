@@ -17,6 +17,7 @@ import LinearCalendarView, {
   type LinearCalendarConfig,
 } from "./LinearCalendarView";
 import { aBasesEntryGroup } from "@/__mocks__";
+import { fn } from "storybook/test";
 
 const View = createViewRenderer<LinearCalendarConfig>(LinearCalendarView);
 
@@ -50,6 +51,16 @@ const meta = {
       },
     },
     groupedData: {
+      table: {
+        disable: true,
+      },
+    },
+    onEntryClick: {
+      table: {
+        disable: true,
+      },
+    },
+    onEntryHover: {
       table: {
         disable: true,
       },
@@ -89,6 +100,7 @@ export const Full: Story = {
   args: {
     data: PLANS_ENTRIES,
     groupedData: [aBasesEntryGroup('', PLANS_ENTRIES)],
+    onEntryClick: fn(),
     ...FULL_BASE_CONFIG,
   },
 };
@@ -97,6 +109,7 @@ export const Half: Story = {
   args: {
     data: PLANS_ENTRIES,
     groupedData: [aBasesEntryGroup('', PLANS_ENTRIES)],
+    onEntryClick: fn(),
     ...HALF_BASE_CONFIG,
   },
 };
@@ -105,6 +118,7 @@ export const Quarter: Story = {
   args: {
     data: PLANS_ENTRIES,
     groupedData: [aBasesEntryGroup('', PLANS_ENTRIES)],
+    onEntryClick: fn(),
     ...QUARTER_BASE_CONFIG,
   },
 };

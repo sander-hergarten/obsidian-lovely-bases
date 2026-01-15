@@ -1,17 +1,18 @@
 import { cn } from "@/lib/utils";
-import type { CalendarItem } from "./index";
+import type { EntryClickEventHandler } from "@/types";
+
 import type { StackedEvent } from "./utils";
 
 type Props = {
   event: StackedEvent;
   monthIndex: number;
-  onEventClick: (item: CalendarItem) => void;
+  onEntryClick: EntryClickEventHandler;
 };
 
 export const EventBar = ({
   event,
   monthIndex,
-  onEventClick,
+  onEntryClick,
 }: Props) => {
   const leftPercent = ((event.startDay - 1) / 31) * 100;
   const widthPercent = ((event.endDay - event.startDay + 1) / 31) * 100;
@@ -33,7 +34,7 @@ export const EventBar = ({
       title={`${event.title} (${event.original.startDate.toLocaleDateString()} - ${event.original.endDate.toLocaleDateString()})`}
       onClick={(e) => {
         e.stopPropagation();
-        onEventClick(event.original);
+        onEntryClick(event.original.id, e);
       }}
     >
       {/* Show title if width is reasonably large */}

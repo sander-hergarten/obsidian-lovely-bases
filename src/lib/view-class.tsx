@@ -1,4 +1,4 @@
-import { BasesView, type QueryController } from "obsidian";
+import { BasesView, Keymap, type QueryController } from "obsidian";
 import React from "react";
 import { createRoot, type Root } from "react-dom/client";
 
@@ -31,6 +31,25 @@ export class ReactBasesView extends BasesView {
 		const isDevelopment = process.env.NODE_ENV === "development";
     const isEmbedded = this.isEmbedded();
 
+    const onEntryClick = (entryId: string, event: React.MouseEvent | React.KeyboardEvent) => {
+      const evt = event.nativeEvent;
+      if (evt instanceof MouseEvent && evt.button !== 0 && evt.button !== 1) return;
+      if (evt instanceof KeyboardEvent && evt.key !== "Enter" && evt.key !== " ") return;
+
+      evt.preventDefault();
+      const modEvent = Keymap.isModEvent(evt);
+      void this.app.workspace.openLinkText(entryId, "", modEvent);
+    }
+    const onEntryHover = (entryId: string, linkRef: React.RefObject<HTMLAnchorElement>, event: React.MouseEvent | React.KeyboardEvent) => {
+      this.app.workspace.trigger("hover-link", {
+        event: event.nativeEvent,
+        source: "bases",
+        hoverParent: this.parentEl,
+        targetEl: linkRef.current,
+        linktext: entryId,
+      });
+    }
+
 		const content = (
 			<ObsidianProvider
 				value={{
@@ -44,6 +63,8 @@ export class ReactBasesView extends BasesView {
 					config={this.config}
 					data={this.data}
 					isEmbedded={isEmbedded}
+					onEntryClick={onEntryClick}
+					onEntryHover={onEntryHover}
 				/>
 			</ObsidianProvider>
 		);
