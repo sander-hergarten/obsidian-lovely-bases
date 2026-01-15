@@ -1,7 +1,9 @@
 "use client";
 
-import { startOfYear } from "date-fns";
 import type { TFile } from "obsidian";
+
+import { startOfWeek, subWeeks } from "@/lib/date";
+
 import { DayLabels } from "./components/DayLabels";
 import { HeatmapGrid } from "./components/HeatmapGrid";
 import { Legend } from "./components/Legend";
@@ -23,6 +25,7 @@ type Props = {
   colorScheme?: keyof typeof COLOR_SCHEMES;
   reverseColors?: boolean;
   onClick?: (item: Occurrence) => void;
+  weeks?: number;
 };
 
 export const HeatmapCalendar = ({
@@ -31,9 +34,9 @@ export const HeatmapCalendar = ({
   colorScheme = "primary",
   reverseColors = false,
   onClick,
+  weeks = 53,
 }: Props) => {
-  const startDate = startOfYear(date);
-  const weeks = 53;
+  const startDate = startOfWeek(subWeeks(date, weeks - 1));
 
   const occurrences = useHeatmapData(data);
 

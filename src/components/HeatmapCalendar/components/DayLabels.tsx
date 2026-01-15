@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format } from "@/lib/date";
 
 export const DayLabels = () => {
   const dayLabels = Array.from({ length: 7 }, (_, i) =>

@@ -1,13 +1,7 @@
-import {
-  addDays,
-  eachDayOfInterval,
-  endOfWeek,
-  format,
-  isSameDay,
-  startOfWeek,
-} from "date-fns";
 
+import { addDays, eachDayOfInterval, endOfWeek, format, isSameDay, startOfWeek } from "@/lib/date";
 import { cn } from "@/lib/utils";
+
 import type { Occurrence } from "../index";
 
 type Props = {
@@ -30,12 +24,12 @@ export const HeatmapGrid = ({
 }: Props) => {
   const renderWeeks = () => {
     const weeksArray = [];
-    let currentWeekStart = startOfWeek(startDate, { weekStartsOn: 0 });
+    let currentWeekStart = startOfWeek(startDate);
 
     for (let i = 0; i < weeks; i++) {
       const weekDays = eachDayOfInterval({
         start: currentWeekStart,
-        end: endOfWeek(currentWeekStart, { weekStartsOn: 0 }),
+        end: endOfWeek(currentWeekStart),
       });
 
       weeksArray.push(

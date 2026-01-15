@@ -4,7 +4,7 @@ import {
   format,
   startOfMonth,
   startOfWeek,
-} from "date-fns";
+} from "@/lib/date";
 
 type Props = {
   startDate: Date;
@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const MonthLabels = ({ startDate, weeks }: Props) => {
-  const firstWeekStart = startOfWeek(startDate, { weekStartsOn: 0 });
+  const firstWeekStart = startOfWeek(startDate);
   const months = [];
 
   for (let i = 0; i < 12; i++) {
