@@ -1,6 +1,12 @@
 
 <style>/** biome-ignore-all lint/complexity/noImportantStyles: Storybook overrides */
 
+
+  html {
+    scrollbar-color: #F2F0E5 transparent !important;
+    scrollbar-width: thin !important;
+  }
+
   #storybook-docs .sbdocs {
     background-color: #FFFCF0;
   }
@@ -9,7 +15,11 @@
     background-color: #F2F0E5;
   }
   #storybook-docs tr > * {
-    background-color: #F2F0E5;
+    background-color: #F2F0E5 !important;
+  }
+
+  #storybook-docs tr[title] > * {
+    background-color: #E6E4D9 !important;
   }
 
   input[type='radio'] {
@@ -51,6 +61,23 @@ code {
 
 .docblock-code-toggle {
   display: none !important;
+}
+
+.docblock-source button {
+  background-color: #E6E4D9 !important;
+  border-color: #DAD8CE !important;
+  color: #282726 !important;
+}
+.docblock-source button:focus {
+  box-shadow: #879A39 0px -3px 0px 0px inset !important;
+}
+
+.toc-list {
+  border-color: #E6E4D9 !important;
+}
+
+.toc-list-item.is-active-li::before {
+  border-color: #879A39 !important;
 }
 
 </style>
