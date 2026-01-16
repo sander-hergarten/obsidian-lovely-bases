@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 
 import { APPLICATION_ENTRIES, ARTICLE_ENTRIES, BOOK_ENTRIES, MOVIES_ENTRIES, PERSON_ENTRIES } from "@/__fixtures__/entries";
 import { aBasesEntryGroup } from "@/__mocks__";
@@ -9,12 +10,11 @@ import {
 } from "@/stories/decorators";
 
 import PROJECT_FOLDERS_VIEW from ".";
-
 import {
   COLORIZED_FILES_BASE_CONFIG,
   DEFAULT_BASE_CONFIG,
+  FULL_BASE_CONFIG,
 } from "./__fixtures__/configs";
-
 import ProjectFoldersView, {
   type ProjectFoldersConfig,
 } from "./ProjectFoldersView";
@@ -45,62 +45,78 @@ const meta = {
       },
     },
   },
-	argTypes: {
-		imageProperty: {
-			control: "text",
-			name: "Image Property",
-			description:
-				"The property that contains the image to display on file cards within folders.",
-			table: {
-				defaultValue: { summary: "note.cover" },
-			},
-		},
-		iconProperty: {
-			control: "text",
-			name: "Icon Property",
-			description:
-				"The property that contains the icon to display on folders (from the frontmatter of the note representing the folder).",
-			table: {
-				defaultValue: { summary: "note.icon" },
-			},
-		},
-		colorProperty: {
-			control: "text",
-			name: "Color Property",
-			description:
-				"The property that contains the color to display on folders (from the frontmatter of the note representing the folder).",
-			table: {
-				defaultValue: { summary: "note.color" },
-			},
-		},
-		colorizeFiles: {
-			control: "boolean",
-			name: "Colorize Files",
-			description:
-				"Whether to colorize the file cards based on the folder color.",
-			table: {
-				defaultValue: { summary: "false" },
-			},
-		},
-		// Internal props (disabled)
-		data: {
-			table: {
-				disable: true,
-			},
-		},
-		groupedData: {
-			table: {
-				disable: true,
-			},
-		},
-	},
+  argTypes: {
+    // Data Properties
+    imageProperty: {
+      control: "text",
+      name: "Image Property",
+      description:
+        "The property that contains the image to display on file cards within folders.",
+      table: {
+        category: "Data Properties",
+        defaultValue: { summary: "note.cover" },
+      },
+    },
+    iconProperty: {
+      control: "text",
+      name: "Icon Property",
+      description:
+        "The property that contains the icon to display on folders (from the frontmatter of the note representing the folder).",
+      table: {
+        category: "Data Properties",
+        defaultValue: { summary: "note.icon" },
+      },
+    },
+    colorProperty: {
+      control: "text",
+      name: "Color Property",
+      description:
+        "The property that contains the color to display on folders (from the frontmatter of the note representing the folder).",
+      table: {
+        category: "Data Properties",
+        defaultValue: { summary: "note.color" },
+      },
+    },
+    // Display
+    colorizeFiles: {
+      control: "boolean",
+      name: "Colorize Files",
+      description:
+        "Whether to colorize the file cards based on the folder color.",
+      table: {
+        category: "Display",
+        defaultValue: { summary: "false" },
+      },
+    },
+    // Internal props (disabled)
+    data: {
+      table: {
+        disable: true,
+      },
+    },
+    groupedData: {
+      table: {
+        disable: true,
+      },
+    },
+    onEntryClick: {
+      table: {
+        disable: true,
+      },
+    },
+    onEntryHover: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 } satisfies Meta<typeof View>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const FullExample: Story = {
   args: {
     data: [],
     groupedData: [
@@ -110,11 +126,46 @@ export const Default: Story = {
       aBasesEntryGroup('[[Applications]]', APPLICATION_ENTRIES),
       aBasesEntryGroup('[[Articles]]', ARTICLE_ENTRIES),
     ],
+    onEntryClick: fn(),
+    ...FULL_BASE_CONFIG,
+  },
+};
+
+export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: "By default, the Project Folders view displays grouped notes in interactive 3D folders with file previews on hover.",
+      },
+    }
+  },
+  args: {
+    data: [],
+    groupedData: [
+      aBasesEntryGroup('[[Movies]]', MOVIES_ENTRIES),
+      aBasesEntryGroup('[[Books]]', BOOK_ENTRIES),
+      aBasesEntryGroup('[[People]]', PERSON_ENTRIES),
+      aBasesEntryGroup('[[Applications]]', APPLICATION_ENTRIES),
+      aBasesEntryGroup('[[Articles]]', ARTICLE_ENTRIES),
+    ],
+    onEntryClick: fn(),
     ...DEFAULT_BASE_CONFIG,
   },
 };
 
 export const ColorizedFiles: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Enable colorization of file cards based on the folder color for a more cohesive visual experience.
+
+\`\`\`yml
+colorizeFiles: true
+\`\`\`
+`,
+      },
+    }
+  },
   args: {
     data: MOVIES_ENTRIES,
     groupedData: [
@@ -124,6 +175,7 @@ export const ColorizedFiles: Story = {
       aBasesEntryGroup('[[Applications]]', APPLICATION_ENTRIES),
       aBasesEntryGroup('[[Articles]]', ARTICLE_ENTRIES),
     ],
+    onEntryClick: fn(),
     ...COLORIZED_FILES_BASE_CONFIG,
   },
 };

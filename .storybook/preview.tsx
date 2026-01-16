@@ -69,7 +69,7 @@ const preview: Preview = {
     docs: {
       toc: {
         title: 'Table of Contents',
-        ignoreSelector: '.__remotion-player *'
+        ignoreSelector: '.__remotion-player *, .lovely-bases *'
       },
       page: () => (
         <>

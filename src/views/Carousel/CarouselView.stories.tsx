@@ -1,44 +1,43 @@
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
 
-import type { Meta, StoryObj } from '@storybook/react-vite';
-
+import { ARTICLE_ENTRIES, MOVIES_ENTRIES, PERSON_ENTRIES } from "@/__fixtures__/entries";
+import { aBasesEntryGroup } from "@/__mocks__";
 import {
-  APPLICATION_ENTRIES,
-  ARTICLE_ENTRIES,
-  BOOK_ENTRIES,
-  MOVIES_ENTRIES,
-  PERSON_ENTRIES,
-} from "@/__fixtures__/entries";
-import { createViewRenderer, Providers, ViewWrapper } from "@/stories/decorators";
+	createViewRenderer,
+	Providers,
+	ViewWrapper,
+} from "@/stories/decorators";
 
-import CAROUSEL_VIEW from '.';
-
+import CAROUSEL_VIEW from ".";
 import {
-  APPLICATIONS_BASE_CONFIG,
-  ARTICLES_BASE_CONFIG,
-  BOOKS_BASE_CONFIG,
-  MOVIES_BASE_CONFIG,
-  PEOPLE_BASE_CONFIG,
+	CIRCLE_SHAPE_CONFIG,
+	DEFAULT_BASE_CONFIG,
+	FULL_BASE_CONFIG,
+	HORIZONTAL_LAYOUT_CONFIG,
+	HOVER_OVERLAY_CONFIG,
+	IMAGE_ONLY_CONFIG,
+	ROUNDED_SHAPE_CONFIG,
+	WITH_TITLE_SUBTITLE_CONFIG,
 } from "./__fixtures__/configs";
-
-import CarouselView, { type CarouselConfig } from './CarouselView';
+import CarouselView, { type CarouselConfig } from "./CarouselView";
+import { VERTICAL_LAYOUT_CONFIG } from "./__fixtures__/configs/carousel";
 
 const View = createViewRenderer<CarouselConfig>(CarouselView);
 
 const meta = {
-  title: 'Views/Carousel',
-  tags: ['autodocs'],
-  component: View,
-  decorators: [
-    Providers,
-    ViewWrapper,
-  ],
-  parameters: {
-    layout: 'fullscreen',
-    docs: {
-      icon: CAROUSEL_VIEW.icon,
-      subtitle: `A dynamic, horizontal scrolling experience that showcases your notes in a continuous flow. Perfect for highlight reels, featured notes, or visual storytelling.`,
-      description: {
-        component: `### Features
+	title: "Views/Carousel",
+	component: View,
+	tags: ["autodocs"],
+	decorators: [Providers, ViewWrapper],
+	parameters: {
+		layout: "fullscreen",
+		docs: {
+			icon: CAROUSEL_VIEW.icon,
+			subtitle:
+				"A dynamic, horizontal scrolling experience that showcases your notes in a continuous flow. Perfect for highlight reels, featured notes, or visual storytelling.",
+			description: {
+				component: `### Features
 
 - **Horizontal Sliding**: Fluid, touch-friendly scrolling through your note collection.
 - **Smart Navigation**: Intuitive arrows and momentum support for easy browsing.
@@ -46,198 +45,351 @@ const meta = {
 - **Rich Card Support**: Leverages the full power of the Facet Cards system for content display.
 - **Entrance Animations**: Staggered motion effects as the carousel enters the view.
 
-### Configuration`
-      },
-    },
-  },
-  argTypes: {
-    // Header
-    title: {
-      control: "text",
-      name: "Title",
-      description: "The title displayed at the top of the carousel.",
-      table: {
-        category: "Header",
-      },
-    },
-    subtitle: {
-      control: "text",
-      name: "Subtitle",
-      description: "The subtitle displayed below the title.",
-      table: {
-        category: "Header",
-      },
-    },
-    // Display
-    layout: {
-      control: "select",
-      name: "Layout",
-      description: "Orientation of the cards in the carousel.",
-      options: ["horizontal", "vertical"],
-      table: {
-        category: "Display",
-        defaultValue: { summary: "vertical" },
-      },
-    },
-    shape: {
-      control: "select",
-      name: "Shape",
-      description: "The shape of the cards.",
-      options: ["square", "circle", "rounded"],
-      table: {
-        category: "Display",
-        defaultValue: { summary: "square" },
-      },
-    },
-    cardSize: {
-      control: { type: "range", min: 50, max: 800, step: 10 },
-      name: "Card Size",
-      description: "The size of the cards in pixels.",
-      table: {
-        category: "Display",
-        defaultValue: { summary: "400" },
-      },
-    },
-    // Image
-    imageProperty: {
-      control: "text",
-      name: "Image Property",
-      description: "The property that contains the image to display on the cards.",
-      table: {
-        category: "Image",
-        defaultValue: { summary: "note.cover" },
-      },
-    },
-    imageFit: {
-      control: "select",
-      name: "Image Fit",
-      description: "How the image should fit within its container.",
-      options: ["cover", "contain"],
-      table: {
-        category: "Image",
-        defaultValue: { summary: "cover" },
-      },
-    },
-    imageAspectRatio: {
-      control: { type: "range", min: 0.25, max: 2.5, step: 0.05 },
-      name: "Image Aspect Ratio",
-      description: "The aspect ratio of the image (width/height).",
-      table: {
-        category: "Image",
-        defaultValue: { summary: "1.5" },
-      },
-    },
-    reverseContent: {
-      control: "boolean",
-      name: "Reverse Image and Content",
-      description: "Whether to reverse the order of image and content.",
-      table: {
-        category: "Image",
-        defaultValue: { summary: "false" },
-      },
-    },
-    // Content
-    showTitle: {
-      control: "boolean",
-      name: "Show Title",
-      description: "Whether to show the title on each card.",
-      table: {
-        category: "Content",
-        defaultValue: { summary: "true" },
-      },
-    },
-    showPropertyTitles: {
-      control: "boolean",
-      name: "Show Property Titles",
-      description: "Whether to show the names of the displayed properties.",
-      table: {
-        category: "Content",
-        defaultValue: { summary: "true" },
-      },
-    },
-    hoverProperty: {
-      control: "text",
-      name: "Hover Property",
-      description: "The property to display when hovering over a card (optional).",
-      table: {
-        category: "Content",
-      },
-    },
-    hoverStyle: {
-      control: "select",
-      name: "Hover Style",
-      description: "How to display the hover property.",
-      options: ["overlay", "tooltip", "none"],
-      table: {
-        category: "Content",
-        defaultValue: { summary: "overlay" },
-      },
-    },
-    // Internal props (disabled)
-    properties: {
-      table: {
-        disable: true,
-      }
-    },
-    data: {
-      table: {
-        disable: true,
-      },
-    },
-    groupedData: {
-      table: {
-        disable: true,
-      },
-    },
-    onEntryClick: {
-      table: {
-        disable: true,
-      },
-    },
-    onEntryHover: {
-      table: {
-        disable: true,
-      },
-    },
-  },
+### Configuration`,
+			},
+		},
+	},
+	argTypes: {
+		// Header
+		title: {
+			control: "text",
+			name: "Title",
+			description: "The title displayed at the top of the carousel.",
+			table: {
+				category: "Header",
+			},
+		},
+		subtitle: {
+			control: "text",
+			name: "Subtitle",
+			description: "The subtitle displayed below the title.",
+			table: {
+				category: "Header",
+			},
+		},
+		// Display
+		layout: {
+			control: "select",
+			name: "Layout",
+			description: "Orientation of the cards in the carousel.",
+			options: ["horizontal", "vertical"],
+			table: {
+				category: "Display",
+				defaultValue: { summary: "vertical" },
+			},
+		},
+		shape: {
+			control: "select",
+			name: "Shape",
+			description: "The shape of the cards.",
+			options: ["square", "circle", "rounded"],
+			table: {
+				category: "Display",
+				defaultValue: { summary: "square" },
+			},
+		},
+		cardSize: {
+			control: { type: "range", min: 50, max: 800, step: 10 },
+			name: "Card Size",
+			description: "The size of the cards in pixels.",
+			table: {
+				category: "Display",
+				defaultValue: { summary: "400" },
+			},
+		},
+		// Image
+		imageProperty: {
+			control: "text",
+			name: "Image Property",
+			description:
+				"The property that contains the image to display on the cards.",
+			table: {
+				category: "Image",
+				defaultValue: { summary: "note.cover" },
+			},
+		},
+		imageFit: {
+			control: "select",
+			name: "Image Fit",
+			description: "How the image should fit within its container.",
+			options: ["cover", "contain"],
+			table: {
+				category: "Image",
+				defaultValue: { summary: "cover" },
+			},
+		},
+		imageAspectRatio: {
+			control: { type: "range", min: 0.25, max: 2.5, step: 0.05 },
+			name: "Image Aspect Ratio",
+			description: "The aspect ratio of the image (width/height).",
+			table: {
+				category: "Image",
+				defaultValue: { summary: "1.5" },
+			},
+		},
+		reverseContent: {
+			control: "boolean",
+			name: "Reverse Image and Content",
+			description: "Whether to reverse the order of image and content.",
+			table: {
+				category: "Image",
+				defaultValue: { summary: "false" },
+			},
+		},
+		// Content
+		showTitle: {
+			control: "boolean",
+			name: "Show Title",
+			description: "Whether to show the title on each card.",
+			table: {
+				category: "Content",
+				defaultValue: { summary: "true" },
+			},
+		},
+		showPropertyTitles: {
+			control: "boolean",
+			name: "Show Property Titles",
+			description: "Whether to show the names of the displayed properties.",
+			table: {
+				category: "Content",
+				defaultValue: { summary: "true" },
+			},
+		},
+		hoverProperty: {
+			control: "text",
+			name: "Hover Property",
+			description:
+				"The property to display when hovering over a card (optional).",
+			table: {
+				category: "Content",
+			},
+		},
+		hoverStyle: {
+			control: "select",
+			name: "Hover Style",
+			description: "How to display the hover property.",
+			options: ["overlay", "tooltip", "none"],
+			table: {
+				category: "Content",
+				defaultValue: { summary: "overlay" },
+			},
+		},
+		// Internal props (disabled)
+		properties: {
+			table: {
+				disable: true,
+			},
+		},
+		data: {
+			table: {
+				disable: true,
+			},
+		},
+		groupedData: {
+			table: {
+				disable: true,
+			},
+		},
+		onEntryClick: {
+			table: {
+				disable: true,
+			},
+		},
+		onEntryHover: {
+			table: {
+				disable: true,
+			},
+		},
+	},
 } satisfies Meta<typeof View>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Articles: Story = {
-  args: {
-    data: ARTICLE_ENTRIES,
-    ...ARTICLES_BASE_CONFIG,
-  },
+export const FullExample: Story = {
+	args: {
+		data: ARTICLE_ENTRIES,
+		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
+		onEntryClick: fn(),
+		...FULL_BASE_CONFIG,
+	},
 };
 
-export const Movies: Story = {
-  args: {
-    data: MOVIES_ENTRIES,
-    ...MOVIES_BASE_CONFIG,
-  },
+export const Default: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"By default, the carousel displays cards in a vertical layout with basic configuration.",
+			},
+		},
+	},
+	args: {
+		data: MOVIES_ENTRIES,
+		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
+		onEntryClick: fn(),
+		...DEFAULT_BASE_CONFIG,
+	},
 };
 
+// === LAYOUT STORIES ===
 
-export const Books: Story = {
-  args: {
-    data: BOOK_ENTRIES,
-    ...BOOKS_BASE_CONFIG,
-  },
+export const HorizontalLayout: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: `Horizontal layout displays the image on the side of the card content.
+
+\`\`\`yml
+layout: horizontal
+\`\`\`
+`,
+			},
+		},
+	},
+	args: {
+		data: ARTICLE_ENTRIES,
+		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
+		onEntryClick: fn(),
+		...HORIZONTAL_LAYOUT_CONFIG,
+	},
 };
 
-export const People: Story = {
-  args: {
-    data: PERSON_ENTRIES,
-    ...PEOPLE_BASE_CONFIG,
-  },
+export const VerticalLayout: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: `Vertical layout displays the image on top of the card content.
+
+\`\`\`yml
+layout: vertical
+\`\`\`
+`,
+			},
+		},
+	},
+	args: {
+		data: MOVIES_ENTRIES,
+		groupedData: [aBasesEntryGroup("", MOVIES_ENTRIES)],
+		onEntryClick: fn(),
+		...VERTICAL_LAYOUT_CONFIG,
+	},
 };
 
-export const Applications: Story = {
-  args: {
-    data: APPLICATION_ENTRIES,
-    ...APPLICATIONS_BASE_CONFIG,
-  },
+// === SHAPE STORIES ===
+
+export const CircleShape: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: `Circle shape creates rounded cards perfect for profile images or avatars.
+
+\`\`\`yml
+shape: circle
+imageAspectRatio: 1
+\`\`\`
+`,
+			},
+		},
+	},
+	args: {
+		data: PERSON_ENTRIES,
+		groupedData: [aBasesEntryGroup("", PERSON_ENTRIES)],
+		onEntryClick: fn(),
+		...CIRCLE_SHAPE_CONFIG,
+	},
+};
+
+export const RoundedShape: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: `Rounded shape provides a softer, more modern appearance.
+
+\`\`\`yml
+shape: rounded
+\`\`\`
+`,
+			},
+		},
+	},
+	args: {
+		data: ARTICLE_ENTRIES,
+		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
+		onEntryClick: fn(),
+		...ROUNDED_SHAPE_CONFIG,
+	},
+};
+
+// === HEADER STORIES ===
+
+export const WithTitleAndSubtitle: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: `Add a title and subtitle to provide context for the carousel section.
+
+\`\`\`yml
+title: "Featured Collection"
+subtitle: "A curated selection of highlights"
+\`\`\`
+`,
+			},
+		},
+	},
+	args: {
+		data: ARTICLE_ENTRIES,
+		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
+		onEntryClick: fn(),
+		...WITH_TITLE_SUBTITLE_CONFIG,
+	},
+};
+
+// === CONTENT STORIES ===
+
+export const ImageOnly: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: `Show only images without titles or properties for a clean, gallery-like appearance.
+
+\`\`\`yml
+showTitle: false
+properties: []
+\`\`\`
+`,
+			},
+		},
+	},
+	args: {
+		data: MOVIES_ENTRIES,
+		groupedData: [aBasesEntryGroup("", MOVIES_ENTRIES)],
+		onEntryClick: fn(),
+		...IMAGE_ONLY_CONFIG,
+	},
+};
+
+// === HOVER EFFECTS STORIES ===
+
+export const HoverOverlay: Story = {
+	parameters: {
+		docs: {
+			description: {
+				story: `Display additional information in an overlay when hovering over cards.
+
+\`\`\`yml
+hoverProperty: note.url
+hoverStyle: overlay
+\`\`\`
+`,
+			},
+		},
+	},
+	args: {
+		data: ARTICLE_ENTRIES,
+		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
+		onEntryClick: fn(),
+		...HOVER_OVERLAY_CONFIG,
+	},
 };
