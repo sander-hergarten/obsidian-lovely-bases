@@ -422,7 +422,7 @@ export const Reel = () => {
         compositionHeight={540}
         autoPlay
         loop
-        controls
+        controls={false}
         style={{
           width: '100%',
           aspectRatio: '16/9',
