@@ -112,6 +112,7 @@ export const HeatmapCalendar = ({
           maxValue={maxValue}
           overflowColor={overflowColor}
           showDayLabels={showDayLabels}
+          layout={layout}
           onEntryClick={onEntryClick}
         />
         <Legend classNames={classNames} overflowColor={overflowColor} />
@@ -164,6 +165,7 @@ export const HeatmapCalendar = ({
                   <DayLabels
                     layout={layout}
                     showMonthLabels={showMonthLabels}
+                    showYearLabels={showYearLabels}
                   />
                 </div>
               </div>
@@ -189,6 +191,7 @@ export const HeatmapCalendar = ({
               <DayLabels
                 layout={layout}
                 showMonthLabels={showMonthLabels}
+                showYearLabels={showYearLabels}
               />
             )}
             <div>

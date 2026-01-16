@@ -26,6 +26,7 @@ type Props = {
 	maxValue?: number;
 	overflowColor?: string;
 	showDayLabels?: boolean;
+	layout?: "horizontal" | "vertical";
 	onEntryClick?: EntryClickEventHandler;
 };
 
@@ -133,7 +134,7 @@ const MonthBlock = memo(
 		const currentMonth = monthStart.getMonth();
 
 		return (
-			<div className="mb-6">
+			<div>
 				<div className="text-sm font-semibold mb-2 text-foreground">
 					{format(monthStart, FORMATS.MONTH_LONG)} {monthStart.getFullYear()}
 				</div>
@@ -185,6 +186,7 @@ const MonthGridViewComponent = ({
 	maxValue = 10,
 	overflowColor,
 	showDayLabels = true,
+	layout = "vertical",
 	onEntryClick,
 }: Props) => {
 	const occurrenceMap = useMemo(() => {
@@ -234,8 +236,12 @@ const MonthGridViewComponent = ({
 		return result;
 	}, [startDate, endDate]);
 
+	const isHorizontal = layout === "horizontal";
+	const gridCols = isHorizontal ? "grid-cols-4" : "grid-cols-3";
+	const containerClass = cn("grid gap-3", gridCols);
+
 	return (
-		<div className="flex flex-col">
+		<div className={containerClass}>
 			{monthsData.map(({ monthStart, weeks }) => (
 				<MonthBlock
 					key={monthStart.getTime()}

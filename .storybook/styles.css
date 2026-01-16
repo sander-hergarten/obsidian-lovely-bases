@@ -10,6 +10,8 @@
   /** Override Obsidian variables */
   --interactive-accent: var(--color-red-400);
   --bases-cards-background: var(--color-paper);
+  --font-ui-smaller: 11px;
+  --font-ui-small: 13px;
   --input-padding: 4px 8px;
 
   /** Internal variables */

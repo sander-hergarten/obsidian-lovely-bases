@@ -19,6 +19,7 @@ export const FULL_HEATMAP_BASE_CONFIG: HeatmapCalendarConfig = {
   maxValue: 5,
   startDate: format(subYears(new Date(), 1), FORMATS.DATE_ISO),
   endDate: format(new Date(), FORMATS.DATE_ISO),
+  showYearLabels: true,
 };
 
 export const THIRTEEN_WEEKS_HEATMAP_BASE_CONFIG: HeatmapCalendarConfig = {
