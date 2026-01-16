@@ -46,7 +46,7 @@ BRAT will automatically check for updates and notify you when new versions are a
 ## 🚀 Usage
 
 1. Open an Obsidian Base in your vault
-2. Click on the **View options** button (three dots) in the Base
+2. Click on the **View name** (top-left side) in the Base
 3. Select your preferred view from the view type dropdown
 4. Configure the view settings as needed
 
