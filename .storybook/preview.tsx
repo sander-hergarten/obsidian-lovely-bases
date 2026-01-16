@@ -10,6 +10,8 @@ import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview, ReactRenderer } from "@storybook/react-vite";
 import React from 'react';
 import { Title } from './blocks/Title';
+import { Status } from './blocks/Status';
+import { ExtraNotes } from './blocks/ExtraNotes';
 
 import "./styles.css";
 
@@ -70,7 +72,9 @@ const preview: Preview = {
       page: () => (
         <>
           <Title />
+          <Status />
           <Subtitle />
+          <ExtraNotes />
           <Primary />
           <Description />
           <Controls />

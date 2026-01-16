@@ -23,7 +23,6 @@ import Card from "./index";
 const meta = {
   title: "Design System/Card",
   component: Card,
-  tags: ["autodocs"],
   parameters: {
     layout: "centered",
   },

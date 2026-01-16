@@ -29,7 +29,7 @@ const View = createViewRenderer<HeatmapCalendarConfig>(HeatmapCalendarView);
 
 const meta = {
   title: "Views/Heatmap Calendar",
-  tags: ["autodocs"],
+  tags: ["autodocs", "status:testing"],
   component: View,
   decorators: [Providers, ViewWrapper],
   parameters: {
