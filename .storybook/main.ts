@@ -13,6 +13,7 @@ const config: StorybookConfig = {
   ],
   tags: {
     experimental: { defaultFilterSelection: 'exclude' },
+    internal: { defaultFilterSelection: 'exclude' },
   },
   "addons": [
     "@chromatic-com/storybook",

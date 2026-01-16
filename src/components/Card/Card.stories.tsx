@@ -26,6 +26,7 @@ const meta = {
   parameters: {
     layout: "centered",
   },
+  tags: ["internal"],
   argTypes: {
     config: {
       table: {
