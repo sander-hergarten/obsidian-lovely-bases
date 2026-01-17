@@ -19,7 +19,8 @@ type Props = {
   renderer: ComponentType<{ story: ReelStory }>
 };
 
-const StorySlide = ({ story, frameInStory, title, renderer: Renderer }: Props) => {
+const StorySlide = ({ story, frameInStory, title, renderer }: Props) => {
+  const Component = (story.component || renderer) as ComponentType<{ story: ReelStory}>;
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -101,7 +102,7 @@ const StorySlide = ({ story, frameInStory, title, renderer: Renderer }: Props) =
         }}
         className="reel-story-container"
       >
-        <Renderer story={story} />
+        <Component story={story} />
       </div>
     </div>
   );

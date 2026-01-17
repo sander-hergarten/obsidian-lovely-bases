@@ -2,7 +2,6 @@ import { Story, useOf } from '@storybook/addon-docs/blocks';
 import React, { useMemo } from 'react';
 import type { CSFFile, PreparedMeta, Renderer } from 'storybook/internal/types';
 
-import type { ReelStory } from '../../src/remotion/Composition/types';
 import Player from '../../src/remotion/Player';
 
 const useStoriesFromDocs = (resolved?: {
@@ -21,6 +20,10 @@ const useStoriesFromDocs = (resolved?: {
 
       return Object.values(stories)
         .filter((s) => s?.parameters?.reel?.include !== false)
+        .map(s => ({
+          ...s,
+          component: () => <Story of={s.moduleExport ?? s} />
+        }))
         .sort((storyA, storyB) => {
           // First, sort by explicit reel.order if provided
           const orderA = storyA?.parameters?.reel?.order;
@@ -49,15 +52,9 @@ export const Reel = () => {
   const title = resolved.type === 'meta' ? resolved.preparedMeta.title.split('/').pop() : null;
   const reelStories = useStoriesFromDocs(resolved.type !== 'meta' ? undefined : resolved);
 
-  const Renderer = useMemo(() => {
-    return (props: { story: ReelStory }) => {
-      return <Story of={props.story.moduleExport ?? props.story} />;
-    };
-  }, []);
-
   if (reelStories.length === 0) return null;
 
   return (
-    <Player stories={reelStories} title={title} renderer={Renderer} />
+    <Player stories={reelStories} title={title} />
   );
 };

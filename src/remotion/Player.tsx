@@ -8,12 +8,12 @@ import ReelComposition, {
 } from "./Composition";
 
 type Props = {
-  renderer: ComponentType<{ story: ReelStory }>;
+  renderer?: ComponentType<{ story: ReelStory }>;
   stories: ReelStory[];
   title: string | null | undefined;
 };
 
-const RemotionPlayer = ({ renderer, stories, title }: Props) => {
+const RemotionPlayer = ({ stories, title }: Props) => {
   if (stories.length === 0) return null;
 
   return (
@@ -51,7 +51,7 @@ const RemotionPlayer = ({ renderer, stories, title }: Props) => {
       `}</style>
       <Player
         component={ReelComposition}
-        inputProps={{ renderer, reelStories: stories, title }}
+        inputProps={{ reelStories: stories, title }}
         durationInFrames={stories.length * FRAMES_PER_STORY + FRAMES_PER_LOGO}
         fps={30}
         compositionWidth={960}
