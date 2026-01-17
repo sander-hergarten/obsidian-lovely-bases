@@ -5,7 +5,6 @@ import { aFile } from "../../__mocks__/aFile";
 
 export const BOOK_ENTRIES: BasesEntry[] = [
   aBasesEntry(
-
     {
       file: aFile({
         basename: 'Steve Jobs',
@@ -58,6 +57,62 @@ export const BOOK_ENTRIES: BasesEntry[] = [
         "Dante Alighieri",
       ],
       cover: 'https://m.media-amazon.com/images/I/71WJbXGxPdL._AC_UF894,1000_QL80_.jpg',
+    }
+  ),
+  aBasesEntry(
+    {
+      file: aFile({
+        basename: 'Guerra y Paz',
+      })
+    },
+    {
+      title: "Guerra y Paz",
+      author: [
+        "León Tolstói",
+      ],
+      cover: 'https://m.media-amazon.com/images/I/71Xu1rz3tCL._AC_UF1000,1000_QL80_.jpg',
+    }
+  ),
+  aBasesEntry(
+    {
+      file: aFile({
+        basename: 'Historia de dos ciudades',
+      })
+    },
+    {
+      title: "Historia de dos ciudades",
+      author: [
+        "Charles Dickens",
+      ],
+      cover: 'https://m.media-amazon.com/images/I/81almnjTMzL._AC_UF894,1000_QL80_.jpg',
+    }
+  ),
+  aBasesEntry(
+    {
+      file: aFile({
+        basename: 'Guerra y Paz',
+      })
+    },
+    {
+      title: "El Señor de los Anillos",
+      author: [
+        "J.R.R. Tolkien",
+      ],
+      cover: 'https://www.tiposinfames.com/media/img/portadas/9788445011119.jpg',
+    }
+  ),
+  aBasesEntry(
+    {
+      file: aFile({
+        basename: 'Harry Potter y la piedra filosofal',
+      })
+    },
+    {
+      title: "Harry Potter y la piedra filosofal",
+      author: [
+        "J.K. Rowling",
+      ],
+      cover: 'https://m.media-amazon.com/images/I/81dxFCnAp0L.jpg'
     }
   ),
 ];
