@@ -133,6 +133,10 @@ body, .dark, .obsidian {
   scrollbar-width: thin;
 }
 
+body {
+  font-family: ui-sans-serif, -apple-system, "system-ui", "Segoe UI", Roboto, Inter, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
 .font-merienda {
   font-family: "Merienda", cursive;
   font-optical-sizing: auto;
