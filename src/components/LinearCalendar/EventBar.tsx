@@ -40,7 +40,7 @@ export const EventBar = ({
     >
       {/* Show title if width is reasonably large */}
       {(event.icon || widthPercent > 3) ? (
-        <span className="drop-shadow-md">
+        <span className="drop-shadow-md flex items-center">
         {event.icon && <LucideIcon name={event.icon} className="w-4 h-4 text-white inline-block mr-1" />}
           {widthPercent > 3 ?
             event.title :
