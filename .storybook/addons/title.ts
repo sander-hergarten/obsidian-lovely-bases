@@ -1,6 +1,6 @@
-import { addons } from 'storybook/manager-api';
+import type { API } from 'storybook/manager-api';
 
-addons.register('TitleAddon', (api) => {
+const MetaTitleAddon = (api: API) => {
   const PAGE_TITLE = 'Lovely Bases';
 
   const setTitle = () => {
@@ -23,4 +23,6 @@ addons.register('TitleAddon', (api) => {
     subtree: true,
     characterData: true,
   });
-})
+};
+
+export default MetaTitleAddon;
