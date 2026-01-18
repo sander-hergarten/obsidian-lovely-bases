@@ -1,0 +1,97 @@
+
+import type { CardConfig } from "@/components/Card/types";
+
+export const APPLICATIONS_CARD_CONFIG: CardConfig = {
+  layout: 'overlay',
+  shape: 'rounded',
+  hoverProperty: undefined,
+  hoverStyle: 'none',
+  properties: [],
+  imageProperty: 'note.cover',
+  imageAspectRatio: 1,
+  cardSize: 340,
+  imageFit: 'cover',
+  reverseContent: false,
+  showPropertyTitles: false,
+  showTitle: true,
+  showContent: false,
+  contentMaxLength: 200,
+  overlayContentVisibility: 'hover',
+};
+
+export const ARTICLES_CARD_CONFIG: CardConfig = {
+  layout: 'horizontal',
+  shape: 'square',
+  hoverProperty: 'note.url',
+  hoverStyle: 'overlay',
+  properties: [
+    'note.author',
+    'note.published',
+    'note.excerpt',
+  ],
+  imageProperty: 'note.banner',
+  imageAspectRatio: 0.85,
+  cardSize: 400,
+  imageFit: 'cover',
+  reverseContent: true,
+  showPropertyTitles: false,
+  showTitle: true,
+  showContent: true,
+  contentMaxLength: 200,
+  overlayContentVisibility: 'always',
+};
+
+export const BOOKS_CARD_CONFIG: CardConfig = {
+  layout: 'vertical',
+  shape: 'square',
+  hoverProperty: undefined,
+  hoverStyle: 'none',
+  properties: [],
+  imageProperty: 'note.cover',
+  imageAspectRatio: 1.5,
+  cardSize: 340,
+  imageFit: 'cover',
+  reverseContent: false,
+  showPropertyTitles: false,
+  showTitle: false,
+  showContent: false,
+  contentMaxLength: 200,
+  overlayContentVisibility: 'always',
+};
+
+export const MOVIES_CARD_CONFIG: CardConfig = {
+  layout: 'overlay',
+  shape: 'square',
+  hoverProperty: undefined,
+  hoverStyle: 'none',
+  properties: [],
+  imageProperty: 'note.cover',
+  imageAspectRatio: 1.5,
+  cardSize: 340,
+  imageFit: 'cover',
+  reverseContent: false,
+  showPropertyTitles: false,
+  showTitle: true,
+  showContent: true,
+  contentMaxLength: 200,
+  overlayContentVisibility: 'always',
+};
+
+export const PEOPLE_CARD_CONFIG: CardConfig = {
+  layout: 'vertical',
+  shape: 'circle',
+  hoverProperty: undefined,
+  hoverStyle: 'none',
+  properties: [],
+  imageProperty: 'note.cover',
+  imageAspectRatio: 1,
+  cardSize: 340,
+  imageFit: 'cover',
+  reverseContent: false,
+  showPropertyTitles: false,
+  showTitle: false,
+  showContent: false,
+  contentMaxLength: 200,
+  overlayContentVisibility: 'always',
+};
+

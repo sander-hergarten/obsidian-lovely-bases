@@ -26,6 +26,7 @@ const cardVariants = cva(
       layout: {
         horizontal: "flex flex-row",
         vertical: "flex flex-col",
+        overlay: "",
       },
 			shape: {
 				square: "rounded",
@@ -60,6 +61,11 @@ const Card = memo(
       shape: cardConfig.shape,
     });
 
+		const isOverlay = cardConfig.layout === "overlay";
+		const showOverlayContent = isOverlay && (
+			cardConfig.overlayContentVisibility === "always" || isHovered
+		);
+
 		return (
 			<div
        data-testid="lovely-card"
@@ -69,6 +75,7 @@ const Card = memo(
 				)}
         style={{
           width: cardConfig.cardSize,
+          ...(isOverlay && { height: cardConfig.cardSize * cardConfig.imageAspectRatio }),
         }}
 				onPointerDown={onPointerDown}
 				onClick={handleEntryOpen}
@@ -84,16 +91,36 @@ const Card = memo(
 					draggable={false}
 				/>
 
-				{!cardConfig.reverseContent ? (
-					<Image entry={entry} cardConfig={cardConfig} />
+				{isOverlay ? (
+					<>
+						<Image entry={entry} cardConfig={cardConfig} isOverlayMode />
+						<div className={cn(
+							"absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent pointer-events-none transition-opacity duration-300 ease-out",
+							showOverlayContent ? "opacity-100" : "opacity-0"
+						)} />
+						<div className={cn(
+							"absolute bottom-0 left-0 right-0 transition-all duration-300 ease-out",
+							showOverlayContent
+								? "opacity-100 translate-y-0"
+								: "opacity-0 translate-y-4 pointer-events-none"
+						)}>
+							<Content entry={entry} cardConfig={cardConfig} config={config} isOverlayMode />
+						</div>
+					</>
 				) : (
-					<Content entry={entry} cardConfig={cardConfig} config={config} />
-				)}
+					<>
+						{!cardConfig.reverseContent ? (
+							<Image entry={entry} cardConfig={cardConfig} />
+						) : (
+							<Content entry={entry} cardConfig={cardConfig} config={config} />
+						)}
 
-				{cardConfig.reverseContent ? (
-					<Image entry={entry} cardConfig={cardConfig} />
-				) : (
-					<Content entry={entry} cardConfig={cardConfig} config={config} />
+						{cardConfig.reverseContent ? (
+							<Image entry={entry} cardConfig={cardConfig} />
+						) : (
+							<Content entry={entry} cardConfig={cardConfig} config={config} />
+						)}
+					</>
 				)}
 
 				{isHovered && <HoverOverlay entry={entry} cardConfig={cardConfig} config={config} />}

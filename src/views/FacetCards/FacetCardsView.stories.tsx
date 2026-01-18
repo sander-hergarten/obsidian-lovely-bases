@@ -17,14 +17,12 @@ import {
 
 import FACET_CARDS_VIEW from ".";
 import {
-	APPLICATIONS_BASE_CONFIG,
-	ARTICLES_BASE_CONFIG,
-	BOOKS_BASE_CONFIG,
-	DEFAULT_BASE_CONFIG,
-	FULL_BASE_CONFIG,
+  CIRCLE_SHAPE_CONFIG,
+	DEFAULT_CONFIG,
+	FULL_CONFIG,
 	HORIZONTAL_LAYOUT_CONFIG,
-	MOVIES_BASE_CONFIG,
-	PEOPLE_BASE_CONFIG,
+  OVERLAY_LAYOUT_CONFIG,
+  ROUNDED_SHAPE_CONFIG,
 } from "./__fixtures__/configs";
 import FacetCardsView, { type FacetCardsConfig } from "./FacetCardsView";
 
@@ -44,7 +42,7 @@ const meta = {
 			description: {
 				component: `### Features
 
-- **Flexible Layouts**: Choose between **Vertical** (image on top) or **Horizontal** (image on the side) layouts.
+- **Flexible Layouts**: Choose between **Vertical** (image on top), **Horizontal** (image on the side) or **Overlay** (content in an overlay) layouts.
 - **Rich Media Integration**: Display images from any note property with precise control over aspect ratio and fit.
 - **Property-Focused**: Dedicated space for displaying multiple note properties with optional labels.
 - **Interactive Effects**: Enhance your cards with hover-activated overlays for extra information.
@@ -58,9 +56,9 @@ const meta = {
 		// Layout & Display
 		layout: {
 			control: "select",
-			options: ["horizontal", "vertical"],
+			options: ["horizontal", "vertical", "overlay"],
 			name: "Layout",
-			description: "The layout of the cards (horizontal or vertical).",
+			description: "The layout of the cards (horizontal, vertical, overlay).",
 			table: {
 				category: "Layout & Display",
 				defaultValue: { summary: "vertical" },
@@ -204,7 +202,7 @@ export const FullExample: Story = {
 		data: VIRTUAL_SCROLL_ARTICLES_ENTRIES,
 		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_ARTICLES_ENTRIES)],
 		onEntryClick: fn(),
-		...FULL_BASE_CONFIG,
+		...FULL_CONFIG,
 	},
 };
 
@@ -218,10 +216,10 @@ export const Default: Story = {
 		},
 	},
 	args: {
-		data: VIRTUAL_SCROLL_MOVIES_ENTRIES,
-		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_MOVIES_ENTRIES)],
+		data: VIRTUAL_SCROLL_BOOKS_ENTRIES,
+		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_BOOKS_ENTRIES)],
 		onEntryClick: fn(),
-		...DEFAULT_BASE_CONFIG,
+		...DEFAULT_CONFIG,
 	},
 };
 
@@ -248,14 +246,15 @@ layout: horizontal
 	},
 };
 
-export const VerticalLayout: Story = {
+export const OverlayLayout: Story = {
 	parameters: {
 		docs: {
 			description: {
-				story: `Vertical layout displays the image on top of the card content.
+				story: `Overlay layout displays the content in an overlay. Additionally, you can configure the overlay content visibility to always show or only show when hovering.
 
 \`\`\`yml
-layout: vertical
+layout: overlay
+overlayContentVisibility: hover | always
 \`\`\`
 `,
 			},
@@ -265,7 +264,7 @@ layout: vertical
 		data: VIRTUAL_SCROLL_MOVIES_ENTRIES,
 		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_MOVIES_ENTRIES)],
 		onEntryClick: fn(),
-		...MOVIES_BASE_CONFIG,
+		...OVERLAY_LAYOUT_CONFIG,
 	},
 };
 
@@ -288,7 +287,7 @@ shape: circle
 		data: VIRTUAL_SCROLL_PERSON_ENTRIES,
 		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_PERSON_ENTRIES)],
 		onEntryClick: fn(),
-		...PEOPLE_BASE_CONFIG,
+		...CIRCLE_SHAPE_CONFIG,
 	},
 };
 
@@ -311,54 +310,6 @@ shape: rounded
 			aBasesEntryGroup("", VIRTUAL_SCROLL_APPLICATION_ENTRIES),
 		],
 		onEntryClick: fn(),
-		...APPLICATIONS_BASE_CONFIG,
-	},
-};
-
-// === CONTENT STORIES ===
-
-export const ImageOnly: Story = {
-	parameters: {
-		docs: {
-			description: {
-				story: `Show only images without titles or properties for a clean, gallery-like appearance.
-
-\`\`\`yml
-showTitle: false
-properties: []
-\`\`\`
-`,
-			},
-		},
-	},
-	args: {
-		data: VIRTUAL_SCROLL_BOOKS_ENTRIES,
-		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_BOOKS_ENTRIES)],
-		onEntryClick: fn(),
-		...BOOKS_BASE_CONFIG,
-	},
-};
-
-// === HOVER EFFECTS STORIES ===
-
-export const HoverOverlay: Story = {
-	parameters: {
-		docs: {
-			description: {
-				story: `Display additional information in an overlay when hovering over cards.
-
-\`\`\`yml
-hoverProperty: note.url
-hoverStyle: overlay
-\`\`\`
-`,
-			},
-		},
-	},
-	args: {
-		data: VIRTUAL_SCROLL_ARTICLES_ENTRIES,
-		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_ARTICLES_ENTRIES)],
-		onEntryClick: fn(),
-		...ARTICLES_BASE_CONFIG,
+		...ROUNDED_SHAPE_CONFIG,
 	},
 };

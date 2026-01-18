@@ -9,6 +9,7 @@ import {
 	DEFAULT_HOVER_STYLE,
 	DEFAULT_IMAGE_ASPECT_RATIO,
 	DEFAULT_LAYOUT,
+	DEFAULT_OVERLAY_CONTENT_VISIBILITY,
 	DEFAULT_REVERSE_CONTENT,
 	DEFAULT_SHAPE,
 	DEFAULT_SHOW_CONTENT,
@@ -32,6 +33,7 @@ export function getCardConfig(config: BasesViewConfig): CardConfig {
 		properties: config.getOrder(),
 		hoverProperty: config.get("hoverProperty") as BasesPropertyId | undefined,
 		hoverStyle: (config.get("hoverStyle") as CardConfig["hoverStyle"]) ?? DEFAULT_HOVER_STYLE,
+		overlayContentVisibility: (config.get("overlayContentVisibility") as CardConfig["overlayContentVisibility"]) ?? DEFAULT_OVERLAY_CONTENT_VISIBILITY,
 	};
 }
 
@@ -50,6 +52,7 @@ export function compareCardConfig(a: CardConfig, b: CardConfig): boolean {
 		a.contentMaxLength === b.contentMaxLength &&
 		a.hoverProperty === b.hoverProperty &&
 		a.hoverStyle === b.hoverStyle &&
+		a.overlayContentVisibility === b.overlayContentVisibility &&
 		a.properties.length === b.properties.length &&
 		a.properties.every((p, i) => p === b.properties[i])
 	);

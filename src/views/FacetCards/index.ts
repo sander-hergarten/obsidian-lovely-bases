@@ -5,6 +5,7 @@ import {
   DEFAULT_IMAGE_ASPECT_RATIO,
   DEFAULT_IMAGE_FIT,
   DEFAULT_LAYOUT,
+  DEFAULT_OVERLAY_CONTENT_VISIBILITY,
   DEFAULT_REVERSE_CONTENT,
   DEFAULT_SHAPE,
   DEFAULT_SHOW_CONTENT,
@@ -39,6 +40,17 @@ const FACET_CARDS_VIEW: BaseViewDef = {
           options: {
             horizontal: "Horizontal",
             vertical: "Vertical",
+            overlay: "Overlay",
+          },
+        },
+        {
+          type: "dropdown",
+          displayName: "Content Visibility",
+          key: "overlayContentVisibility",
+          default: DEFAULT_OVERLAY_CONTENT_VISIBILITY,
+          options: {
+            always: "Always Visible",
+            hover: "Show on Hover",
           },
         },
         {

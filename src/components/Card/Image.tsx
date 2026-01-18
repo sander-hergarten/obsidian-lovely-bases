@@ -10,13 +10,35 @@ import type { CardConfig } from "./types";
 type Props = {
 	entry: BasesEntry;
 	cardConfig: CardConfig;
+	isOverlayMode?: boolean;
 };
 
-const Image = memo(({ entry, cardConfig }: Props) => {
+const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 	const { imageProperty, cardSize, layout, imageAspectRatio, imageFit } = cardConfig;
 
 	const image = useEntryImage(entry, imageProperty);
 	const title = useEntryTitle(entry);
+
+	if (isOverlayMode) {
+		return (
+			<div className="absolute inset-0 bg-(--bases-cards-cover-background)">
+				{image ? (
+					<img
+						src={image}
+						alt={title}
+						draggable={false}
+						loading="lazy"
+						className={cn(
+							"pointer-events-none h-full w-full",
+							imageFit === "cover" ? "object-cover" : "object-contain",
+						)}
+					/>
+				) : (
+					<div className="h-full w-full" />
+				)}
+			</div>
+		);
+	}
 
 	if (layout === "horizontal") {
 		return (

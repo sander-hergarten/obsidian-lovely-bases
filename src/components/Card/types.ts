@@ -18,7 +18,7 @@ export type CardItem = {
 }
 
 export type CardConfig = {
-	layout: "vertical" | "horizontal";
+	layout: "vertical" | "horizontal" | "overlay";
 	shape: "square" | "circle" | "rounded";
 	cardSize: number;
 	imageAspectRatio: number;
@@ -32,4 +32,5 @@ export type CardConfig = {
 	properties: BasesPropertyId[];
 	hoverProperty: BasesPropertyId | undefined;
 	hoverStyle: "overlay" | "tooltip" | "none";
+	overlayContentVisibility: "always" | "hover";
 }

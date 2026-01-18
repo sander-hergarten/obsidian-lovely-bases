@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 
-import { ARTICLE_ENTRIES, MOVIES_ENTRIES, PERSON_ENTRIES } from "@/__fixtures__/entries";
+import { APPLICATION_ENTRIES, ARTICLE_ENTRIES, BOOK_ENTRIES, MOVIES_ENTRIES, PERSON_ENTRIES } from "@/__fixtures__/entries";
 import { aBasesEntryGroup } from "@/__mocks__";
 import {
 	createViewRenderer,
@@ -12,16 +12,14 @@ import {
 import CAROUSEL_VIEW from ".";
 import {
 	CIRCLE_SHAPE_CONFIG,
-	DEFAULT_BASE_CONFIG,
-	FULL_BASE_CONFIG,
+	DEFAULT_CONFIG,
+	FULL_CONFIG,
 	HORIZONTAL_LAYOUT_CONFIG,
-	HOVER_OVERLAY_CONFIG,
-	IMAGE_ONLY_CONFIG,
+	OVERLAY_LAYOUT_CONFIG,
 	ROUNDED_SHAPE_CONFIG,
 	WITH_TITLE_SUBTITLE_CONFIG,
 } from "./__fixtures__/configs";
 import CarouselView, { type CarouselConfig } from "./CarouselView";
-import { VERTICAL_LAYOUT_CONFIG } from "./__fixtures__/configs/carousel";
 
 const View = createViewRenderer<CarouselConfig>(CarouselView);
 
@@ -72,7 +70,7 @@ const meta = {
 			control: "select",
 			name: "Layout",
 			description: "Orientation of the cards in the carousel.",
-			options: ["horizontal", "vertical"],
+			options: ["horizontal", "vertical", "overlay"],
 			table: {
 				category: "Display",
 				defaultValue: { summary: "vertical" },
@@ -212,7 +210,7 @@ export const FullExample: Story = {
 		data: ARTICLE_ENTRIES,
 		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
 		onEntryClick: fn(),
-		...FULL_BASE_CONFIG,
+		...FULL_CONFIG,
 	},
 };
 
@@ -226,10 +224,13 @@ export const Default: Story = {
 		},
 	},
 	args: {
-		data: MOVIES_ENTRIES,
-		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
+		data: BOOK_ENTRIES,
+		groupedData: [aBasesEntryGroup("", BOOK_ENTRIES)],
 		onEntryClick: fn(),
-		...DEFAULT_BASE_CONFIG,
+		...DEFAULT_CONFIG,
+    properties: [
+      'note.author',
+    ]
 	},
 };
 
@@ -256,14 +257,15 @@ layout: horizontal
 	},
 };
 
-export const VerticalLayout: Story = {
+export const OverlayLayout: Story = {
 	parameters: {
 		docs: {
 			description: {
-				story: `Vertical layout displays the image on top of the card content.
+				story: `Overlay layout displays the content in an overlay. Additionally, you can configure the overlay content visibility to always show or only show when hovering.
 
 \`\`\`yml
-layout: vertical
+layout: overlay
+overlayContentVisibility: hover | always
 \`\`\`
 `,
 			},
@@ -273,7 +275,7 @@ layout: vertical
 		data: MOVIES_ENTRIES,
 		groupedData: [aBasesEntryGroup("", MOVIES_ENTRIES)],
 		onEntryClick: fn(),
-		...VERTICAL_LAYOUT_CONFIG,
+		...OVERLAY_LAYOUT_CONFIG,
 	},
 };
 
@@ -315,8 +317,8 @@ shape: rounded
 		},
 	},
 	args: {
-		data: ARTICLE_ENTRIES,
-		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
+		data: APPLICATION_ENTRIES,
+		groupedData: [aBasesEntryGroup("", APPLICATION_ENTRIES)],
 		onEntryClick: fn(),
 		...ROUNDED_SHAPE_CONFIG,
 	},
@@ -343,53 +345,5 @@ subtitle: "A curated selection of highlights"
 		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
 		onEntryClick: fn(),
 		...WITH_TITLE_SUBTITLE_CONFIG,
-	},
-};
-
-// === CONTENT STORIES ===
-
-export const ImageOnly: Story = {
-	parameters: {
-		docs: {
-			description: {
-				story: `Show only images without titles or properties for a clean, gallery-like appearance.
-
-\`\`\`yml
-showTitle: false
-properties: []
-\`\`\`
-`,
-			},
-		},
-	},
-	args: {
-		data: MOVIES_ENTRIES,
-		groupedData: [aBasesEntryGroup("", MOVIES_ENTRIES)],
-		onEntryClick: fn(),
-		...IMAGE_ONLY_CONFIG,
-	},
-};
-
-// === HOVER EFFECTS STORIES ===
-
-export const HoverOverlay: Story = {
-	parameters: {
-		docs: {
-			description: {
-				story: `Display additional information in an overlay when hovering over cards.
-
-\`\`\`yml
-hoverProperty: note.url
-hoverStyle: overlay
-\`\`\`
-`,
-			},
-		},
-	},
-	args: {
-		data: ARTICLE_ENTRIES,
-		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
-		onEntryClick: fn(),
-		...HOVER_OVERLAY_CONFIG,
 	},
 };

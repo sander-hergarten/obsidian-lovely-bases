@@ -1,5 +1,6 @@
 import {
   DEFAULT_CONTENT_MAX_LENGTH,
+  DEFAULT_OVERLAY_CONTENT_VISIBILITY,
   DEFAULT_SHOW_CONTENT,
 } from "@/components/Card/config/constants";
 import { ReactBasesView } from "@/lib/view-class";
@@ -47,6 +48,17 @@ const CAROUSEL_VIEW: BaseViewDef = {
           options: {
             horizontal: "Horizontal",
             vertical: "Vertical",
+            overlay: "Overlay",
+          },
+        },
+        {
+          type: "dropdown",
+          displayName: "Content Visibility",
+          key: "overlayContentVisibility",
+          default: DEFAULT_OVERLAY_CONTENT_VISIBILITY,
+          options: {
+            always: "Always Visible",
+            hover: "Show on Hover",
           },
         },
         {
