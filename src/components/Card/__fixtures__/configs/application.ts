@@ -14,4 +14,6 @@ export const APPLICATIONS_CARD_CONFIG: CardConfig = {
   reverseContent: false,
   showPropertyTitles: false,
   showTitle: false,
+  showContent: false,
+  contentMaxLength: 200,
 };

@@ -27,6 +27,8 @@ export type CardConfig = {
 	reverseContent: boolean;
 	showTitle: boolean;
 	showPropertyTitles: boolean;
+	showContent: boolean;
+	contentMaxLength: number;
 	properties: BasesPropertyId[];
 	hoverProperty: BasesPropertyId | undefined;
 	hoverStyle: "overlay" | "tooltip" | "none";

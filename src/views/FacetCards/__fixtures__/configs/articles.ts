@@ -17,4 +17,6 @@ export const ARTICLES_BASE_CONFIG: FacetCardsConfig = {
   reverseContent: true,
   showPropertyTitles: false,
   showTitle: true,
+  showContent: true,
+  contentMaxLength: 200,
 }

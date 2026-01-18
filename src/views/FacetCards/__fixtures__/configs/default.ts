@@ -9,6 +9,8 @@ export const DEFAULT_BASE_CONFIG: FacetCardsConfig = {
 	imageFit: "cover",
 	showTitle: true,
 	showPropertyTitles: true,
+	showContent: false,
+	contentMaxLength: 200,
 	properties: [],
 	reverseContent: false,
 	hoverProperty: undefined,

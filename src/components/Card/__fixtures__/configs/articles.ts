@@ -18,4 +18,6 @@ export const ARTICLES_CARD_CONFIG: CardConfig = {
   reverseContent: true,
   showPropertyTitles: false,
   showTitle: true,
+  showContent: true,
+  contentMaxLength: 200,
 };

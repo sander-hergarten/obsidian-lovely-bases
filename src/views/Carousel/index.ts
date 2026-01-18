@@ -1,3 +1,7 @@
+import {
+  DEFAULT_CONTENT_MAX_LENGTH,
+  DEFAULT_SHOW_CONTENT,
+} from "@/components/Card/config/constants";
 import { ReactBasesView } from "@/lib/view-class";
 import type { BaseViewDef } from "@/types";
 
@@ -119,6 +123,21 @@ const CAROUSEL_VIEW: BaseViewDef = {
           displayName: "Show Property Titles",
           key: "showPropertyTitles",
           default: true,
+        },
+        {
+          type: "toggle",
+          displayName: "Show Note Content",
+          key: "showContent",
+          default: DEFAULT_SHOW_CONTENT,
+        },
+        {
+          type: "slider",
+          displayName: "Content Max Length",
+          key: "contentMaxLength",
+          min: 50,
+          max: 1000,
+          step: 50,
+          default: DEFAULT_CONTENT_MAX_LENGTH,
         },
         {
           type: "property",

@@ -1,6 +1,8 @@
 import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { memo } from "react";
 
+import Markdown from "@/components/Obsidian/Markdown";
+
 import PropertyList from "./PropertyList";
 import Title from "./Title";
 import type { CardConfig } from "./types";
@@ -12,8 +14,9 @@ type Props = {
 }
 
 const Content = memo(({ entry, cardConfig, config }: Props) => {
+  const { showTitle, showContent, contentMaxLength, properties } = cardConfig;
 
-  const shouldDisplayContent = cardConfig.showTitle || cardConfig.properties.length > 0;
+  const shouldDisplayContent = showTitle || showContent || properties.length > 0;
 
   if (!shouldDisplayContent) {
     return null;
@@ -32,6 +35,16 @@ const Content = memo(({ entry, cardConfig, config }: Props) => {
           config={config}
         />
       </div>
+
+      {showContent && (
+        <div className="px-[var(--size-4-2)] py-2 overflow-hidden">
+          <Markdown
+            file={entry.file}
+            maxLength={contentMaxLength}
+            className="text-sm text-foreground line-clamp-6 overflow-hidden"
+          />
+        </div>
+      )}
     </div>
   )
 });

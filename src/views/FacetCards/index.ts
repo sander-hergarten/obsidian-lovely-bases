@@ -1,11 +1,13 @@
 
 import {
   DEFAULT_CARD_SIZE,
+  DEFAULT_CONTENT_MAX_LENGTH,
   DEFAULT_IMAGE_ASPECT_RATIO,
   DEFAULT_IMAGE_FIT,
   DEFAULT_LAYOUT,
   DEFAULT_REVERSE_CONTENT,
   DEFAULT_SHAPE,
+  DEFAULT_SHOW_CONTENT,
   DEFAULT_SHOW_PROPERTY_TITLES,
   DEFAULT_SHOW_TITLE,
 } from "@/components/Card/config/constants";
@@ -112,6 +114,21 @@ const FACET_CARDS_VIEW: BaseViewDef = {
           displayName: "Show Property Titles",
           key: "showPropertyTitles",
           default: DEFAULT_SHOW_PROPERTY_TITLES,
+        },
+        {
+          type: "toggle",
+          displayName: "Show Note Content",
+          key: "showContent",
+          default: DEFAULT_SHOW_CONTENT,
+        },
+        {
+          type: "slider",
+          displayName: "Content Max Length",
+          key: "contentMaxLength",
+          min: 50,
+          max: 1000,
+          step: 50,
+          default: DEFAULT_CONTENT_MAX_LENGTH,
         },
       ],
     },

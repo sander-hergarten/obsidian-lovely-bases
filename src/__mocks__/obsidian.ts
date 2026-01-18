@@ -1,3 +1,8 @@
+
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { Streamdown } from "streamdown";
+
 /**
  * Mock del paquete obsidian para Storybook
  *
@@ -165,8 +170,13 @@ export const MarkdownRenderer = {
 		_component: unknown,
 	): Promise<void> => {
 		// En Storybook, simplemente renderizamos el markdown como texto plano
-		// o podríamos usar una librería de markdown si fuera necesario
-		el.textContent = markdown;
+		el.innerHTML = renderToStaticMarkup(
+      React.createElement(Streamdown, {
+        // biome-ignore lint/correctness/noChildrenProp: Mock obsidian rendering for Storybook
+        children: markdown,
+        mode: "static",
+      })
+    );
 	},
 };
 

@@ -10,6 +10,8 @@ export const DEFAULT_BASE_CONFIG: CarouselConfig = {
 	reverseContent: false,
 	showTitle: true,
 	showPropertyTitles: true,
+	showContent: false,
+	contentMaxLength: 200,
 	properties: [],
 	hoverProperty: undefined,
 	hoverStyle: "overlay",

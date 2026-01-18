@@ -10,3 +10,5 @@ export const DEFAULT_REVERSE_CONTENT = false;
 export const DEFAULT_HOVER_PROPERTY = null;
 export const DEFAULT_HOVER_STYLE = "overlay";
 export const DEFAULT_PROPERTIES = [];
+export const DEFAULT_SHOW_CONTENT = false;
+export const DEFAULT_CONTENT_MAX_LENGTH = 200;

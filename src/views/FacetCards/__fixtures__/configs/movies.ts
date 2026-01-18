@@ -13,4 +13,6 @@ export const MOVIES_BASE_CONFIG: FacetCardsConfig = {
   reverseContent: false,
   showPropertyTitles: false,
   showTitle: false,
+  showContent: false,
+  contentMaxLength: 200,
 }
