@@ -12,6 +12,7 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
       ),
     },
     {
+      rating: 4.5,
       cover: 'https://m.media-amazon.com/images/M/MV5BMjA1Nzk0OTM2OF5BMl5BanBnXkFtZTgwNjU2NjEwMDE@._V1_SX300.jpg',
     }
   ),
@@ -22,6 +23,7 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
       }, 'As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea and by the co-founder who was later squeezed out of the business.')
     },
     {
+      rating: 4.0,
       cover: 'https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_SX300.jpg',
     }
   ),
@@ -33,6 +35,7 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
     'The story of Steve Jobs\'s ascension from college dropout into one of the most revered creative entrepreneurs of the 20th century.')
     },
     {
+      rating: 3.5,
       cover: 'https://m.media-amazon.com/images/M/MV5BMTM5NTQ3MTYxN15BMl5BanBnXkFtZTcwODE2Nzk3OQ@@._V1_SX300.jpg'
     }
   ),
@@ -44,6 +47,7 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
     'Steve Jobs takes us behind the scenes of the digital revolution, to paint a portrait of the man at its epicenter. The story unfolds backstage at three iconic product launches, ending in 1998 with the unveiling of the iMac.')
     },
     {
+      rating: 3.0,
       cover: 'https://m.media-amazon.com/images/M/MV5BMjE0NTA2MTEwOV5BMl5BanBnXkFtZTgwNzg4NzU2NjE@._V1_SX300.jpg',
     }
   ),
@@ -55,6 +59,7 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
     'The story of the meteoric rise and catastrophic demise of the world\'s first smartphone.')
     },
     {
+      rating: 5,
       cover: 'https://m.media-amazon.com/images/M/MV5BYzEzZDM5NWEtODgzNC00MTE5LWFhZTYtMGE2YTkxMzFiZWIyXkEyXkFqcGc@._V1_SX300.jpg',
     }
   ),

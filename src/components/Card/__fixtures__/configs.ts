@@ -17,6 +17,9 @@ export const APPLICATIONS_CARD_CONFIG: CardConfig = {
   showContent: false,
   contentMaxLength: 200,
   overlayContentVisibility: 'hover',
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
 };
 
 export const ARTICLES_CARD_CONFIG: CardConfig = {
@@ -39,6 +42,9 @@ export const ARTICLES_CARD_CONFIG: CardConfig = {
   showContent: true,
   contentMaxLength: 200,
   overlayContentVisibility: 'always',
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
 };
 
 export const BOOKS_CARD_CONFIG: CardConfig = {
@@ -57,6 +63,9 @@ export const BOOKS_CARD_CONFIG: CardConfig = {
   showContent: false,
   contentMaxLength: 200,
   overlayContentVisibility: 'always',
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
 };
 
 export const MOVIES_CARD_CONFIG: CardConfig = {
@@ -75,6 +84,9 @@ export const MOVIES_CARD_CONFIG: CardConfig = {
   showContent: true,
   contentMaxLength: 200,
   overlayContentVisibility: 'always',
+  badgeProperty: 'note.rating',
+  badgeIcon: 'star',
+  badgeColor: '#D0A215',
 };
 
 export const PEOPLE_CARD_CONFIG: CardConfig = {
@@ -93,5 +105,8 @@ export const PEOPLE_CARD_CONFIG: CardConfig = {
   showContent: false,
   contentMaxLength: 200,
   overlayContentVisibility: 'always',
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
 };
 

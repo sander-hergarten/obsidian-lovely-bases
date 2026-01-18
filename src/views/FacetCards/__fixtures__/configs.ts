@@ -21,6 +21,9 @@ export const DEFAULT_CONFIG: FacetCardsConfig = {
 	hoverProperty: undefined,
 	hoverStyle: "none",
 	overlayContentVisibility: "always",
+	badgeProperty: undefined,
+	badgeIcon: undefined,
+	badgeColor: undefined,
 } satisfies Partial<FacetCardsConfig>;
 
 export const FULL_CONFIG: FacetCardsConfig = {
@@ -57,6 +60,9 @@ export const HORIZONTAL_LAYOUT_CONFIG: FacetCardsConfig = {
   reverseContent: false,
   showPropertyTitles: false,
   showTitle: true,
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
 }
 
 export const OVERLAY_LAYOUT_CONFIG: FacetCardsConfig = {
@@ -75,6 +81,9 @@ export const OVERLAY_LAYOUT_CONFIG: FacetCardsConfig = {
   showContent: true,
   contentMaxLength: 200,
   overlayContentVisibility: 'always',
+  badgeProperty: 'note.rating',
+  badgeIcon: 'star',
+  badgeColor: '#D0A215',
 }
 
 export const CIRCLE_SHAPE_CONFIG: FacetCardsConfig = {
@@ -93,6 +102,9 @@ export const CIRCLE_SHAPE_CONFIG: FacetCardsConfig = {
   showContent: false,
   contentMaxLength: 200,
   overlayContentVisibility: 'always',
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
 }
 
 
@@ -112,4 +124,7 @@ export const ROUNDED_SHAPE_CONFIG: FacetCardsConfig = {
   showContent: false,
   contentMaxLength: 200,
   overlayContentVisibility: 'hover',
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
 }

@@ -21,6 +21,9 @@ export const DEFAULT_CONFIG: CarouselConfig = {
 	hoverProperty: undefined,
 	hoverStyle: "none",
 	overlayContentVisibility: "always",
+	badgeProperty: undefined,
+	badgeIcon: undefined,
+	badgeColor: undefined,
 } satisfies Partial<CarouselConfig>;
 
 export const FULL_CONFIG: CarouselConfig = {
@@ -57,6 +60,9 @@ export const HORIZONTAL_LAYOUT_CONFIG: CarouselConfig = {
   reverseContent: false,
   showPropertyTitles: false,
   showTitle: true,
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
 }
 
 export const OVERLAY_LAYOUT_CONFIG: CarouselConfig = {
@@ -75,6 +81,9 @@ export const OVERLAY_LAYOUT_CONFIG: CarouselConfig = {
   showContent: true,
   contentMaxLength: 200,
   overlayContentVisibility: 'always',
+  badgeProperty: 'note.rating',
+  badgeIcon: 'star',
+  badgeColor: '#D0A215',
 }
 
 export const CIRCLE_SHAPE_CONFIG: CarouselConfig = {
@@ -93,6 +102,9 @@ export const CIRCLE_SHAPE_CONFIG: CarouselConfig = {
   showContent: false,
   contentMaxLength: 200,
   overlayContentVisibility: 'always',
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
 }
 
 
@@ -112,6 +124,9 @@ export const ROUNDED_SHAPE_CONFIG: CarouselConfig = {
   showContent: false,
   contentMaxLength: 200,
   overlayContentVisibility: 'hover',
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
 }
 
 export const WITH_TITLE_SUBTITLE_CONFIG: CarouselConfig = {

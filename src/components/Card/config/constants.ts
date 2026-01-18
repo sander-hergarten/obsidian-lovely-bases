@@ -13,3 +13,6 @@ export const DEFAULT_PROPERTIES = [];
 export const DEFAULT_SHOW_CONTENT = false;
 export const DEFAULT_CONTENT_MAX_LENGTH = 200;
 export const DEFAULT_OVERLAY_CONTENT_VISIBILITY = "always";
+export const DEFAULT_BADGE_PROPERTY = undefined;
+export const DEFAULT_BADGE_ICON = undefined;
+export const DEFAULT_BADGE_COLOR = undefined;

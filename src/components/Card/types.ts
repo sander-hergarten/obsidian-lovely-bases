@@ -33,4 +33,7 @@ export type CardConfig = {
 	hoverProperty: BasesPropertyId | undefined;
 	hoverStyle: "overlay" | "tooltip" | "none";
 	overlayContentVisibility: "always" | "hover";
+	badgeProperty: BasesPropertyId | undefined;
+	badgeIcon: string | undefined;
+	badgeColor: string | undefined;
 }

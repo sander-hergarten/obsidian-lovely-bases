@@ -167,6 +167,29 @@ const FACET_CARDS_VIEW: BaseViewDef = {
         },
       ],
     },
+    {
+      type: "group",
+      displayName: "Badge",
+      items: [
+        {
+          type: "property",
+          displayName: "Badge Property",
+          key: "badgeProperty",
+        },
+        {
+          type: "text",
+          displayName: "Badge Icon",
+          key: "badgeIcon",
+          placeholder: "star, heart, check...",
+        },
+        {
+          type: "text",
+          displayName: "Badge Color",
+          key: "badgeColor",
+          placeholder: "#D0A215",
+        },
+      ],
+    },
   ],
 };
 

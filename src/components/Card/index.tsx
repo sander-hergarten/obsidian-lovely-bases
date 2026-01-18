@@ -6,6 +6,7 @@ import { useEntryHover } from "@/hooks/use-entry-hover";
 import { useEntryOpen } from "@/hooks/use-entry-open";
 import { cn } from "@/lib/utils";
 
+import Badge from "./Badge";
 import Content from "./Content";
 import { DEFAULT_LAYOUT, DEFAULT_SHAPE } from "./config/constants";
 import { compareCardConfig } from "./config/get-config";
@@ -20,7 +21,7 @@ type Props = CardConfig & {
 };
 
 const cardVariants = cva(
-	"relative h-full bg-(--bases-cards-background) shadow-md overflow-hidden transition-shadow hover:shadow-lg cursor-pointer border border-border",
+	"relative h-full bg-(--bases-cards-background) shadow-md overflow-hidden transition-shadow hover:shadow-lg cursor-pointer border border-border group",
 	{
 		variants: {
       layout: {
@@ -91,37 +92,50 @@ const Card = memo(
 					draggable={false}
 				/>
 
-				{isOverlay ? (
-					<>
-						<Image entry={entry} cardConfig={cardConfig} isOverlayMode />
+			{isOverlay ? (
+				<>
+					<Image entry={entry} cardConfig={cardConfig} isOverlayMode />
+					<div className={cn(
+						"absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent pointer-events-none transition-opacity duration-300 ease-out",
+						showOverlayContent ? "opacity-100" : "opacity-0"
+					)} />
+					<div className={cn(
+						"absolute bottom-0 left-0 right-0 transition-all duration-300 ease-out",
+						showOverlayContent
+							? "opacity-100 translate-y-0"
+							: "opacity-0 translate-y-4 pointer-events-none"
+					)}>
+						<Content entry={entry} cardConfig={cardConfig} config={config} isOverlayMode />
+					</div>
+					{cardConfig.badgeProperty && (
 						<div className={cn(
-							"absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent pointer-events-none transition-opacity duration-300 ease-out",
-							showOverlayContent ? "opacity-100" : "opacity-0"
-						)} />
-						<div className={cn(
-							"absolute bottom-0 left-0 right-0 transition-all duration-300 ease-out",
+							"transition-all duration-300 ease-out",
 							showOverlayContent
 								? "opacity-100 translate-y-0"
-								: "opacity-0 translate-y-4 pointer-events-none"
+								: "opacity-0 -translate-y-4 pointer-events-none"
 						)}>
-							<Content entry={entry} cardConfig={cardConfig} config={config} isOverlayMode />
+							<Badge entry={entry} cardConfig={cardConfig} config={config} />
 						</div>
-					</>
-				) : (
-					<>
-						{!cardConfig.reverseContent ? (
-							<Image entry={entry} cardConfig={cardConfig} />
-						) : (
-							<Content entry={entry} cardConfig={cardConfig} config={config} />
-						)}
+					)}
+				</>
+			) : (
+				<>
+					{!cardConfig.reverseContent ? (
+						<Image entry={entry} cardConfig={cardConfig} />
+					) : (
+						<Content entry={entry} cardConfig={cardConfig} config={config} />
+					)}
 
-						{cardConfig.reverseContent ? (
-							<Image entry={entry} cardConfig={cardConfig} />
-						) : (
-							<Content entry={entry} cardConfig={cardConfig} config={config} />
-						)}
-					</>
-				)}
+					{cardConfig.reverseContent ? (
+						<Image entry={entry} cardConfig={cardConfig} />
+					) : (
+						<Content entry={entry} cardConfig={cardConfig} config={config} />
+					)}
+					{cardConfig.badgeProperty && (
+						<Badge entry={entry} cardConfig={cardConfig} config={config} />
+					)}
+				</>
+			)}
 
 				{isHovered && <HoverOverlay entry={entry} cardConfig={cardConfig} config={config} />}
 			</div>

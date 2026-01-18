@@ -4,6 +4,9 @@ import type { BasesPropertyId, BasesViewConfig } from "obsidian";
 import type { CardConfig } from "@/components/Card/types";
 
 import {
+	DEFAULT_BADGE_COLOR,
+	DEFAULT_BADGE_ICON,
+	DEFAULT_BADGE_PROPERTY,
 	DEFAULT_CARD_SIZE,
 	DEFAULT_CONTENT_MAX_LENGTH,
 	DEFAULT_HOVER_STYLE,
@@ -34,6 +37,9 @@ export function getCardConfig(config: BasesViewConfig): CardConfig {
 		hoverProperty: config.get("hoverProperty") as BasesPropertyId | undefined,
 		hoverStyle: (config.get("hoverStyle") as CardConfig["hoverStyle"]) ?? DEFAULT_HOVER_STYLE,
 		overlayContentVisibility: (config.get("overlayContentVisibility") as CardConfig["overlayContentVisibility"]) ?? DEFAULT_OVERLAY_CONTENT_VISIBILITY,
+		badgeProperty: config.get("badgeProperty") as BasesPropertyId | undefined ?? DEFAULT_BADGE_PROPERTY,
+		badgeIcon: config.get("badgeIcon") as string | undefined ?? DEFAULT_BADGE_ICON,
+		badgeColor: config.get("badgeColor") as string | undefined ?? DEFAULT_BADGE_COLOR,
 	};
 }
 
@@ -53,6 +59,9 @@ export function compareCardConfig(a: CardConfig, b: CardConfig): boolean {
 		a.hoverProperty === b.hoverProperty &&
 		a.hoverStyle === b.hoverStyle &&
 		a.overlayContentVisibility === b.overlayContentVisibility &&
+		a.badgeProperty === b.badgeProperty &&
+		a.badgeIcon === b.badgeIcon &&
+		a.badgeColor === b.badgeColor &&
 		a.properties.length === b.properties.length &&
 		a.properties.every((p, i) => p === b.properties[i])
 	);

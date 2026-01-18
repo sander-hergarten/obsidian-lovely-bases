@@ -169,6 +169,31 @@ const meta = {
 				defaultValue: { summary: "none" },
 			},
 		},
+		// Badge
+		badgeProperty: {
+			control: "text",
+			name: "Badge Property",
+			description: "The property to display as a badge on the card (optional). The badge appears in the top-right corner of the card image.",
+			table: {
+				category: "Badge",
+			},
+		},
+		badgeIcon: {
+			control: "text",
+			name: "Badge Icon",
+			description: "The Lucide icon name to display alongside the badge text (optional). See https://lucide.dev/icons for available icons.",
+			table: {
+				category: "Badge",
+			},
+		},
+		badgeColor: {
+			control: "color",
+			name: "Badge Color",
+			description: "The background color of the badge in hex format (e.g., #D0A215). Text color is automatically calculated for contrast.",
+			table: {
+				category: "Badge",
+			},
+		},
 		// Internal props (disabled)
 		data: {
 			table: {
@@ -255,6 +280,9 @@ export const OverlayLayout: Story = {
 \`\`\`yml
 layout: overlay
 overlayContentVisibility: hover | always
+badgeProperty: note.rating
+badgeIcon: star
+badgeColor: #D0A215
 \`\`\`
 `,
 			},
