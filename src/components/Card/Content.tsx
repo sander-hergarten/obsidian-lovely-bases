@@ -44,7 +44,7 @@ const Content = memo(({ entry, cardConfig, config, isOverlayMode }: Props) => {
       </div>
 
       {showContent && (
-        <div className="px-(--size-4-2) py-2 overflow-hidden">
+        <div className="px-(--size-4-2) overflow-hidden">
           <Markdown
             file={entry.file}
             maxLength={contentMaxLength}

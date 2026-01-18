@@ -16,9 +16,9 @@ type Props = {
 const getBadgeStyles = (color: string | undefined): React.CSSProperties => {
 	if (!color || !isHexColor(color)) {
 		return {
-			backgroundColor: "rgba(0, 0, 0, 0.6)",
-			color: "var(--text-foreground)",
-			borderColor: "var(--border)",
+			backgroundColor: "rgba(0, 0, 0, 0.3)",
+			color: "var(--color-white)",
+			borderColor: "transparent",
 		};
 	}
 

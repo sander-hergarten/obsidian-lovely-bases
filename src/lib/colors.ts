@@ -292,7 +292,7 @@ export function luminance(color: string): number {
 }
 
 export function contrastColor(color: string): string {
-  return luminance(color) > 0.5 ? "var(--text-foreground)" : "var(--text-background)";
+  return luminance(color) > 0.5 ? "var(--color-black)" : "var(--color-white)";
 }
 
 export function interpolateColor (

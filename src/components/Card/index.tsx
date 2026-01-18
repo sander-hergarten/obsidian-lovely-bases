@@ -21,12 +21,12 @@ type Props = CardConfig & {
 };
 
 const cardVariants = cva(
-	"relative h-full bg-(--bases-cards-background) shadow-md overflow-hidden transition-shadow hover:shadow-lg cursor-pointer border border-border group",
+	"relative bg-(--bases-cards-background) shadow-md overflow-hidden transition-shadow hover:shadow-lg cursor-pointer border border-border group",
 	{
 		variants: {
       layout: {
-        horizontal: "flex flex-row",
-        vertical: "flex flex-col",
+        horizontal: "flex flex-row h-full",
+        vertical: "flex flex-col h-full",
         overlay: "",
       },
 			shape: {
@@ -69,15 +69,15 @@ const Card = memo(
 
 		return (
 			<div
-       data-testid="lovely-card"
+				data-testid="lovely-card"
 				className={cn(
 					classes,
 					className,
 				)}
-        style={{
-          width: cardConfig.cardSize,
-          ...(isOverlay && { height: cardConfig.cardSize * cardConfig.imageAspectRatio }),
-        }}
+				style={{
+					width: cardConfig.cardSize,
+					...(isOverlay && { "height": `${cardConfig.cardSize * cardConfig.imageAspectRatio}px` }),
+				} as React.CSSProperties}
 				onPointerDown={onPointerDown}
 				onClick={handleEntryOpen}
 				onMouseOver={handleEntryHover}

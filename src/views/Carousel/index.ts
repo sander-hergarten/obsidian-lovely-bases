@@ -146,9 +146,9 @@ const CAROUSEL_VIEW: BaseViewDef = {
           type: "slider",
           displayName: "Content Max Length",
           key: "contentMaxLength",
-          min: 50,
+          min: 0,
           max: 1000,
-          step: 50,
+          step: 10,
           default: DEFAULT_CONTENT_MAX_LENGTH,
         },
         {
