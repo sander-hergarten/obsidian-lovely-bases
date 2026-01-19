@@ -1,26 +1,47 @@
-import * as Lucide from "lucide-react";
+
+import { cn } from "@/lib/utils";
+import { setIcon } from "obsidian";
+import { useEffect, useRef } from "react";
 
 type Props = {
-  name: string;
-  size?: number;
-  className?: string;
-  style?: React.CSSProperties;
+	name: string;
+	className?: string;
+	style?: React.CSSProperties;
 };
 
 const normalizeLucideName = (name: string) => {
-  const pascal = name
-    .trim()
-    .replace(/(^\w|[-_\s]+\w)/g, (m) => m.replace(/[-_\s]+/, "").toUpperCase());
-  return pascal;
+	const camel = name
+		.trim()
+		.replace(/(^\w|[-_\s]+\w)/g, (m) => m.replace(/[-_\s]+/, "").toLowerCase());
+	return camel;
 };
 
-const LucideIcon = ({ name, size, className, style }: Props) => {
-  const key = normalizeLucideName(name);
-  // biome-ignore lint/suspicious/noExplicitAny: dynamic resolution of the icon
-  const Icon = (Lucide as any)[key] as React.ComponentType<any> | undefined;
+const LucideIcon = ({ name, className, style }: Props) => {
+	const key = normalizeLucideName(name);
+	const el = useRef<HTMLSpanElement>(null);
 
-  if (!Icon) return null;
-  return <Icon size={size} className={className} style={style} />;
-}
+	useEffect(() => {
+		if (!el.current) {
+			return;
+		}
+
+		el.current.innerHTML = "";
+		setIcon(el.current, key);
+
+		return () => {
+			if (el.current) {
+				el.current.innerHTML = "";
+			}
+		};
+	}, [key]);
+
+	return (
+		<span
+			ref={el}
+			className={cn("[&>svg]:size-full", className)}
+			style={style}
+		/>
+	);
+};
 
 export default LucideIcon;

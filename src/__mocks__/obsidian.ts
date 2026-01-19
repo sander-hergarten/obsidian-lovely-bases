@@ -2,6 +2,7 @@
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Streamdown } from "streamdown";
+import * as Lucide from "lucide-react";
 
 /**
  * Mock del paquete obsidian para Storybook
@@ -182,6 +183,28 @@ export const MarkdownRenderer = {
     );
 	},
 };
+
+const normalizeLucideName = (name: string) => {
+  const pascal = name
+    .trim()
+    .replace(/(^\w|[-_\s]+\w)/g, (m) => m.replace(/[-_\s]+/, "").toUpperCase());
+  return pascal;
+};
+
+export const setIcon = (el: HTMLElement, name: string): void => {
+  const key = normalizeLucideName(name);
+  const Icon = (Lucide as any)[key] as React.ComponentType<any> | undefined;
+  if (!Icon) return;
+  el.innerHTML = renderToStaticMarkup(
+    React.createElement(Icon, {
+      style: {
+        display: 'block',
+        width: '100%',
+        height: '100%',
+      }
+    })
+  );
+}
 
 
 // biome-ignore lint/suspicious/noExplicitAny: Mock para Storybook, necesita compatibilidad con tipos de Obsidian

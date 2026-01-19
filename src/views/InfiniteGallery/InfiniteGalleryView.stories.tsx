@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 
-import { MOVIES_ENTRIES, VIRTUAL_SCROLL_MOVIES_ENTRIES, PHOTOS_ENTRIES, VIRTUAL_SCROLL_PHOTOS_ENTRIES } from "@/__fixtures__/entries";
+import { MOVIES_ENTRIES, VIRTUAL_SCROLL_MOVIES_ENTRIES, PHOTOS_ENTRIES, VIRTUAL_SCROLL_PHOTOS_ENTRIES, VIRTUAL_SCROLL_BOOKS_ENTRIES } from "@/__fixtures__/entries";
 import { aBasesEntryGroup } from "@/__mocks__";
 import {
 	createViewRenderer,
@@ -250,8 +250,8 @@ type Story = StoryObj<typeof meta>;
 
 export const FullExample: Story = {
 	args: {
-		data: VIRTUAL_SCROLL_MOVIES_ENTRIES,
-		groupedData: [aBasesEntryGroup("", MOVIES_ENTRIES)],
+		data: VIRTUAL_SCROLL_BOOKS_ENTRIES,
+		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_BOOKS_ENTRIES)],
 		onEntryClick: fn(),
 		...FULL_BASE_CONFIG,
 	},

@@ -1,10 +1,10 @@
-import { DEFAULT_CARD_SIZE, DEFAULT_CONTENT_MAX_LENGTH, DEFAULT_IMAGE_ASPECT_RATIO, DEFAULT_IMAGE_FIT, DEFAULT_LAYOUT, DEFAULT_OVERLAY_CONTENT_VISIBILITY, DEFAULT_REVERSE_CONTENT, DEFAULT_SHAPE, DEFAULT_SHOW_CONTENT, DEFAULT_SHOW_PROPERTY_TITLES, DEFAULT_SHOW_TITLE, DEFAULT_TILT } from "@/components/Card/config/constants";
+import { DEFAULT_CONTENT_MAX_LENGTH, DEFAULT_IMAGE_ASPECT_RATIO, DEFAULT_IMAGE_FIT, DEFAULT_LAYOUT, DEFAULT_OVERLAY_CONTENT_VISIBILITY, DEFAULT_REVERSE_CONTENT, DEFAULT_SHAPE, DEFAULT_SHOW_CONTENT, DEFAULT_SHOW_PROPERTY_TITLES, DEFAULT_SHOW_TITLE, DEFAULT_TILT } from "@/components/Card/config/constants";
 import type { InfiniteGalleryConfig } from "../InfiniteGalleryView";
 
 export const DEFAULT_BASE_CONFIG: InfiniteGalleryConfig = {
   layout: DEFAULT_LAYOUT,
   shape: DEFAULT_SHAPE,
-  cardSize: DEFAULT_CARD_SIZE,
+  cardSize: 250,
   imageAspectRatio: DEFAULT_IMAGE_ASPECT_RATIO,
   imageFit: DEFAULT_IMAGE_FIT,
   imageProperty: "note.cover",
@@ -26,12 +26,19 @@ export const DEFAULT_BASE_CONFIG: InfiniteGalleryConfig = {
 
 export const FULL_BASE_CONFIG: InfiniteGalleryConfig = {
 	...DEFAULT_BASE_CONFIG,
-	cardSize: 250,
-	imageAspectRatio: 1.5,
+	cardSize: 300,
+	imageAspectRatio: 0.5,
 	imageFit: "cover",
-	layout: "overlay",
-	shape: "rounded",
+	layout: "horizontal",
+  reverseContent: true,
+	shape: "square",
 	masonry: true,
+  properties: [
+    'note.author',
+  ],
+  showContent: true,
+  contentMaxLength: 50,
+  tilt: "alternating",
 } satisfies Partial<InfiniteGalleryConfig>;
 
 export const POLAROID_BASE_CONFIG: InfiniteGalleryConfig = {

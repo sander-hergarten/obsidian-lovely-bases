@@ -53,7 +53,7 @@ const Badge = memo(
 				style={badgeStyles}
 			>
 				{badgeIcon && (
-					<LucideIcon name={badgeIcon} size={12} className="shrink-0" />
+					<LucideIcon name={badgeIcon} className="shrink-0 size-3" />
 				)}
 				<span className="truncate max-w-[120px]">{badgeValue}</span>
 			</div>

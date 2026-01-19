@@ -24,6 +24,7 @@ export const DEFAULT_CONFIG: CarouselConfig = {
 	badgeProperty: undefined,
 	badgeIcon: undefined,
 	badgeColor: undefined,
+  tilt: "none",
 } satisfies Partial<CarouselConfig>;
 
 export const FULL_CONFIG: CarouselConfig = {
@@ -40,6 +41,7 @@ export const FULL_CONFIG: CarouselConfig = {
 	reverseContent: true,
 	hoverProperty: "note.url",
 	hoverStyle: "overlay",
+  tilt: "none",
 } satisfies Partial<CarouselConfig>;
 
 export const HORIZONTAL_LAYOUT_CONFIG: CarouselConfig = {
@@ -63,6 +65,7 @@ export const HORIZONTAL_LAYOUT_CONFIG: CarouselConfig = {
   badgeProperty: undefined,
   badgeIcon: undefined,
   badgeColor: undefined,
+  tilt: "none",
 }
 
 export const OVERLAY_LAYOUT_CONFIG: CarouselConfig = {
@@ -84,6 +87,7 @@ export const OVERLAY_LAYOUT_CONFIG: CarouselConfig = {
   badgeProperty: 'note.rating',
   badgeIcon: 'star',
   badgeColor: '#D0A215',
+  tilt: "none",
 }
 
 export const CIRCLE_SHAPE_CONFIG: CarouselConfig = {
@@ -105,6 +109,7 @@ export const CIRCLE_SHAPE_CONFIG: CarouselConfig = {
   badgeProperty: undefined,
   badgeIcon: undefined,
   badgeColor: undefined,
+  tilt: "none",
 }
 
 
@@ -127,6 +132,7 @@ export const ROUNDED_SHAPE_CONFIG: CarouselConfig = {
   badgeProperty: undefined,
   badgeIcon: undefined,
   badgeColor: undefined,
+  tilt: "none",
 }
 
 export const POLAROID_LAYOUT_CONFIG: CarouselConfig = {
@@ -137,6 +143,7 @@ export const POLAROID_LAYOUT_CONFIG: CarouselConfig = {
   showTitle: true,
   showPropertyTitles: false,
   properties: [],
+  tilt: "none",
 }
 
 export const WITH_TITLE_SUBTITLE_CONFIG: CarouselConfig = {
@@ -144,4 +151,5 @@ export const WITH_TITLE_SUBTITLE_CONFIG: CarouselConfig = {
   imageProperty: 'note.banner',
 	title: "Featured Collection",
 	subtitle: "A curated selection of highlights",
+  tilt: "none",
 } satisfies Partial<CarouselConfig>;
