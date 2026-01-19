@@ -52,16 +52,16 @@ const meta = {
 		// Header
 		title: {
 			control: "text",
-			name: "Title",
-			description: "The title displayed at the top of the carousel.",
+			name: "Title Property",
+			description: "The property that contains the title to display at the top of the carousel.",
 			table: {
 				category: "Header",
 			},
 		},
 		subtitle: {
 			control: "text",
-			name: "Subtitle",
-			description: "The subtitle displayed below the title.",
+			name: "Subtitle Property",
+			description: "The property that contains the subtitle to display below the title.",
 			table: {
 				category: "Header",
 			},

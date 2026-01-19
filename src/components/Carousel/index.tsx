@@ -1,17 +1,18 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useAnimation } from "motion/react";
-import type { BasesEntry, BasesViewConfig } from "obsidian";
+import type { BasesEntry, BasesPropertyId, BasesViewConfig } from "obsidian";
 import { forwardRef, useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import Card from "../Card";
 import type { CardConfig } from "../Card/types";
+import { useEntryProperty } from "@/hooks/use-property";
 
 type Props = {
   cardConfig: CardConfig;
   config: BasesViewConfig;
-	title?: string;
-	subtitle?: string;
+	titleProperty?: BasesPropertyId;
+	subtitleProperty?: BasesPropertyId;
 	items: BasesEntry[];
 	minItemWidth?: number;
 	minItemHeight?: number;
@@ -23,14 +24,17 @@ const Carousel = forwardRef<HTMLDivElement, Props>(
     minItemHeight = 320,
     cardConfig,
     config,
-    title,
-    subtitle,
+    titleProperty,
+    subtitleProperty,
     items
   }, ref) => {
 		const controls = useAnimation();
 		const carouselRef = useRef<HTMLDivElement>(null);
 		const [isAtStart, setIsAtStart] = useState(true);
 		const [isAtEnd, setIsAtEnd] = useState(false);
+
+    const title = useEntryProperty(items[0], config, titleProperty)?.value.toString();
+    const subtitle = useEntryProperty(items[0], config, subtitleProperty)?.value.toString();
 
 		// Function to scroll the carousel
 		const scroll = (direction: "left" | "right") => {
@@ -80,7 +84,7 @@ const Carousel = forwardRef<HTMLDivElement, Props>(
 		return (
 			<section
 				ref={ref}
-				className="w-full py-8"
+				className="w-full"
 				aria-labelledby="carousel-title"
 			>
 				<div className="container mx-auto px-4 md:px-6">

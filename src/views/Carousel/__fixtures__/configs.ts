@@ -149,7 +149,7 @@ export const POLAROID_LAYOUT_CONFIG: CarouselConfig = {
 export const WITH_TITLE_SUBTITLE_CONFIG: CarouselConfig = {
 	...HORIZONTAL_LAYOUT_CONFIG,
   imageProperty: 'note.banner',
-	title: "Featured Collection",
-	subtitle: "A curated selection of highlights",
+	title: "note.sectionTitle",
+	subtitle: "note.sectionSubtitle",
   tilt: "none",
 } satisfies Partial<CarouselConfig>;

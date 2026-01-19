@@ -23,14 +23,14 @@ const CAROUSEL_VIEW: BaseViewDef = {
       displayName: "Header",
       items: [
         {
-          type: "text",
-          displayName: "Title",
+          type: "property",
+          displayName: "Title Property",
           key: "title",
           default: "",
         },
         {
-          type: "text",
-          displayName: "Subtitle",
+          type: "property",
+          displayName: "Subtitle Property",
           key: "subtitle",
           default: "",
         },
