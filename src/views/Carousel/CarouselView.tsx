@@ -7,8 +7,8 @@ import { Container } from "@/components/Obsidian/Container";
 import type { ReactBaseViewProps } from "@/types";
 
 export type CarouselConfig = CardConfig & {
-  title?: string;
-  subtitle?: string;
+  groupTitleProperty?: string;
+  groupSubtitleProperty?: string;
 };
 
 const PADDING = 32;
@@ -43,16 +43,16 @@ const CarouselView = ({ data, config, isEmbedded }: ReactBaseViewProps) => {
   const cardConfig = getCardConfig(config);
   const cardHeight = estimateCardHeight(cardConfig, PADDING);
 
-  const titleProperty = config.get("title") as BasesPropertyId | undefined;
-  const subtitleProperty = config.get("subtitle") as BasesPropertyId | undefined;
+  const groupTitleProperty = config.get("groupTitleProperty") as BasesPropertyId | undefined;
+  const groupSubtitleProperty = config.get("groupSubtitleProperty") as BasesPropertyId | undefined;
 
   return (
     <Container isEmbedded={isEmbedded} style={{ overflowY: "auto" }}>
       {data.groupedData.map((group) => (
         <Carousel
           key={group.key?.toString() ?? ""}
-          titleProperty={titleProperty}
-          subtitleProperty={subtitleProperty}
+          titleProperty={groupTitleProperty}
+          subtitleProperty={groupSubtitleProperty}
           items={group.entries}
           cardConfig={cardConfig}
           config={config}

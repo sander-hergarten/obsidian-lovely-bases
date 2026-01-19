@@ -1,12 +1,13 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import { motion, useAnimation } from "motion/react";
 import type { BasesEntry, BasesPropertyId, BasesViewConfig } from "obsidian";
 import { forwardRef, useEffect, useRef, useState } from "react";
 
+import LucideIcon from "@/components/Obsidian/LucideIcon";
+import { useEntryProperty } from "@/hooks/use-property";
 import { cn } from "@/lib/utils";
 import Card from "../Card";
 import type { CardConfig } from "../Card/types";
-import { useEntryProperty } from "@/hooks/use-property";
 
 type Props = {
   cardConfig: CardConfig;
@@ -33,8 +34,8 @@ const Carousel = forwardRef<HTMLDivElement, Props>(
 		const [isAtStart, setIsAtStart] = useState(true);
 		const [isAtEnd, setIsAtEnd] = useState(false);
 
-    const title = useEntryProperty(items[0], config, titleProperty)?.value.toString();
-    const subtitle = useEntryProperty(items[0], config, subtitleProperty)?.value.toString();
+    const title = useEntryProperty(items[0], config, titleProperty);
+    const subtitle = useEntryProperty(items[0], config, subtitleProperty);
 
 		// Function to scroll the carousel
 		const scroll = (direction: "left" | "right") => {
@@ -91,16 +92,16 @@ const Carousel = forwardRef<HTMLDivElement, Props>(
 					{/* Header Section */}
 					<div className="mb-6 flex items-center justify-between">
 						<div>
-							{title && (
+							{title && !title.isEmpty && (
 								<h2
 									id="carousel-title"
 									className="text-2xl md:text-3xl font-bold tracking-tight text-card-foreground"
 								>
-									{title}
+									{title.value.toString()}
 								</h2>
 							)}
-							{subtitle && (
-								<p className="mt-1 text-muted-foreground">{subtitle}</p>
+							{subtitle && !subtitle.isEmpty && (
+								<p className="mt-1 text-muted-foreground">{subtitle.value.toString()}</p>
 							)}
 						</div>
 					</div>
@@ -141,7 +142,7 @@ const Carousel = forwardRef<HTMLDivElement, Props>(
 								)}
 								aria-label="Scroll left"
 							>
-								<ChevronLeft className="h-6 w-6" />
+                <LucideIcon name="chevron-left" className="size-6" />
 							</button>
 						)}
 						{!isAtEnd && (
@@ -153,7 +154,7 @@ const Carousel = forwardRef<HTMLDivElement, Props>(
 								)}
 								aria-label="Scroll right"
 							>
-								<ChevronRight className="h-6 w-6" />
+                <LucideIcon name="chevron-right" className="size-6" />
 							</button>
 						)}
 					</div>

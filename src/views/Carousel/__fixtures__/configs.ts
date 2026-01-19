@@ -48,7 +48,8 @@ export const FULL_CONFIG: CarouselConfig = {
   badgeIcon: 'star',
   badgeColor: '#D0A215',
   tilt: "none",
-  title: 'note.sectionTitle',
+  groupTitleProperty: 'note.sectionTitle',
+  groupSubtitleProperty: 'note.sectionSubtitle',
 } satisfies Partial<CarouselConfig>;
 
 export const HORIZONTAL_LAYOUT_CONFIG: CarouselConfig = {
@@ -156,7 +157,7 @@ export const POLAROID_LAYOUT_CONFIG: CarouselConfig = {
 export const WITH_TITLE_SUBTITLE_CONFIG: CarouselConfig = {
 	...HORIZONTAL_LAYOUT_CONFIG,
   imageProperty: 'note.banner',
-	title: "note.sectionTitle",
-	subtitle: "note.sectionSubtitle",
+	groupTitleProperty: "note.sectionTitle",
+	groupSubtitleProperty: "note.sectionSubtitle",
   tilt: "none",
 } satisfies Partial<CarouselConfig>;

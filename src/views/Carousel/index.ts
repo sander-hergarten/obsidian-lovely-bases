@@ -20,18 +20,18 @@ const CAROUSEL_VIEW: BaseViewDef = {
   options: () => [
     {
       type: "group",
-      displayName: "Header",
+      displayName: "Grouping",
       items: [
         {
           type: "property",
           displayName: "Title Property",
-          key: "title",
+          key: "groupTitleProperty",
           default: "",
         },
         {
           type: "property",
           displayName: "Subtitle Property",
-          key: "subtitle",
+          key: "groupSubtitleProperty",
           default: "",
         },
       ],

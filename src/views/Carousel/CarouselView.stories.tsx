@@ -50,21 +50,21 @@ const meta = {
 		},
 	},
 	argTypes: {
-		// Header
-		title: {
+		// Grouping
+		groupTitleProperty: {
 			control: "text",
-			name: "Title Property",
+			name: "Group Title Property",
 			description: "The property that contains the title to display at the top of the carousel.",
 			table: {
-				category: "Header",
+				category: "Grouping",
 			},
 		},
-		subtitle: {
+		groupSubtitleProperty: {
 			control: "text",
-			name: "Subtitle Property",
+			name: "Group Subtitle Property",
 			description: "The property that contains the subtitle to display below the title.",
 			table: {
-				category: "Header",
+				category: "Grouping",
 			},
 		},
 		// Display
@@ -390,11 +390,11 @@ export const WithTitleAndSubtitle: Story = {
 	parameters: {
 		docs: {
 			description: {
-				story: `Add a title and subtitle to provide context for the carousel section.
+				story: `Add groups titles and subtitles to provide context for the carousel section.
 
 \`\`\`yml
-title: "Featured Collection"
-subtitle: "A curated selection of highlights"
+groupTitleProperty: "note.sectionTitle"
+groupSubtitleProperty: "note.sectionSubtitle"
 \`\`\`
 `,
 			},
