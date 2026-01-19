@@ -31,7 +31,7 @@ const LucideIcon = ({ name, className, style }: Props) => {
 	return (
 		<span
 			ref={el}
-			className={cn("[&>svg]:size-full", className)}
+			className={cn("[&>svg]:size-full [&>svg]:block", className)}
 			style={style}
 		/>
 	);
