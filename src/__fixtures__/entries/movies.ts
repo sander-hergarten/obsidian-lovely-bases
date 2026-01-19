@@ -1,6 +1,17 @@
-import type { BasesEntry } from "obsidian";
+import type { BasesEntry, BasesEntryGroup, BasesPropertyId } from "obsidian";
 import { aBasesEntry } from "../../__mocks__/aBasesEntry";
 import { aFile } from "../../__mocks__/aFile";
+import { aBasesEntryGroup } from "@/__mocks__";
+
+const keyFn = (entry: BasesEntry, key: BasesPropertyId) => entry.getValue(key).toString();
+
+const groupBy = (array: BasesEntry[], key: BasesPropertyId): Record<string, BasesEntry[]> => {
+  return array.reduce((acc, item) => {
+    const value = keyFn(item, key);
+    acc[value] = [...(acc[value] || []), item];
+    return acc;
+  }, {} as Record<string, BasesEntry[]>);
+};
 
 export const MOVIES_ENTRIES: BasesEntry[] = [
   aBasesEntry(
@@ -13,6 +24,8 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
     },
     {
       rating: 4.5,
+      times_watched: 1,
+      sectionTitle: 'Watch Again',
       cover: 'https://m.media-amazon.com/images/M/MV5BMjA1Nzk0OTM2OF5BMl5BanBnXkFtZTgwNjU2NjEwMDE@._V1_SX300.jpg',
     }
   ),
@@ -24,6 +37,8 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
     },
     {
       rating: 4.0,
+      times_watched: 1,
+      sectionTitle: 'Watch Again',
       cover: 'https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_SX300.jpg',
     }
   ),
@@ -35,7 +50,9 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
     'The story of Steve Jobs\'s ascension from college dropout into one of the most revered creative entrepreneurs of the 20th century.')
     },
     {
-      rating: 3.5,
+      rating: 7,
+      times_watched: 3,
+      sectionTitle: 'Favorites',
       cover: 'https://m.media-amazon.com/images/M/MV5BMTM5NTQ3MTYxN15BMl5BanBnXkFtZTcwODE2Nzk3OQ@@._V1_SX300.jpg'
     }
   ),
@@ -48,6 +65,8 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
     },
     {
       rating: 3.0,
+      times_watched: 2,
+      sectionTitle: 'Seen',
       cover: 'https://m.media-amazon.com/images/M/MV5BMjE0NTA2MTEwOV5BMl5BanBnXkFtZTgwNzg4NzU2NjE@._V1_SX300.jpg',
     }
   ),
@@ -60,6 +79,8 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
     },
     {
       rating: 5,
+      times_watched: 2,
+      sectionTitle: 'Seen',
       cover: 'https://m.media-amazon.com/images/M/MV5BYzEzZDM5NWEtODgzNC00MTE5LWFhZTYtMGE2YTkxMzFiZWIyXkEyXkFqcGc@._V1_SX300.jpg',
     }
   ),
@@ -70,6 +91,8 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
       }, 'During World War II, the English mathematical genius Alan Turing tries to crack the German Enigma code with help from fellow mathematicians while attempting to come to terms with his troubled private life.')
     },
     {
+      times_watched: 0,
+      sectionTitle: 'Recently Added',
       cover: 'https://m.media-amazon.com/images/M/MV5BNjI3NjY1Mjg3MV5BMl5BanBnXkFtZTgwMzk5MDQ3MjE@._V1_SX300.jpg',
     }
   ),
@@ -80,6 +103,8 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
       }, 'A young programmer is selected to participate in a ground-breaking experiment in synthetic intelligence by evaluating the human qualities of a highly advanced humanoid A.I.')
     },
     {
+      times_watched: 0,
+      sectionTitle: 'Recently Added',
       cover: 'https://m.media-amazon.com/images/M/MV5BMTUxNzc0OTIxMV5BMl5BanBnXkFtZTgwNDI3NzU2NDE@._V1_SX300.jpg',
     }
   ),
@@ -90,6 +115,8 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
       }, 'When a mysterious artifact is uncovered on the Moon, a spacecraft manned by two humans and one supercomputer is sent to Jupiter to find its origins')
     },
     {
+      times_watched: 0,
+      sectionTitle: 'Recently Added',
       cover: 'https://m.media-amazon.com/images/M/MV5BNjU0NDFkMTQtZWY5OS00MmZhLTg3Y2QtZmJhMzMzMWYyYjc2XkEyXkFqcGc@._V1_SX300.jpg',
     }
   ),
@@ -100,6 +127,8 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
       }, 'A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator.')
     },
     {
+      times_watched: 0,
+      sectionTitle: 'Recently Added',
       cover: 'https://m.media-amazon.com/images/M/MV5BOWQ4YTBmNTQtMDYxMC00NGFjLTkwOGQtNzdhNmY1Nzc1MzUxXkEyXkFqcGc@._V1_SX300.jpg',
     }
   ),
@@ -110,6 +139,8 @@ export const MOVIES_ENTRIES: BasesEntry[] = [
       }, 'Young Blade Runner K\'s discovery of a long-buried secret leads him to track down former Blade Runner Rick Deckard, who\'s been missing for thirty years.')
     },
     {
+      times_watched: 0,
+      sectionTitle: 'Recently Added',
       cover: 'https://m.media-amazon.com/images/M/MV5BNzA1Njg4NzYxOV5BMl5BanBnXkFtZTgwODk5NjU3MzI@._V1_SX300.jpg',
     }
   )
@@ -120,3 +151,9 @@ export const VIRTUAL_SCROLL_MOVIES_ENTRIES: BasesEntry[] = []
 Array.from({ length: 25 }, (_) => VIRTUAL_SCROLL_MOVIES_ENTRIES.push(
   ...MOVIES_ENTRIES,
 ));
+
+export const MOVIES_ENTRIES_GROUPED: BasesEntryGroup[] = Object.entries(groupBy(
+  MOVIES_ENTRIES,
+  'note.times_watched',
+)).map(([key, entries]) => aBasesEntryGroup(key, entries as BasesEntry[]))
+.sort((a, b) => Number.parseInt(a.key?.toString() ?? '0', 10) - Number.parseInt(b.key?.toString() ?? '0', 10));

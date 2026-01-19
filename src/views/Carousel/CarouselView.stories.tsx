@@ -21,6 +21,7 @@ import {
 	WITH_TITLE_SUBTITLE_CONFIG,
 } from "./__fixtures__/configs";
 import CarouselView, { type CarouselConfig } from "./CarouselView";
+import { MOVIES_ENTRIES_GROUPED } from "@/__fixtures__/entries/movies";
 
 const View = createViewRenderer<CarouselConfig>(CarouselView);
 
@@ -242,8 +243,8 @@ type Story = StoryObj<typeof meta>;
 
 export const FullExample: Story = {
 	args: {
-		data: ARTICLE_ENTRIES,
-		groupedData: [aBasesEntryGroup("", ARTICLE_ENTRIES)],
+		data: MOVIES_ENTRIES,
+		groupedData: MOVIES_ENTRIES_GROUPED,
 		onEntryClick: fn(),
 		...FULL_CONFIG,
 	},
