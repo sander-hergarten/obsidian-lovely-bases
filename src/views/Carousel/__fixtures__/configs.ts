@@ -1,61 +1,74 @@
 
-
-
+import { DEFAULTS } from "@/components/Card/constants";
 import type { CarouselConfig } from "@/views/Carousel/CarouselView";
 
+
 export const DEFAULT_CONFIG: CarouselConfig = {
-	layout: "vertical",
-	shape: "square",
-	cardSize: 400,
-	imageProperty: "note.cover",
-	imageAspectRatio: 1.5,
-	imageFit: "cover",
-	showTitle: true,
-	showPropertyTitles: true,
-	showContent: false,
-	contentMaxLength: 200,
-	properties: [
-    'note.author',
-  ],
-	reverseContent: false,
-	hoverProperty: undefined,
-	hoverStyle: "none",
-	overlayContentVisibility: "always",
-	badgeProperty: undefined,
-	badgeIcon: undefined,
-	badgeColor: undefined,
+  /** Grouping */
+  groupTitleProperty: undefined,
+  groupSubtitleProperty: undefined,
+  /* Layout & Display */
+  layout: "vertical",
+  overlayContentVisibility: "always",
+  cardSize: 400,
+  shape: "square",
   tilt: "none",
+  /* Image */
+  imageProperty: undefined,
+  imageAspectRatio: 1.5,
+  imageFit: "cover",
+  reverseContent: false,
+  /* Content */
+  showTitle: true,
+  showPropertyTitles: true,
+  showContent: false,
+  contentMaxLength: 200,
+  /* Badges */
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
+  /* Interactivity */
   linkProperty: undefined,
+  hoverStyle: "none",
+  hoverProperty: null,
+  /* Internal */
+  properties: [],
 } satisfies Partial<CarouselConfig>;
 
 export const FULL_CONFIG: CarouselConfig = {
-	...DEFAULT_CONFIG,
+  /** Grouping */
+  groupTitleProperty: 'note.sectionTitle',
+  groupSubtitleProperty: 'note.sectionSubtitle',
+  /* Layout & Display */
   layout: 'overlay',
-  shape: 'square',
-  hoverProperty: undefined,
-  hoverStyle: 'none',
-  properties: [],
+  overlayContentVisibility: 'hover',
+  cardSize: 200,
+  shape: "square",
+  tilt: "none",
+  /* Image */
   imageProperty: 'note.cover',
   imageAspectRatio: 1.5,
-  cardSize: 200,
-  imageFit: 'cover',
+  imageFit: "cover",
   reverseContent: false,
-  showPropertyTitles: false,
+  /* Content */
   showTitle: true,
+  showPropertyTitles: true,
   showContent: true,
   contentMaxLength: 200,
-  overlayContentVisibility: 'hover',
+  /* Badges */
   badgeProperty: 'note.rating',
   badgeIcon: 'star',
   badgeColor: '#D0A215',
-  tilt: "none",
-  groupTitleProperty: 'note.sectionTitle',
-  groupSubtitleProperty: 'note.sectionSubtitle',
+  /* Interactivity */
   linkProperty: 'note.link',
+  hoverStyle: "none",
+  hoverProperty: null,
+  /* Internal */
+  properties: [],
 } satisfies Partial<CarouselConfig>;
 
 export const HORIZONTAL_LAYOUT_CONFIG: CarouselConfig = {
-  ...DEFAULT_CONFIG,
+  ...DEFAULTS,
   layout: 'horizontal',
   shape: 'square',
   hoverProperty: 'note.url',
@@ -79,6 +92,7 @@ export const HORIZONTAL_LAYOUT_CONFIG: CarouselConfig = {
 }
 
 export const OVERLAY_LAYOUT_CONFIG: CarouselConfig = {
+  ...DEFAULTS,
   layout: 'overlay',
   shape: 'square',
   hoverProperty: undefined,
@@ -102,6 +116,7 @@ export const OVERLAY_LAYOUT_CONFIG: CarouselConfig = {
 }
 
 export const CIRCLE_SHAPE_CONFIG: CarouselConfig = {
+  ...DEFAULTS,
   layout: 'vertical',
   shape: 'circle',
   hoverProperty: undefined,
@@ -126,6 +141,7 @@ export const CIRCLE_SHAPE_CONFIG: CarouselConfig = {
 
 
 export const ROUNDED_SHAPE_CONFIG: CarouselConfig = {
+  ...DEFAULTS,
   layout: 'overlay',
   shape: 'rounded',
   hoverProperty: undefined,
@@ -149,9 +165,10 @@ export const ROUNDED_SHAPE_CONFIG: CarouselConfig = {
 }
 
 export const POLAROID_LAYOUT_CONFIG: CarouselConfig = {
-  ...DEFAULT_CONFIG,
+  ...DEFAULTS,
   layout: 'polaroid',
   cardSize: 280,
+  imageProperty: 'note.banner',
   imageAspectRatio: 1,
   showTitle: true,
   showPropertyTitles: false,

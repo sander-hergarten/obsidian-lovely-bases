@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 
-import { MOVIES_ENTRIES, VIRTUAL_SCROLL_MOVIES_ENTRIES, PHOTOS_ENTRIES, VIRTUAL_SCROLL_PHOTOS_ENTRIES, VIRTUAL_SCROLL_BOOKS_ENTRIES } from "@/__fixtures__/entries";
+import { MOVIES_ENTRIES, PHOTOS_ENTRIES, VIRTUAL_SCROLL_BOOKS_ENTRIES, VIRTUAL_SCROLL_MOVIES_ENTRIES, VIRTUAL_SCROLL_PHOTOS_ENTRIES } from "@/__fixtures__/entries";
 import { aBasesEntryGroup } from "@/__mocks__";
+import CardMeta from '@/components/Card/Card.stories';
+import { type NamespacedTranslationKey, translate } from "@/lib/i18n";
 import {
 	createViewRenderer,
 	Providers,
@@ -20,6 +22,7 @@ import InfiniteGalleryView, {
 	type InfiniteGalleryConfig,
 } from "./InfiniteGalleryView";
 
+const t = (key: NamespacedTranslationKey<'infiniteGallery'>) => translate("en", 'infiniteGallery', key);
 const View = createViewRenderer<InfiniteGalleryConfig>(InfiniteGalleryView);
 
 const meta = {
@@ -57,169 +60,15 @@ const meta = {
 		},
 	},
 	argTypes: {
-		// Layout & Display
-		layout: {
-			control: "select",
-			options: ["horizontal", "vertical", "overlay", "polaroid"],
-			name: "Layout",
-			description: "The layout style of the gallery.",
-			table: {
-				category: "Layout & Display",
-			},
-		},
-		overlayContentVisibility: {
-			control: "select",
-			options: ["always", "hover"],
-			name: "Overlay Content Visibility",
-			description: "When to show overlay content.",
-			table: {
-				category: "Layout & Display",
-			},
-		},
-		shape: {
-			control: "select",
-			options: ["square", "circle", "rounded"],
-			name: "Shape",
-			description: "The shape of the cards.",
-			table: {
-				category: "Layout & Display",
-			},
-		},
-		cardSize: {
-			control: { type: "range", min: 50, max: 800, step: 10 },
-			name: "Card Size",
-			description: "The size of the cards in the grid.",
-			table: {
-				category: "Layout & Display",
-			},
-		},
-		reverseContent: {
-			control: "boolean",
-			name: "Reverse Content",
-			description: "Reverse the order of image and content.",
-			table: {
-				category: "Layout & Display",
-			},
-		},
 		masonry: {
 			control: "boolean",
-			name: "Masonry Layout",
+			name: t("options.grid.masonry.title"),
 			description: "Enable masonry-style staggered layout.",
 			table: {
-				category: "Layout & Display",
+				category: t("options.grid.title"),
 			},
 		},
-		tilt: {
-			control: "select",
-			options: ["none", "alternating"],
-			name: "Card Tilt",
-			description: "Apply rotation to cards for a playful effect.",
-			table: {
-				category: "Layout & Display",
-			},
-		},
-		// Image
-		imageProperty: {
-			control: "text",
-			name: "Image Property",
-			description: "The property that contains the image to display on the cards.",
-			table: {
-				category: "Image",
-			},
-		},
-		imageAspectRatio: {
-			control: { type: "range", min: 0.25, max: 2.5, step: 0.05 },
-			name: "Image Aspect Ratio",
-			description: "The aspect ratio of the image cards.",
-			table: {
-				category: "Image",
-			},
-		},
-		imageFit: {
-			control: "select",
-			options: ["cover", "contain"],
-			name: "Image Fit",
-			description: "How the image should fit within the card.",
-			table: {
-				category: "Image",
-			},
-		},
-		// Content
-		showTitle: {
-			control: "boolean",
-			name: "Show Title",
-			description: "Display the entry title.",
-			table: {
-				category: "Content",
-			},
-		},
-		showPropertyTitles: {
-			control: "boolean",
-			name: "Show Property Titles",
-			description: "Display property titles.",
-			table: {
-				category: "Content",
-			},
-		},
-		showContent: {
-			control: "boolean",
-			name: "Show Note Content",
-			description: "Display note content.",
-			table: {
-				category: "Content",
-			},
-		},
-		contentMaxLength: {
-			control: { type: "range", min: 0, max: 1000, step: 10 },
-			name: "Content Max Length",
-			description: "Maximum length of content to display.",
-			table: {
-				category: "Content",
-			},
-		},
-		// Hover Effects
-		hoverProperty: {
-			control: "text",
-			name: "Hover Property",
-			description: "Property to display on hover.",
-			table: {
-				category: "Hover Effects",
-			},
-		},
-		hoverStyle: {
-			control: "select",
-			options: ["none", "overlay", "tooltip"],
-			name: "Hover Style",
-			description: "Style of hover effect.",
-			table: {
-				category: "Hover Effects",
-			},
-		},
-		// Badge
-		badgeProperty: {
-			control: "text",
-			name: "Badge Property",
-			description: "Property to display as badge.",
-			table: {
-				category: "Badge",
-			},
-		},
-		badgeIcon: {
-			control: "text",
-			name: "Badge Icon",
-			description: "Icon for the badge.",
-			table: {
-				category: "Badge",
-			},
-		},
-		badgeColor: {
-			control: "color",
-			name: "Badge Color",
-			description: "Color for the badge.",
-			table: {
-				category: "Badge",
-			},
-		},
+    ...CardMeta.argTypes,
 		// Internal props (disabled)
 		data: {
 			table: {
@@ -236,7 +85,7 @@ const meta = {
 				disable: true,
 			},
 		},
-		properties: {
+		onEntryHover: {
 			table: {
 				disable: true,
 			},

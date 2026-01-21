@@ -9,7 +9,7 @@ import {
 	VIRTUAL_SCROLL_PERSON_ENTRIES,
   VIRTUAL_SCROLL_PHOTOS_ENTRIES,
 } from "@/__fixtures__/entries";
-import { aBasesEntryGroup } from "@/__mocks__";
+import CardMeta from '@/components/Card/Card.stories'
 import {
 	createViewRenderer,
 	Providers,
@@ -55,156 +55,7 @@ const meta = {
 		},
 	},
 	argTypes: {
-		// Layout & Display
-		layout: {
-			control: "select",
-			options: ["horizontal", "vertical", "overlay", "polaroid"],
-			name: "Layout",
-			description: "The layout of the cards (horizontal, vertical, overlay, polaroid).",
-			table: {
-				category: "Layout & Display",
-				defaultValue: { summary: "vertical" },
-			},
-		},
-		overlayContentVisibility: {
-			control: "select",
-			options: ["always", "hover"],
-			name: "Overlay Content Visibility",
-			description: "When to show overlay content.",
-			table: {
-				category: "Layout & Display",
-			},
-		},
-		shape: {
-			control: "select",
-			options: ["square", "circle", "rounded"],
-			name: "Shape",
-			description: "The shape of the cards (square, circle, rounded).",
-			table: {
-				category: "Layout & Display",
-				defaultValue: { summary: "square" },
-			},
-		},
-		cardSize: {
-			control: { type: "range", min: 50, max: 800, step: 10 },
-			name: "Card Size",
-			description: "The size of the cards in the grid.",
-			table: {
-				category: "Layout & Display",
-				defaultValue: { summary: "400" },
-			},
-		},
-		reverseContent: {
-			control: "boolean",
-			name: "Reverse Content",
-			description:
-				"Whether to reverse the content of the cards (useful for alternating designs).",
-			table: {
-				category: "Layout & Display",
-				defaultValue: { summary: "false" },
-			},
-		},
-		// Image
-		imageProperty: {
-			control: "text",
-			name: "Image Property",
-			description: "The property that contains the image to display on the cards.",
-			table: {
-				category: "Image",
-			},
-		},
-		imageAspectRatio: {
-			control: { type: "range", min: 0.25, max: 2.5, step: 0.05 },
-			name: "Image Aspect Ratio",
-			description: "The aspect ratio of the image.",
-			table: {
-				category: "Image",
-				defaultValue: { summary: "1.5" },
-			},
-		},
-		imageFit: {
-			control: "select",
-			options: ["cover", "contain"],
-			name: "Image Fit",
-			description: "The fit of the image (cover or contain).",
-			table: {
-				category: "Image",
-				defaultValue: { summary: "cover" },
-			},
-		},
-		// Content
-		showTitle: {
-			control: "boolean",
-			name: "Show Title",
-			description: "Whether to show the title of the cards.",
-			table: {
-				category: "Content",
-				defaultValue: { summary: "true" },
-			},
-		},
-		showPropertyTitles: {
-			control: "boolean",
-			name: "Show Property Titles",
-			description: "Whether to show the names of the displayed properties.",
-			table: {
-				category: "Content",
-				defaultValue: { summary: "true" },
-			},
-		},
-		properties: {
-			control: "object",
-			name: "Properties",
-			description:
-				"The properties to display on the cards (from the view's properties config).",
-			table: {
-				category: "Content",
-				disable: true,
-			},
-		},
-		// Hover Effects
-		hoverProperty: {
-			control: "text",
-			name: "Hover Property",
-			description: "The property to display on hover (optional).",
-			table: {
-				category: "Hover Effects",
-			},
-		},
-		hoverStyle: {
-			control: "select",
-			options: ["none", "overlay", "tooltip"],
-			name: "Hover Style",
-			description: "The style of the hover (none, overlay, tooltip).",
-			table: {
-				category: "Hover Effects",
-				defaultValue: { summary: "none" },
-			},
-		},
-		// Badge
-		badgeProperty: {
-			control: "text",
-			name: "Badge Property",
-			description: "The property to display as a badge on the card (optional). The badge appears in the top-right corner of the card image.",
-			table: {
-				category: "Badge",
-			},
-		},
-		badgeIcon: {
-			control: "text",
-			name: "Badge Icon",
-			description: "The Lucide icon name to display alongside the badge text (optional). See https://lucide.dev/icons for available icons.",
-			table: {
-				category: "Badge",
-			},
-		},
-		badgeColor: {
-			control: "color",
-			name: "Badge Color",
-			description: "The background color of the badge in hex format (e.g., #D0A215). Text color is automatically calculated for contrast.",
-			table: {
-				category: "Badge",
-			},
-		},
+    ...CardMeta.argTypes,
 		// Internal props (disabled)
 		data: {
 			table: {
@@ -226,7 +77,7 @@ const meta = {
 				disable: true,
 			},
 		},
-	},
+  }
 } satisfies Meta<typeof View>;
 
 export default meta;
@@ -236,7 +87,6 @@ type Story = StoryObj<typeof meta>;
 export const FullExample: Story = {
 	args: {
 		data: VIRTUAL_SCROLL_ARTICLES_ENTRIES,
-		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_ARTICLES_ENTRIES)],
 		onEntryClick: fn(),
 		...FULL_CONFIG,
 	},
@@ -253,7 +103,6 @@ export const Default: Story = {
 	},
 	args: {
 		data: VIRTUAL_SCROLL_BOOKS_ENTRIES,
-		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_BOOKS_ENTRIES)],
 		onEntryClick: fn(),
 		...DEFAULT_CONFIG,
 	},
@@ -276,7 +125,6 @@ layout: horizontal
 	},
 	args: {
 		data: VIRTUAL_SCROLL_ARTICLES_ENTRIES,
-		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_ARTICLES_ENTRIES)],
 		onEntryClick: fn(),
 		...HORIZONTAL_LAYOUT_CONFIG,
 	},
@@ -301,7 +149,6 @@ badgeColor: #D0A215
 	},
 	args: {
 		data: VIRTUAL_SCROLL_MOVIES_ENTRIES,
-		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_MOVIES_ENTRIES)],
 		onEntryClick: fn(),
 		...OVERLAY_LAYOUT_CONFIG,
 	},
@@ -322,7 +169,6 @@ layout: polaroid
 	},
 	args: {
 		data: VIRTUAL_SCROLL_PHOTOS_ENTRIES,
-		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_PHOTOS_ENTRIES)],
 		onEntryClick: fn(),
 		...POLAROID_LAYOUT_CONFIG,
 	},
@@ -345,7 +191,6 @@ shape: circle
 	},
 	args: {
 		data: VIRTUAL_SCROLL_PERSON_ENTRIES,
-		groupedData: [aBasesEntryGroup("", VIRTUAL_SCROLL_PERSON_ENTRIES)],
 		onEntryClick: fn(),
 		...CIRCLE_SHAPE_CONFIG,
 	},
@@ -366,9 +211,6 @@ shape: rounded
 	},
 	args: {
 		data: VIRTUAL_SCROLL_APPLICATION_ENTRIES,
-		groupedData: [
-			aBasesEntryGroup("", VIRTUAL_SCROLL_APPLICATION_ENTRIES),
-		],
 		onEntryClick: fn(),
 		...ROUNDED_SHAPE_CONFIG,
 	},

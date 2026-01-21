@@ -1,18 +1,31 @@
 
-import type { BasesPropertyId } from "obsidian";
-import { getCardConfig } from "@/components/Card/config/get-config";
+import type { BasesPropertyId, BasesViewConfig } from "obsidian";
+
+import { useCardConfig } from "@/components/Card/hooks/use-card-config";
 import type { CardConfig } from "@/components/Card/types";
 import Carousel from "@/components/Carousel";
 import { Container } from "@/components/Obsidian/Container";
+import { useConfig } from "@/hooks/use-config";
 import type { ReactBaseViewProps } from "@/types";
 
-export type CarouselConfig = CardConfig & {
-  linkProperty?: string;
-  groupTitleProperty?: string;
-  groupSubtitleProperty?: string;
+type LayoutConfig = {
+  groupTitleProperty?: BasesPropertyId;
+  groupSubtitleProperty?: BasesPropertyId;
 };
 
+export type CarouselConfig = LayoutConfig & CardConfig;
+
 const PADDING = 32;
+
+const useCarouselConfig = (config: BasesViewConfig): CarouselConfig => {
+  const cardConfig = useCardConfig(config);
+  const layoutConfig = useConfig<LayoutConfig>(config, {
+    groupTitleProperty: undefined,
+    groupSubtitleProperty: undefined,
+  });
+
+  return { ...cardConfig, ...layoutConfig };
+}
 
 function estimateCardHeight(cardConfig: CardConfig, padding = PADDING): number {
   const TITLE_HEIGHT = 30;
@@ -41,23 +54,20 @@ function estimateCardHeight(cardConfig: CardConfig, padding = PADDING): number {
 }
 
 const CarouselView = ({ data, config, isEmbedded }: ReactBaseViewProps) => {
-  const cardConfig = getCardConfig(config);
-  const cardHeight = estimateCardHeight(cardConfig, PADDING);
-
-  const groupTitleProperty = config.get("groupTitleProperty") as BasesPropertyId | undefined;
-  const groupSubtitleProperty = config.get("groupSubtitleProperty") as BasesPropertyId | undefined;
+  const viewConfig = useCarouselConfig(config);
+  const cardHeight = estimateCardHeight(viewConfig, PADDING);
 
   return (
     <Container isEmbedded={isEmbedded} style={{ overflowY: "auto" }}>
       {data.groupedData.map((group) => (
         <Carousel
           key={group.key?.toString() ?? ""}
-          titleProperty={groupTitleProperty}
-          subtitleProperty={groupSubtitleProperty}
+          titleProperty={viewConfig.groupTitleProperty}
+          subtitleProperty={viewConfig.groupSubtitleProperty}
           items={group.entries}
-          cardConfig={cardConfig}
+          cardConfig={viewConfig}
           config={config}
-          minItemWidth={cardConfig.cardSize}
+          minItemWidth={viewConfig.cardSize}
           minItemHeight={cardHeight}
         />
       ))}

@@ -1,32 +1,13 @@
 
-import { DEFAULT_CARD_SIZE, DEFAULT_CONTENT_MAX_LENGTH, DEFAULT_IMAGE_ASPECT_RATIO, DEFAULT_IMAGE_FIT, DEFAULT_LAYOUT, DEFAULT_OVERLAY_CONTENT_VISIBILITY, DEFAULT_REVERSE_CONTENT, DEFAULT_SHAPE, DEFAULT_SHOW_CONTENT, DEFAULT_SHOW_PROPERTY_TITLES, DEFAULT_SHOW_TITLE, DEFAULT_TILT } from "@/components/Card/config/constants";
-
+import { DEFAULTS as CARD_DEFAULT_CONFIG, DEFAULTS } from "@/components/Card/constants";
 
 import type { FacetCardsConfig } from "@/views/FacetCards/FacetCardsView";
 
 export const DEFAULT_CONFIG: FacetCardsConfig = {
-	layout: DEFAULT_LAYOUT,
-	shape: DEFAULT_SHAPE,
-	cardSize: DEFAULT_CARD_SIZE,
-	imageProperty: "note.cover",
-	imageAspectRatio: DEFAULT_IMAGE_ASPECT_RATIO,
-	imageFit: DEFAULT_IMAGE_FIT,
-	showTitle: DEFAULT_SHOW_TITLE,
-	showPropertyTitles: DEFAULT_SHOW_PROPERTY_TITLES,
-	showContent: DEFAULT_SHOW_CONTENT,
-	contentMaxLength: DEFAULT_CONTENT_MAX_LENGTH,
+	...CARD_DEFAULT_CONFIG,
 	properties: [
     'note.author',
   ],
-	reverseContent: DEFAULT_REVERSE_CONTENT,
-	hoverProperty: undefined,
-	hoverStyle: "none",
-	overlayContentVisibility: DEFAULT_OVERLAY_CONTENT_VISIBILITY,
-	badgeProperty: undefined,
-	badgeIcon: undefined,
-	badgeColor: undefined,
-  tilt: DEFAULT_TILT,
-  linkProperty: undefined,
 } satisfies Partial<FacetCardsConfig>;
 
 export const FULL_CONFIG: FacetCardsConfig = {
@@ -89,7 +70,7 @@ export const OVERLAY_LAYOUT_CONFIG: FacetCardsConfig = {
   badgeProperty: 'note.rating',
   badgeIcon: 'star',
   badgeColor: '#D0A215',
-  tilt: DEFAULT_TILT,
+  tilt: DEFAULTS.tilt,
   linkProperty: undefined,
 }
 
@@ -112,7 +93,7 @@ export const CIRCLE_SHAPE_CONFIG: FacetCardsConfig = {
   badgeProperty: undefined,
   badgeIcon: undefined,
   badgeColor: undefined,
-  tilt: DEFAULT_TILT,
+  tilt: DEFAULTS.tilt,
   linkProperty: undefined,
 }
 
@@ -136,7 +117,7 @@ export const ROUNDED_SHAPE_CONFIG: FacetCardsConfig = {
   badgeProperty: undefined,
   badgeIcon: undefined,
   badgeColor: undefined,
-  tilt: DEFAULT_TILT,
+  tilt: DEFAULTS.tilt,
   linkProperty: undefined,
 }
 
@@ -149,6 +130,6 @@ export const POLAROID_LAYOUT_CONFIG: FacetCardsConfig = {
   showTitle: true,
   showPropertyTitles: false,
   properties: [],
-  tilt: DEFAULT_TILT,
+  tilt: DEFAULTS.tilt,
   linkProperty: undefined,
 }

@@ -109,6 +109,9 @@ devDependencies:
   esbuild-plugin-copy:
     specifier: ^2.1.1
     version: 2.1.1(esbuild@0.27.2)
+  lucide-static:
+    specifier: ^0.562.0
+    version: 0.562.0
   obsidian:
     specifier: latest
     version: 1.11.0(@codemirror/state@6.5.0)(@codemirror/view@6.38.6)
@@ -5183,6 +5186,10 @@ packages:
     dependencies:
       react: 19.2.3
     dev: false
+
+  /lucide-static@0.562.0:
+    resolution: {integrity: sha512-TM2vNVOEsO3+ijmno7n/VmxUo0Shr9OXC/UqZc5n4xEVyXX4E4NVvXoRPAZiSsIsdvlQ7alGOcIC/QGtR+OgUQ==}
+    dev: true
 
   /lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}

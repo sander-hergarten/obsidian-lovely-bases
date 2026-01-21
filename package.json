@@ -42,6 +42,7 @@
     "electron": "^13.6.9",
     "esbuild": "0.27.2",
     "esbuild-plugin-copy": "^2.1.1",
+    "lucide-static": "^0.562.0",
     "obsidian": "latest",
     "playwright": "^1.57.0",
     "postcss": "^8.5.6",

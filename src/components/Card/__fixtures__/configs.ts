@@ -1,7 +1,9 @@
 
+import { DEFAULTS } from "@/components/Card/constants";
 import type { CardConfig } from "@/components/Card/types";
 
 export const APPLICATIONS_CARD_CONFIG: CardConfig = {
+  ...DEFAULTS,
   layout: 'overlay',
   shape: 'rounded',
   hoverProperty: undefined,
@@ -25,6 +27,7 @@ export const APPLICATIONS_CARD_CONFIG: CardConfig = {
 };
 
 export const ARTICLES_CARD_CONFIG: CardConfig = {
+  ...DEFAULTS,
   layout: 'horizontal',
   shape: 'square',
   hoverProperty: 'note.url',
@@ -52,6 +55,7 @@ export const ARTICLES_CARD_CONFIG: CardConfig = {
 };
 
 export const BOOKS_CARD_CONFIG: CardConfig = {
+  ...DEFAULTS,
   layout: 'vertical',
   shape: 'square',
   hoverProperty: undefined,
@@ -75,6 +79,7 @@ export const BOOKS_CARD_CONFIG: CardConfig = {
 };
 
 export const MOVIES_CARD_CONFIG: CardConfig = {
+  ...DEFAULTS,
   layout: 'overlay',
   shape: 'square',
   hoverProperty: undefined,
@@ -98,6 +103,7 @@ export const MOVIES_CARD_CONFIG: CardConfig = {
 };
 
 export const PEOPLE_CARD_CONFIG: CardConfig = {
+  ...DEFAULTS,
   layout: 'vertical',
   shape: 'circle',
   hoverProperty: undefined,

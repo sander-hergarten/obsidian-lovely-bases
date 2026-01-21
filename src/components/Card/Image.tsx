@@ -41,7 +41,7 @@ const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 	}
 
 	if (layout === "horizontal") {
-		return (
+		return imageProperty ? (
 			<div
 				className="relative shrink-0 bg-(--bases-cards-cover-background)"
 				style={{
@@ -66,12 +66,12 @@ const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 					)}
 				</div>
 			</div>
-		);
+		) : null;
 	}
 
 	const isPolaroid = layout === "polaroid";
 
-	return (
+	return imageProperty ? (
 		<div
 			className="mx-auto relative w-full flex-none bg-(--bases-cards-cover-background)"
 			style={{
@@ -98,7 +98,7 @@ const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 				<div className="h-full w-full" />
 			)}
 		</div>
-	);
+	) : null;
 });
 
 Image.displayName = "Image";
