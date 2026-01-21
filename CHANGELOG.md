@@ -7,14 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [0.2.0]
+
 ### Added
 
-#### Facet Cards & Carousel
+#### Cards
 
 - Render Note content
 - Overlay Layout
 - Badge
+- Polaroid Layout
+- Render Image files
 
+#### Carousel
+
+- Grouping
+- Custom links while mod-clicking on cards
+
+#### Infinite Gallery
+
+- Card Component support
+
+#### Linear Calendar
+
+- Custom Title property instead of `file.basename`
+
+### Changed
+
+- Lucide Icons are now rendered using Obsidian `setIcon` API
+- Build is now minified so the bundle size is much smaller
+
+### Fixed
+
+### Heatmap Calendar
+
+- Minor UI fixes (#8)
 
 ## [0.1.1] - 2026-01-17
 
