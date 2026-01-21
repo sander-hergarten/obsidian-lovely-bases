@@ -7,10 +7,8 @@ import type { COLOR_SCHEMES } from "@/components/HeatmapCalendar/utils";
 import { Container } from "@/components/Obsidian/Container";
 import { useConfig } from "@/hooks/use-config";
 import { isHexColor } from "@/lib/colors";
-import { FORMATS, format, subYears } from "@/lib/date";
+import { FORMATS, format, parse, subYears } from "@/lib/date";
 import type { ReactBaseViewProps } from "@/types";
-
-export const HEATMAP_CALENDAR_TYPE_ID = "heatmap-calendar";
 
 const MAX_DATE_RANGE_YEARS = 10;
 
@@ -105,8 +103,8 @@ const HeatmapCalendarView = ({
     const minAllowedDate = subYears(now, MAX_DATE_RANGE_YEARS);
 
     if (viewConfig.startDate) {
-      const parsed = new Date(viewConfig.startDate);
-      if (!Number.isNaN(parsed.getTime())) {
+      const parsed = parse(viewConfig.startDate);
+      if (parsed && !Number.isNaN(parsed.getTime())) {
         return parsed < minAllowedDate ? minAllowedDate : parsed;
       }
     }
@@ -115,8 +113,8 @@ const HeatmapCalendarView = ({
 
   const endDate = useMemo(() => {
     if (viewConfig.endDate) {
-      const parsed = new Date(viewConfig.endDate);
-      if (!Number.isNaN(parsed.getTime())) return parsed;
+      const parsed = parse(viewConfig.endDate);
+      if (parsed && !Number.isNaN(parsed.getTime())) return parsed;
     }
     return new Date();
   }, [viewConfig.endDate]);
@@ -173,7 +171,7 @@ const HeatmapCalendarView = ({
           if (dateValue instanceof Date) {
             date = format(dateValue as Date, FORMATS.DATE_ISO);
           } else {
-            const dateObj = new Date(dateValue.toString());
+            const dateObj = parse(dateValue.toString());
             if (Number.isNaN(dateObj.getTime())) return null;
             date = format(dateObj, FORMATS.DATE_ISO);
           }
