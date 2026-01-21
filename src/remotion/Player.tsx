@@ -36,7 +36,7 @@ const RemotionPlayer = ({ stories, title }: Props) => {
         }
         .reel-player-wrapper .reel-story-container > * > * {
           width: 100% !important;
-          max-height: 100% !important;
+          max-height: 540px !important;
         }
         .reel-player-wrapper .reel-story-container > * > *[style*="height: 100%"],
         .reel-player-wrapper .reel-story-container > * > *[style*="height:100%"],
@@ -56,9 +56,9 @@ const RemotionPlayer = ({ stories, title }: Props) => {
         fps={30}
         compositionWidth={960}
         compositionHeight={540}
-        autoPlay
+        autoPlay={false}
         loop
-        controls={false}
+        controls={true}
         style={{
           width: "100%",
           aspectRatio: "16/9",
