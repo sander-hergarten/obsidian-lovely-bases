@@ -12,6 +12,8 @@ import type { ReactBaseViewProps } from "@/types";
 
 export const HEATMAP_CALENDAR_TYPE_ID = "heatmap-calendar";
 
+const MAX_DATE_RANGE_YEARS = 10;
+
 const detectTrackType = (value: Value | null): TrackType => {
 	if (!value) return "number";
 
@@ -99,11 +101,16 @@ const HeatmapCalendarView = ({
   });
 
   const startDate = useMemo(() => {
+    const now = new Date();
+    const minAllowedDate = subYears(now, MAX_DATE_RANGE_YEARS);
+
     if (viewConfig.startDate) {
       const parsed = new Date(viewConfig.startDate);
-      if (!Number.isNaN(parsed.getTime())) return parsed;
+      if (!Number.isNaN(parsed.getTime())) {
+        return parsed < minAllowedDate ? minAllowedDate : parsed;
+      }
     }
-    return subYears(new Date(), 1);
+    return subYears(now, 1);
   }, [viewConfig.startDate]);
 
   const endDate = useMemo(() => {

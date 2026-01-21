@@ -17,6 +17,8 @@ import type { EntryClickEventHandler } from "@/types";
 import type { Occurrence } from "../index";
 import { getCellStyle } from "../utils";
 
+const MAX_MONTHS = 120;
+
 type Props = {
 	occurrences: Occurrence[];
 	startDate: Date;
@@ -238,7 +240,7 @@ const MonthGridViewComponent = ({
 		const result: MonthData[] = [];
 		let currentMonthStart = startOfMonth(startDate);
 
-		while (currentMonthStart <= endDate) {
+		while (currentMonthStart <= endDate && result.length < MAX_MONTHS) {
 			const monthEnd = endOfMonth(currentMonthStart);
 			const firstDayOfGrid = startOfWeek(currentMonthStart);
 			const lastDayOfGrid = endOfWeek(monthEnd);

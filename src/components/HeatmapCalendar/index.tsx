@@ -22,6 +22,8 @@ import { YearLabels } from "./components/YearLabels";
 import { type TrackType, useHeatmapData } from "./hooks/useHeatmapData";
 import { COLOR_SCHEMES } from "./utils";
 
+const MAX_WEEKS = 520;
+
 export type Occurrence = {
   date: string;
   dateObj?: Date;
@@ -71,8 +73,9 @@ export const HeatmapCalendar = ({
 }: Props) => {
   const displayStartDate = startOfWeek(startDate);
   const displayEndDate = endOfWeek(endDate);
-  const weeks = Math.ceil(
-    differenceInWeeks(displayEndDate, displayStartDate) + 1,
+  const weeks = Math.min(
+    Math.ceil(differenceInWeeks(displayEndDate, displayStartDate) + 1),
+    MAX_WEEKS,
   );
 
   const occurrences = useHeatmapData(data, trackType);
