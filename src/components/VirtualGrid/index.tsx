@@ -3,7 +3,7 @@ import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { memo, useLayoutEffect, useMemo } from "react";
 
 import Card from "../Card";
-import { compareCardConfig } from "../Card/config/get-config";
+import { compareCardConfig } from "../Card/helpers/compare-config";
 import type { CardConfig } from "../Card/types";
 
 import { useElementWidth } from "./hooks/use-element-width";

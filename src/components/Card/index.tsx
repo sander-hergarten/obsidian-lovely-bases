@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 
 import Badge from "./Badge";
 import Content from "./Content";
-import { DEFAULT_LAYOUT, DEFAULT_SHAPE } from "./config/constants";
-import { compareCardConfig } from "./config/get-config";
+import { DEFAULTS } from "./constants";
 import HoverOverlay from "./HoverOverlay";
+import { compareCardConfig } from "./helpers/compare-config";
 import Image from "./Image";
 import type { CardConfig } from "./types";
 
@@ -42,9 +42,9 @@ const cardVariants = cva(
 			},
 		},
 		defaultVariants: {
-			shape: DEFAULT_SHAPE,
-      layout: DEFAULT_LAYOUT,
-			tilt: "none",
+			shape: DEFAULTS.shape,
+      layout: DEFAULTS.layout,
+			tilt: DEFAULTS.tilt,
 		},
 	},
 );
