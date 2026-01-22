@@ -159,6 +159,23 @@ const meta = {
 				defaultValue: { summary: DEFAULTS.contentMaxLength.toString() },
 			},
 		},
+    // Appearance
+    backgroundColorProperty: {
+      control: "text",
+      name: t("options.appearance.backgroundColorProperty.title"),
+      description: "The property to display as a background color on the card (optional).",
+      table: {
+        category: t("options.appearance.title"),
+      },
+    },
+    iconProperty: {
+      control: "text",
+      name: t("options.appearance.iconProperty.title"),
+      description: "The property to display as an icon on the card (optional).",
+      table: {
+        category: t("options.appearance.title"),
+      },
+    },
 		// Badge
 		badgeProperty: {
 			control: "text",

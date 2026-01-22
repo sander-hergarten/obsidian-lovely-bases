@@ -64,6 +64,15 @@ export const ko: LocaleTranslations = {
           title: "콘텐츠 최대 길이",
         },
       },
+      appearance: {
+        title: "외관",
+        backgroundColorProperty: {
+          title: "배경색 속성",
+        },
+        iconProperty: {
+          title: "아이콘 속성",
+        },
+      },
       badges: {
         title: "배지",
         badgeProperty: {

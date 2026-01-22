@@ -62,6 +62,15 @@ export const en = {
           title: "Content Max Length",
         },
       },
+      appearance: {
+        title: "Appearance",
+        backgroundColorProperty: {
+          title: "Background Color Property",
+        },
+        iconProperty: {
+          title: "Icon Property",
+        },
+      },
       badges: {
         title: "Badges",
         badgeProperty: {

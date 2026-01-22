@@ -1,9 +1,11 @@
-import type { BasesEntry } from "obsidian";
+import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { memo } from "react";
 
 import LucideIcon from "@/components/Obsidian/LucideIcon";
 import { useEntryImage } from "@/hooks/use-image";
+import { useEntryProperty } from "@/hooks/use-property";
 import { useEntryTitle } from "@/hooks/use-title";
+import { darken, lighten, luminance } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
 import type { CardConfig } from "./types";
@@ -19,24 +21,54 @@ const ICON_BY_EXTENSION = {
 
 type NonImageFallbackProps = {
   entry: BasesEntry;
+  image: ReturnType<typeof useEntryImage>;
+  cardConfig: CardConfig;
+  config: BasesViewConfig;
 };
 
-const NonImageFallback = ({ entry }: NonImageFallbackProps) => {
+const NonImageFallback = ({ entry, cardConfig, config, image }: NonImageFallbackProps) => {
 
-  const icon = ICON_BY_EXTENSION[entry.file.extension as keyof typeof ICON_BY_EXTENSION] || ICON_BY_EXTENSION.unknown;
+  const { backgroundColorProperty, iconProperty } = cardConfig;
 
-	return <div className="h-full w-full flex items-center justify-center">
-    <LucideIcon className="w-[80%] aspect-square block text-muted" name={icon} />
+  const backgroundColorValue = useEntryProperty(entry, config, backgroundColorProperty);
+  const iconValue = useEntryProperty(entry, config, iconProperty);
+
+  const icon = iconValue && !iconValue.isEmpty ?
+    iconValue.value.toString() :
+    (ICON_BY_EXTENSION[entry.file.extension as keyof typeof ICON_BY_EXTENSION] || ICON_BY_EXTENSION.unknown);
+
+  const backgroundColor =
+    image?.isColor ? image.url :
+    backgroundColorValue?.value?.toString() || undefined;
+  let textColor: string;
+  if (backgroundColor && backgroundColor !== 'null') {
+    textColor = luminance(backgroundColor) > 0.5 ?
+      darken(backgroundColor, 0.2) :
+      lighten(backgroundColor, 0.2);
+  }
+
+	return <div
+    className="h-full w-full flex items-center justify-center"
+    style={{ backgroundColor: backgroundColor }}>
+    <LucideIcon
+      className={
+        cn(
+          "w-[80%] aspect-square block",
+          !textColor && "text-(--text-faint)"
+        )
+      }
+      name={icon} style={{ color: textColor }} />
   </div>;
 };
 
 type Props = {
 	entry: BasesEntry;
 	cardConfig: CardConfig;
+	config: BasesViewConfig;
 	isOverlayMode?: boolean;
 };
 
-const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
+const Image = memo(({ entry, cardConfig, config, isOverlayMode }: Props) => {
 	const { imageProperty, cardSize, layout, imageAspectRatio, imageFit } = cardConfig;
 
 	const image = useEntryImage(entry, imageProperty);
@@ -45,9 +77,9 @@ const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 	if (isOverlayMode) {
 		return (
 			<div className="absolute inset-0 bg-(--bases-cards-cover-background)">
-				{image ? (
+				{image && !image.isColor ? (
 					<img
-						src={image}
+						src={image.url}
 						alt={title}
 						draggable={false}
 						loading="lazy"
@@ -57,7 +89,7 @@ const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 						)}
 					/>
 				) : (
-					<NonImageFallback entry={entry} />
+					<NonImageFallback entry={entry} cardConfig={cardConfig} config={config} image={image} />
 				)}
 			</div>
 		);
@@ -73,9 +105,9 @@ const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 				}}
 			>
 				<div className="absolute inset-0">
-					{image ? (
+					{image && !image.isColor ? (
 						<img
-							src={image}
+							src={image.url}
 							alt={title}
 							draggable={false}
 							loading="lazy"
@@ -85,7 +117,7 @@ const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 							)}
 						/>
 					) : (
-						<NonImageFallback entry={entry} />
+						<NonImageFallback entry={entry} cardConfig={cardConfig} config={config} image={image} />
 					)}
 				</div>
 			</div>
@@ -102,9 +134,9 @@ const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 				...(!isPolaroid && { height: cardSize * imageAspectRatio }),
 			}}
 		>
-			{image ? (
+			{image && !image.isColor ? (
 				<img
-					src={image}
+					src={image.url}
 					alt={title}
 					draggable={false}
 					loading="lazy"
@@ -118,7 +150,7 @@ const Image = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 					}}
 				/>
 			) : (
-				<NonImageFallback entry={entry} />
+				<NonImageFallback entry={entry} cardConfig={cardConfig} config={config} image={image} />
 			)}
 		</div>
 	) : null;

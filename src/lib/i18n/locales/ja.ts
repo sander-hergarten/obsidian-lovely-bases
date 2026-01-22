@@ -64,18 +64,27 @@ export const ja: LocaleTranslations = {
 					title: "コンテンツ最大長",
 				},
 			},
-			badges: {
-				title: "バッジ",
-				badgeProperty: {
-					title: "バッジプロパティ",
-				},
-				badgeIcon: {
-					title: "バッジアイコン",
-				},
-				badgeColor: {
-					title: "バッジの色",
-				},
+		appearance: {
+			title: "外観",
+			backgroundColorProperty: {
+				title: "背景色プロパティ",
 			},
+			iconProperty: {
+				title: "アイコンプロパティ",
+			},
+		},
+		badges: {
+			title: "バッジ",
+			badgeProperty: {
+				title: "バッジプロパティ",
+			},
+			badgeIcon: {
+				title: "バッジアイコン",
+			},
+			badgeColor: {
+				title: "バッジの色",
+			},
+		},
 			interactivity: {
 				title: "インタラクティビティ",
 				linkProperty: {

@@ -118,7 +118,7 @@ const Card = memo(
 
 			{isOverlay ? (
 				<>
-					<Image entry={entry} cardConfig={cardConfig} isOverlayMode />
+					<Image entry={entry} cardConfig={cardConfig} config={config} isOverlayMode />
 					<div className={cn(
 						"absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent pointer-events-none transition-opacity duration-300 ease-out",
 						showOverlayContent ? "opacity-100" : "opacity-0"
@@ -145,13 +145,13 @@ const Card = memo(
 			) : (
 				<>
 					{!cardConfig.reverseContent ? (
-						<Image entry={entry} cardConfig={cardConfig} />
+						<Image entry={entry} cardConfig={cardConfig} config={config} />
 					) : (
 						<Content entry={entry} cardConfig={cardConfig} config={config} />
 					)}
 
 					{cardConfig.reverseContent ? (
-						<Image entry={entry} cardConfig={cardConfig} />
+						<Image entry={entry} cardConfig={cardConfig} config={config} />
 					) : (
 						<Content entry={entry} cardConfig={cardConfig} config={config} />
 					)}

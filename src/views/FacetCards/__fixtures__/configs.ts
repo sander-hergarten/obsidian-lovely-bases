@@ -72,6 +72,8 @@ export const OVERLAY_LAYOUT_CONFIG: FacetCardsConfig = {
   badgeColor: '#D0A215',
   tilt: DEFAULTS.tilt,
   linkProperty: undefined,
+  backgroundColorProperty: undefined,
+  iconProperty: undefined,
 }
 
 export const CIRCLE_SHAPE_CONFIG: FacetCardsConfig = {
@@ -95,6 +97,8 @@ export const CIRCLE_SHAPE_CONFIG: FacetCardsConfig = {
   badgeColor: undefined,
   tilt: DEFAULTS.tilt,
   linkProperty: undefined,
+  backgroundColorProperty: undefined,
+  iconProperty: undefined,
 }
 
 
@@ -119,6 +123,8 @@ export const ROUNDED_SHAPE_CONFIG: FacetCardsConfig = {
   badgeColor: undefined,
   tilt: DEFAULTS.tilt,
   linkProperty: undefined,
+  backgroundColorProperty: undefined,
+  iconProperty: undefined,
 }
 
 export const POLAROID_LAYOUT_CONFIG: FacetCardsConfig = {
@@ -132,4 +138,6 @@ export const POLAROID_LAYOUT_CONFIG: FacetCardsConfig = {
   properties: [],
   tilt: DEFAULTS.tilt,
   linkProperty: undefined,
+  backgroundColorProperty: undefined,
+  iconProperty: undefined,
 }

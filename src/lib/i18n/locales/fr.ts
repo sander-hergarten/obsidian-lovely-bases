@@ -64,18 +64,27 @@ export const fr: LocaleTranslations = {
 					title: "Longueur Maximale du Contenu",
 				},
 			},
-			badges: {
-				title: "Badges",
-				badgeProperty: {
-					title: "Propriété de Badge",
-				},
-				badgeIcon: {
-					title: "Icône de Badge",
-				},
-				badgeColor: {
-					title: "Couleur de Badge",
-				},
+		appearance: {
+			title: "Apparence",
+			backgroundColorProperty: {
+				title: "Propriété de Couleur de Fond",
 			},
+			iconProperty: {
+				title: "Propriété d'Icône",
+			},
+		},
+		badges: {
+			title: "Badges",
+			badgeProperty: {
+				title: "Propriété de Badge",
+			},
+			badgeIcon: {
+				title: "Icône de Badge",
+			},
+			badgeColor: {
+				title: "Couleur de Badge",
+			},
+		},
 			interactivity: {
 				title: "Interactivité",
 				linkProperty: {

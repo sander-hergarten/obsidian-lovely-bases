@@ -24,6 +24,9 @@ export const DEFAULTS = {
   showPropertyTitles: true,
   showContent: false,
   contentMaxLength: 200,
+  /* Appearance */
+  backgroundColorProperty: undefined,
+  iconProperty: undefined,
   /* Badges */
   badgeProperty: undefined,
   badgeIcon: undefined,
@@ -169,6 +172,22 @@ export const CARD_CONFIG_OPTIONS: ViewOption[] =  [
         max: 1000,
         step: 10,
         shouldHide: (config) => config.get("showContent") === false,
+      },
+    ],
+  },
+  {
+    type: "group",
+    displayName: t("options.appearance.title"),
+    items: [
+      {
+        type: "property",
+        displayName: t("options.appearance.backgroundColorProperty.title"),
+        key: "backgroundColorProperty",
+      },
+      {
+        type: "property",
+        displayName: t("options.appearance.iconProperty.title"),
+        key: "iconProperty",
       },
     ],
   },

@@ -23,6 +23,9 @@ export const DEFAULT_CONFIG: CarouselConfig = {
   showPropertyTitles: true,
   showContent: false,
   contentMaxLength: 200,
+  /* Appearance */
+  backgroundColorProperty: undefined,
+  iconProperty: undefined,
   /* Badges */
   badgeProperty: undefined,
   badgeIcon: undefined,
@@ -55,6 +58,9 @@ export const FULL_CONFIG: CarouselConfig = {
   showPropertyTitles: true,
   showContent: true,
   contentMaxLength: 200,
+  /* Appearance */
+  backgroundColorProperty: 'note.color',
+  iconProperty: 'note.icon',
   /* Badges */
   badgeProperty: 'note.rating',
   badgeIcon: 'star',

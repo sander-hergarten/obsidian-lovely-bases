@@ -3,6 +3,10 @@ import type { CardConfig } from "../types";
 
 export function compareCardConfig(a: Partial<CardConfig>, b: Partial<CardConfig>): boolean {
 	return (
+    /* Internal */
+		a.properties.length === b.properties.length &&
+		a.properties.every((p, i) => p === b.properties[i]) &&
+
     /* Layout & Display */
 		a.layout === b.layout &&
 		a.overlayContentVisibility === b.overlayContentVisibility &&
@@ -22,6 +26,10 @@ export function compareCardConfig(a: Partial<CardConfig>, b: Partial<CardConfig>
 		a.showContent === b.showContent &&
 		a.contentMaxLength === b.contentMaxLength &&
 
+    /* Appearance */
+    a.backgroundColorProperty === b.backgroundColorProperty &&
+    a.iconProperty === b.iconProperty &&
+
     /* Badges */
     a.badgeProperty === b.badgeProperty &&
 		a.badgeIcon === b.badgeIcon &&
@@ -30,10 +38,6 @@ export function compareCardConfig(a: Partial<CardConfig>, b: Partial<CardConfig>
     /* Interactivity */
     a.linkProperty === b.linkProperty &&
     a.hoverProperty === b.hoverProperty &&
-		a.hoverStyle === b.hoverStyle &&
-
-    /* Internal */
-		a.properties.length === b.properties.length &&
-		a.properties.every((p, i) => p === b.properties[i])
+		a.hoverStyle === b.hoverStyle
 	);
 }

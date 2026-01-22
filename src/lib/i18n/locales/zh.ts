@@ -64,18 +64,27 @@ export const zh: LocaleTranslations = {
 					title: "内容最大长度",
 				},
 			},
-			badges: {
-				title: "徽章",
-				badgeProperty: {
-					title: "徽章属性",
-				},
-				badgeIcon: {
-					title: "徽章图标",
-				},
-				badgeColor: {
-					title: "徽章颜色",
-				},
+		appearance: {
+			title: "外观",
+			backgroundColorProperty: {
+				title: "背景颜色属性",
 			},
+			iconProperty: {
+				title: "图标属性",
+			},
+		},
+		badges: {
+			title: "徽章",
+			badgeProperty: {
+				title: "徽章属性",
+			},
+			badgeIcon: {
+				title: "徽章图标",
+			},
+			badgeColor: {
+				title: "徽章颜色",
+			},
+		},
 			interactivity: {
 				title: "交互性",
 				linkProperty: {

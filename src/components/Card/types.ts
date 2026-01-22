@@ -34,6 +34,9 @@ export type CardConfig = {
 	showPropertyTitles: boolean;
 	showContent: boolean;
 	contentMaxLength: number;
+  /* Appearance */
+  backgroundColorProperty: BasesPropertyId | undefined;
+  iconProperty: BasesPropertyId | undefined;
   /* Badges */
 	badgeProperty: BasesPropertyId | undefined;
 	badgeIcon: string | undefined;

@@ -64,6 +64,15 @@ export const de: LocaleTranslations = {
           title: "Maximale Inhaltslänge",
         },
       },
+      appearance: {
+        title: "Erscheinungsbild",
+        backgroundColorProperty: {
+          title: "Hintergrundfarbe-Eigenschaft",
+        },
+        iconProperty: {
+          title: "Symbol-Eigenschaft",
+        },
+      },
       badges: {
         title: "Abzeichen",
         badgeProperty: {

@@ -64,18 +64,27 @@ export const ru: LocaleTranslations = {
 					title: "Максимальная Длина Контента",
 				},
 			},
-			badges: {
-				title: "Значки",
-				badgeProperty: {
-					title: "Свойство Значка",
-				},
-				badgeIcon: {
-					title: "Иконка Значка",
-				},
-				badgeColor: {
-					title: "Цвет Значка",
-				},
+		appearance: {
+			title: "Внешний вид",
+			backgroundColorProperty: {
+				title: "Свойство Цвета Фона",
 			},
+			iconProperty: {
+				title: "Свойство Иконки",
+			},
+		},
+		badges: {
+			title: "Значки",
+			badgeProperty: {
+				title: "Свойство Значка",
+			},
+			badgeIcon: {
+				title: "Иконка Значка",
+			},
+			badgeColor: {
+				title: "Цвет Значка",
+			},
+		},
 			interactivity: {
 				title: "Интерактивность",
 				linkProperty: {
