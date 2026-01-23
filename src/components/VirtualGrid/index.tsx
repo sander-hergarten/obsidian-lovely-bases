@@ -53,6 +53,7 @@ function PureVirtualGrid({
     count: rows.length,
     getScrollElement: () => scrollRef.current,
     estimateSize: () => estimateRowHeight,
+    measureElement: (el) => el.getBoundingClientRect().height,
     overscan: 6,
     gap,
   });
