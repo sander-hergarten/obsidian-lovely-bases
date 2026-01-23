@@ -10,7 +10,7 @@ export function useCardColors(
   cardConfig: CardConfig,
   image: CardImage
 ): CardColors {
-  const { backgroundColorApplyTo, backgroundColorProperty, } = cardConfig;
+  const { backgroundColorApplyTo, backgroundColorProperty, layout } = cardConfig;
 
   const backgroundColorValue = useEntryPropertyValue(entry, backgroundColorProperty);
 
@@ -21,6 +21,16 @@ export function useCardColors(
       darken(imageBackground, 0.2) :
       lighten(imageBackground, 0.2)
   ) : null;
+  if (layout === 'overlay') {
+    return {
+      contentBackground: 'transparent',
+      contentForeground: '#fff',
+      imageBackground: imageBackground,
+      imageForeground: imageForeground,
+      linkForeground: '#e6e6e6',
+      titleForeground: '#fff',
+    }
+  }
 
   let contentBackground = backgroundColorApplyTo !== 'image' && backgroundColorValue ?
     backgroundColorValue : null;

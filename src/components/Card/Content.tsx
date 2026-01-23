@@ -17,14 +17,9 @@ type Props = {
 }
 
 const getContentColors = (
-  layout: "vertical" | "horizontal" | "overlay" | "polaroid",
   colors: CardColors,
   contentFont: string | undefined,
 ) => {
-  if (layout === "overlay") {
-    return {} as CSSProperties;
-  };
-
   return {
     backgroundColor: colors.contentBackground,
     '--font-interface': contentFont,
@@ -33,6 +28,7 @@ const getContentColors = (
     '--pill-color': colors.contentForeground,
     '--link-color': colors.linkForeground,
     '--link-external-color': colors.linkForeground,
+    '--link-unresolved-color': colors.linkForeground,
     '--link-color-hover': colors.contentForeground,
     '--link-external-color-hover': colors.contentForeground,
   } as CSSProperties;
@@ -53,7 +49,7 @@ const Content = memo(({ entry, cardConfig, colors, config, isOverlayMode }: Prop
         !isOverlayMode && "flex-1 h-full",
         isOverlayMode && "p-2",
       )}
-      style={getContentColors(cardConfig.layout, colors, contentFont)}>
+      style={getContentColors(colors, contentFont)}>
       <Title entry={entry} cardConfig={cardConfig} isOverlayMode={isOverlayMode} />
 
       <div className={cn(!isOverlayMode && "flex-1 min-h-0")} style={{
@@ -73,8 +69,7 @@ const Content = memo(({ entry, cardConfig, colors, config, isOverlayMode }: Prop
             file={entry.file}
             maxLength={contentMaxLength}
             className={cn(
-              "text-sm line-clamp-6 overflow-hidden",
-              isOverlayMode ? "text-white/90" : "text-foreground",
+              "text-foreground text-sm line-clamp-6 overflow-hidden",
             )}
             style={{
               fontFamily: contentFont,
