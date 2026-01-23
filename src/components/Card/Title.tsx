@@ -14,7 +14,7 @@ type Props = {
 
 const Title = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 	const title = useEntryTitle(entry);
-	const { cardSize, showTitle } = cardConfig;
+	const { cardSize, titleFont, showTitle } = cardConfig;
 	const textSize =
 		cardSize < 300 ? "text-base" : cardSize < 400 ? "text-lg" : "text-xl";
 
@@ -27,6 +27,9 @@ const Title = memo(({ entry, cardConfig, isOverlayMode }: Props) => {
 				textSize,
 				isOverlayMode && "text-white",
 			)}
+			style={{
+				fontFamily: titleFont,
+			}}
 		>
 			{title}
 		</h3>

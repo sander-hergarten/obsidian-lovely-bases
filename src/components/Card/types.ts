@@ -35,7 +35,11 @@ export type CardConfig = {
 	showContent: boolean;
 	contentMaxLength: number;
   /* Appearance */
+  titleFont: string | undefined;
+  contentFont: string | undefined;
+  badgesFont: string | undefined;
   backgroundColorProperty: BasesPropertyId | undefined;
+  backgroundColorApplyTo: "image" | "content" | "both";
   iconProperty: BasesPropertyId | undefined;
   /* Badges */
 	badgeProperty: BasesPropertyId | undefined;
@@ -47,4 +51,18 @@ export type CardConfig = {
 	hoverProperty: BasesPropertyId | undefined;
   /** Internal */
 	properties: BasesPropertyId[];
+}
+
+export type CardColors = {
+  imageBackground: string | null;
+  imageForeground: string | null;
+  contentBackground: string | null;
+  titleForeground: string | null;
+  contentForeground: string | null;
+  linkForeground: string | null;
+}
+
+export type CardImage = {
+  url?: string;
+  isColor?: boolean;
 }

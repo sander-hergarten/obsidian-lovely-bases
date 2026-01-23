@@ -160,12 +160,46 @@ const meta = {
 			},
 		},
     // Appearance
+    titleFont: {
+      control: "text",
+      name: t("options.appearance.titleFont.title"),
+      description: "The font family to apply to the titles",
+      table: {
+        category: t("options.appearance.title"),
+      },
+    },
+    contentFont: {
+      control: "text",
+      name: t("options.appearance.contentFont.title"),
+      description: "The font family to apply to the content",
+      table: {
+        category: t("options.appearance.title"),
+      },
+    },
+    badgesFont: {
+      control: "text",
+      name: t("options.appearance.badgesFont.title"),
+      description: "The font family to apply to the badges",
+      table: {
+        category: t("options.appearance.title"),
+      },
+    },
     backgroundColorProperty: {
       control: "text",
       name: t("options.appearance.backgroundColorProperty.title"),
       description: "The property to display as a background color on the card (optional).",
       table: {
         category: t("options.appearance.title"),
+      },
+    },
+    backgroundColorApplyTo: {
+      control: "select",
+      name: t("options.appearance.backgroundColorApplyTo.title"),
+      description: "Wheter to apply the background color to the image, content or both",
+      options: ["image", "content", "both"],
+      table: {
+        category: t("options.appearance.title"),
+				defaultValue: { summary: DEFAULTS.backgroundColorApplyTo },
       },
     },
     iconProperty: {

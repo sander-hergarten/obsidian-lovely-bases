@@ -66,8 +66,23 @@ export const de: LocaleTranslations = {
       },
       appearance: {
         title: "Erscheinungsbild",
+        titleFont: {
+          title: "Schriftfamilie des Titels",
+        },
+        contentFont: {
+          title: "Schriftfamilie des Inhalts",
+        },
+        badgesFont: {
+          title: "Schriftfamilie der Abzeichen",
+        },
         backgroundColorProperty: {
           title: "Hintergrundfarbe-Eigenschaft",
+        },
+        backgroundColorApplyTo: {
+          title: "Hintergrundfarbe anwenden auf",
+          image: "Bild",
+          content: "Inhalt",
+          both: "Beides",
         },
         iconProperty: {
           title: "Symbol-Eigenschaft",

@@ -27,7 +27,11 @@ export function compareCardConfig(a: Partial<CardConfig>, b: Partial<CardConfig>
 		a.contentMaxLength === b.contentMaxLength &&
 
     /* Appearance */
+    a.titleFont === b.titleFont &&
+    a.contentFont === b.contentFont &&
+    a.badgesFont === b.badgesFont &&
     a.backgroundColorProperty === b.backgroundColorProperty &&
+    a.backgroundColorApplyTo === b.backgroundColorApplyTo &&
     a.iconProperty === b.iconProperty &&
 
     /* Badges */

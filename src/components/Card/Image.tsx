@@ -2,13 +2,11 @@ import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { memo } from "react";
 
 import LucideIcon from "@/components/Obsidian/LucideIcon";
-import { useEntryImage } from "@/hooks/use-image";
 import { useEntryProperty } from "@/hooks/use-property";
 import { useEntryTitle } from "@/hooks/use-title";
-import { darken, lighten, luminance } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
-import type { CardConfig } from "./types";
+import type { CardColors, CardConfig, CardImage } from "./types";
 
 const ICON_BY_EXTENSION = {
   'md': 'text-align-start',
@@ -21,43 +19,30 @@ const ICON_BY_EXTENSION = {
 
 type NonImageFallbackProps = {
   entry: BasesEntry;
-  image: ReturnType<typeof useEntryImage>;
   cardConfig: CardConfig;
   config: BasesViewConfig;
+  colors: Pick<CardColors, 'imageBackground' | 'imageForeground'>;
 };
 
-const NonImageFallback = ({ entry, cardConfig, config, image }: NonImageFallbackProps) => {
-
-  const { backgroundColorProperty, iconProperty } = cardConfig;
-
-  const backgroundColorValue = useEntryProperty(entry, config, backgroundColorProperty);
+const NonImageFallback = ({ entry, cardConfig, colors, config }: NonImageFallbackProps) => {
+  const { iconProperty } = cardConfig;
   const iconValue = useEntryProperty(entry, config, iconProperty);
 
   const icon = iconValue && !iconValue.isEmpty ?
     iconValue.value.toString() :
     (ICON_BY_EXTENSION[entry.file.extension as keyof typeof ICON_BY_EXTENSION] || ICON_BY_EXTENSION.unknown);
 
-  const backgroundColor =
-    image?.isColor ? image.url :
-    backgroundColorValue?.value?.toString() || undefined;
-  let textColor: string;
-  if (backgroundColor && backgroundColor !== 'null') {
-    textColor = luminance(backgroundColor) > 0.5 ?
-      darken(backgroundColor, 0.2) :
-      lighten(backgroundColor, 0.2);
-  }
-
 	return <div
     className="h-full w-full flex items-center justify-center"
-    style={{ backgroundColor: backgroundColor }}>
+    style={{ backgroundColor: colors.imageBackground }}>
     <LucideIcon
       className={
         cn(
           "w-[80%] aspect-square block",
-          !textColor && "text-(--text-faint)"
+          !colors.imageForeground && "text-(--text-faint)"
         )
       }
-      name={icon} style={{ color: textColor }} />
+      name={icon} style={{ color: colors.imageForeground }} />
   </div>;
 };
 
@@ -66,12 +51,20 @@ type Props = {
 	cardConfig: CardConfig;
 	config: BasesViewConfig;
 	isOverlayMode?: boolean;
+  colors: CardColors;
+  image: CardImage;
 };
 
-const Image = memo(({ entry, cardConfig, config, isOverlayMode }: Props) => {
+const Image = memo(({
+  entry,
+  cardConfig,
+  colors,
+  image,
+  config,
+  isOverlayMode
+}: Props) => {
 	const { imageProperty, cardSize, layout, imageAspectRatio, imageFit } = cardConfig;
 
-	const image = useEntryImage(entry, imageProperty);
 	const title = useEntryTitle(entry);
 
 	if (isOverlayMode) {
@@ -89,7 +82,7 @@ const Image = memo(({ entry, cardConfig, config, isOverlayMode }: Props) => {
 						)}
 					/>
 				) : (
-					<NonImageFallback entry={entry} cardConfig={cardConfig} config={config} image={image} />
+					<NonImageFallback entry={entry} cardConfig={cardConfig} config={config} colors={colors} />
 				)}
 			</div>
 		);
@@ -117,7 +110,7 @@ const Image = memo(({ entry, cardConfig, config, isOverlayMode }: Props) => {
 							)}
 						/>
 					) : (
-						<NonImageFallback entry={entry} cardConfig={cardConfig} config={config} image={image} />
+						<NonImageFallback entry={entry} cardConfig={cardConfig} config={config} colors={colors} />
 					)}
 				</div>
 			</div>
@@ -150,7 +143,7 @@ const Image = memo(({ entry, cardConfig, config, isOverlayMode }: Props) => {
 					}}
 				/>
 			) : (
-				<NonImageFallback entry={entry} cardConfig={cardConfig} config={config} image={image} />
+				<NonImageFallback entry={entry} cardConfig={cardConfig} config={config} colors={colors} />
 			)}
 		</div>
 	) : null;

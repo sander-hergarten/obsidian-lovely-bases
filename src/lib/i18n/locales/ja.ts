@@ -66,8 +66,23 @@ export const ja: LocaleTranslations = {
 			},
 		appearance: {
 			title: "外観",
+			titleFont: {
+				title: "タイトルフォントファミリー",
+			},
+			contentFont: {
+				title: "コンテンツフォントファミリー",
+			},
+			badgesFont: {
+				title: "バッジフォントファミリー",
+			},
 			backgroundColorProperty: {
 				title: "背景色プロパティ",
+			},
+			backgroundColorApplyTo: {
+				title: "背景色の適用先",
+				image: "画像",
+				content: "コンテンツ",
+				both: "両方",
 			},
 			iconProperty: {
 				title: "アイコンプロパティ",

@@ -66,8 +66,23 @@ export const zh: LocaleTranslations = {
 			},
 		appearance: {
 			title: "外观",
+			titleFont: {
+				title: "标题字体系列",
+			},
+			contentFont: {
+				title: "内容字体系列",
+			},
+			badgesFont: {
+				title: "徽章字体系列",
+			},
 			backgroundColorProperty: {
 				title: "背景颜色属性",
+			},
+			backgroundColorApplyTo: {
+				title: "应用背景颜色到",
+				image: "图像",
+				content: "内容",
+				both: "两者",
 			},
 			iconProperty: {
 				title: "图标属性",

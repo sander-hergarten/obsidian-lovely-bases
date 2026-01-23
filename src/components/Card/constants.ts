@@ -25,7 +25,11 @@ export const DEFAULTS = {
   showContent: false,
   contentMaxLength: 200,
   /* Appearance */
+  titleFont: undefined,
+  contentFont: undefined,
+  badgesFont: undefined,
   backgroundColorProperty: undefined,
+  backgroundColorApplyTo: "image",
   iconProperty: undefined,
   /* Badges */
   badgeProperty: undefined,
@@ -180,9 +184,36 @@ export const CARD_CONFIG_OPTIONS: ViewOption[] =  [
     displayName: t("options.appearance.title"),
     items: [
       {
+        type: "text",
+        displayName: t("options.appearance.titleFont.title"),
+        key: "titleFont"
+      },
+      {
+        type: "text",
+        displayName: t("options.appearance.contentFont.title"),
+        key: "contentFont"
+      },
+      {
+        type: "text",
+        displayName: t("options.appearance.badgesFont.title"),
+        key: "badgesFont"
+      },
+      {
         type: "property",
         displayName: t("options.appearance.backgroundColorProperty.title"),
         key: "backgroundColorProperty",
+      },
+      {
+        type: "dropdown",
+        displayName: t("options.appearance.backgroundColorApplyTo.title"),
+        shouldHide: (config) => !config.get('backgroundColorProperty'),
+        key: "backgroundColorApplyTo",
+        default: DEFAULTS.backgroundColorApplyTo,
+        options: {
+          image: t("options.appearance.backgroundColorApplyTo.image"),
+          content: t("options.appearance.backgroundColorApplyTo.content"),
+          both: t("options.appearance.backgroundColorApplyTo.both"),
+        },
       },
       {
         type: "property",

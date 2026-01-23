@@ -64,8 +64,23 @@ export const en = {
       },
       appearance: {
         title: "Appearance",
+        titleFont: {
+          title: "Title Font Family"
+        },
+        contentFont: {
+          title: "Content Font Family"
+        },
+        badgesFont: {
+          title: "Badges Font Family"
+        },
         backgroundColorProperty: {
           title: "Background Color Property",
+        },
+        backgroundColorApplyTo: {
+          title: "Apply Background Color to",
+          image: "Image",
+          content: "Content",
+          both: "Both"
         },
         iconProperty: {
           title: "Icon Property",

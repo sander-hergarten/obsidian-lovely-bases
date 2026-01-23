@@ -66,8 +66,23 @@ export const fr: LocaleTranslations = {
 			},
 		appearance: {
 			title: "Apparence",
+			titleFont: {
+				title: "Famille de Police du Titre",
+			},
+			contentFont: {
+				title: "Famille de Police du Contenu",
+			},
+			badgesFont: {
+				title: "Famille de Police des Badges",
+			},
 			backgroundColorProperty: {
 				title: "Propriété de Couleur de Fond",
+			},
+			backgroundColorApplyTo: {
+				title: "Appliquer la Couleur de Fond à",
+				image: "Image",
+				content: "Contenu",
+				both: "Les Deux",
 			},
 			iconProperty: {
 				title: "Propriété d'Icône",

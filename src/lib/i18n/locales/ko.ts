@@ -66,8 +66,23 @@ export const ko: LocaleTranslations = {
       },
       appearance: {
         title: "외관",
+        titleFont: {
+          title: "제목 글꼴 패밀리",
+        },
+        contentFont: {
+          title: "콘텐츠 글꼴 패밀리",
+        },
+        badgesFont: {
+          title: "배지 글꼴 패밀리",
+        },
         backgroundColorProperty: {
           title: "배경색 속성",
+        },
+        backgroundColorApplyTo: {
+          title: "배경색 적용 대상",
+          image: "이미지",
+          content: "콘텐츠",
+          both: "둘 다",
         },
         iconProperty: {
           title: "아이콘 속성",

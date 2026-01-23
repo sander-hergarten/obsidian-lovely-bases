@@ -66,8 +66,23 @@ export const ru: LocaleTranslations = {
 			},
 		appearance: {
 			title: "Внешний вид",
+			titleFont: {
+				title: "Семейство Шрифтов Заголовка",
+			},
+			contentFont: {
+				title: "Семейство Шрифтов Контента",
+			},
+			badgesFont: {
+				title: "Семейство Шрифтов Значков",
+			},
 			backgroundColorProperty: {
 				title: "Свойство Цвета Фона",
+			},
+			backgroundColorApplyTo: {
+				title: "Применить Цвет Фона к",
+				image: "Изображение",
+				content: "Контент",
+				both: "Оба",
 			},
 			iconProperty: {
 				title: "Свойство Иконки",
