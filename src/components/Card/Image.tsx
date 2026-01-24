@@ -33,8 +33,7 @@ const NonImageFallback = ({ entry, cardConfig, colors, config }: NonImageFallbac
     (ICON_BY_EXTENSION[entry.file.extension as keyof typeof ICON_BY_EXTENSION] || ICON_BY_EXTENSION.unknown);
 
 	return <div
-    className="h-full w-full flex items-center justify-center"
-    style={{ backgroundColor: colors.imageBackground }}>
+    className="h-full w-full flex items-center justify-center">
     <LucideIcon
       className={
         cn(
@@ -91,8 +90,9 @@ const Image = memo(({
 	if (layout === "horizontal") {
 		return imageProperty ? (
 			<div
-				className="relative shrink-0 bg-(--bases-cards-cover-background)"
+				className={cn("relative shrink-0", !colors.imageBackground && "bg-(--bases-cards-cover-background)")}
 				style={{
+          backgroundColor: colors.imageBackground,
 					// aspect ratio 2.5 = 100% del ancho, 0.25 = 10%
 					width: `${(imageAspectRatio / 2.5) * 100}%`,
 				}}
@@ -121,9 +121,10 @@ const Image = memo(({
 
 	return imageProperty ? (
 		<div
-			className="mx-auto relative w-full flex-none bg-(--bases-cards-cover-background)"
+			className={cn("mx-auto relative w-full flex-none", !colors.imageBackground && "bg-(--bases-cards-cover-background)")}
 			style={{
 				aspectRatio: 1 / imageAspectRatio,
+        backgroundColor: colors.imageBackground,
 				...(!isPolaroid && { height: cardSize * imageAspectRatio }),
 			}}
 		>

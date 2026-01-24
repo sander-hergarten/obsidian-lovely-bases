@@ -25,6 +25,12 @@ export const FULL_CONFIG: FacetCardsConfig = {
 	hoverProperty: "note.url",
 	hoverStyle: "overlay",
   linkProperty: undefined,
+  titleFont: 'Impact, Georgia, Arial Black, Trebuchet MS',
+  contentFont: 'Arial, Verdana, Tahoma, Segoe UI, Roboto',
+  badgesFont: 'Comic Sans MS, Courier New, Consolas, Arial Narrow, Impact',
+  iconProperty: 'note.icon',
+  backgroundColorProperty: 'note.color',
+  backgroundColorApplyTo: 'both',
 } satisfies Partial<FacetCardsConfig>;
 
 export const HORIZONTAL_LAYOUT_CONFIG: FacetCardsConfig = {
@@ -49,8 +55,6 @@ export const HORIZONTAL_LAYOUT_CONFIG: FacetCardsConfig = {
   badgeIcon: undefined,
   badgeColor: undefined,
   linkProperty: undefined,
-  backgroundColorApplyTo: 'both',
-  backgroundColorProperty: 'note.color'
 }
 
 export const OVERLAY_LAYOUT_CONFIG: FacetCardsConfig = {

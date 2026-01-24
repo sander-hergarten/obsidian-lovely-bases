@@ -63,6 +63,9 @@ export const FULL_CONFIG: CarouselConfig = {
   showContent: true,
   contentMaxLength: 200,
   /* Appearance */
+  titleFont: 'Impact, Georgia, Arial Black, Trebuchet MS',
+  contentFont: 'Arial, Verdana, Tahoma, Segoe UI, Roboto',
+  badgesFont: 'Comic Sans MS, Courier New, Consolas, Arial Narrow, Impact',
   backgroundColorProperty: 'note.color',
   backgroundColorApplyTo: 'image',
   iconProperty: 'note.icon',
@@ -70,9 +73,6 @@ export const FULL_CONFIG: CarouselConfig = {
   badgeProperty: 'note.rating',
   badgeIcon: 'star',
   badgeColor: '#D0A215',
-  badgesFont: undefined,
-  titleFont: undefined,
-  contentFont: undefined,
   /* Interactivity */
   linkProperty: 'note.link',
   hoverStyle: "none",
