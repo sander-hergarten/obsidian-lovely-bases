@@ -57,6 +57,7 @@ export type HeatmapCalendarConfig = {
   dateProperty: BasesPropertyId;
   trackProperty: BasesPropertyId;
   colorScheme?: keyof typeof COLOR_SCHEMES;
+  shape?: "circle" | "square" | "rounded";
   reverseColors?: boolean;
   startDate?: string;
   endDate?: string;
@@ -97,6 +98,7 @@ const HeatmapCalendarView = ({
     showMonthLabels: DEFAULTS.showMonthLabels,
     showYearLabels: DEFAULTS.showYearLabels,
     showLegend: DEFAULTS.showLegend,
+    shape: DEFAULTS.shape,
   });
 
   const startDate = useMemo(() => {
@@ -216,6 +218,7 @@ const HeatmapCalendarView = ({
           minValue={g.minValue}
           maxValue={g.maxValue}
           trackType={g.trackType}
+          shape={viewConfig.shape}
           customColors={parsedCustomColors}
           overflowColor={parsedOverflowColor}
           onEntryClick={onEntryClick}

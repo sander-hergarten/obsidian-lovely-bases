@@ -65,13 +65,13 @@ export const en = {
       appearance: {
         title: "Appearance",
         titleFont: {
-          title: "Title Font Family"
+          title: "Title Font Family",
         },
         contentFont: {
-          title: "Content Font Family"
+          title: "Content Font Family",
         },
         badgesFont: {
-          title: "Badges Font Family"
+          title: "Badges Font Family",
         },
         backgroundColorProperty: {
           title: "Background Color Property",
@@ -80,7 +80,7 @@ export const en = {
           title: "Apply Background Color to",
           image: "Image",
           content: "Content",
-          both: "Both"
+          both: "Both",
         },
         iconProperty: {
           title: "Icon Property",
@@ -125,52 +125,52 @@ export const en = {
       },
     },
   },
-	linearCalendar: {
-		options: {
-			data: {
-				title: "Data",
-				startDateProperty: {
-					title: "Start Date Property",
-				},
-				endDateProperty: {
-					title: "End Date Property",
-				},
-				titleProperty: {
-					title: "Title Property",
-				},
-			},
-			dateRange: {
-				title: "Date Range",
-				referenceDate: {
-					title: "Reference Date",
-					placeholder: "YYYY-MM-DD",
-				},
-				focus: {
-					title: "Focus",
-					full: "Full Year",
-					half: "Half Year",
-					quarter: "Quarter",
-				},
-			},
-			appearance: {
-				title: "Appearance",
-				colorProperty: {
-					title: "Color Property",
-				},
-				iconProperty: {
-					title: "Icon Property",
-				},
-			},
-		},
-	},
-	heatmapCalendar: {
-		legend: {
-			less: "Less",
-			more: "More",
-			no: "No",
-			yes: "Yes",
-			overflow: "Overflow",
-		},
+  linearCalendar: {
+    options: {
+      data: {
+        title: "Data",
+        startDateProperty: {
+          title: "Start Date Property",
+        },
+        endDateProperty: {
+          title: "End Date Property",
+        },
+        titleProperty: {
+          title: "Title Property",
+        },
+      },
+      dateRange: {
+        title: "Date Range",
+        referenceDate: {
+          title: "Reference Date",
+          placeholder: "YYYY-MM-DD",
+        },
+        focus: {
+          title: "Focus",
+          full: "Full Year",
+          half: "Half Year",
+          quarter: "Quarter",
+        },
+      },
+      appearance: {
+        title: "Appearance",
+        colorProperty: {
+          title: "Color Property",
+        },
+        iconProperty: {
+          title: "Icon Property",
+        },
+      },
+    },
+  },
+  heatmapCalendar: {
+    legend: {
+      less: "Less",
+      more: "More",
+      no: "No",
+      yes: "Yes",
+      overflow: "Overflow",
+    },
     options: {
       data: {
         title: "Data",
@@ -236,6 +236,12 @@ export const en = {
       },
       appearance: {
         title: "Appearance",
+        shape: {
+          title: "Shape",
+          circle: "Circle",
+          square: "Square",
+          rounded: "Rounded",
+        },
         colorScheme: {
           title: "Color Scheme",
         },
@@ -250,90 +256,90 @@ export const en = {
           title: "Overflow Warning Color",
           placeholder: "#ff0000",
         },
-      }
+      },
     },
-	},
-	projectFolders: {
-		options: {
-			dataProperties: {
-				title: "Data Properties",
-				imageProperty: {
-					title: "Image Property",
-				},
-				iconProperty: {
-					title: "Icon Property",
-				},
-				colorProperty: {
-					title: "Color Property",
-				},
-			},
-			display: {
-				title: "Display",
-				colorizeFiles: {
-					title: "Colorize Files",
-				},
-			},
-		},
-	},
-	radarChart: {
-		options: {
-			data: {
-				title: "Data",
-				aggregationFunction: {
-					title: "Aggregation Function",
-					average: "Average",
-					median: "Median",
-					sum: "Sum",
-					max: "Maximum",
-					min: "Minimum",
-				},
-			},
-			valueRange: {
-				title: "Value Range",
-				minValue: {
-					title: "Min Value",
-				},
-				maxValue: {
-					title: "Max Value",
-				},
-			},
-			display: {
-				title: "Display",
-				showAxisLabels: {
-					title: "Show Axis Labels",
-				},
-				showAxisTicks: {
-					title: "Show Axis Ticks",
-				},
-				showLegend: {
-					title: "Show Legend",
-				},
-				legendPosition: {
-					title: "Legend Position",
-					top: "Top",
-					bottom: "Bottom",
-					left: "Left",
-					right: "Right",
-				},
-			},
-			appearance: {
-				title: "Appearance",
-				colorScheme: {
-					title: "Color Scheme",
-				},
-				customColors: {
-					title: "Custom Colors (comma-separated hex)",
-					placeholder: "#3b82f6, #22c55e, #f59e0b, #ef4444, #8b5cf6",
-				},
-				fillOpacity: {
-					title: "Fill Opacity",
-				},
-			},
-		},
-	},
-	common: {
-		loading: "Loading...",
-		error: "Error",
+  },
+  projectFolders: {
+    options: {
+      dataProperties: {
+        title: "Data Properties",
+        imageProperty: {
+          title: "Image Property",
+        },
+        iconProperty: {
+          title: "Icon Property",
+        },
+        colorProperty: {
+          title: "Color Property",
+        },
+      },
+      display: {
+        title: "Display",
+        colorizeFiles: {
+          title: "Colorize Files",
+        },
+      },
+    },
+  },
+  radarChart: {
+    options: {
+      data: {
+        title: "Data",
+        aggregationFunction: {
+          title: "Aggregation Function",
+          average: "Average",
+          median: "Median",
+          sum: "Sum",
+          max: "Maximum",
+          min: "Minimum",
+        },
+      },
+      valueRange: {
+        title: "Value Range",
+        minValue: {
+          title: "Min Value",
+        },
+        maxValue: {
+          title: "Max Value",
+        },
+      },
+      display: {
+        title: "Display",
+        showAxisLabels: {
+          title: "Show Axis Labels",
+        },
+        showAxisTicks: {
+          title: "Show Axis Ticks",
+        },
+        showLegend: {
+          title: "Show Legend",
+        },
+        legendPosition: {
+          title: "Legend Position",
+          top: "Top",
+          bottom: "Bottom",
+          left: "Left",
+          right: "Right",
+        },
+      },
+      appearance: {
+        title: "Appearance",
+        colorScheme: {
+          title: "Color Scheme",
+        },
+        customColors: {
+          title: "Custom Colors (comma-separated hex)",
+          placeholder: "#3b82f6, #22c55e, #f59e0b, #ef4444, #8b5cf6",
+        },
+        fillOpacity: {
+          title: "Fill Opacity",
+        },
+      },
+    },
+  },
+  common: {
+    loading: "Loading...",
+    error: "Error",
     options: {
       grouping: {
         title: "Grouping",
@@ -344,8 +350,8 @@ export const en = {
           title: "Group Subtitle Property",
         },
       },
-      "colors": {
-        "palettes": {
+      colors: {
+        palettes: {
           red: "Red",
           orange: "Orange",
           yellow: "Yellow",
@@ -355,13 +361,13 @@ export const en = {
           purple: "Purple",
           magenta: "Magenta",
         },
-        "schemes": {
-					primary: "Primary",
-					semaphor: "Semaphor",
-					rainbow: "Rainbow",
-					contrast: "Contrast",
-        }
-      }
-    }
-	},
+        schemes: {
+          primary: "Primary",
+          semaphor: "Semaphor",
+          rainbow: "Rainbow",
+          contrast: "Contrast",
+        },
+      },
+    },
+  },
 } as const;

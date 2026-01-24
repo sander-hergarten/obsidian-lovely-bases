@@ -8,6 +8,7 @@ export type HeatmapCalendarConfig = {
   dateProperty: BasesPropertyId;
   trackProperty: BasesPropertyId;
   colorScheme?: keyof typeof COLOR_SCHEMES;
+  shape?: "circle" | "square" | "rounded";
   reverseColors?: boolean;
   startDate?: string;
   endDate?: string;

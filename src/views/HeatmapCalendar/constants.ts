@@ -26,6 +26,7 @@ export const DEFAULTS: HeatmapCalendarConfig = {
   maxValue: 10,
   /* Appearance */
   colorScheme: "primary",
+  shape: "rounded",
   reverseColors: false,
   customColors: undefined,
   overflowColor: undefined,
@@ -161,6 +162,17 @@ export const HEATMAP_CALENDAR_OPTIONS: ViewOption[] = [
     type: "group",
     displayName: t("options.appearance.title"),
     items: [
+      {
+        type: "dropdown",
+        displayName: t("options.appearance.shape.title"),
+        key: "shape",
+        default: DEFAULTS.shape,
+        options: {
+          circle: t("options.appearance.shape.circle"),
+          square: t("options.appearance.shape.square"),
+          rounded: t("options.appearance.shape.rounded"),
+        },
+      },
       {
         type: "dropdown",
         displayName: t("options.appearance.colorScheme.title"),

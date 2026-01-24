@@ -19,6 +19,7 @@ import {
   FULL_HEATMAP_BASE_CONFIG,
   MONTH_GRID_CONFIG,
   REVERSE_COLORS_HEATMAP_BASE_CONFIG,
+  SHAPE_CONFIG,
   THIRTEEN_WEEKS_HEATMAP_BASE_CONFIG,
   VERTICAL_LAYOUT_CONFIG
 } from "./__fixtures__/configs/heatmap";
@@ -175,6 +176,16 @@ const meta = {
       },
     },
     // Appearance
+    shape: {
+      control: "select",
+      name: t("options.appearance.shape.title"),
+      description: "Shape of the cells.",
+      options: ["circle", "square", "rounded"],
+      table: {
+        category: t("options.appearance.title"),
+        defaultValue: { summary: "rounded" },
+      },
+    },
     colorScheme: {
       control: "select",
       name: t("options.appearance.colorScheme.title"),
@@ -375,6 +386,27 @@ trackType: boolean
     groupedData: [aBasesEntryGroup('', OCCURRENCES)],
     onEntryClick: fn(),
     ...BOOLEAN_TRACKING_CONFIG,
+  },
+};
+
+export const Shape: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: `Change the shape of the cells to a circle, square or rounded.
+
+\`\`\`yml
+shape: circle
+\`\`\`
+`,
+      },
+    },
+  },
+  args: {
+    data: OCCURRENCES,
+    groupedData: [aBasesEntryGroup('', GROUPED_OCCURRENCES[0].entries)],
+    onEntryClick: fn(),
+    ...SHAPE_CONFIG,
   },
 };
 

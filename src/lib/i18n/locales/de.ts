@@ -238,6 +238,12 @@ export const de: LocaleTranslations = {
       },
       appearance: {
         title: "Erscheinungsbild",
+        shape: {
+          title: "Form",
+          circle: "Kreis",
+          square: "Quadrat",
+          rounded: "Abgerundet",
+        },
         colorScheme: {
           title: "Farbschema",
         },

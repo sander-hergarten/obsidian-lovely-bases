@@ -238,6 +238,12 @@ export const ko: LocaleTranslations = {
       },
       appearance: {
         title: "외관",
+        shape: {
+          title: "모양",
+          circle: "원형",
+          square: "정사각형",
+          rounded: "둥근 모서리",
+        },
         colorScheme: {
           title: "색상 구성표",
         },
