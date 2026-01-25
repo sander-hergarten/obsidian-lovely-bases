@@ -88,7 +88,9 @@ const RadarChart = ({
             borderRadius: "4px",
             color: "var(--text-normal)",
           }}
-          formatter={(value: number, name: string) => [value, name]}
+          formatter={(value: number, name: string) => {
+            return name === '' ? [value] : [value, name];
+          }}
         />
         {showLegend && groups.length > 1 && (
           <Legend
