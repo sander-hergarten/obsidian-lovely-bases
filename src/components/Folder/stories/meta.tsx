@@ -22,7 +22,6 @@ const DEFAULT_CONFIG = aBasesViewConfig({});
 
 type StoryProps = {
 	width?: number;
-	colorizeFiles: boolean;
 	icon: string | null;
 	files: File[];
 	gradient?: string;
@@ -33,7 +32,6 @@ type StoryProps = {
 
 export const FolderStory = ({
 	width,
-	colorizeFiles,
 	icon,
 	files,
 	gradient,
@@ -44,7 +42,6 @@ export const FolderStory = ({
 	return (
 		<Folder
 			width={width}
-			colorizeFiles={colorizeFiles}
 			icon={icon}
 			files={files}
 			gradient={gradient}
@@ -95,15 +92,6 @@ export const meta = {
 			options: [null, ...Object.keys(iconNodes)],
 			table: {
 				category: "Content",
-			},
-		},
-		colorizeFiles: {
-			control: "boolean",
-			name: "Colorize Files",
-			description: "Whether to apply gradient colors to file cards.",
-			table: {
-				category: "Appearance",
-				defaultValue: { summary: "false" },
 			},
 		},
 		gradient: {

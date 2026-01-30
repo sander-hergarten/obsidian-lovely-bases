@@ -2,10 +2,8 @@ import type { BasesPropertyId } from "obsidian";
 
 import type { CardConfig } from "@/components/Card/types";
 
-export type ProjectFoldersConfig = CardConfig & {
+export type ProjectFoldersConfig =  {
 	/* Folder Properties */
-	iconProperty?: BasesPropertyId;
-	colorProperty?: BasesPropertyId;
-	/* Display */
-	colorizeFiles?: boolean;
-}
+	groupIconProperty?: BasesPropertyId;
+	groupColorProperty?: BasesPropertyId;
+} & CardConfig;

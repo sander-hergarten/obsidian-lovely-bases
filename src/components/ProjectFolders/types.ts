@@ -5,9 +5,6 @@ import type { MouseEventHandler } from "react";
 export type File = {
 	id: string;
 	entry: BasesEntry;
-	file: TFile;
-	image: string;
-	title: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
 };
 

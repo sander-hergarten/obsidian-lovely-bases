@@ -6,13 +6,12 @@ import AnimatedFolder from "./AnimatedFolder";
 import type { Folder } from "./types";
 
 type Props = {
-	colorizeFiles: boolean;
 	folders: Folder[];
 	cardConfig: CardConfig;
 	config: BasesViewConfig;
 };
 
-function ProjectFolders({ folders, colorizeFiles, cardConfig, config }: Props) {
+function ProjectFolders({ folders, cardConfig, config }: Props) {
 	return (
 		<section className="max-w-7xl mx-auto px-6 pt-16 pb-32">
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 justify-items-center">
@@ -23,7 +22,6 @@ function ProjectFolders({ folders, colorizeFiles, cardConfig, config }: Props) {
 						style={{ animationDelay: `${200 + index * 100}ms` }}
 					>
 						<AnimatedFolder
-							colorizeFiles={colorizeFiles}
 							onClick={folder.onClick}
 							title={folder.title}
 							icon={folder.icon}

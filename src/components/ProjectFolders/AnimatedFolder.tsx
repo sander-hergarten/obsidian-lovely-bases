@@ -10,7 +10,6 @@ import Folder from "../Folder";
 import type { File } from "./types";
 
 type Props = {
-	colorizeFiles: boolean;
 	title: string;
 	icon: string | null;
 	files: File[];
@@ -22,7 +21,6 @@ type Props = {
 };
 
 const AnimatedFolder: React.FC<Props> = ({
-	colorizeFiles,
 	title,
 	icon,
 	files,
@@ -62,7 +60,6 @@ const AnimatedFolder: React.FC<Props> = ({
 				}}
 			/>
 			<Folder
-        colorizeFiles={colorizeFiles}
         icon={icon}
         files={files}
         gradient={gradient}

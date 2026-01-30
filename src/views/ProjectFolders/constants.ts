@@ -10,35 +10,25 @@ import {
 const locale = detectLocale();
 const t = (key: NamespacedTranslationKey<"projectFolders">) =>
 	translate(locale, "projectFolders", key);
+const tCommon = (key: NamespacedTranslationKey<"common">) =>
+	translate(locale, "common", key);
 
 export const PROJECT_FOLDERS_OPTIONS: ViewOption[] = [
 	{
 		type: "group",
-		displayName: t("options.dataProperties.title"),
+		displayName: tCommon("options.grouping.title"),
 		items: [
 			{
 				type: "property",
 				displayName: t("options.dataProperties.iconProperty.title"),
-				key: "iconProperty",
+				key: "groupIconProperty",
 				default: undefined,
 			},
 			{
 				type: "property",
 				displayName: t("options.dataProperties.colorProperty.title"),
-				key: "colorProperty",
+				key: "groupColorProperty",
 				default: undefined,
-			},
-		],
-	},
-	{
-		type: "group",
-		displayName: t("options.display.title"),
-		items: [
-			{
-				type: "toggle",
-				displayName: t("options.display.colorizeFiles.title"),
-				key: "colorizeFiles",
-				default: false,
 			},
 		],
 	},

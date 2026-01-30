@@ -2,8 +2,9 @@ import { type BasesPropertyId, type BasesQueryResult, type BasesViewConfig, Keym
 import { useMemo } from "react";
 
 import { useObsidian } from "@/components/Obsidian/Context";
+import { useConfig } from "@/hooks/use-config";
 import { accent, linear } from "@/lib/colors";
-import { getImage, getTitle, isWikiLink, parseWikilink } from "@/lib/properties";
+import { isWikiLink, parseWikilink } from "@/lib/properties";
 
 import type { Folder } from "../types";
 
@@ -14,12 +15,13 @@ export const useFolders = (
 ): Folder[] => {
   const { app } = useObsidian();
   const accentColor = accent();
-  const imageProperty = config.get("imageProperty") as BasesPropertyId;
-  const colorConfigProperty = (config.get("colorProperty") ?? "note.color") as BasesPropertyId;
-  const iconConfigProperty = (config.get("iconProperty") ?? "note.icon") as BasesPropertyId;
+  const { groupColorProperty, groupIconProperty } = useConfig<{ groupColorProperty: BasesPropertyId; groupIconProperty: BasesPropertyId }>(config, {
+    groupColorProperty: undefined,
+    groupIconProperty: undefined,
+  });
 
-  const [, colorProperty] = colorConfigProperty.split(".");
-  const [, iconProperty] = iconConfigProperty.split(".");
+  const [, colorProperty] = groupColorProperty.split(".");
+  const [, iconProperty] = groupIconProperty.split(".");
 
   return useMemo(() => {
     const folders: Folder[] = [];
@@ -77,9 +79,6 @@ export const useFolders = (
             return {
               id: entry.file.path,
               entry,
-              file: entry.file,
-              image: getImage(app, entry, imageProperty),
-              title: getTitle(entry),
               onClick: (event: React.MouseEvent) => {
                 event.preventDefault();
                 event.stopPropagation();
@@ -93,5 +92,5 @@ export const useFolders = (
       }
     }
     return folders;
-  }, [data, app, accentColor, imageProperty, colorProperty, iconProperty]);
+  }, [data, app, accentColor, colorProperty, iconProperty]);
 };

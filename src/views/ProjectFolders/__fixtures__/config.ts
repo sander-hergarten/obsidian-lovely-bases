@@ -3,6 +3,8 @@ import { DEFAULTS as CARD_DEFAULTS } from "@/components/Card/constants";
 import type { ProjectFoldersConfig } from "../types";
 
 export const DEFAULT_CONFIG: ProjectFoldersConfig = {
+  groupIconProperty: undefined,
+  groupColorProperty: undefined,
 	...CARD_DEFAULTS,
 	properties: [
     'note.author',
@@ -159,12 +161,4 @@ export const ROUNDED_SHAPE_CONFIG: ProjectFoldersConfig = {
   badgesFont: undefined,
   titleFont: undefined,
   contentFont: undefined,
-};
-
-// === COLORIZE CONFIGS ===
-
-export const COLORIZED_FILES_CONFIG: ProjectFoldersConfig = {
-	...DEFAULT_CONFIG,
-	colorizeFiles: true,
-	colorProperty: "note.color",
 };

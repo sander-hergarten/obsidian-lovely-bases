@@ -21,7 +21,6 @@ import {
 import PROJECT_FOLDERS_VIEW from ".";
 import {
 	CIRCLE_SHAPE_CONFIG,
-	COLORIZED_FILES_CONFIG,
 	DEFAULT_CONFIG,
 	FULL_CONFIG,
 	HORIZONTAL_LAYOUT_CONFIG,
@@ -34,6 +33,8 @@ import type { ProjectFoldersConfig } from "./types";
 
 const t = (key: NamespacedTranslationKey<"projectFolders">) =>
 	translate("en", "projectFolders", key);
+const tCommon = (key: NamespacedTranslationKey<"common">) =>
+	translate("en", "common", key);
 
 const View = createViewRenderer<ProjectFoldersConfig>(ProjectFoldersView);
 
@@ -63,38 +64,28 @@ const meta = {
 		},
 	},
 	argTypes: {
-		...CardMeta.argTypes,
 		// Folder-specific Properties
-		iconProperty: {
+		groupIconProperty: {
 			control: "text",
 			name: t("options.dataProperties.iconProperty.title"),
 			description:
 				"The property that contains the icon to display on folders.",
 			table: {
-				category: t("options.dataProperties.title"),
+				category: tCommon("options.grouping.title"),
 				defaultValue: { summary: "note.icon" },
 			},
 		},
-		colorProperty: {
+		groupColorProperty: {
 			control: "text",
 			name: t("options.dataProperties.colorProperty.title"),
 			description:
 				"The property that contains the color to display on folders.",
 			table: {
-				category: t("options.dataProperties.title"),
+				category: tCommon("options.grouping.title"),
 				defaultValue: { summary: "note.color" },
 			},
 		},
-		colorizeFiles: {
-			control: "boolean",
-			name: t("options.display.colorizeFiles.title"),
-			description:
-				"Whether to colorize the file cards based on the folder color.",
-			table: {
-				category: t("options.display.title"),
-				defaultValue: { summary: "false" },
-			},
-		},
+		...CardMeta.argTypes,
 		// Internal props (disabled)
 		data: {
 			table: {
@@ -281,30 +272,3 @@ overlayContentVisibility: hover
 	},
 };
 
-// === COLORIZE STORIES ===
-
-export const ColorizedFiles: Story = {
-	parameters: {
-		docs: {
-			description: {
-				story: `Enable colorization of file cards based on the folder color for a more cohesive visual experience.
-
-\`\`\`yml
-colorizeFiles: true
-colorProperty: note.color
-\`\`\`
-`,
-			},
-		},
-	},
-	args: {
-		groupedData: [
-			aBasesEntryGroup("[[Movies]]", MOVIES_ENTRIES),
-			aBasesEntryGroup("[[Books]]", BOOK_ENTRIES),
-			aBasesEntryGroup("[[People]]", PERSON_ENTRIES),
-			aBasesEntryGroup("[[Applications]]", APPLICATION_ENTRIES),
-		],
-		onEntryClick: fn(),
-		...COLORIZED_FILES_CONFIG,
-	},
-};

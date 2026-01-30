@@ -14,7 +14,6 @@ const ASPECT_RATIO = 4 / 3;
 type Props = {
 	width?: number;
 	colors?: ReturnType<typeof useFolderColors>;
-	colorizeFiles: boolean;
 	icon: string | null;
 	files: File[];
 	gradient?: string;
@@ -26,7 +25,6 @@ type Props = {
 const AnimatedFolder: React.FC<Props> = ({
 	width = BASE_WIDTH,
 	colors,
-	colorizeFiles,
 	icon,
 	files,
 	gradient,
@@ -103,7 +101,7 @@ const AnimatedFolder: React.FC<Props> = ({
 			>
 				{previewFiles.map((file, index) => (
 					<FolderCard
-						backgroundColor={colorizeFiles ? fileColor : undefined}
+						backgroundColor={fileColor}
 						key={file.id}
 						ref={(el) => {
 							cardRefs.current[index] = el;

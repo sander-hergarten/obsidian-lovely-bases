@@ -17,7 +17,6 @@ const ASPECT_RATIO = 7 / 10;
 type Props = {
 	width?: number;
 	colors?: NotebookColors;
-	colorizeFiles: boolean;
 	icon: string | null;
 	files: File[];
 	gradient?: string;
@@ -30,7 +29,6 @@ type Props = {
 const AnimatedNotebook: React.FC<Props> = ({
 	width = BASE_WIDTH,
 	colors,
-	colorizeFiles,
 	icon,
 	files,
 	gradient,
@@ -131,7 +129,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 				>
 					{previewFiles.map((file, index) => (
 						<NotebookCard
-							backgroundColor={colorizeFiles ? fileColor : undefined}
+							backgroundColor={fileColor}
 							key={file.id}
 							ref={(el) => {
 								cardRefs.current[index] = el;
