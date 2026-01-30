@@ -76,6 +76,7 @@ export const useFolders = (
           ...group.entries.map((entry) => {
             return {
               id: entry.file.path,
+              entry,
               file: entry.file,
               image: getImage(app, entry, imageProperty),
               title: getTitle(entry),

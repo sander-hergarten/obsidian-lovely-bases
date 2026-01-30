@@ -4,7 +4,7 @@ import { Providers } from "@/stories/decorators";
 
 import type Folder from "../";
 
-import FolderMeta, { createMockFiles, type Story } from "./meta";
+import FolderMeta, { createMockFiles, DEFAULT_FOLDER_CARD_CONFIG, type Story } from "./meta";
 
 const meta = {
 	...FolderMeta,
@@ -52,15 +52,6 @@ export const ColorizedFiles: Story = {
 		colorizeFiles: true,
 		gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
 		files: createMockFiles(5),
-	},
-};
-
-export const WithoutImages: Story = {
-	name: "Without Images",
-	args: {
-		icon: "file-text",
-		colorizeFiles: false,
-		files: createMockFiles(5, false),
 	},
 };
 
@@ -138,5 +129,75 @@ export const SmallSize: Story = {
 		icon: "folder",
 		colorizeFiles: false,
 		files: createMockFiles(5),
+	},
+};
+
+export const PolaroidCards: Story = {
+	name: "Polaroid Card Layout",
+	args: {
+		icon: "camera",
+		colorizeFiles: false,
+		gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+		files: createMockFiles(5),
+		cardConfig: {
+			...DEFAULT_FOLDER_CARD_CONFIG,
+			layout: "polaroid",
+		},
+	},
+};
+
+export const VerticalCards: Story = {
+	name: "Vertical Card Layout",
+	args: {
+		icon: "layers",
+		colorizeFiles: false,
+		gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+		files: createMockFiles(5),
+		cardConfig: {
+			...DEFAULT_FOLDER_CARD_CONFIG,
+			layout: "vertical",
+		},
+	},
+};
+
+export const CircleCards: Story = {
+	name: "Circle Shape Cards",
+	args: {
+		icon: "circle",
+		colorizeFiles: false,
+		gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+		files: createMockFiles(5),
+		cardConfig: {
+			...DEFAULT_FOLDER_CARD_CONFIG,
+			shape: "circle",
+		},
+	},
+};
+
+export const RoundedCards: Story = {
+	name: "Rounded Shape Cards",
+	args: {
+		icon: "square",
+		colorizeFiles: false,
+		gradient: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
+		files: createMockFiles(5),
+		cardConfig: {
+			...DEFAULT_FOLDER_CARD_CONFIG,
+			shape: "rounded",
+		},
+	},
+};
+
+export const NoTitleCards: Story = {
+	name: "Cards Without Title",
+	args: {
+		icon: "image",
+		colorizeFiles: false,
+		gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+		files: createMockFiles(5),
+		cardConfig: {
+			...DEFAULT_FOLDER_CARD_CONFIG,
+			showTitle: false,
+		},
 	},
 };

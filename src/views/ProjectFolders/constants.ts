@@ -1,25 +1,15 @@
 import type { ViewOption } from "obsidian";
 
+import { CARD_CONFIG_OPTIONS } from "@/components/Card/constants";
 import {
 	detectLocale,
 	type NamespacedTranslationKey,
 	translate,
 } from "@/lib/i18n";
 
-import type { ProjectFoldersConfig } from "./types";
-
 const locale = detectLocale();
 const t = (key: NamespacedTranslationKey<"projectFolders">) =>
 	translate(locale, "projectFolders", key);
-
-export const DEFAULTS: ProjectFoldersConfig = {
-	/* Data Properties */
-	imageProperty: undefined,
-	iconProperty: undefined,
-	colorProperty: undefined,
-	/* Display */
-	colorizeFiles: false,
-};
 
 export const PROJECT_FOLDERS_OPTIONS: ViewOption[] = [
 	{
@@ -28,21 +18,15 @@ export const PROJECT_FOLDERS_OPTIONS: ViewOption[] = [
 		items: [
 			{
 				type: "property",
-				displayName: t("options.dataProperties.imageProperty.title"),
-				key: "imageProperty",
-				default: DEFAULTS.imageProperty,
-			},
-			{
-				type: "property",
 				displayName: t("options.dataProperties.iconProperty.title"),
 				key: "iconProperty",
-				default: DEFAULTS.iconProperty,
+				default: undefined,
 			},
 			{
 				type: "property",
 				displayName: t("options.dataProperties.colorProperty.title"),
 				key: "colorProperty",
-				default: DEFAULTS.colorProperty,
+				default: undefined,
 			},
 		],
 	},
@@ -54,8 +38,9 @@ export const PROJECT_FOLDERS_OPTIONS: ViewOption[] = [
 				type: "toggle",
 				displayName: t("options.display.colorizeFiles.title"),
 				key: "colorizeFiles",
-				default: DEFAULTS.colorizeFiles,
+				default: false,
 			},
 		],
 	},
+	...CARD_CONFIG_OPTIONS,
 ];

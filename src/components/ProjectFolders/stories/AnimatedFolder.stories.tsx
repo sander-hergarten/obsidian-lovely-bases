@@ -58,16 +58,6 @@ export const ColorizedFiles: Story = {
 	},
 };
 
-export const WithoutImages: Story = {
-	name: "Without Images",
-	args: {
-		title: "Text Notes",
-		icon: "file-text",
-		colorizeFiles: false,
-		files: createMockFiles(5, false),
-	},
-};
-
 export const SingleFile: Story = {
 	name: "Single File",
 	args: {

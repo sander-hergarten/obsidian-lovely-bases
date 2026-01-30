@@ -1,0 +1,170 @@
+import { DEFAULTS as CARD_DEFAULTS } from "@/components/Card/constants";
+
+import type { ProjectFoldersConfig } from "../types";
+
+export const DEFAULT_CONFIG: ProjectFoldersConfig = {
+	...CARD_DEFAULTS,
+	properties: [
+    'note.author',
+  ],
+};
+
+export const FULL_CONFIG: ProjectFoldersConfig = {
+	...DEFAULT_CONFIG,
+	layout: "horizontal",
+	shape: "square",
+	cardSize: 400,
+	imageProperty: "note.banner",
+	imageAspectRatio: 0.85,
+	imageFit: "cover",
+	showTitle: true,
+	showPropertyTitles: false,
+	properties: ["note.author", "note.published", "note.excerpt"],
+	reverseContent: true,
+  linkProperty: undefined,
+  titleFont: 'Impact, Georgia, Arial Black, Trebuchet MS',
+  contentFont: 'Arial, Verdana, Tahoma, Segoe UI, Roboto',
+  badgesFont: 'Comic Sans MS, Courier New, Consolas, Arial Narrow, Impact',
+  iconProperty: 'note.icon',
+  backgroundColorProperty: 'note.color',
+  backgroundColorApplyTo: 'both',
+};
+
+export const HORIZONTAL_LAYOUT_CONFIG: ProjectFoldersConfig = {
+	...DEFAULT_CONFIG,
+  layout: 'horizontal',
+  shape: 'square',
+  properties: [
+    'note.author',
+    'note.published',
+    'note.excerpt',
+  ],
+  imageProperty: 'note.banner',
+  imageAspectRatio: 0.85,
+  cardSize: 400,
+  imageFit: 'cover',
+  reverseContent: false,
+  showPropertyTitles: false,
+  showTitle: true,
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
+  linkProperty: undefined,
+};
+
+export const OVERLAY_LAYOUT_CONFIG: ProjectFoldersConfig = {
+	...DEFAULT_CONFIG,
+  layout: 'overlay',
+  shape: 'square',
+  hoverProperty: undefined,
+  hoverStyle: 'none',
+  properties: [],
+  imageProperty: 'note.cover',
+  imageAspectRatio: 1.5,
+  cardSize: 340,
+  imageFit: 'cover',
+  reverseContent: false,
+  showPropertyTitles: false,
+  showTitle: true,
+  showContent: true,
+  contentMaxLength: 200,
+  overlayContentVisibility: 'hover',
+  badgeProperty: 'note.rating',
+  badgeIcon: 'star',
+  badgeColor: '#D0A215',
+  tilt: CARD_DEFAULTS.tilt,
+  linkProperty: undefined,
+  backgroundColorProperty: undefined,
+  backgroundColorApplyTo: undefined,
+  iconProperty: undefined,
+  badgesFont: undefined,
+  titleFont: undefined,
+  contentFont: undefined,
+};
+
+export const POLAROID_LAYOUT_CONFIG: ProjectFoldersConfig = {
+  ...DEFAULT_CONFIG,
+  layout: 'polaroid',
+  cardSize: 280,
+  imageAspectRatio: 1,
+  imageProperty: 'note.banner',
+  showTitle: true,
+  showPropertyTitles: false,
+  properties: [],
+  tilt: CARD_DEFAULTS.tilt,
+  linkProperty: undefined,
+  backgroundColorProperty: undefined,
+  backgroundColorApplyTo: undefined,
+  iconProperty: undefined,
+  badgesFont: undefined,
+  titleFont: undefined,
+  contentFont: undefined,
+};
+
+// === SHAPE CONFIGS ===
+
+export const CIRCLE_SHAPE_CONFIG: ProjectFoldersConfig = {
+  layout: 'vertical',
+  shape: 'circle',
+  hoverProperty: undefined,
+  hoverStyle: 'none',
+  properties: [],
+  imageProperty: 'note.cover',
+  imageAspectRatio: 1,
+  cardSize: 340,
+  imageFit: 'cover',
+  reverseContent: false,
+  showPropertyTitles: false,
+  showTitle: false,
+  showContent: false,
+  contentMaxLength: 200,
+  overlayContentVisibility: 'always',
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
+  tilt: CARD_DEFAULTS.tilt,
+  linkProperty: undefined,
+  backgroundColorProperty: undefined,
+  backgroundColorApplyTo: undefined,
+  iconProperty: undefined,
+  badgesFont: undefined,
+  titleFont: undefined,
+  contentFont: undefined,
+};
+
+export const ROUNDED_SHAPE_CONFIG: ProjectFoldersConfig = {
+  layout: 'overlay',
+  shape: 'rounded',
+  hoverProperty: undefined,
+  hoverStyle: 'none',
+  properties: [],
+  imageProperty: 'note.cover',
+  imageAspectRatio: 1,
+  cardSize: 340,
+  imageFit: 'cover',
+  reverseContent: false,
+  showPropertyTitles: false,
+  showTitle: true,
+  showContent: false,
+  contentMaxLength: 200,
+  overlayContentVisibility: 'hover',
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
+  tilt: CARD_DEFAULTS.tilt,
+  linkProperty: undefined,
+  backgroundColorProperty: undefined,
+  backgroundColorApplyTo: undefined,
+  iconProperty: undefined,
+  badgesFont: undefined,
+  titleFont: undefined,
+  contentFont: undefined,
+};
+
+// === COLORIZE CONFIGS ===
+
+export const COLORIZED_FILES_CONFIG: ProjectFoldersConfig = {
+	...DEFAULT_CONFIG,
+	colorizeFiles: true,
+	colorProperty: "note.color",
+};

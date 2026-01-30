@@ -1,8 +1,9 @@
 import type { BasesPropertyId } from "obsidian";
 
-export type ProjectFoldersConfig = {
-	/* Data Properties */
-	imageProperty?: BasesPropertyId;
+import type { CardConfig } from "@/components/Card/types";
+
+export type ProjectFoldersConfig = CardConfig & {
+	/* Folder Properties */
 	iconProperty?: BasesPropertyId;
 	colorProperty?: BasesPropertyId;
 	/* Display */

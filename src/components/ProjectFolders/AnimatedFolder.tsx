@@ -1,5 +1,7 @@
+import type { BasesViewConfig } from "obsidian";
 import { type CSSProperties, type MouseEventHandler, useState } from "react";
 
+import type { CardConfig } from "@/components/Card/types";
 import { gradientColors } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +17,8 @@ type Props = {
 	className?: string;
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
+	cardConfig: CardConfig;
+	config: BasesViewConfig;
 };
 
 const AnimatedFolder: React.FC<Props> = ({
@@ -25,6 +29,8 @@ const AnimatedFolder: React.FC<Props> = ({
 	className,
 	gradient,
 	onClick,
+	cardConfig,
+	config,
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const colors = gradient ? gradientColors(gradient) : [];
@@ -61,6 +67,8 @@ const AnimatedFolder: React.FC<Props> = ({
         files={files}
         gradient={gradient}
         onClick={onClick}
+        cardConfig={cardConfig}
+        config={config}
         />
 			<div className="text-center">
 				<h3

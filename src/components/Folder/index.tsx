@@ -1,8 +1,10 @@
+import type { BasesViewConfig } from "obsidian";
 import { type MouseEventHandler, useRef, useState } from "react";
 
+import type { CardConfig } from "@/components/Card/types";
 import LucideIcon from "@/components/Obsidian/LucideIcon";
 
-import FileCard from "./FileCard";
+import FolderCard from "./FolderCard";
 import { useFolderColors } from "./hooks/use-folder-colors";
 import type { File } from "./types";
 
@@ -17,6 +19,8 @@ type Props = {
 	files: File[];
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
+	cardConfig: CardConfig;
+	config: BasesViewConfig;
 };
 
 const AnimatedFolder: React.FC<Props> = ({
@@ -27,6 +31,8 @@ const AnimatedFolder: React.FC<Props> = ({
 	files,
 	gradient,
 	onClick,
+	cardConfig,
+	config,
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -96,15 +102,15 @@ const AnimatedFolder: React.FC<Props> = ({
 				}}
 			>
 				{previewFiles.map((file, index) => (
-					<FileCard
+					<FolderCard
 						backgroundColor={colorizeFiles ? fileColor : undefined}
 						key={file.id}
 						ref={(el) => {
 							cardRefs.current[index] = el;
 						}}
-						file={file.file}
-						image={file.image}
-						title={file.title}
+						entry={file.entry}
+						config={config}
+						cardConfig={cardConfig}
 						delay={index * 50}
 						isVisible={isHovered}
 						index={index}

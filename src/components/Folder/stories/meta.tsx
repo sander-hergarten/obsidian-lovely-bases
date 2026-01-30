@@ -1,12 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import iconNodes from "lucide-static/icon-nodes.json";
+import type { BasesEntry, BasesViewConfig } from "obsidian";
 import type { MouseEventHandler } from "react";
 
-import { aFile } from "@/__mocks__/aFile";
+import { MOVIES_ENTRIES } from "@/__fixtures__/entries";
+import { aBasesViewConfig } from "@/__mocks__/aBasesViewConfig";
+import { DEFAULTS as CARD_DEFAULTS } from "@/components/Card/constants";
+import type { CardConfig } from "@/components/Card/types";
+import { getTitle } from "@/lib/properties";
 import Providers from "@/stories/decorators/Providers";
 
 import Folder from "../";
 import type { File } from "../types";
+
+const DEFAULT_CARD_CONFIG: CardConfig = {
+	...CARD_DEFAULTS,
+	imageProperty: "note.cover",
+};
+
+const DEFAULT_CONFIG = aBasesViewConfig({});
 
 type StoryProps = {
 	width?: number;
@@ -15,6 +27,8 @@ type StoryProps = {
 	files: File[];
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
+	cardConfig?: CardConfig;
+	config?: BasesViewConfig;
 };
 
 export const FolderStory = ({
@@ -24,6 +38,8 @@ export const FolderStory = ({
 	files,
 	gradient,
 	onClick,
+	cardConfig = DEFAULT_CARD_CONFIG,
+	config = DEFAULT_CONFIG,
 }: StoryProps) => {
 	return (
 		<Folder
@@ -33,38 +49,26 @@ export const FolderStory = ({
 			files={files}
 			gradient={gradient}
 			onClick={onClick}
+			cardConfig={cardConfig}
+			config={config}
 		/>
 	);
 };
 
-export const createMockFiles = (count: number, withImages = true): File[] => {
-	const images = [
-		"https://news.stanford.edu/__data/assets/image/0028/165169/050609-228.jpg",
-		"https://cdn.prod.website-files.com/64808e3805a22fc1ca46ffe9/671de0c11e075a7268aebaf1_Prompts%20That%20Makes%20Chatgpt%20Write%20like%20a%20Human.webp",
-		"https://stephango.com/assets/covers/40-questions.png",
-		"https://www.jeffsu.org/content/images/2021/03/RANDOM-PICS--2-.png",
-		"https://garden.bradwoods.io/ogImage.jpg",
-	];
-
-	const titles = [
-		"Getting Started with Obsidian",
-		"Mind Mapping Techniques",
-		"Productivity Systems",
-		"Digital Garden Guide",
-		"Note-Taking Best Practices",
-		"Knowledge Management",
-		"Second Brain Method",
-		"Zettelkasten Explained",
-	];
-
-	return Array.from({ length: count }, (_, i) => ({
-		id: `file-${i}`,
-		file: aFile({ basename: titles[i % titles.length] }),
-		image: withImages ? images[i % images.length] : "",
-		title: titles[i % titles.length],
-		onClick: () => console.log(`Clicked file: ${titles[i % titles.length]}`),
+const entriesToFiles = (entries: BasesEntry[]): File[] =>
+	entries.map((entry) => ({
+		id: entry.file.path,
+		entry,
+		file: entry.file,
+		image: entry.getValue("note.cover")?.toString() ?? "",
+		title: getTitle(entry),
+		onClick: () => console.log(`Clicked file: ${getTitle(entry)}`),
 	}));
-};
+
+export const createMockFiles = (count: number): File[] =>
+	entriesToFiles(MOVIES_ENTRIES.slice(0, count));
+
+export const DEFAULT_FOLDER_CARD_CONFIG = DEFAULT_CARD_CONFIG;
 
 export const meta = {
 	title: "Design System/Folder",

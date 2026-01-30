@@ -1,9 +1,10 @@
-import type { TFile } from "obsidian";
+import type { BasesEntry, TFile } from "obsidian";
 import type { MouseEventHandler } from "react";
 
 
 export type File = {
 	id: string;
+	entry: BasesEntry;
 	file: TFile;
 	image: string;
 	title: string;
