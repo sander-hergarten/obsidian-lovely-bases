@@ -71,6 +71,7 @@ const Content = memo(({ entry, cardConfig, colors, config, isOverlayMode }: Prop
             className={cn(
               "text-foreground text-sm line-clamp-6 overflow-hidden",
             )}
+            showEllipsis
             style={{
               fontFamily: contentFont,
             } as CSSProperties}

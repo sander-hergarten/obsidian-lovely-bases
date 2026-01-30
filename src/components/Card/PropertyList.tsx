@@ -81,6 +81,8 @@ const PropertyList = memo(
 	({ entry, cardConfig, config, isOverlayMode }: Props) => {
 		const { properties, showPropertyTitles } = cardConfig;
 
+    if (properties.length === 0) return null;
+
 		return (
 			<div className="flex flex-col gap-2 overflow-y-auto">
 				{properties.map((property) => {

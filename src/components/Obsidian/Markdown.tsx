@@ -11,14 +11,17 @@ type Props = {
   maxLength?: number;
 	file: TFile;
   style?: CSSProperties;
+  showEllipsis?: boolean;
 };
 
-// remove frontmatter from markdown
-const removeFrontmatter = (markdown: string) => {
-  return markdown.replace(/^---\n[\s\S]*?\n---\n?/, "");
+const removeFrontmatter = (markdown: string) => markdown.replace(/^---\n[\s\S]*?\n---\n?/, "")
+
+const getContentToRender = (markdown: string, maxLength: number, showEllipsis: boolean) => {
+  const content = removeFrontmatter(markdown);
+  return content.slice(0, maxLength) + (showEllipsis && content.length > maxLength ? "..." : "");
 };
 
-const Markdown = ({ as = "div", className, file, maxLength, style }: Props) => {
+const Markdown = ({ as = "div", className, file, maxLength, style, showEllipsis = false }: Props) => {
 	const { app, component } = useObsidian();
 
 	const el = useRef<HTMLDivElement>(null);
@@ -35,11 +38,11 @@ const Markdown = ({ as = "div", className, file, maxLength, style }: Props) => {
       // Clear previous content before rendering new content
       el.current.innerHTML = "";
 
-			const contentToRender = maxLength ? removeFrontmatter(md).slice(0, maxLength) : md;
+			const contentToRender = maxLength ? getContentToRender(md, maxLength, showEllipsis) : md;
 
 			void MarkdownRenderer.render(app, contentToRender, el.current, file.path, component);
 		});
-	}, [app, file, component, maxLength]);
+	}, [app, file, component, maxLength, showEllipsis]);
 
 	return createElement(as, { ref: el, className, style });
 };
