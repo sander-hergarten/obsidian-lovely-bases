@@ -4,16 +4,27 @@ import { type CSSProperties, forwardRef, type MouseEventHandler } from "react";
 import Card from "@/components/Card";
 import type { CardConfig } from "@/components/Card/types";
 import { cn } from "@/lib/utils";
-import type { PageStyle } from "./types";
+import type { NotebookColors, PageStyle } from "./types";
 
-// Page patterns matching the notebook background
-export const PAGE_PATTERNS: Record<PageStyle, string> = {
-	plain: "#fbfae8",
-	ruled: "linear-gradient(to bottom, #fbfae8 9px, #e4e4e4 1px)",
-	squared:
-		"linear-gradient(#e4e4e4 1px, transparent 1px), linear-gradient(90deg, #e4e4e4 1px, transparent 1px), #fbfae8",
-	dotted:
-		"linear-gradient(90deg, #fbfae8 10px, transparent 1%) center, linear-gradient(#fbfae8 10px, transparent 1%) center, #999",
+// Generate page patterns using notebook colors
+export const getPagePattern = (
+	pageStyle: PageStyle,
+	colors: NotebookColors,
+): string => {
+	const { pageBg, pagePatternLine, pagePatternDot } = colors;
+
+	switch (pageStyle) {
+		case "plain":
+			return pageBg;
+		case "ruled":
+			return `linear-gradient(to bottom, ${pageBg} 9px, ${pagePatternLine} 1px)`;
+		case "squared":
+			return `linear-gradient(${pagePatternLine} 1px, transparent 1px), linear-gradient(90deg, ${pagePatternLine} 1px, transparent 1px), ${pageBg}`;
+		case "dotted":
+			return `linear-gradient(90deg, ${pageBg} 10px, transparent 1%) center, linear-gradient(${pageBg} 10px, transparent 1%) center, ${pagePatternDot}`;
+		default:
+			return pageBg;
+	}
 };
 
 export const PAGE_BACKGROUND_SIZES: Record<PageStyle, string | undefined> = {
@@ -37,6 +48,7 @@ type NotebookCardProps = {
 	notebookWidth: number;
 	notebookHeight: number;
 	isPageHovered: boolean;
+	colors: NotebookColors;
 };
 
 const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
@@ -55,6 +67,7 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 			notebookWidth,
 			notebookHeight,
 			isPageHovered,
+			colors,
 		},
 		ref,
 	) => {
@@ -95,7 +108,7 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 					opacity: isVisible ? 1 : 0,
 					transition: `all 500ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
 					zIndex: isPageHovered ? 50 + index : 10 + index,
-					background: PAGE_PATTERNS[pageStyle],
+					background: getPagePattern(pageStyle, colors),
 					backgroundSize: PAGE_BACKGROUND_SIZES[pageStyle],
 					borderRadius: `${2 * scaleFactor}px ${12 * scaleFactor}px ${12 * scaleFactor}px ${2 * scaleFactor}px`,
 					boxShadow: isPageHovered

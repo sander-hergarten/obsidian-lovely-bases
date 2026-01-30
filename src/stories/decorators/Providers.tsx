@@ -22,7 +22,7 @@ const Providers: Decorator = (Story, ctx) => {
     <div ref={containerRef} className={cn(
       'h-full w-full',
       themeClasses,
-      'bg-background',
+      'app-container bg-background',
     )}>
       {mounted && containerRef.current && (
         <ObsidianProvider

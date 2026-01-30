@@ -5,7 +5,10 @@ import type { CardConfig } from "@/components/Card/types";
 import LucideIcon from "@/components/Obsidian/LucideIcon";
 import { cn } from "@/lib/utils";
 import { useNotebookColors } from "./hooks/use-notebook-colors";
-import NotebookCard, { PAGE_BACKGROUND_SIZES, PAGE_PATTERNS } from "./NotebookCard";
+import NotebookCard, {
+	getPagePattern,
+	PAGE_BACKGROUND_SIZES,
+} from "./NotebookCard";
 import type { File, NotebookColors, PageStyle } from "./types";
 
 const BASE_WIDTH = 128;
@@ -53,6 +56,10 @@ const AnimatedNotebook: React.FC<Props> = ({
 		iconColor,
 		fileColor,
 	} = notebookColors;
+
+	// Get page pattern based on style and colors
+	const pagePattern = getPagePattern(pageStyle, notebookColors);
+	const pageBackgroundSize = PAGE_BACKGROUND_SIZES[pageStyle];
 
 	const previewFiles = files.slice(0, 5);
 
@@ -102,11 +109,11 @@ const AnimatedNotebook: React.FC<Props> = ({
 				<div
 					className="absolute overflow-hidden"
 					style={{
-						width,
+						width: width * 0.92,
 						height,
 						borderRadius: `${5 * scaleFactor}px ${16 * scaleFactor}px ${16 * scaleFactor}px ${5 * scaleFactor}px`,
-						background: PAGE_PATTERNS[pageStyle],
-						backgroundSize: PAGE_BACKGROUND_SIZES[pageStyle],
+						background: pagePattern,
+						backgroundSize: pageBackgroundSize,
 						zIndex: 0,
 					}}
 				/>
@@ -141,6 +148,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 							notebookWidth={width}
 							notebookHeight={height}
 							isPageHovered={hoveredPageIndex === index}
+							colors={notebookColors}
 						/>
 					))}
 				</div>
@@ -154,6 +162,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 					const tabTop = height * 0.25 + index * (tabHeight + tabSpacing);
 					// Position from left edge: page width (since pages start at left: 0)
 					const tabLeft = pageWidth;
+          const tabColor = notebookColors[`tab${index + 1}Color`];
 
 					return (
 						<div
@@ -169,8 +178,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 								height: tabHeight,
 								top: tabTop,
 								left: tabLeft,
-								background: PAGE_PATTERNS[pageStyle],
-								backgroundSize: PAGE_BACKGROUND_SIZES[pageStyle],
+								background: tabColor,
 								borderRadius: `0 ${5 * scaleFactor}px ${5 * scaleFactor}px 0`,
 								boxShadow: hoveredPageIndex === index
 									? "2px 1px 6px rgba(0,0,0,0.2)"

@@ -12,16 +12,24 @@ export const getNotebookColors = (
 	gradient = `linear-gradient(135deg, ${accent()} 0%, ${lighten(accent() || "#000", 0.2)} 100%)`,
 ): NotebookColors => {
 	const colors = gradientColors(gradient);
-	const primaryColor = colors[0] || "#cc4b48";
+	const primaryColor = colors[0] || accent();
 
 	const coverBg = primaryColor;
 	const elasticBand = primaryColor;
 	const elasticBandDark = darken(primaryColor, 0.15);
-	const labelBg = "#e8e8e0";
-	const labelAccent = "#cddc39";
-	const pageBg = "#fbfae8";
+	const labelBg = "var(--card)";
+	const labelAccent = "var(--color-muted)";
+	const pageBg = lighten(primaryColor, 0.85);
+	const pagePatternLine = "var(--color-muted)";
+	const pagePatternDot = "var(--color-muted)";
 	const iconColor = desaturate(primaryColor, 0.2);
 	const fileColor = saturate(colors[1] || primaryColor, 0.2);
+
+  const tab1Color = desaturate(primaryColor, 0.2);
+  const tab2Color = desaturate(primaryColor, 0.4);
+  const tab3Color = desaturate(primaryColor, 0.6);
+  const tab4Color = desaturate(primaryColor, 0.8);
+  const tab5Color = desaturate(primaryColor, 1.0);
 
 	return {
 		coverBg,
@@ -30,7 +38,14 @@ export const getNotebookColors = (
 		labelBg,
 		labelAccent,
 		pageBg,
+		pagePatternLine,
+		pagePatternDot,
 		iconColor,
 		fileColor,
+		tab1Color,
+		tab2Color,
+		tab3Color,
+		tab4Color,
+		tab5Color,
 	};
 };

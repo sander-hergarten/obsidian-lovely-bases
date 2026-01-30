@@ -10,6 +10,13 @@ export type NotebookColors = {
 	labelBg: string;
 	labelAccent: string;
 	pageBg: string;
+	pagePatternLine: string;
+	pagePatternDot: string;
 	iconColor: string;
 	fileColor: string;
+  tab1Color: string;
+  tab2Color: string;
+  tab3Color: string;
+  tab4Color: string;
+  tab5Color: string;
 };
