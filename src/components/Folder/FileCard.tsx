@@ -4,6 +4,9 @@ import { forwardRef, type MouseEventHandler } from "react";
 import Markdown from "@/components/Obsidian/Markdown";
 import { cn } from "@/lib/utils";
 
+const BASE_CARD_WIDTH = 80;
+const BASE_CARD_HEIGHT = 112;
+
 type FileCardProps = {
 	image: string;
 	file: TFile;
@@ -14,6 +17,7 @@ type FileCardProps = {
 	totalCount: number;
 	onClick: MouseEventHandler<HTMLDivElement>;
 	backgroundColor?: string;
+	scaleFactor?: number;
 };
 
 const FileCard = forwardRef<HTMLDivElement, FileCardProps>(
@@ -28,6 +32,7 @@ const FileCard = forwardRef<HTMLDivElement, FileCardProps>(
 			totalCount,
 			onClick,
 			backgroundColor,
+			scaleFactor = 1,
 		},
 		ref,
 	) => {
@@ -35,24 +40,31 @@ const FileCard = forwardRef<HTMLDivElement, FileCardProps>(
 		const factor = totalCount > 1 ? (index - middleIndex) / middleIndex : 0;
 
 		const rotation = factor * 25;
-		const translationX = factor * 85;
-		const translationY = Math.abs(factor) * 12;
+		const translationX = factor * 85 * scaleFactor;
+		const translationY = Math.abs(factor) * 12 * scaleFactor;
+
+		const cardWidth = BASE_CARD_WIDTH * scaleFactor;
+		const cardHeight = BASE_CARD_HEIGHT * scaleFactor;
+
+		const fontSize = 8 * scaleFactor;
+		const titleFontSize = 12 * scaleFactor;
+		const padding = 3 * scaleFactor;
 
 		return (
 			<div
 				ref={ref}
-				className={cn(
-					"absolute w-20 h-28 cursor-pointer group/card hover:z-90",
-				)}
+				className={cn("absolute cursor-pointer group/card hover:z-90")}
 				style={{
+					width: cardWidth,
+					height: cardHeight,
 					transform: isVisible
-						? `translateY(calc(-100px + ${translationY}px)) translateX(${translationX}px) rotate(${rotation}deg) scale(1)`
+						? `translateY(calc(${-100 * scaleFactor}px + ${translationY}px)) translateX(${translationX}px) rotate(${rotation}deg) scale(1)`
 						: "translateY(0px) translateX(0px) rotate(0deg) scale(0.4)",
 					opacity: isVisible ? 1 : 0,
 					transition: `all 700ms cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
 					zIndex: 10 + index,
-					left: "-40px",
-					top: "-56px",
+					left: -cardWidth / 2,
+					top: -cardHeight / 2,
 				}}
 				onClick={onClick}
 			>
@@ -77,9 +89,13 @@ const FileCard = forwardRef<HTMLDivElement, FileCardProps>(
 					) : (
 						<div
 							className={cn(
-								"w-full h-full text-[8px] px-[3px]",
+								"w-full h-full",
 								backgroundColor ? "text-white" : "text-foreground",
 							)}
+							style={{
+								fontSize,
+								padding: `0 ${padding}px`,
+							}}
 						>
 							<Markdown maxLength={100} file={file} />
 						</div>
@@ -87,9 +103,13 @@ const FileCard = forwardRef<HTMLDivElement, FileCardProps>(
 					<div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent" />
 					<p
 						className={cn(
-							"absolute bottom-0 m-0 px-[3px] text-xs truncate drop-shadow-md shadow-white backdrop-blur-md",
+							"absolute bottom-0 m-0 truncate drop-shadow-md shadow-white backdrop-blur-md",
 							backgroundColor ? "text-white" : "text-foreground",
 						)}
+						style={{
+							fontSize: titleFontSize,
+							padding: `0 ${padding}px`,
+						}}
 					>
 						{title}
 					</p>

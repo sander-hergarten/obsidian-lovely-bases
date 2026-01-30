@@ -9,31 +9,28 @@ import Folder from "../";
 import type { File } from "../types";
 
 type StoryProps = {
+	width?: number;
 	colorizeFiles: boolean;
-	title: string;
 	icon: string | null;
 	files: File[];
-	className?: string;
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
 };
 
 export const FolderStory = ({
+	width,
 	colorizeFiles,
-	title,
 	icon,
 	files,
-	className,
 	gradient,
 	onClick,
 }: StoryProps) => {
 	return (
 		<Folder
+			width={width}
 			colorizeFiles={colorizeFiles}
-			title={title}
 			icon={icon}
 			files={files}
-			className={className}
 			gradient={gradient}
 			onClick={onClick}
 		/>
@@ -77,13 +74,14 @@ export const meta = {
 	},
 	tags: ["internal"],
 	argTypes: {
-		title: {
-			control: "text",
-			name: "Folder Title",
-			description: "The title displayed below the folder.",
+		width: {
+			control: { type: "range", min: 64, max: 512, step: 16 },
+			name: "Width",
+			description:
+				"Width of the folder in pixels. Height is calculated automatically using 4:3 aspect ratio.",
 			table: {
-				category: "Content",
-				defaultValue: { summary: "My Folder" },
+				category: "Size",
+				defaultValue: { summary: "128" },
 			},
 		},
 		icon: {
@@ -114,11 +112,6 @@ export const meta = {
 			},
 		},
 		files: {
-			table: {
-				disable: true,
-			},
-		},
-		className: {
 			table: {
 				disable: true,
 			},
