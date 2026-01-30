@@ -199,8 +199,6 @@ const HeatmapCalendarView = ({
     });
   }, [data, viewConfig.dateProperty, viewConfig.trackProperty, viewConfig.trackType, viewConfig.minValue, viewConfig.maxValue]);
 
-  console.log(groups[0].entries);
-
   return (
     <Container isEmbedded={isEmbedded} style={{ userSelect: "none" }}>
       {groups.map((g) => (
