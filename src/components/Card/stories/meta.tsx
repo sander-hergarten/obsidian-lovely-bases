@@ -14,12 +14,14 @@ const t = (key: NamespacedTranslationKey<"card">) =>
   translate("en", "card", key);
 
 type StoryProps = {
+  adaptToSize?: boolean;
   className?: string;
   entry: BasesEntry;
   isDraggable?: boolean;
 } & CardConfig;
 
 export const CardStory = ({
+  adaptToSize = false,
   className,
   entry,
   isDraggable = false,
@@ -28,6 +30,7 @@ export const CardStory = ({
   const obsConfig = aBasesViewConfig(config);
   return (
     <Card
+      adaptToSize={adaptToSize}
       className={className}
       entry={entry}
       config={obsConfig}

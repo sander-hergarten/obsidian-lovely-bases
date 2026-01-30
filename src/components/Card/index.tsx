@@ -17,24 +17,25 @@ import Image from "./Image";
 import type { CardConfig } from "./types";
 
 type Props = CardConfig & {
+  adaptToSize?: boolean;
 	className?: string;
 	entry: BasesEntry;
 	config: BasesViewConfig;
 	isDraggable?: boolean;
 };
 
-const cardVariants = cva(
-	"relative shadow-md overflow-hidden transition-all hover:shadow-lg cursor-pointer border group box-border",
+const cardContentVariants = cva(
+  "relative shadow-md overflow-hidden transition-all hover:shadow-lg cursor-pointer border group box-border flex h-full",
 	{
-		variants: {
+    variants: {
       layout: {
         horizontal: "flex flex-row h-full bg-(--bases-cards-background) border-border",
         vertical: "flex flex-col h-full bg-(--bases-cards-background) border-border",
         overlay: "bg-(--bases-cards-background) border-border",
-        polaroid: "flex flex-col h-full border-10 border-b-28",
+        polaroid: "flex flex-col h-full"
       },
 			shape: {
-				square: "rounded",
+				square: "",
 				circle: "rounded-full",
 				rounded: "rounded-[20%]",
 			},
@@ -46,27 +47,52 @@ const cardVariants = cva(
         true: "",
         false: "",
       },
-		},
+      adaptToSize: {
+        true: "",
+        false: "",
+      },
+    },
     compoundVariants: [
+      {
+        shape: "square",
+        adaptToSize: false,
+        class: "rounded"
+      },
+      {
+        shape: "square",
+        adaptToSize: true,
+        class: "@[0px]/lovely-card:rounded-sm @6xs/lovely-card:rounded-md  @4xs/lovely-card:rounded"
+      },
       {
         layout: "polaroid",
         withBgColor: true,
         class: "bg-card border-card",
       },
+      {
+        layout: "polaroid",
+        adaptToSize: false,
+        class: "border-10 border-b-28",
+      },
+      {
+        layout: "polaroid",
+        adaptToSize: true,
+        class: "@[0px]/lovely-card:border-4 @[0px]/lovely-card:border-b-10 @8xs/lovely-card:border-b-13 @7xs/lovely-card:border-b-15 @6xs/lovely-card:border-4 @6xs/lovely-card:border-b-16 @5xs/lovely-card:border-5 @5xs/lovely-card:border-b-17 @4xs/lovely-card:border-5 @4xs/lovely-card:border-b-18 @3xs/lovely-card:border-6 @3xs/lovely-card:border-b-20 @2xs/lovely-card:border-7 @2xs/lovely-card:border-b-22 @xs/lovely-card:border-8 @xs/lovely-card:border-b-24 @sm/lovely-card:border-10 @sm/lovely-card:border-b-28",
+      }
     ],
 		defaultVariants: {
 			shape: DEFAULTS.shape,
       layout: DEFAULTS.layout,
 			tilt: DEFAULTS.tilt,
       withBgColor: false,
+      adaptToSize: false,
 		},
-	},
+  },
 );
 
 const DRAG_THRESHOLD = 5;
 
 const Card = memo(
-	({ className, entry, config, isDraggable = false, ...cardConfig }: Props) => {
+	({ adaptToSize = false, className, entry, config, isDraggable = false, ...cardConfig }: Props) => {
     const [isHovered, setIsHovered] = useState(false);
 		const dragStartPos = useRef<{ x: number; y: number } | null>(null);
 		const linkRef = useRef<HTMLAnchorElement>(null);
@@ -96,7 +122,8 @@ const Card = memo(
 		const onMouseEnter = () => setIsHovered(true);
 		const onMouseLeave = () => setIsHovered(false);
 
-    const classes = cardVariants({
+    const contentClasses = cardContentVariants({
+      adaptToSize,
       layout: cardConfig.layout,
       shape: cardConfig.shape,
       tilt: cardConfig.tilt,
@@ -109,107 +136,120 @@ const Card = memo(
 		);
 
 		return (
-			<div
-				data-testid="lovely-card"
+      <div
+        data-testid="lovely-card-container"
         data-layout={cardConfig.layout}
-				className={cn(
-					classes,
-					className,
-				)}
+        className="@container/lovely-card relative flex h-full"
 				style={{
-					width: cardConfig.cardSize,
-          ...(cardConfig.layout === "polaroid" ? { backgroundColor: colors.contentBackground, borderColor: colors.contentBackground } : undefined),
-					...(isOverlay && { "height": `${cardConfig.cardSize * cardConfig.imageAspectRatio}px` }),
+          width: cardConfig.cardSize,
+          ...(isOverlay && { "height": `${cardConfig.cardSize * cardConfig.imageAspectRatio}px` }),
 				} as React.CSSProperties}
 				onPointerDown={onPointerDown}
 				onClick={handleClick}
 				onMouseOver={handleEntryHover}
 				onMouseEnter={onMouseEnter}
-				onMouseLeave={onMouseLeave}
-			>
-				{/** biome-ignore lint/a11y/useAnchorContent: this is a workaround */}
-				{/** biome-ignore lint/a11y/useValidAnchor: as seen in Obsidian examples */}
-				<a
-					ref={linkRef}
-					className="pointer-events-none absolute inset-0 z-0"
-					draggable={false}
-				/>
+				onMouseLeave={onMouseLeave}>
+        <div
+          className={
+            cn(
+              className,
+              contentClasses,
+            )
+          }
+          style={{
+            width: cardConfig.cardSize,
+            ...(isOverlay && { "height": `${cardConfig.cardSize * cardConfig.imageAspectRatio}px` }),
+            ...(cardConfig.layout === "polaroid" ? { backgroundColor: colors.contentBackground, borderColor: colors.contentBackground } : undefined),
+          } as React.CSSProperties}
+        >
+          {/** biome-ignore lint/a11y/useAnchorContent: this is a workaround */}
+          {/** biome-ignore lint/a11y/useValidAnchor: as seen in Obsidian examples */}
+          <a
+            ref={linkRef}
+            className="pointer-events-none absolute inset-0 z-0"
+            draggable={false}
+          />
 
-			{isOverlay ? (
-				<>
-					<Image
-            entry={entry}
-            cardConfig={cardConfig}
-            colors={colors}
-            config={config}
-            image={image}
-            isOverlayMode />
-					<div className={cn(
-						"absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent pointer-events-none transition-opacity duration-300 ease-out",
-						showOverlayContent ? "opacity-100" : "opacity-0"
-					)} />
-					<div className={cn(
-						"absolute bottom-0 left-0 right-0 transition-all duration-300 ease-out",
-						showOverlayContent
-							? "opacity-100 translate-y-0"
-							: "opacity-0 translate-y-4 pointer-events-none"
-					)}>
-						<Content
+        {isOverlay ? (
+          <>
+            <Image
               entry={entry}
               cardConfig={cardConfig}
               colors={colors}
               config={config}
+              image={image}
               isOverlayMode />
-					</div>
-					{cardConfig.badgeProperty && (
-						<div className={cn(
-							"transition-all duration-300 ease-out",
-							showOverlayContent
-								? "opacity-100 translate-y-0"
-								: "opacity-0 -translate-y-4 pointer-events-none"
-						)}>
-							<Badge entry={entry} cardConfig={cardConfig} config={config} />
-						</div>
-					)}
-				</>
-			) : (
-				<>
-					{!cardConfig.reverseContent ? (
-						<Image
-              entry={entry}
-              cardConfig={cardConfig}
-              colors={colors}
-              config={config}
-              image={image} />
-					) : (
-						<Content
-              entry={entry}
-              cardConfig={cardConfig}
-              colors={colors}
-              config={config} />
-					)}
+            <div className={cn(
+              "absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent pointer-events-none transition-opacity duration-300 ease-out",
+              showOverlayContent ? "opacity-100" : "opacity-0"
+            )} />
+            <div className={cn(
+              "absolute bottom-0 left-0 right-0 transition-all duration-300 ease-out",
+              showOverlayContent
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4 pointer-events-none"
+            )}>
+              <Content
+                adaptToSize={adaptToSize}
+                entry={entry}
+                cardConfig={cardConfig}
+                colors={colors}
+                config={config}
+                isOverlayMode />
+            </div>
+            {cardConfig.badgeProperty && (
+              <div className={cn(
+                "transition-all duration-300 ease-out",
+                showOverlayContent
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 -translate-y-4 pointer-events-none"
+              )}>
+                <Badge entry={entry} cardConfig={cardConfig} config={config} />
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            {!cardConfig.reverseContent ? (
+              <Image
+                entry={entry}
+                cardConfig={cardConfig}
+                colors={colors}
+                config={config}
+                image={image} />
+            ) : (
+              <Content
+                adaptToSize={adaptToSize}
+                entry={entry}
+                cardConfig={cardConfig}
+                colors={colors}
+                config={config} />
+            )}
 
-					{cardConfig.reverseContent ? (
-						<Image entry={entry} cardConfig={cardConfig} config={config} image={image} colors={colors} />
-					) : (
-						<Content
-              entry={entry}
-              cardConfig={cardConfig}
-              colors={colors}
-              config={config} />
-					)}
-					{cardConfig.badgeProperty && (
-						<Badge entry={entry} cardConfig={cardConfig} config={config} />
-					)}
-				</>
-			)}
+            {cardConfig.reverseContent ? (
+              <Image entry={entry} cardConfig={cardConfig} config={config} image={image} colors={colors} />
+            ) : (
+              <Content
+                adaptToSize={adaptToSize}
+                entry={entry}
+                cardConfig={cardConfig}
+                colors={colors}
+                config={config} />
+            )}
+            {cardConfig.badgeProperty && (
+              <Badge adaptToSize={adaptToSize} entry={entry} cardConfig={cardConfig} config={config} />
+            )}
+          </>
+        )}
 
-				{isHovered && <HoverOverlay entry={entry} cardConfig={cardConfig} config={config} />}
+          {isHovered && <HoverOverlay entry={entry} cardConfig={cardConfig} config={config} />}
+        </div>
 			</div>
 		);
 	},
 	(prevProps, nextProps) => {
 		return (
+			prevProps.adaptToSize === nextProps.adaptToSize &&
 			prevProps.entry === nextProps.entry &&
 			prevProps.className === nextProps.className &&
 			prevProps.isDraggable === nextProps.isDraggable &&

@@ -121,7 +121,7 @@
   --background: #1E1E1E;
 }
 
-h3 {
+.markdown-renderer h3 {
   font-size: 20px;
   padding: 4px 8px;
   margin: 8px 0 0 0;

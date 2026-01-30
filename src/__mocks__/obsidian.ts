@@ -179,6 +179,7 @@ export const MarkdownRenderer = {
         // biome-ignore lint/correctness/noChildrenProp: Mock obsidian rendering for Storybook
         children: markdown,
         mode: "static",
+        className: "markdown-renderer",
       })
     );
 	},

@@ -6,8 +6,10 @@ import { useEntryProperty } from "@/hooks/use-property";
 import { contrastColor, darken, isHexColor, lighten, luminance } from "@/lib/colors";
 
 import type { CardConfig } from "./types";
+import { cn } from "@/lib/utils";
 
 type Props = {
+  adaptToSize?: boolean;
 	entry: BasesEntry;
 	cardConfig: CardConfig;
 	config: BasesViewConfig;
@@ -38,7 +40,7 @@ const getBadgeStyles = (
 };
 
 const Badge = memo(
-	({ entry, cardConfig, config }: Props) => {
+	({ adaptToSize = false, entry, cardConfig, config }: Props) => {
 		const { badgeProperty, badgeIcon, badgeColor, badgesFont } = cardConfig;
 
 		const property = useEntryProperty(entry, config, badgeProperty);
@@ -54,11 +56,21 @@ const Badge = memo(
 
 		return (
 			<div
-				className="absolute top-2 right-2 z-10 flex items-center gap-1 px-2 py-0.5 rounded-full text-sm font-medium shadow-md backdrop-blur-sm border"
+				className={
+          cn(
+            "absolute z-10 flex items-center rounded-full font-medium shadow-md backdrop-blur-sm border",
+            !adaptToSize && "text-sm top-2 right-2 gap-1 px-2 py-0.5",
+            adaptToSize && "@[0px]/lovely-card:text-5xs @[0px]/lovely-card:top-0.5 @[0px]/lovely-card:right-0.5 @[0px]/lovely-card:gap-0.5 @[0px]/lovely-card:px-1 @[0px]/lovely-card:py-0.5 @8xs/lovely-card:text-4xs @8xs/lovely-card:top-2 @8xs/lovely-card:right-2 @8xs/lovely-card:gap-1 @8xs/lovely-card:px-2 @8xs/lovely-card:py-0.5 @7xs/lovely-card:text-3xs @7xs/lovely-card:top-2 @7xs/lovely-card:right-2 @7xs/lovely-card:gap-1 @7xs/lovely-card:px-2 @7xs/lovely-card:py-0.5 @6xs/lovely-card:text-2xs @6xs/lovely-card:top-2 @6xs/lovely-card:right-2 @6xs/lovely-card:gap-1 @6xs/lovely-card:px-2 @6xs/lovely-card:py-0.5 @5xs/lovely-card:text-xs @5xs/lovely-card:top-2 @5xs/lovely-card:right-2 @5xs/lovely-card:gap-1 @5xs/lovely-card:px-2 @5xs/lovely-card:py-0.5 @4xs/lovely-card:text-sm @4xs/lovely-card:top-2 @4xs/lovely-card:right-2 @4xs/lovely-card:gap-1 @4xs/lovely-card:px-2 @4xs/lovely-card:py-0.5",
+          )
+        }
 				style={badgeStyles}
 			>
 				{badgeIcon && (
-					<LucideIcon name={badgeIcon} className="shrink-0 size-3" />
+					<LucideIcon name={badgeIcon} className={cn(
+            "shrink-0",
+            !adaptToSize && "size-3",
+            adaptToSize && "@[0px]/lovely-card:size-2 @8xs/lovely-card:size-2 @7xs/lovely-card:size-2.5 @6xs/lovely-card:size-2.5 @5xs/lovely-card:size-3 @4xs/lovely-card:size-3",
+          )} />
 				)}
 				<span className="truncate max-w-[120px]">{badgeValue}</span>
 			</div>
