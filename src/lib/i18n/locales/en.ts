@@ -275,6 +275,11 @@ export const en = {
       },
       display: {
         title: "Display",
+        groupShape: {
+          title: "Group Shape",
+          folder: "Folder",
+          notebook: "Notebook",
+        },
         colorizeFiles: {
           title: "Colorize Files",
         },

@@ -68,6 +68,7 @@ const meta = {
 		// Folder-specific Properties
     groupShape: {
       control: "select",
+      name: t("options.display.groupShape.title"),
       options: ["folder", "notebook"],
       description: "The shape of the groups.",
       table: {

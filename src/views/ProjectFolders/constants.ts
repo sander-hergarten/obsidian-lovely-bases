@@ -18,6 +18,16 @@ export const PROJECT_FOLDERS_OPTIONS: ViewOption[] = [
 		type: "group",
 		displayName: tCommon("options.grouping.title"),
 		items: [
+      {
+        type: "dropdown",
+        displayName: t("options.display.groupShape.title"),
+        key: "groupShape",
+        default: "folder",
+        options: {
+          folder: t("options.display.groupShape.folder"),
+          notebook: t("options.display.groupShape.notebook"),
+        },
+      },
 			{
 				type: "property",
 				displayName: t("options.dataProperties.iconProperty.title"),

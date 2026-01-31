@@ -277,6 +277,11 @@ export const zh: LocaleTranslations = {
       },
       display: {
         title: "显示",
+        groupShape: {
+          title: "组形状",
+          folder: "文件夹",
+          notebook: "笔记本",
+        },
         colorizeFiles: {
           title: "为文件着色",
         },

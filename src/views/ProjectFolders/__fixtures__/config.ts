@@ -39,6 +39,9 @@ export const FULL_CONFIG: ProjectFoldersConfig = {
 export const NOTEBOOK_CONFIG: ProjectFoldersConfig = {
 	...DEFAULT_CONFIG,
 	groupShape: "notebook",
+  groupIconProperty: 'note.icon',
+  groupColorProperty: 'note.color',
+  groupTitlePosition: "inside",
 };
 
 export const HORIZONTAL_LAYOUT_CONFIG: ProjectFoldersConfig = {

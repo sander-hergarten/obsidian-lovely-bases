@@ -277,6 +277,11 @@ export const it: LocaleTranslations = {
       },
       display: {
         title: "Visualizzazione",
+        groupShape: {
+          title: "Forma del Gruppo",
+          folder: "Cartella",
+          notebook: "Quaderno",
+        },
         colorizeFiles: {
           title: "Colora i File",
         },

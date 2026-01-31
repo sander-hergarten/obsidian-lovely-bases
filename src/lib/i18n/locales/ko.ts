@@ -277,6 +277,11 @@ export const ko: LocaleTranslations = {
       },
       display: {
         title: "표시",
+        groupShape: {
+          title: "그룹 모양",
+          folder: "폴더",
+          notebook: "노트북",
+        },
         colorizeFiles: {
           title: "파일 색상 지정",
         },

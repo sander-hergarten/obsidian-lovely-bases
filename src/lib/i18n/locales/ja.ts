@@ -277,6 +277,11 @@ export const ja: LocaleTranslations = {
       },
       display: {
         title: "表示",
+        groupShape: {
+          title: "グループの形状",
+          folder: "フォルダー",
+          notebook: "ノートブック",
+        },
         colorizeFiles: {
           title: "ファイルに色を付ける",
         },

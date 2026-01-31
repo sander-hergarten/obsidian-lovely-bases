@@ -277,6 +277,11 @@ export const de: LocaleTranslations = {
       },
       display: {
         title: "Anzeige",
+        groupShape: {
+          title: "Gruppenform",
+          folder: "Ordner",
+          notebook: "Notizbuch",
+        },
         colorizeFiles: {
           title: "Dateien einfärben",
         },

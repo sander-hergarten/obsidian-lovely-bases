@@ -277,6 +277,11 @@ export const ru: LocaleTranslations = {
       },
       display: {
         title: "Отображение",
+        groupShape: {
+          title: "Форма Группы",
+          folder: "Папка",
+          notebook: "Блокнот",
+        },
         colorizeFiles: {
           title: "Раскрасить Файлы",
         },
