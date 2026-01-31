@@ -102,12 +102,15 @@ const AnimatedNotebook: React.FC<Props> = ({
 					height,
 					transformOrigin: "left center",
 					transform: isHovered ? "rotateZ(-10deg)" : "rotateZ(0deg)",
-					transition: "transform 400ms ease-in-out",
+					// Gentle tilt with slight overshoot for natural feel
+					transition: isHovered
+						? "transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1)"
+						: "transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 				}}
 			>
 				{/* Notebook page (behind cover) */}
 				<div
-					className="absolute overflow-hidden"
+					className="absolute overflow-hidden shadow-2xl"
 					style={{
 						width: width * 0.92,
 						height,
@@ -127,6 +130,8 @@ const AnimatedNotebook: React.FC<Props> = ({
 						width: "100%",
 						height: "100%",
 						zIndex: 5,
+						clipPath: "inset(-100% -100% -100% 0)",
+						pointerEvents: "none",
 					}}
 				>
 					{previewFiles.map((entry, index) => (
@@ -148,56 +153,91 @@ const AnimatedNotebook: React.FC<Props> = ({
 							notebookHeight={height}
 							isPageHovered={hoveredPageIndex === index}
 							colors={notebookColors}
+							onMouseEnter={() => setHoveredPageIndex(index)}
+							onMouseLeave={() => setHoveredPageIndex(null)}
 						/>
 					))}
 				</div>
 
-				{/* Tabs - attached to the right edge of the notebook pages */}
+				{/* Tabs - attached to the right edge of the notebook pages (bottom section) */}
 				{previewFiles.map((entry, index) => {
 					const pageWidth = width * 0.92;
 					const tabWidth = 14 * scaleFactor;
 					const tabHeight = (height * 0.5) / 5;
 					const tabSpacing = 3 * scaleFactor;
-					const tabTop = height * 0.12 + index * (tabHeight + tabSpacing);
-					// Position from left edge: page width (since pages start at left: 0)
+					// Position tabs from the bottom edge upwards
+					const totalTabsHeight = previewFiles.length * tabHeight + (previewFiles.length - 1) * tabSpacing;
+					const tabTop = height - totalTabsHeight - (10 * scaleFactor) + index * (tabHeight + tabSpacing);
 					const tabLeft = pageWidth;
-          const tabColor = notebookColors[`tab${index + 1}Color`];
+					const tabColor = notebookColors[`tab${index + 1}Color`];
+
+					// Extended hit area padding (larger interaction zone)
+					const hitAreaPadding = 8 * scaleFactor;
+
+					// Disable pointer events on other tabs when a card is hovered
+					const isOtherTabWhileCardActive = hoveredPageIndex !== null && hoveredPageIndex !== index;
+
+					// Staggered delay that syncs with cover opening
+					// Tabs appear as the cover reveals them (from bottom to top)
+					const tabDelay = isHovered
+						? 200 + (previewFiles.length - 1 - index) * 60 // Appear from bottom
+						: index * 30; // Disappear from top
 
 					return (
+						// Outer container: larger hit area for easier hover interaction
 						<div
 							key={`tab-${entry.file.path}`}
-							className={cn(
-								"absolute cursor-pointer transition-all duration-300",
-								hoveredPageIndex === index
-									? "scale-105"
-									: "hover:scale-102",
-							)}
+							className="absolute cursor-pointer"
 							style={{
-								width: tabWidth,
-								height: tabHeight,
-								top: tabTop,
-								left: tabLeft,
-								background: tabColor,
-								borderRadius: `0 ${5 * scaleFactor}px ${5 * scaleFactor}px 0`,
-								boxShadow: hoveredPageIndex === index
-									? "2px 1px 6px rgba(0,0,0,0.2)"
-									: "1px 1px 3px rgba(0,0,0,0.12)",
-								borderTop: "1px solid rgba(0,0,0,0.1)",
-								borderRight: "1px solid rgba(0,0,0,0.1)",
-								borderBottom: "1px solid rgba(0,0,0,0.1)",
+								width: tabWidth + hitAreaPadding * 2,
+								height: tabHeight + hitAreaPadding * 2,
+								top: tabTop - hitAreaPadding,
+								left: tabLeft - hitAreaPadding,
 								opacity: isHovered ? 1 : 0,
-								transform: isHovered
-									? "translateX(0)"
-									: "translateX(-8px)",
-								transition: `all 400ms cubic-bezier(0.16, 1, 0.3, 1) ${index * 40 + 150}ms`,
-								zIndex: hoveredPageIndex === index ? 65 : 60 - index,
+								// Tabs slide out from behind the pages with a spring effect
+								transition: isHovered
+									? `opacity 350ms ease-out ${tabDelay}ms`
+									: `opacity 200ms ease-in ${tabDelay}ms`,
+								pointerEvents: isOtherTabWhileCardActive ? "none" : "auto",
 							}}
 							onMouseEnter={() => setHoveredPageIndex(index)}
 							onMouseLeave={() => setHoveredPageIndex(null)}
 							onClick={(e) => {
 								e.stopPropagation();
 							}}
-						/>
+						>
+							{/* Inner element: visual representation of the tab */}
+							<div
+								className={cn(
+									"absolute",
+									hoveredPageIndex === index
+										? "scale-105"
+										: "hover:scale-102",
+								)}
+								style={{
+									width: tabWidth,
+									height: tabHeight,
+									top: hitAreaPadding,
+									left: hitAreaPadding,
+									background: tabColor,
+									borderRadius: `0 ${5 * scaleFactor}px ${5 * scaleFactor}px 0`,
+									boxShadow: hoveredPageIndex === index
+										? "2px 1px 6px rgba(0,0,0,0.2)"
+										: "1px 1px 3px rgba(0,0,0,0.12)",
+									borderTop: "1px solid rgba(0,0,0,0.1)",
+									borderRight: "1px solid rgba(0,0,0,0.1)",
+									borderBottom: "1px solid rgba(0,0,0,0.1)",
+									// Tab slides out with spring physics
+									transform: isHovered
+										? "translateX(0) scale(1)"
+										: "translateX(-12px) scale(0.9)",
+									// Different easing for in vs out
+									transition: isHovered
+										? `transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1) ${tabDelay}ms, box-shadow 300ms ease-out`
+										: `transform 250ms cubic-bezier(0.55, 0.06, 0.68, 0.19) ${tabDelay}ms, box-shadow 200ms ease-in`,
+								}}
+							/>
+						</div>
 					);
 				})}
 
@@ -212,7 +252,11 @@ const AnimatedNotebook: React.FC<Props> = ({
 						transformStyle: "preserve-3d",
 						transformOrigin: "left center",
 						transform: isHovered ? "rotateY(-60deg)" : "rotateY(0deg)",
-						transition: "transform 500ms linear, box-shadow 500ms linear",
+						// Natural book-opening easing: starts slow (overcoming inertia),
+						// accelerates in middle, then decelerates as cover settles
+						transition: isHovered
+							? "transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+							: "transform 450ms cubic-bezier(0.55, 0.06, 0.68, 0.19), box-shadow 400ms ease-in",
 						boxShadow: isHovered
 							? "20px 10px 50px rgba(0,0,0,0.2)"
 							: "none",
