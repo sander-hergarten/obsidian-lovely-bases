@@ -73,7 +73,7 @@ export const useFolders = (
           };
           folders.push(folder);
         }
-        folder.files = group.entries;
+        folder.files.push(...group.entries);
       }
     }
     return folders;

@@ -140,7 +140,12 @@ const Card = memo(
       <div
         data-testid="lovely-card-container"
         data-layout={cardConfig.layout}
-        className="@container/lovely-card relative flex h-full"
+        className={
+          cn(
+            "@container/lovely-card relative flex",
+            !isOverlay && "h-full"
+          )
+        }
 				style={{
           width: cardConfig.cardSize,
           ...(isOverlay && { "height": `${cardConfig.cardSize * cardConfig.imageAspectRatio}px` }),
