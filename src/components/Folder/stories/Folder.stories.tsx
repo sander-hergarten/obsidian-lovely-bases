@@ -1,6 +1,7 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { MOVIES_ENTRIES } from "@/__fixtures__/entries";
+import { HANDWRITTEN_FONTS } from "@/__fixtures__/typographies";
 import { Providers } from "@/stories/decorators";
 
 import type Folder from "../";
@@ -31,6 +32,8 @@ export const FullExample: Story = {
 	name: "Full Example",
 	args: {
     icon: "folder",
+    title: "My Folder",
+    titleFont: HANDWRITTEN_FONTS,
     gradient: "linear-gradient(135deg, #6F6E69 0%, #9F9D96 100%)",
 		files: MOVIES_ENTRIES.slice(0, 5)
 	},

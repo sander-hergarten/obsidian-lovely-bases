@@ -17,6 +17,8 @@ type Props = {
 	files: BasesEntry[];
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
+  title?: string;
+  titleFont?: string;
 	cardConfig: CardConfig;
 	config: BasesViewConfig;
 };
@@ -28,6 +30,8 @@ const AnimatedFolder: React.FC<Props> = ({
 	files,
 	gradient,
 	onClick,
+  title,
+  titleFont,
 	cardConfig,
 	config,
 }) => {
@@ -117,11 +121,12 @@ const AnimatedFolder: React.FC<Props> = ({
 				))}
 			</div>
 			<div
-				className="absolute rounded-lg shadow-lg border border-white/20 flex items-center justify-center"
+				className="absolute rounded-lg shadow-lg border border-white/20 flex flex-col items-center justify-center"
 				style={{
 					width,
 					height,
 					background: frontBg,
+          gap: `${4 * scaleFactor}px`,
 					top: `calc(50% - ${48 * scaleFactor}px + ${4 * scaleFactor}px)`,
 					transformOrigin: "bottom center",
 					transform: isHovered
@@ -131,6 +136,26 @@ const AnimatedFolder: React.FC<Props> = ({
 					zIndex: 30,
 				}}
 			>
+        {title && (
+          <div
+            className="bg-white/90 dark:bg-white/95 rounded-sm shadow-sm border border-black/5 flex items-center justify-center transition-all duration-500"
+            style={{
+              maxWidth: `${80 * scaleFactor}px`,
+              padding: `${2 * scaleFactor}px ${12 * scaleFactor}px`,
+            }}
+          >
+            <span
+              className="text-gray-700 dark:text-gray-800 font-medium line-clamp-1 text-center"
+              style={{
+                fontFamily: titleFont,
+                fontSize: `${10 * scaleFactor}px`,
+                letterSpacing: "0.01em",
+              }}
+            >
+              {title}
+            </span>
+          </div>
+        )}
 				{icon && (
 					<LucideIcon
 						className="size-1/2"

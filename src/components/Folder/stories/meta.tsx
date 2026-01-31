@@ -23,6 +23,8 @@ const DEFAULT_CONFIG = aBasesViewConfig({});
 export type StoryProps = {
 	width?: number;
 	icon?: string;
+  title?: string;
+  titleFont?: string;
 	files: BasesEntry[];
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
@@ -33,6 +35,8 @@ export type StoryProps = {
 export const FolderStory = ({
 	width,
 	icon,
+  title,
+  titleFont,
 	files,
 	gradient,
 	onClick,
@@ -43,6 +47,8 @@ export const FolderStory = ({
 		<Folder
 			width={width}
 			icon={icon}
+      title={title}
+      titleFont={titleFont}
 			files={files}
 			gradient={gradient}
 			onClick={onClick}
