@@ -280,6 +280,12 @@ export const zh: LocaleTranslations = {
         colorizeFiles: {
           title: "为文件着色",
         },
+        groupTitlePosition: {
+          title: "组标题位置",
+          inside: "内部",
+          outside: "外部",
+          none: "隐藏",
+        },
       },
     },
   },

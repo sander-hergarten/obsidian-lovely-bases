@@ -23,6 +23,7 @@ import {
 	CIRCLE_SHAPE_CONFIG,
 	DEFAULT_CONFIG,
 	FULL_CONFIG,
+  NOTEBOOK_CONFIG,
 	HORIZONTAL_LAYOUT_CONFIG,
 	OVERLAY_LAYOUT_CONFIG,
 	POLAROID_LAYOUT_CONFIG,
@@ -65,6 +66,15 @@ const meta = {
 	},
 	argTypes: {
 		// Folder-specific Properties
+    groupShape: {
+      control: "select",
+      options: ["folder", "notebook"],
+      description: "The shape of the groups.",
+      table: {
+        category: tCommon("options.grouping.title"),
+        defaultValue: { summary: "folder" },
+      },
+    },
 		groupIconProperty: {
 			control: "text",
 			name: t("options.dataProperties.iconProperty.title"),
@@ -145,6 +155,27 @@ export const Default: Story = {
 		],
 		onEntryClick: fn(),
 		...DEFAULT_CONFIG,
+	},
+};
+
+export const Notebook: Story = {
+  args: {
+		groupedData: [
+			aBasesEntryGroup("[[Articles]]", ARTICLE_ENTRIES),
+			aBasesEntryGroup("[[Movies]]", MOVIES_ENTRIES),
+			aBasesEntryGroup("[[Books]]", BOOK_ENTRIES),
+			aBasesEntryGroup("[[People]]", PERSON_ENTRIES),
+			aBasesEntryGroup("[[Applications]]", APPLICATION_ENTRIES),
+		],
+		onEntryClick: fn(),
+    ...NOTEBOOK_CONFIG,
+  },
+	parameters: {
+		docs: {
+			description: {
+				story: "Notebook groups display notes in a notebook-like layout.",
+			},
+		},
 	},
 };
 

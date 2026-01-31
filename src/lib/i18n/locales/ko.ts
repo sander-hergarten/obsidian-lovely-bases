@@ -280,6 +280,12 @@ export const ko: LocaleTranslations = {
         colorizeFiles: {
           title: "파일 색상 지정",
         },
+        groupTitlePosition: {
+          title: "그룹 제목 위치",
+          inside: "내부",
+          outside: "외부",
+          none: "숨김",
+        },
       },
     },
   },

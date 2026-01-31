@@ -278,6 +278,12 @@ export const en = {
         colorizeFiles: {
           title: "Colorize Files",
         },
+        groupTitlePosition: {
+          title: "Group Title Position",
+          inside: "Inside",
+          outside: "Outside",
+          none: "Hidden",
+        },
       },
     },
   },

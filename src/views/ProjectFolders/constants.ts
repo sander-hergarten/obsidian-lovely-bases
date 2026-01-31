@@ -30,6 +30,17 @@ export const PROJECT_FOLDERS_OPTIONS: ViewOption[] = [
 				key: "groupColorProperty",
 				default: undefined,
 			},
+			{
+				type: "dropdown",
+				displayName: t("options.display.groupTitlePosition.title"),
+				key: "groupTitlePosition",
+				default: "outside",
+				options: {
+					inside: t("options.display.groupTitlePosition.inside"),
+					outside: t("options.display.groupTitlePosition.outside"),
+					none: t("options.display.groupTitlePosition.none"),
+				},
+			},
 		],
 	},
 	...CARD_CONFIG_OPTIONS,

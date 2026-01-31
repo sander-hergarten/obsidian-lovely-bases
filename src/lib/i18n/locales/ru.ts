@@ -280,6 +280,12 @@ export const ru: LocaleTranslations = {
         colorizeFiles: {
           title: "Раскрасить Файлы",
         },
+        groupTitlePosition: {
+          title: "Позиция Заголовка Группы",
+          inside: "Внутри",
+          outside: "Снаружи",
+          none: "Скрыто",
+        },
       },
     },
   },

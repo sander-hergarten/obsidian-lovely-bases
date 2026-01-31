@@ -280,6 +280,12 @@ export const ja: LocaleTranslations = {
         colorizeFiles: {
           title: "ファイルに色を付ける",
         },
+        groupTitlePosition: {
+          title: "グループタイトルの位置",
+          inside: "内側",
+          outside: "外側",
+          none: "非表示",
+        },
       },
     },
   },

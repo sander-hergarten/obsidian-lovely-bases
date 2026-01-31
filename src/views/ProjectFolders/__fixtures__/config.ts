@@ -4,12 +4,12 @@ import { DEFAULTS as CARD_DEFAULTS } from "@/components/Card/constants";
 import type { ProjectFoldersConfig } from "../types";
 
 export const DEFAULT_CONFIG: ProjectFoldersConfig = {
-  groupIconProperty: undefined,
-  groupColorProperty: undefined,
+	groupIconProperty: undefined,
+	groupColorProperty: undefined,
+	groupShape: "folder",
+	groupTitlePosition: "outside",
 	...CARD_DEFAULTS,
-	properties: [
-    'note.author',
-  ],
+	properties: ["note.author"],
 };
 
 export const FULL_CONFIG: ProjectFoldersConfig = {
@@ -33,6 +33,12 @@ export const FULL_CONFIG: ProjectFoldersConfig = {
   backgroundColorApplyTo: 'both',
   groupIconProperty: 'note.icon',
   groupColorProperty: 'note.color',
+  groupTitlePosition: "inside",
+};
+
+export const NOTEBOOK_CONFIG: ProjectFoldersConfig = {
+	...DEFAULT_CONFIG,
+	groupShape: "notebook",
 };
 
 export const HORIZONTAL_LAYOUT_CONFIG: ProjectFoldersConfig = {
@@ -110,6 +116,22 @@ export const POLAROID_LAYOUT_CONFIG: ProjectFoldersConfig = {
   contentFont: undefined,
   groupIconProperty: 'note.icon',
   groupColorProperty: 'note.color',
+};
+
+// === TITLE POSITION CONFIGS ===
+
+export const TITLE_INSIDE_CONFIG: ProjectFoldersConfig = {
+	...DEFAULT_CONFIG,
+	groupTitlePosition: "inside",
+	groupIconProperty: "note.icon",
+	groupColorProperty: "note.color",
+};
+
+export const TITLE_HIDDEN_CONFIG: ProjectFoldersConfig = {
+	...DEFAULT_CONFIG,
+	groupTitlePosition: "none",
+	groupIconProperty: "note.icon",
+	groupColorProperty: "note.color",
 };
 
 // === SHAPE CONFIGS ===

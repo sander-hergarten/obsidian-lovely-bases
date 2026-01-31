@@ -280,6 +280,12 @@ export const fr: LocaleTranslations = {
         colorizeFiles: {
           title: "Coloriser les Fichiers",
         },
+        groupTitlePosition: {
+          title: "Position du Titre du Groupe",
+          inside: "Intérieur",
+          outside: "Extérieur",
+          none: "Masqué",
+        },
       },
     },
   },
