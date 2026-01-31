@@ -25,6 +25,7 @@ type Props = {
 	onClick?: MouseEventHandler<HTMLDivElement>;
 	cardConfig: CardConfig;
 	config: BasesViewConfig;
+  padContent?: boolean;
 	pageStyle?: PageStyle;
 };
 
@@ -37,6 +38,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 	onClick,
 	cardConfig,
 	config,
+  padContent = false,
 	pageStyle = "plain",
   title,
   titleFont,
@@ -150,6 +152,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 							isVisible={isHovered}
 							index={index}
 							scaleFactor={scaleFactor}
+							padContent={padContent}
 							pageStyle={pageStyle}
 							notebookWidth={width}
 							notebookHeight={height}

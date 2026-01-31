@@ -1,6 +1,7 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { ARTICLE_ENTRIES } from "@/__fixtures__/entries";
+import { MONOSPACE_FONTS, SANS_SERIF_FONTS, SERIF_FONTS } from "@/__fixtures__/typographies";
 import { Providers } from "@/stories/decorators";
 
 import { DEFAULTS } from "../constants";
@@ -60,9 +61,9 @@ export const Horizontal: Story = {
     badgeColor: "#768D21",
     tilt: "none",
     linkProperty: 'note.url',
-    titleFont: 'Impact, Georgia, Arial Black, Trebuchet MS',
-    contentFont: 'Arial, Verdana, Tahoma, Segoe UI, Roboto',
-    badgesFont: 'Comic Sans MS, Courier New, Consolas, Arial Narrow, Impact',
+    titleFont: SERIF_FONTS,
+    contentFont: SANS_SERIF_FONTS,
+    badgesFont: MONOSPACE_FONTS,
   },
 };
 
@@ -90,9 +91,9 @@ export const Vertical: Story = {
     badgeColor: "#768D21",
     tilt: "none",
     linkProperty: 'note.url',
-    titleFont: 'Impact, Georgia, Arial Black, Trebuchet MS',
-    contentFont: 'Arial, Verdana, Tahoma, Segoe UI, Roboto',
-    badgesFont: 'Comic Sans MS, Courier New, Consolas, Arial Narrow, Impact',
+    titleFont: SERIF_FONTS,
+    contentFont: SANS_SERIF_FONTS,
+    badgesFont: MONOSPACE_FONTS,
   },
 };
 
@@ -120,9 +121,9 @@ export const Overlay: Story = {
     badgeColor: "#768D21",
     tilt: "none",
     linkProperty: 'note.url',
-    titleFont: 'Impact, Georgia, Arial Black, Trebuchet MS',
-    contentFont: 'Arial, Verdana, Tahoma, Segoe UI, Roboto',
-    badgesFont: 'Comic Sans MS, Courier New, Consolas, Arial Narrow, Impact',
+    titleFont: SERIF_FONTS,
+    contentFont: SANS_SERIF_FONTS,
+    badgesFont: MONOSPACE_FONTS,
   },
 };
 
@@ -152,8 +153,8 @@ export const Polaroid: Story = {
     badgeColor: "#768D21",
     tilt: "none",
     linkProperty: 'note.url',
-    titleFont: 'Impact, Georgia, Arial Black, Trebuchet MS',
-    contentFont: 'Arial, Verdana, Tahoma, Segoe UI, Roboto',
-    badgesFont: 'Comic Sans MS, Courier New, Consolas, Arial Narrow, Impact',
+    titleFont: SERIF_FONTS,
+    contentFont: SANS_SERIF_FONTS,
+    badgesFont: MONOSPACE_FONTS,
   },
 };

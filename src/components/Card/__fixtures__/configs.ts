@@ -1,4 +1,5 @@
 
+import { MONOSPACE_FONTS, SANS_SERIF_FONTS, SERIF_FONTS } from "@/__fixtures__/typographies";
 import { DEFAULTS as CARD_DEFAULT_CONFIG, DEFAULTS } from "@/components/Card/constants";
 import type { CardConfig } from "@/components/Card/types";
 
@@ -24,9 +25,9 @@ export const FULL_CONFIG: CardConfig = {
 	hoverProperty: "note.url",
 	hoverStyle: "overlay",
   linkProperty: undefined,
-  titleFont: 'Impact, Georgia, Arial Black, Trebuchet MS',
-  contentFont: 'Arial, Verdana, Tahoma, Segoe UI, Roboto',
-  badgesFont: 'Comic Sans MS, Courier New, Consolas, Arial Narrow, Impact',
+  titleFont: SERIF_FONTS,
+  contentFont: SANS_SERIF_FONTS,
+  badgesFont: MONOSPACE_FONTS,
   iconProperty: 'note.icon',
   backgroundColorProperty: 'note.color',
   backgroundColorApplyTo: 'both',

@@ -1,6 +1,7 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { MOVIES_ENTRIES } from "@/__fixtures__/entries";
+import { HANDWRITTEN_FONTS } from "@/__fixtures__/typographies";
 import { OVERLAY_ON_HOVER_LAYOUT_CONFIG } from "@/components/Card/__fixtures__/configs";
 import { Providers } from "@/stories/decorators";
 
@@ -32,6 +33,7 @@ export const NineXS: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 20,
@@ -49,6 +51,7 @@ export const EightXS: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 35,
@@ -66,6 +69,7 @@ export const SevenXS: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -80,6 +84,7 @@ export const SixXS: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -94,6 +99,7 @@ export const FiveXS: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -108,6 +114,7 @@ export const FourXS: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -122,6 +129,7 @@ export const ThreeXS: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -136,6 +144,7 @@ export const TwoXS: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -150,6 +159,7 @@ export const XS: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -164,6 +174,7 @@ export const SM: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -178,6 +189,7 @@ export const MD: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -192,6 +204,7 @@ export const LG: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -206,6 +219,7 @@ export const XL: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -220,6 +234,7 @@ export const TwoXL: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },
@@ -233,6 +248,7 @@ export const ThreeXL: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },
@@ -246,6 +262,7 @@ export const FourXL: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },
@@ -259,6 +276,7 @@ export const FiveXL: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },
@@ -272,6 +290,7 @@ export const SixXL: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },
@@ -285,6 +304,7 @@ export const SevenXL: Story = {
   args: {
     icon: "folder",
     title: "My Notebook",
+    titleFont: HANDWRITTEN_FONTS,
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },

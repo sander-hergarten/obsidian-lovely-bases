@@ -44,6 +44,7 @@ type NotebookCardProps = {
 	onClick?: MouseEventHandler<HTMLDivElement>;
 	backgroundColor?: string;
 	scaleFactor?: number;
+  padContent?: boolean;
 	pageStyle: PageStyle;
 	notebookWidth: number;
 	notebookHeight: number;
@@ -64,6 +65,7 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 			index,
 			backgroundColor,
 			scaleFactor = 1,
+      padContent = true,
 			pageStyle,
 			notebookWidth,
 			notebookHeight,
@@ -77,6 +79,7 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 		// Page dimensions - slightly smaller than notebook to show as internal pages
 		const pageWidth = notebookWidth * 0.92;
 		const pageHeight = notebookHeight * 0.96;
+    const pagePadding = padContent ? 6 * scaleFactor : 0;
 
 		// Slide out distance when hovered - goes UP so it doesn't cover the tabs
 		const slideOutDistance = notebookHeight * 0.2;
@@ -161,21 +164,25 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 			>
 				{/* Page content - fades in as page flips up */}
 				<div
-					className="absolute inset-0 flex items-center justify-center p-2"
+					className="absolute inset-0 flex items-center justify-center"
 					style={{
 						opacity: isPageHovered ? 1 : 0,
 						transform: isPageHovered ? "scale(1)" : "scale(0.95)",
 						transition: isPageHovered
 							? `opacity 250ms ease-out ${delay + 150}ms, transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1) ${delay + 100}ms`
 							: `opacity 150ms ease-in, transform 200ms ease-in`,
-					}}
+            padding: pagePadding,
+          }}
 				>
 					<Card
 						entry={entry}
 						config={config}
 						{...cardConfig}
-						cardSize={Math.min(pageWidth, pageHeight) * 0.85}
+						cardSize={Math.min(pageWidth, pageHeight) - pagePadding * 2}
 						adaptToSize
+            style={!padContent ? {
+              borderRadius: `${2 * scaleFactor}px ${12 * scaleFactor}px ${12 * scaleFactor}px ${2 * scaleFactor}px`,
+            } : undefined}
 					/>
 				</div>
 			</div>

@@ -22,6 +22,7 @@ type Props = CardConfig & {
 	entry: BasesEntry;
 	config: BasesViewConfig;
 	isDraggable?: boolean;
+  style?: React.CSSProperties;
 };
 
 const cardContentVariants = cva(
@@ -92,7 +93,7 @@ const cardContentVariants = cva(
 const DRAG_THRESHOLD = 5;
 
 const Card = memo(
-	({ adaptToSize = false, className, entry, config, isDraggable = false, ...cardConfig }: Props) => {
+	({ adaptToSize = false, className, entry, config, isDraggable = false, style, ...cardConfig }: Props) => {
     const [isHovered, setIsHovered] = useState(false);
 		const dragStartPos = useRef<{ x: number; y: number } | null>(null);
 		const linkRef = useRef<HTMLAnchorElement>(null);
@@ -160,6 +161,7 @@ const Card = memo(
             width: cardConfig.cardSize,
             ...(isOverlay && { "height": `${cardConfig.cardSize * cardConfig.imageAspectRatio}px` }),
             ...(cardConfig.layout === "polaroid" ? { backgroundColor: colors.contentBackground, borderColor: colors.contentBackground } : undefined),
+            ...style,
           } as React.CSSProperties}
         >
           {/** biome-ignore lint/a11y/useAnchorContent: this is a workaround */}

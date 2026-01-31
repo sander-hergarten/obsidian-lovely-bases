@@ -1,6 +1,7 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { MOVIES_ENTRIES } from "@/__fixtures__/entries";
+import { HANDWRITTEN_FONTS } from "@/__fixtures__/typographies";
 import { Providers } from "@/stories/decorators";
 
 import type Notebook from "..";
@@ -34,7 +35,7 @@ export const FullExample: Story = {
     gradient: "linear-gradient(135deg, #6F6E69 0%, #9F9D96 100%)",
 		files: MOVIES_ENTRIES.slice(0, 5),
     title: "My Notebook",
-    titleFont: '"Segoe Script", "Bradley Hand", "Noteworthy", "Comic Sans MS"'
+    titleFont: HANDWRITTEN_FONTS,
 	},
 };
 
@@ -66,5 +67,14 @@ export const SquaredPages: Story = {
 	args: {
 		files: MOVIES_ENTRIES.slice(0, 5),
     pageStyle: "squared",
+	},
+};
+
+export const PadContent: Story = {
+	name: "Pad Content",
+	args: {
+		files: MOVIES_ENTRIES.slice(0, 5),
+    pageStyle: "plain",
+    padContent: true,
 	},
 };

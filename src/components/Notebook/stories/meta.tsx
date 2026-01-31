@@ -31,6 +31,7 @@ type StoryProps = {
 	cardConfig?: CardConfig;
 	config?: BasesViewConfig;
   pageStyle?: PageStyle;
+  padContent?: boolean;
 };
 
 export const NotebookStory = ({
@@ -44,6 +45,7 @@ export const NotebookStory = ({
 	cardConfig = DEFAULT_CARD_CONFIG,
 	config = DEFAULT_CONFIG,
 	pageStyle = "plain",
+  padContent = false,
 }: StoryProps) => {
 	return (
 		<Notebook
@@ -57,6 +59,7 @@ export const NotebookStory = ({
 			cardConfig={cardConfig}
 			config={config}
       pageStyle={pageStyle}
+      padContent={padContent}
 		/>
 	);
 };

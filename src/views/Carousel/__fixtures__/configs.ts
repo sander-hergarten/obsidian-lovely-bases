@@ -1,7 +1,7 @@
 
+import { MONOSPACE_FONTS, SANS_SERIF_FONTS, SERIF_FONTS } from "@/__fixtures__/typographies";
 import { DEFAULTS } from "@/components/Card/constants";
 import type { CarouselConfig } from "@/views/Carousel/CarouselView";
-
 
 export const DEFAULT_CONFIG: CarouselConfig = {
   /** Grouping */
@@ -63,9 +63,9 @@ export const FULL_CONFIG: CarouselConfig = {
   showContent: true,
   contentMaxLength: 200,
   /* Appearance */
-  titleFont: 'Impact, Georgia, Arial Black, Trebuchet MS',
-  contentFont: 'Arial, Verdana, Tahoma, Segoe UI, Roboto',
-  badgesFont: 'Comic Sans MS, Courier New, Consolas, Arial Narrow, Impact',
+  titleFont: SERIF_FONTS,
+  contentFont: SANS_SERIF_FONTS,
+  badgesFont: MONOSPACE_FONTS,
   backgroundColorProperty: 'note.color',
   backgroundColorApplyTo: 'image',
   iconProperty: 'note.icon',
