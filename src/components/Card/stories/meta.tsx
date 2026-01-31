@@ -13,7 +13,7 @@ import type { CardConfig } from "../types";
 const t = (key: NamespacedTranslationKey<"card">) =>
   translate("en", "card", key);
 
-type StoryProps = {
+export type StoryProps = {
   adaptToSize?: boolean;
   className?: string;
   entry: BasesEntry;
@@ -37,22 +37,6 @@ export const CardStory = ({
       isDraggable={isDraggable}
       {...config}
     />
-  );
-};
-
-export const WithVariants = (variants: StoryProps[]) => (props: Partial<StoryProps>) => {
-  return (
-    <div className="flex flex-wrap gap-4 w-full">
-      {variants.map((variant, _) => (
-        <CardStory
-          key={_.toString()}
-          {...{
-            ...variant,
-            ...props,
-          }}
-        />
-      ))}
-    </div>
   );
 };
 

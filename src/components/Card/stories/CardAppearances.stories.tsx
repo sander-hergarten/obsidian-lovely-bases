@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { ARTICLE_ENTRIES } from "@/__fixtures__/entries";
+import { WithVariants } from "@/stories/decorators/WithVariants";
 
 import * as Layouts from "./CardLayout.stories";
+import CardMeta, { CardStory } from "./meta";
 
-import CardMeta, { WithVariants } from "./meta";
-
-const AppearancesRenderer = WithVariants([
+const AppearancesRenderer = WithVariants(CardStory, [
   {
     ...Layouts.Vertical.args,
   },

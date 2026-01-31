@@ -126,6 +126,13 @@ export const Overlay: Story = {
   },
 };
 
+export const OverlayOnHover: Story = {
+  args: {
+    ...Overlay.args,
+    overlayContentVisibility: "hover",
+  }
+}
+
 export const Polaroid: Story = {
   args: {
     entry: ARTICLE_ENTRIES[0],

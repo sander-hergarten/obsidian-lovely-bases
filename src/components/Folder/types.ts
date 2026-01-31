@@ -5,7 +5,6 @@ import type { MouseEventHandler } from "react";
 export type File = {
 	id: string;
 	entry: BasesEntry;
-	onClick?: MouseEventHandler<HTMLDivElement>;
 };
 
 export type Folder = {

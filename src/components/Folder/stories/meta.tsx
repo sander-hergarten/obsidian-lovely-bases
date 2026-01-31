@@ -20,10 +20,10 @@ const DEFAULT_CARD_CONFIG: CardConfig = {
 
 const DEFAULT_CONFIG = aBasesViewConfig({});
 
-type StoryProps = {
+export type StoryProps = {
 	width?: number;
-	icon: string | null;
-	files: File[];
+	icon?: string;
+	files: BasesEntry[];
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
 	cardConfig?: CardConfig;

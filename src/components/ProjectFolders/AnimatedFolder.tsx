@@ -1,4 +1,4 @@
-import type { BasesViewConfig } from "obsidian";
+import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { type CSSProperties, type MouseEventHandler, useState } from "react";
 
 import type { CardConfig } from "@/components/Card/types";
@@ -7,12 +7,10 @@ import { cn } from "@/lib/utils";
 
 import Folder from "../Folder";
 
-import type { File } from "./types";
-
 type Props = {
 	title: string;
 	icon: string | null;
-	files: File[];
+	files: BasesEntry[];
 	className?: string;
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;

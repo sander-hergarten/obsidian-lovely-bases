@@ -1,4 +1,4 @@
-import type { BasesViewConfig } from "obsidian";
+import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { type MouseEventHandler, useRef, useState } from "react";
 
 import type { CardConfig } from "@/components/Card/types";
@@ -6,7 +6,6 @@ import LucideIcon from "@/components/Obsidian/LucideIcon";
 
 import FolderCard from "./FolderCard";
 import { useFolderColors } from "./hooks/use-folder-colors";
-import type { File } from "./types";
 
 const BASE_WIDTH = 128;
 const ASPECT_RATIO = 4 / 3;
@@ -14,8 +13,8 @@ const ASPECT_RATIO = 4 / 3;
 type Props = {
 	width?: number;
 	colors?: ReturnType<typeof useFolderColors>;
-	icon: string | null;
-	files: File[];
+	icon?: string;
+	files: BasesEntry[];
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
 	cardConfig: CardConfig;
@@ -99,21 +98,20 @@ const AnimatedFolder: React.FC<Props> = ({
 					zIndex: 20,
 				}}
 			>
-				{previewFiles.map((file, index) => (
+				{previewFiles.map((entry, index) => (
 					<FolderCard
 						backgroundColor={fileColor}
-						key={file.id}
+						key={entry.file.path}
 						ref={(el) => {
 							cardRefs.current[index] = el;
 						}}
-						entry={file.entry}
+						entry={entry}
 						config={config}
 						cardConfig={cardConfig}
 						delay={index * 50}
 						isVisible={isHovered}
 						index={index}
 						totalCount={previewFiles.length}
-						onClick={file.onClick}
 						scaleFactor={scaleFactor}
 					/>
 				))}

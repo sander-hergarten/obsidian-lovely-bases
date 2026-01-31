@@ -1,4 +1,4 @@
-import type { BasesViewConfig } from "obsidian";
+import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { type MouseEventHandler, useRef, useState } from "react";
 
 import type { CardConfig } from "@/components/Card/types";
@@ -9,7 +9,7 @@ import NotebookCard, {
 	getPagePattern,
 	PAGE_BACKGROUND_SIZES,
 } from "./NotebookCard";
-import type { File, NotebookColors, PageStyle } from "./types";
+import type { NotebookColors, PageStyle } from "./types";
 
 const BASE_WIDTH = 128;
 const ASPECT_RATIO = 7 / 10;
@@ -18,7 +18,8 @@ type Props = {
 	width?: number;
 	colors?: NotebookColors;
 	icon: string | null;
-	files: File[];
+  title?: string;
+	files: BasesEntry[];
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
 	cardConfig: CardConfig;
@@ -36,6 +37,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 	cardConfig,
 	config,
 	pageStyle = "plain",
+  title,
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [hoveredPageIndex, setHoveredPageIndex] = useState<number | null>(null);
@@ -127,20 +129,19 @@ const AnimatedNotebook: React.FC<Props> = ({
 						zIndex: 5,
 					}}
 				>
-					{previewFiles.map((file, index) => (
+					{previewFiles.map((entry, index) => (
 						<NotebookCard
 							backgroundColor={fileColor}
-							key={file.id}
+							key={entry.file.path}
 							ref={(el) => {
 								cardRefs.current[index] = el;
 							}}
-							entry={file.entry}
+							entry={entry}
 							config={config}
 							cardConfig={cardConfig}
 							delay={index * 50}
 							isVisible={isHovered}
 							index={index}
-							onClick={file.onClick}
 							scaleFactor={scaleFactor}
 							pageStyle={pageStyle}
 							notebookWidth={width}
@@ -152,19 +153,19 @@ const AnimatedNotebook: React.FC<Props> = ({
 				</div>
 
 				{/* Tabs - attached to the right edge of the notebook pages */}
-				{previewFiles.map((file, index) => {
+				{previewFiles.map((entry, index) => {
 					const pageWidth = width * 0.92;
 					const tabWidth = 14 * scaleFactor;
-					const tabHeight = (height * 0.5) / Math.max(previewFiles.length, 1);
+					const tabHeight = (height * 0.5) / 5;
 					const tabSpacing = 3 * scaleFactor;
-					const tabTop = height * 0.25 + index * (tabHeight + tabSpacing);
+					const tabTop = height * 0.12 + index * (tabHeight + tabSpacing);
 					// Position from left edge: page width (since pages start at left: 0)
 					const tabLeft = pageWidth;
           const tabColor = notebookColors[`tab${index + 1}Color`];
 
 					return (
 						<div
-							key={`tab-${file.id}`}
+							key={`tab-${entry.file.path}`}
 							className={cn(
 								"absolute cursor-pointer transition-all duration-300",
 								hoveredPageIndex === index
@@ -195,7 +196,6 @@ const AnimatedNotebook: React.FC<Props> = ({
 							onMouseLeave={() => setHoveredPageIndex(null)}
 							onClick={(e) => {
 								e.stopPropagation();
-								file.onClick?.(e);
 							}}
 						/>
 					);
@@ -211,7 +211,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 						background: coverBg,
 						transformStyle: "preserve-3d",
 						transformOrigin: "left center",
-						transform: isHovered ? "rotateY(-50deg)" : "rotateY(0deg)",
+						transform: isHovered ? "rotateY(-60deg)" : "rotateY(0deg)",
 						transition: "transform 500ms linear, box-shadow 500ms linear",
 						boxShadow: isHovered
 							? "20px 10px 50px rgba(0,0,0,0.2)"
@@ -261,6 +261,15 @@ const AnimatedNotebook: React.FC<Props> = ({
 								name={icon}
 							/>
 						)}
+            {title && (
+              <h3 className="font-normal" style={{
+                marginTop: 18 * scaleFactor,
+                fontSize: 12 * scaleFactor,
+                color: iconColor,
+              }}>
+                {title}
+              </h3>
+            )}
 
 						{/* Accent strip at bottom of label */}
 						<div

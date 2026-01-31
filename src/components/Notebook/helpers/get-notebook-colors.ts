@@ -4,6 +4,7 @@ import {
 	desaturate,
 	gradientColors,
 	lighten,
+	luminance,
 	saturate,
 } from "@/lib/colors";
 import type { NotebookColors } from "../types";
@@ -18,7 +19,9 @@ export const getNotebookColors = (
 	const elasticBand = primaryColor;
 	const elasticBandDark = darken(primaryColor, 0.15);
 	const labelBg = "var(--card)";
-	const labelAccent = "var(--color-muted)";
+	const labelAccent = luminance(primaryColor) > 0.5 ?
+    darken(primaryColor, 0.2) :
+    lighten(primaryColor, 0.2);
 	const pageBg = lighten(primaryColor, 0.85);
 	const pagePatternLine = "var(--color-muted)";
 	const pagePatternDot = "var(--color-muted)";

@@ -60,7 +60,6 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 			delay,
 			isVisible,
 			index,
-			onClick,
 			backgroundColor,
 			scaleFactor = 1,
 			pageStyle,
@@ -76,11 +75,10 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 		const pageHeight = notebookHeight * 0.96;
 
 		// Slide out distance when hovered - goes UP so it doesn't cover the tabs
-		const slideOutDistance = notebookHeight * 0.7;
+		const slideOutDistance = notebookHeight * 0.2;
 
 		const handleClick: MouseEventHandler<HTMLDivElement> = (event) => {
 			event.stopPropagation();
-			onClick?.(event);
 		};
 
 		// Calculate transform based on visibility and hover state
@@ -128,7 +126,6 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 					<Card
 						entry={entry}
 						config={config}
-						className="w-full h-full"
 						{...cardConfig}
 						cardSize={Math.min(pageWidth, pageHeight) * 0.85}
 						adaptToSize

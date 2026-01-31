@@ -30,7 +30,6 @@ const FolderCard = forwardRef<HTMLDivElement, FolderCardProps>(
 			isVisible,
 			index,
 			totalCount,
-			onClick,
 			backgroundColor,
 			scaleFactor = 1,
 		},
@@ -47,7 +46,6 @@ const FolderCard = forwardRef<HTMLDivElement, FolderCardProps>(
 
 		const handleClick: MouseEventHandler<HTMLDivElement> = (event) => {
 			event.stopPropagation();
-			onClick?.(event);
 		};
 
 		return (

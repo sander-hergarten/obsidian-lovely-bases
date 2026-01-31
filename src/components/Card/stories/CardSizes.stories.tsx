@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { ARTICLE_ENTRIES } from "@/__fixtures__/entries";
+import { WithVariants } from "@/stories/decorators/WithVariants";
 
 import * as Layouts from "./CardLayout.stories";
+import * as Shapes from "./CardShapes.stories";
 
-import CardMeta, { WithVariants } from "./meta";
+import CardMeta, { CardStory, type StoryProps } from "./meta";
 
 const baseArgs = {
   entry: ARTICLE_ENTRIES[0],
@@ -12,9 +14,9 @@ const baseArgs = {
   backgroundColorApplyTo: "both",
   iconProperty: "note.icon",
   adaptToSize: true,
-} satisfies Story["args"];
+} satisfies Partial<StoryProps>;
 
-const SizesRenderer = WithVariants([
+const SizesRenderer = WithVariants(CardStory, [
   {
     ...Layouts.Vertical.args,
     ...baseArgs,
@@ -31,6 +33,16 @@ const SizesRenderer = WithVariants([
     ...Layouts.Polaroid.args,
     ...baseArgs,
   },
+  {
+    ...Shapes.Circle.args,
+    ...baseArgs,
+    layout: "overlay",
+    overlayContentVisibility: "hover",
+  },
+  {
+    ...Shapes.Rounded.args,
+    ...baseArgs,
+  }
 ]);
 
 const meta = {
@@ -81,7 +93,6 @@ export const SixXS: Story = {
     contentMaxLength: 50,
   } as unknown as Story["args"],
 };
-
 
 export const FiveXS: Story = {
   name: "5XS",

@@ -1,10 +1,11 @@
 import type { Meta } from "@storybook/react-vite";
 
+import { MOVIES_ENTRIES } from "@/__fixtures__/entries";
 import { Providers } from "@/stories/decorators";
 
 import type Notebook from "..";
 
-import NotebookMeta, { createMockFiles, DEFAULT_NOTEBOOK_CARD_CONFIG, type Story } from "./meta";
+import NotebookMeta, { type Story } from "./meta";
 
 const meta = {
 	...NotebookMeta,
@@ -26,171 +27,43 @@ const meta = {
 
 export default meta;
 
+export const FullExample: Story = {
+	name: "Full Example",
+	args: {
+    icon: "folder",
+    gradient: "linear-gradient(135deg, #6F6E69 0%, #9F9D96 100%)",
+		files: MOVIES_ENTRIES.slice(0, 5),
+    title: "My Notebook",
+	},
+};
+
 export const Default: Story = {
 	name: "Default",
 	args: {
-		icon: "folder",
-		files: createMockFiles(5),
+		files: MOVIES_ENTRIES.slice(0, 5),
 	},
 };
 
-export const WithGradient: Story = {
-	name: "With Gradient",
+export const RuledPages: Story = {
+	name: "Ruled Pages",
 	args: {
-		icon: "briefcase",
-		gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-		files: createMockFiles(5),
-    pageStyle: "dotted",
-	},
-};
-
-export const ColorizedFiles: Story = {
-	name: "Colorized Files",
-	args: {
-		icon: "palette",
-		gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-		files: createMockFiles(5),
+		files: MOVIES_ENTRIES.slice(0, 5),
     pageStyle: "ruled",
 	},
 };
 
-export const SingleFile: Story = {
-	name: "Single File",
+export const DottedPages: Story = {
+	name: "Dotted Pages",
 	args: {
-		icon: "file",
-		files: createMockFiles(1),
+		files: MOVIES_ENTRIES.slice(0, 5),
+    pageStyle: "dotted",
+	},
+};
+
+export const SquaredPages: Story = {
+	name: "Squared Pages",
+	args: {
+		files: MOVIES_ENTRIES.slice(0, 5),
     pageStyle: "squared",
-	},
-};
-
-export const ManyFiles: Story = {
-	name: "Many Files (shows max 5)",
-	args: {
-		icon: "library",
-		files: createMockFiles(10),
-	},
-};
-
-export const NoIcon: Story = {
-	name: "No Icon",
-	args: {
-		icon: null,
-		files: createMockFiles(3),
-	},
-};
-
-export const WarmGradient: Story = {
-	name: "Warm Gradient",
-	args: {
-		icon: "sun",
-		gradient: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
-		files: createMockFiles(5),
-	},
-};
-
-export const CoolGradient: Story = {
-	name: "Cool Gradient",
-	args: {
-		icon: "snowflake",
-		gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
-		files: createMockFiles(5),
-	},
-};
-
-export const DarkGradient: Story = {
-	name: "Dark Gradient",
-	args: {
-		icon: "moon",
-		gradient: "linear-gradient(135deg, #434343 0%, #000000 100%)",
-		files: createMockFiles(5),
-	},
-};
-
-export const LargeSize: Story = {
-	name: "Large Size (256px)",
-	args: {
-		width: 256,
-		icon: "folder",
-		files: createMockFiles(5),
-	},
-};
-
-export const SmallSize: Story = {
-	name: "Small Size (80px)",
-	args: {
-		width: 80,
-		icon: "folder",
-		files: createMockFiles(5),
-	},
-};
-
-export const PolaroidCards: Story = {
-	name: "Polaroid Card Layout",
-	args: {
-		icon: "camera",
-		gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-		files: createMockFiles(5),
-		cardConfig: {
-			...DEFAULT_NOTEBOOK_CARD_CONFIG,
-			layout: "polaroid",
-		},
-	},
-};
-
-export const VerticalCards: Story = {
-	name: "Vertical Card Layout",
-	args: {
-		icon: "layers",
-		gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-		files: createMockFiles(5),
-		cardConfig: {
-			...DEFAULT_NOTEBOOK_CARD_CONFIG,
-			layout: "vertical",
-		},
-	},
-};
-
-export const CircleCards: Story = {
-	name: "Circle Shape Cards",
-	args: {
-		icon: "circle",
-		gradient: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
-		files: createMockFiles(5),
-		cardConfig: {
-			...DEFAULT_NOTEBOOK_CARD_CONFIG,
-			shape: "circle",
-      layout: "overlay",
-      showTitle: false,
-      imageAspectRatio: 1,
-		},
-	},
-};
-
-export const RoundedCards: Story = {
-	name: "Rounded Shape Cards",
-	args: {
-		icon: "square",
-		gradient: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
-		files: createMockFiles(5),
-		cardConfig: {
-			...DEFAULT_NOTEBOOK_CARD_CONFIG,
-			shape: "rounded",
-      layout: "overlay",
-      overlayContentVisibility: "hover",
-      imageAspectRatio: 1,
-		},
-	},
-};
-
-export const NoTitleCards: Story = {
-	name: "Cards Without Title",
-	args: {
-		icon: "image",
-		gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-		files: createMockFiles(5),
-		cardConfig: {
-			...DEFAULT_NOTEBOOK_CARD_CONFIG,
-			showTitle: false,
-		},
 	},
 };

@@ -8,7 +8,6 @@ import { isWikiLink, parseWikilink } from "@/lib/properties";
 
 import type { Folder } from "../types";
 
-
 export const useFolders = (
   data: BasesQueryResult,
   config: BasesViewConfig,
@@ -20,8 +19,8 @@ export const useFolders = (
     groupIconProperty: undefined,
   });
 
-  const [, colorProperty] = groupColorProperty.split(".");
-  const [, iconProperty] = groupIconProperty.split(".");
+  const [, colorProperty] = groupColorProperty?.split(".") ?? [];
+  const [, iconProperty] = groupIconProperty?.split(".") ?? [];
 
   return useMemo(() => {
     const folders: Folder[] = [];
@@ -74,21 +73,7 @@ export const useFolders = (
           };
           folders.push(folder);
         }
-        folder.files.push(
-          ...group.entries.map((entry) => {
-            return {
-              id: entry.file.path,
-              entry,
-              onClick: (event: React.MouseEvent) => {
-                event.preventDefault();
-                event.stopPropagation();
-
-                const modEvent = Keymap.isModEvent(event.nativeEvent);
-                void app.workspace.openLinkText(entry.file.path, "", modEvent);
-              },
-            };
-          }),
-        );
+        folder.files = group.entries;
       }
     }
     return folders;

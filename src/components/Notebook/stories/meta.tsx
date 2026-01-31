@@ -22,8 +22,9 @@ const DEFAULT_CONFIG = aBasesViewConfig({});
 
 type StoryProps = {
 	width?: number;
-	icon: string | null;
-	files: File[];
+	icon?: string;
+  title?: string;
+	files: BasesEntry[];
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
 	cardConfig?: CardConfig;
@@ -34,6 +35,7 @@ type StoryProps = {
 export const NotebookStory = ({
 	width,
 	icon,
+  title,
 	files,
 	gradient,
 	onClick,
@@ -45,6 +47,7 @@ export const NotebookStory = ({
 		<Notebook
 			width={width}
 			icon={icon}
+      title={title}
 			files={files}
 			gradient={gradient}
 			onClick={onClick}
@@ -93,6 +96,14 @@ export const meta = {
 			name: "Folder Icon",
 			description: "Lucide icon displayed on the folder front.",
 			options: [null, ...Object.keys(iconNodes)],
+			table: {
+				category: "Content",
+			},
+		},
+		title: {
+			control: "text",
+			name: "Title",
+			description: "Title of the notebook.",
 			table: {
 				category: "Content",
 			},
