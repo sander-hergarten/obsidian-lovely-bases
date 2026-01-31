@@ -90,6 +90,7 @@ export const CircleCards: Story = {
     pageStyle: "dotted",
 		files: PERSON_ENTRIES.slice(0, 5),
     title: "People",
+    padContent: true,
 		cardConfig: CIRCLE_SHAPE_CONFIG,
 	},
 };
@@ -102,6 +103,7 @@ export const RoundedCards: Story = {
     pageStyle: "squared",
 		files: APPLICATION_ENTRIES.slice(0, 5),
     title: "Applications",
+    padContent: true,
 		cardConfig: ROUNDED_SHAPE_CONFIG,
 	},
 };

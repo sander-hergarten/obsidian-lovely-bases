@@ -4,11 +4,12 @@ import { type MouseEventHandler, useRef, useState } from "react";
 import type { CardConfig } from "@/components/Card/types";
 import LucideIcon from "@/components/Obsidian/LucideIcon";
 import { cn } from "@/lib/utils";
+
 import { useNotebookColors } from "./hooks/use-notebook-colors";
-import NotebookCard, {
+import NotebookPage, {
 	getPagePattern,
 	PAGE_BACKGROUND_SIZES,
-} from "./NotebookCard";
+} from "./NotebookPage";
 import type { NotebookColors, PageStyle } from "./types";
 
 const BASE_WIDTH = 128;
@@ -29,7 +30,7 @@ type Props = {
 	pageStyle?: PageStyle;
 };
 
-const AnimatedNotebook: React.FC<Props> = ({
+const Notebook: React.FC<Props> = ({
 	width = BASE_WIDTH,
 	colors,
 	icon,
@@ -139,7 +140,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 					}}
 				>
 					{previewFiles.map((entry, index) => (
-						<NotebookCard
+						<NotebookPage
 							backgroundColor={fileColor}
 							key={entry.file.path}
 							ref={(el) => {
@@ -284,7 +285,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 
 					{/* Label skin */}
 					<div
-						className="relative text-left"
+						className="relative text-left box-content"
 						style={{
 							height: 50 * scaleFactor,
 							marginTop: 80 * scaleFactor,
@@ -336,6 +337,6 @@ const AnimatedNotebook: React.FC<Props> = ({
 	);
 };
 
-AnimatedNotebook.displayName = "AnimatedNotebook";
+Notebook.displayName = "Notebook";
 
-export default AnimatedNotebook;
+export default Notebook;

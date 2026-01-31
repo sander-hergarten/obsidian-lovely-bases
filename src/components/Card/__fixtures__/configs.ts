@@ -33,6 +33,30 @@ export const FULL_CONFIG: CardConfig = {
   backgroundColorApplyTo: 'both',
 } satisfies Partial<CardConfig>;
 
+export const VERTICAL_LAYOUT_CONFIG: CardConfig = {
+  ...DEFAULT_CONFIG,
+  layout: 'vertical',
+  shape: 'square',
+  hoverProperty: 'note.url',
+  hoverStyle: 'overlay',
+  properties: [
+    'note.author',
+    'note.published',
+    'note.excerpt',
+  ],
+  imageProperty: 'note.cover',
+  imageAspectRatio: 0.85,
+  cardSize: 400,
+  imageFit: 'cover',
+  reverseContent: false,
+  showPropertyTitles: false,
+  showTitle: true,
+  badgeProperty: undefined,
+  badgeIcon: undefined,
+  badgeColor: undefined,
+  linkProperty: undefined,
+};
+
 export const HORIZONTAL_LAYOUT_CONFIG: CardConfig = {
   ...DEFAULT_CONFIG,
   layout: 'horizontal',

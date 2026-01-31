@@ -34,7 +34,7 @@ export const PAGE_BACKGROUND_SIZES: Record<PageStyle, string | undefined> = {
 	dotted: "11px 11px",
 };
 
-type NotebookCardProps = {
+type Props = {
 	entry: BasesEntry;
 	config: BasesViewConfig;
 	cardConfig: CardConfig;
@@ -54,7 +54,7 @@ type NotebookCardProps = {
 	onMouseLeave?: () => void;
 };
 
-const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
+const NotebookPage = forwardRef<HTMLDivElement, Props>(
 	(
 		{
 			entry,
@@ -137,26 +137,22 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 		return (
 			<div
 				ref={ref}
-				className={cn("absolute cursor-pointer")}
+				className={cn("absolute cursor-pointer left-0 transform-3d backface-hidden")}
 				style={{
 					width: pageWidth,
 					height: pageHeight,
 					top: (notebookHeight - pageHeight) / 2,
-					left: 0,
-					transformStyle: "preserve-3d",
 					transformOrigin: "center bottom",
 					transform: getTransform(),
 					opacity: isPageHovered ? 1 : 0,
 					transition: getTransition(),
 					zIndex: isPageHovered ? 50 + index : 10 + index,
-					background: getPagePattern(pageStyle, colors),
-					backgroundSize: PAGE_BACKGROUND_SIZES[pageStyle],
-					borderRadius: `${2 * scaleFactor}px ${12 * scaleFactor}px ${12 * scaleFactor}px ${2 * scaleFactor}px`,
-					boxShadow: getBoxShadow(),
+					background: padContent ? getPagePattern(pageStyle, colors) : undefined,
+					backgroundSize: padContent ? PAGE_BACKGROUND_SIZES[pageStyle] : undefined,
+					borderRadius: padContent ? `${2 * scaleFactor}px ${12 * scaleFactor}px ${12 * scaleFactor}px ${2 * scaleFactor}px` : undefined,
+					boxShadow: padContent ? getBoxShadow() : undefined,
 					"--hover-background": backgroundColor ?? "var(--primary)",
 					pointerEvents: isPageHovered ? "auto" : "none",
-					// Subtle backface for realism
-					backfaceVisibility: "hidden",
 				} as CSSProperties}
 				onClick={handleClick}
 				onMouseEnter={onMouseEnter}
@@ -180,9 +176,6 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 						{...cardConfig}
 						cardSize={Math.min(pageWidth, pageHeight) - pagePadding * 2}
 						adaptToSize
-            style={!padContent ? {
-              borderRadius: `${2 * scaleFactor}px ${12 * scaleFactor}px ${12 * scaleFactor}px ${2 * scaleFactor}px`,
-            } : undefined}
 					/>
 				</div>
 			</div>
@@ -190,6 +183,6 @@ const NotebookCard = forwardRef<HTMLDivElement, NotebookCardProps>(
 	},
 );
 
-NotebookCard.displayName = "NotebookCard";
+NotebookPage.displayName = "NotebookPage";
 
-export default NotebookCard;
+export default NotebookPage;
