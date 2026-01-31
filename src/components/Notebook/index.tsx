@@ -19,6 +19,7 @@ type Props = {
 	colors?: NotebookColors;
 	icon: string | null;
   title?: string;
+  titleFont?: string;
 	files: BasesEntry[];
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
@@ -38,6 +39,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 	config,
 	pageStyle = "plain",
   title,
+  titleFont,
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [hoveredPageIndex, setHoveredPageIndex] = useState<number | null>(null);
@@ -308,6 +310,7 @@ const AnimatedNotebook: React.FC<Props> = ({
             {title && (
               <h3 className="font-normal line-clamp-2" style={{
                 marginTop: 18 * scaleFactor,
+                fontFamily: titleFont,
                 fontSize: 12 * scaleFactor,
                 color: iconColor,
               }}>

@@ -34,6 +34,7 @@ export const FullExample: Story = {
     gradient: "linear-gradient(135deg, #6F6E69 0%, #9F9D96 100%)",
 		files: MOVIES_ENTRIES.slice(0, 5),
     title: "My Notebook",
+    titleFont: '"Segoe Script", "Bradley Hand", "Noteworthy", "Comic Sans MS"'
 	},
 };
 
