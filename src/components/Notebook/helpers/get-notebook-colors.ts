@@ -15,7 +15,7 @@ export const getNotebookColors = (
 	const colors = gradientColors(gradient);
 	const primaryColor = colors[0] || accent();
 
-	const coverBg = primaryColor;
+	const coverBg = gradient;
 	const elasticBand = primaryColor;
 	const elasticBandDark = darken(primaryColor, 0.15);
 	const labelBg = "var(--card)";
@@ -23,8 +23,8 @@ export const getNotebookColors = (
     darken(primaryColor, 0.2) :
     lighten(primaryColor, 0.2);
 	const pageBg = lighten(primaryColor, 0.85);
-	const pagePatternLine = "var(--color-muted)";
-	const pagePatternDot = "var(--color-muted)";
+	const pagePatternLine = "var(--color-border)";
+	const pagePatternDot = "var(--color-border)";
 	const iconColor = desaturate(primaryColor, 0.2);
 	const fileColor = saturate(colors[1] || primaryColor, 0.2);
 

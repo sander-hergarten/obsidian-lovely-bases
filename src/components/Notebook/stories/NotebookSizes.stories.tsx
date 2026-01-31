@@ -30,6 +30,8 @@ export default meta;
 export const NineXS: Story = {
   name: "9XS",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 20,
@@ -45,6 +47,8 @@ export const NineXS: Story = {
 export const EightXS: Story = {
   name: "8XS",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 35,
@@ -60,6 +64,8 @@ export const EightXS: Story = {
 export const SevenXS: Story = {
   name: "7XS",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -72,6 +78,8 @@ export const SevenXS: Story = {
 export const SixXS: Story = {
   name: "6XS",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -84,6 +92,8 @@ export const SixXS: Story = {
 export const FiveXS: Story = {
   name: "5XS",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -96,6 +106,8 @@ export const FiveXS: Story = {
 export const FourXS: Story = {
   name: "4XS",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -108,6 +120,8 @@ export const FourXS: Story = {
 export const ThreeXS: Story = {
   name: "3XS",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -120,6 +134,8 @@ export const ThreeXS: Story = {
 export const TwoXS: Story = {
   name: "2XS",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -132,6 +148,8 @@ export const TwoXS: Story = {
 export const XS: Story = {
   name: "XS",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -144,6 +162,8 @@ export const XS: Story = {
 export const SM: Story = {
   name: "SM",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -156,6 +176,8 @@ export const SM: Story = {
 export const MD: Story = {
   name: "MD",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -168,6 +190,8 @@ export const MD: Story = {
 export const LG: Story = {
   name: "LG",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -180,6 +204,8 @@ export const LG: Story = {
 export const XL: Story = {
   name: "XL",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
       contentMaxLength: 50,
@@ -192,6 +218,8 @@ export const XL: Story = {
 export const TwoXL: Story = {
   name: "2XL",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },
@@ -203,6 +231,8 @@ export const TwoXL: Story = {
 export const ThreeXL: Story = {
   name: "3XL",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },
@@ -214,6 +244,8 @@ export const ThreeXL: Story = {
 export const FourXL: Story = {
   name: "4XL",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },
@@ -225,6 +257,8 @@ export const FourXL: Story = {
 export const FiveXL: Story = {
   name: "5XL",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },
@@ -236,6 +270,8 @@ export const FiveXL: Story = {
 export const SixXL: Story = {
   name: "6XL",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },
@@ -247,6 +283,8 @@ export const SixXL: Story = {
 export const SevenXL: Story = {
   name: "7XL",
   args: {
+    icon: "folder",
+    title: "My Notebook",
     cardConfig: {
       ...OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     },

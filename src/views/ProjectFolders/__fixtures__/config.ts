@@ -30,6 +30,8 @@ export const FULL_CONFIG: ProjectFoldersConfig = {
   iconProperty: 'note.icon',
   backgroundColorProperty: 'note.color',
   backgroundColorApplyTo: 'both',
+  groupIconProperty: 'note.icon',
+  groupColorProperty: 'note.color',
 };
 
 export const HORIZONTAL_LAYOUT_CONFIG: ProjectFoldersConfig = {
@@ -52,6 +54,8 @@ export const HORIZONTAL_LAYOUT_CONFIG: ProjectFoldersConfig = {
   badgeIcon: undefined,
   badgeColor: undefined,
   linkProperty: undefined,
+  groupIconProperty: 'note.icon',
+  groupColorProperty: 'note.color',
 };
 
 export const OVERLAY_LAYOUT_CONFIG: ProjectFoldersConfig = {
@@ -82,6 +86,8 @@ export const OVERLAY_LAYOUT_CONFIG: ProjectFoldersConfig = {
   badgesFont: undefined,
   titleFont: undefined,
   contentFont: undefined,
+  groupIconProperty: 'note.icon',
+  groupColorProperty: 'note.color',
 };
 
 export const POLAROID_LAYOUT_CONFIG: ProjectFoldersConfig = {
@@ -101,6 +107,8 @@ export const POLAROID_LAYOUT_CONFIG: ProjectFoldersConfig = {
   badgesFont: undefined,
   titleFont: undefined,
   contentFont: undefined,
+  groupIconProperty: 'note.icon',
+  groupColorProperty: 'note.color',
 };
 
 // === SHAPE CONFIGS ===
@@ -132,6 +140,8 @@ export const CIRCLE_SHAPE_CONFIG: ProjectFoldersConfig = {
   badgesFont: undefined,
   titleFont: undefined,
   contentFont: undefined,
+  groupIconProperty: 'note.icon',
+  groupColorProperty: 'note.color',
 };
 
 export const ROUNDED_SHAPE_CONFIG: ProjectFoldersConfig = {
@@ -161,4 +171,6 @@ export const ROUNDED_SHAPE_CONFIG: ProjectFoldersConfig = {
   badgesFont: undefined,
   titleFont: undefined,
   contentFont: undefined,
+  groupIconProperty: 'note.icon',
+  groupColorProperty: 'note.color',
 };

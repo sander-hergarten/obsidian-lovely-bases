@@ -87,6 +87,7 @@ export const CircleCards: Story = {
 	args: {
 		icon: "user",
 		gradient: "linear-gradient(135deg, #5e409d 0%, #8b7ec8 100%)",
+    pageStyle: "dotted",
 		files: PERSON_ENTRIES.slice(0, 5),
     title: "People",
 		cardConfig: CIRCLE_SHAPE_CONFIG,
@@ -98,6 +99,7 @@ export const RoundedCards: Story = {
 	args: {
 		icon: "layers",
 		gradient: "linear-gradient(135deg, #ad8301 0%, #d0a215 100%)",
+    pageStyle: "squared",
 		files: APPLICATION_ENTRIES.slice(0, 5),
     title: "Applications",
 		cardConfig: ROUNDED_SHAPE_CONFIG,

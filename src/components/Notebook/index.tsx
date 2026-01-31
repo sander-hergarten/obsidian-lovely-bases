@@ -262,7 +262,7 @@ const AnimatedNotebook: React.FC<Props> = ({
 							/>
 						)}
             {title && (
-              <h3 className="font-normal" style={{
+              <h3 className="font-normal line-clamp-2" style={{
                 marginTop: 18 * scaleFactor,
                 fontSize: 12 * scaleFactor,
                 color: iconColor,
