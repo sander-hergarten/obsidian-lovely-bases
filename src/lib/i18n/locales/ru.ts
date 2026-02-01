@@ -293,6 +293,9 @@ export const ru: LocaleTranslations = {
         },
       },
     },
+    back: "Назад",
+    totalItems: "{count} файлов",
+    singleItem: "{count} файл",
   },
   radarChart: {
     options: {

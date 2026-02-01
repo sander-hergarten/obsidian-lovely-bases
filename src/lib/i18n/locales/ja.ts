@@ -293,6 +293,9 @@ export const ja: LocaleTranslations = {
         },
       },
     },
+    back: "戻る",
+    totalItems: "{count} ファイル",
+    singleItem: "{count} ファイル",
   },
   radarChart: {
     options: {

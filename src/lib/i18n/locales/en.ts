@@ -291,6 +291,9 @@ export const en = {
         },
       },
     },
+    back: "Back",
+    totalItems: "{count} files",
+    singleItem: "{count} file",
   },
   radarChart: {
     options: {

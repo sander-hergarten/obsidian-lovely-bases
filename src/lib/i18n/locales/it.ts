@@ -293,6 +293,9 @@ export const it: LocaleTranslations = {
         },
       },
     },
+    back: "Indietro",
+    totalItems: "{count} file",
+    singleItem: "{count} file",
   },
   radarChart: {
     options: {

@@ -293,6 +293,9 @@ export const fr: LocaleTranslations = {
         },
       },
     },
+    back: "Retour",
+    totalItems: "{count} fichiers",
+    singleItem: "{count} fichier",
   },
   radarChart: {
     options: {

@@ -293,6 +293,9 @@ export const ko: LocaleTranslations = {
         },
       },
     },
+    back: "뒤로",
+    totalItems: "{count}개 파일",
+    singleItem: "{count}개 파일",
   },
   radarChart: {
     options: {

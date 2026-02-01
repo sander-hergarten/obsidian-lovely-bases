@@ -293,6 +293,9 @@ export const zh: LocaleTranslations = {
         },
       },
     },
+    back: "返回",
+    totalItems: "{count} 个文件",
+    singleItem: "{count} 个文件",
   },
   radarChart: {
     options: {

@@ -4,6 +4,7 @@ import { type CSSProperties, type MouseEventHandler, useRef, useState } from "re
 
 import type { CardConfig } from "@/components/Card/types";
 import { gradientColors } from "@/lib/colors";
+import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import type { GroupShape, GroupTitlePosition } from "@/views/ProjectFolders/types";
 
@@ -44,6 +45,7 @@ const ProjectFolder: React.FC<Props> = ({
   groupShape,
 	groupTitlePosition = "outside",
 }) => {
+  const { t } = useTranslation("projectFolders");
   const Component = getComponent(groupShape);
 	const [isHovered, setIsHovered] = useState(false);
 	const colors = gradient ? gradientColors(gradient) : [];
@@ -138,7 +140,9 @@ const ProjectFolder: React.FC<Props> = ({
 						layoutId={`folder-count-${title}`}
 						style={{ opacity: isHovered ? 0.8 : 1 }}
 					>
-						{files.length} {files.length === 1 ? "note" : "notes"}
+						{files.length === 1
+              ? t("singleItem", { count: files.length.toString() })
+              : t("totalItems", { count: files.length.toString() })}
 					</motion.p>
 				</div>
 			)}

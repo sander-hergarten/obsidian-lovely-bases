@@ -12,12 +12,22 @@ const getNestedValue = (obj: unknown, path: string): string => {
 		) as string;
 };
 
-export const translate = <N extends Namespace>(locale: SupportedLocale, namespace: N, key: NamespacedTranslationKey<N>): string => {
+const interpolateString = (str: string, interpolate: Record<string, string>): string => {
+  return Object.entries(interpolate).reduce((acc, [key, value]) => {
+    return acc.replace(`{${key}}`, value);
+  }, str);
+};
+
+export const translate = <N extends Namespace>(locale: SupportedLocale, namespace: N, key: NamespacedTranslationKey<N>, interpolate?: Record<string, string>): string => {
   const translations = locales[locale] ?? en;
-  const value = getNestedValue(translations[namespace], key);
+  let value = getNestedValue(translations[namespace], key);
 
   if (value === undefined) {
-    return getNestedValue(en[namespace], key);
+    value = getNestedValue(en[namespace], key);
+  }
+
+  if (interpolate) {
+    value = interpolateString(value, interpolate);
   }
 
   return value;
