@@ -51,7 +51,7 @@ const Notebook: React.FC<Props> = ({
 	const scaleFactor = width / BASE_WIDTH;
 	const height = width / ASPECT_RATIO;
 
-	const notebookColors = useNotebookColors(gradient, colors);
+	const notebookColors = useNotebookColors(gradient, colors, padContent);
 	const {
 		coverBg,
 		elasticBand,

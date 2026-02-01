@@ -11,6 +11,7 @@ import type { NotebookColors } from "../types";
 
 export const getNotebookColors = (
 	gradient = `linear-gradient(135deg, ${accent()} 0%, ${lighten(accent() || "#000", 0.2)} 100%)`,
+  isPadded = false,
 ): NotebookColors => {
 	const colors = gradientColors(gradient);
 	const primaryColor = colors[0] || accent();
@@ -22,7 +23,7 @@ export const getNotebookColors = (
 	const labelAccent = luminance(primaryColor) > 0.5 ?
     darken(primaryColor, 0.2) :
     lighten(primaryColor, 0.2);
-	const pageBg = lighten(primaryColor, 0.85);
+	const pageBg = isPadded ? lighten(primaryColor, 0.85) : "var(--card)";
 	const pagePatternLine = "var(--color-border)";
 	const pagePatternDot = "var(--color-border)";
 	const iconColor = desaturate(primaryColor, 0.2);
