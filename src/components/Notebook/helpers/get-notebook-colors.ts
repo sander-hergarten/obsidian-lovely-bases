@@ -23,7 +23,7 @@ export const getNotebookColors = (
 	const labelAccent = luminance(primaryColor) > 0.5 ?
     darken(primaryColor, 0.2) :
     lighten(primaryColor, 0.2);
-	const pageBg = isPadded ? lighten(primaryColor, 0.85) : "var(--card)";
+	const pageBg = isPadded ? lighten(primaryColor, 0.85) : "var(--bases-card-background)";
 	const pagePatternLine = "var(--color-border)";
 	const pagePatternDot = "var(--color-border)";
 	const iconColor = desaturate(primaryColor, 0.2);

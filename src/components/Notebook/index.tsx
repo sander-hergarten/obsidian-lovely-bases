@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { type MouseEventHandler, useRef, useState } from "react";
 
@@ -28,6 +29,8 @@ type Props = {
 	config: BasesViewConfig;
   padContent?: boolean;
 	pageStyle?: PageStyle;
+	iconLayoutId?: string;
+	titleLayoutId?: string;
 };
 
 const Notebook: React.FC<Props> = ({
@@ -43,6 +46,8 @@ const Notebook: React.FC<Props> = ({
 	pageStyle = "plain",
   title,
   titleFont,
+	iconLayoutId,
+	titleLayoutId,
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [hoveredPageIndex, setHoveredPageIndex] = useState<number | null>(null);
@@ -299,27 +304,40 @@ const Notebook: React.FC<Props> = ({
 					>
 						{/* Icon in label */}
 						{icon && (
-							<LucideIcon
+							<motion.div
+								layoutId={iconLayoutId}
 								className="absolute"
 								style={{
 									width: 20 * scaleFactor,
 									height: 20 * scaleFactor,
 									top: 10 * scaleFactor,
 									left: 15 * scaleFactor,
-									color: iconColor,
 								}}
-								name={icon}
-							/>
+							>
+								<LucideIcon
+									style={{
+										width: "100%",
+										height: "100%",
+										color: iconColor,
+									}}
+									name={icon}
+								/>
+							</motion.div>
 						)}
             {title && (
-              <h3 className="font-normal line-clamp-2" style={{
-                marginTop: 18 * scaleFactor,
-                fontFamily: titleFont,
-                fontSize: 12 * scaleFactor,
-                color: iconColor,
-              }}>
+              <motion.h3
+								layoutId={titleLayoutId}
+								layout="position"
+                className="font-normal line-clamp-2"
+								style={{
+									marginTop: 18 * scaleFactor,
+									fontFamily: titleFont,
+									fontSize: 12 * scaleFactor,
+									color: iconColor,
+								}}
+							>
                 {title}
-              </h3>
+              </motion.h3>
             )}
 
 						{/* Accent strip at bottom of label */}

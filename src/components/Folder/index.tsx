@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { type MouseEventHandler, useRef, useState } from "react";
 
@@ -21,6 +22,8 @@ type Props = {
   titleFont?: string;
 	cardConfig: CardConfig;
 	config: BasesViewConfig;
+	iconLayoutId?: string;
+	titleLayoutId?: string;
 };
 
 const AnimatedFolder: React.FC<Props> = ({
@@ -34,6 +37,8 @@ const AnimatedFolder: React.FC<Props> = ({
   titleFont,
 	cardConfig,
 	config,
+	iconLayoutId,
+	titleLayoutId,
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -137,14 +142,16 @@ const AnimatedFolder: React.FC<Props> = ({
 				}}
 			>
         {title && (
-          <div
+          <motion.div
             className="bg-white/90 dark:bg-white/95 rounded-sm shadow-sm border border-black/5 flex items-center justify-center transition-all duration-500"
             style={{
               maxWidth: `${80 * scaleFactor}px`,
               padding: `${2 * scaleFactor}px ${12 * scaleFactor}px`,
             }}
+            layoutId={titleLayoutId}
+            layout="position"
           >
-            <span
+            <motion.span
               className="text-gray-700 dark:text-gray-800 font-medium line-clamp-1 text-center"
               style={{
                 fontFamily: titleFont,
@@ -153,17 +160,19 @@ const AnimatedFolder: React.FC<Props> = ({
               }}
             >
               {title}
-            </span>
-          </div>
+            </motion.span>
+          </motion.div>
         )}
 				{icon && (
-					<LucideIcon
-						className="size-1/2"
-						style={{
-							color: iconColor,
-						}}
-						name={icon}
-					/>
+					<motion.div layoutId={iconLayoutId} className="size-1/2">
+						<LucideIcon
+							className="size-full"
+							style={{
+								color: iconColor,
+							}}
+							name={icon}
+						/>
+					</motion.div>
 				)}
 			</div>
 			<div

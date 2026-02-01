@@ -1,6 +1,6 @@
 import { useVirtualizer } from "@tanstack/react-virtual";
 import type { BasesEntry, BasesViewConfig } from "obsidian";
-import { memo, useLayoutEffect, useMemo } from "react";
+import { memo, useEffect, useMemo } from "react";
 
 import Card from "../Card";
 import { compareCardConfig } from "../Card/helpers/compare-config";
@@ -16,6 +16,16 @@ function chunkIntoRows(items: BasesEntry[], columns: number): BasesEntry[][] {
   }
   return rows;
 }
+
+const doubleRaf = (callback: () => void) => {
+  let cancelled = false;
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      if (!cancelled) callback();
+    });
+  });
+  return () => { cancelled = true; };
+};
 
 type Props = {
   cardConfig: CardConfig;
@@ -59,9 +69,9 @@ function PureVirtualGrid({
   });
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: needed to measure the height of the rows
-  useLayoutEffect(() => {
-    virtualizer.measure();
-  }, [columnCount, virtualizer]);
+  useEffect(() => {
+    return doubleRaf(() => virtualizer.measure());
+  }, [virtualizer, items]);
 
   return (
     <div

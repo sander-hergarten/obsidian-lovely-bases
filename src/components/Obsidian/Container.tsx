@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import { useObsidian } from "./Context";
 
 type Props = {
   children: React.ReactNode;
@@ -9,9 +10,11 @@ type Props = {
 
 export const Container = forwardRef<HTMLDivElement, Props>(
   ({ children, isEmbedded, style, embeddedStyle }, ref) => {
+    const { contentRef } = useObsidian();
+
     return (
       <div
-        ref={ref}
+        ref={ref ?? contentRef}
         className="lovely-bases"
         style={{
           height: "100%",
