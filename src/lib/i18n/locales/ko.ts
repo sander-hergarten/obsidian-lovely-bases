@@ -117,6 +117,51 @@ export const ko: LocaleTranslations = {
       },
     },
   },
+  group: {
+    options: {
+      behavior: {
+        title: "그룹 동작",
+        clickOnGroup: {
+          title: "그룹 클릭",
+          expand: "확장",
+          navigate: "탐색",
+          none: "없음",
+        },
+      },
+      layoutAndDisplay: {
+        title: "그룹 레이아웃",
+        groupShape: {
+          title: "모양",
+          folder: "폴더",
+          notebook: "노트북",
+        },
+        groupCounterPosition: {
+          title: "카운터 위치",
+          inside: "내부",
+          outside: "외부",
+          none: "숨김",
+        },
+        groupTitlePosition: {
+          title: "제목 위치",
+          inside: "내부",
+          outside: "외부",
+          none: "숨김",
+        },
+      },
+      appearance: {
+        title: "그룹 외관",
+        iconProperty: {
+          title: "아이콘 속성",
+        },
+        colorProperty: {
+          title: "색상 속성",
+        },
+        inferPropertiesFromLinkedNotes: {
+          title: "연결된 노트에서 속성 추론",
+        },
+      },
+    },
+  },
   infiniteGallery: {
     options: {
       grid: {
@@ -284,6 +329,12 @@ export const ko: LocaleTranslations = {
         },
         colorizeFiles: {
           title: "파일 색상 지정",
+        },
+        groupCounterPosition: {
+          title: "그룹 카운터 위치",
+          inside: "내부",
+          outside: "외부",
+          none: "숨김",
         },
         groupTitlePosition: {
           title: "그룹 제목 위치",

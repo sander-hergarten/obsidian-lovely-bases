@@ -120,7 +120,7 @@ const ItemContent = memo(
 					{!image && (
 						<div
 							className={cn(
-								"pointer-events-none absolute h-full w-full rounded-sm bg-card flex justify-center",
+								"pointer-events-none absolute h-full w-full rounded-sm bg-background-secondary flex justify-center",
 								shapeClass,
 							)}
 						>

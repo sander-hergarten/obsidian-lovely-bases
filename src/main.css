@@ -40,7 +40,7 @@
   --background: var(--background-primary);
   --foreground: var(--text-normal);
 
-  --card: var(--background-secondary);
+  --card: var(--bases-cards-background);
   --card-foreground: var(--text-normal);
   --popover: var(--background-secondary-alt);
   --popover-foreground: var(--text-normal);
@@ -109,6 +109,7 @@
   /** ShadCN variables */
 	--radius: var(--radius);
 	--color-background: var(--background);
+	--color-background-secondary: var(--background-secondary);
 	--color-foreground: var(--foreground);
 	--color-card: var(--card);
 	--color-card-foreground: var(--card-foreground);

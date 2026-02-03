@@ -23,10 +23,11 @@ const DEFAULT_CONFIG = aBasesViewConfig({});
 type StoryProps = {
 	width?: number;
 	icon?: string;
+  color?: string;
   title?: string;
   titleFont?: string;
+  showCounter?: boolean;
 	files: BasesEntry[];
-	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
 	cardConfig?: CardConfig;
 	config?: BasesViewConfig;
@@ -39,8 +40,9 @@ export const NotebookStory = ({
 	icon,
   title,
   titleFont,
+  showCounter = false,
 	files,
-	gradient,
+	color,
 	onClick,
 	cardConfig = DEFAULT_CARD_CONFIG,
 	config = DEFAULT_CONFIG,
@@ -53,8 +55,9 @@ export const NotebookStory = ({
 			icon={icon}
       title={title}
       titleFont={titleFont}
+      showCounter={showCounter}
 			files={files}
-			gradient={gradient}
+			color={color}
 			onClick={onClick}
 			cardConfig={cardConfig}
 			config={config}
@@ -114,13 +117,14 @@ export const meta = {
 				category: "Content",
 			},
 		},
-		gradient: {
-			control: "text",
-			name: "Gradient",
+		color: {
+			control: "color",
+			name: "Color",
 			description:
-				"CSS gradient string for folder colors (e.g., 'linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%)').",
+				"Color of the notebook.",
 			table: {
 				category: "Appearance",
+				defaultValue: { summary: "Primary Color" },
 			},
 		},
 		files: {

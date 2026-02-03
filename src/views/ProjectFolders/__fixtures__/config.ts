@@ -34,6 +34,7 @@ export const FULL_CONFIG: ProjectFoldersConfig = {
   groupIconProperty: 'note.icon',
   groupColorProperty: 'note.color',
   groupTitlePosition: "inside",
+  groupCounterPosition: "inside",
 };
 
 export const NOTEBOOK_CONFIG: ProjectFoldersConfig = {
@@ -42,6 +43,7 @@ export const NOTEBOOK_CONFIG: ProjectFoldersConfig = {
   groupIconProperty: 'note.icon',
   groupColorProperty: 'note.color',
   groupTitlePosition: "inside",
+  groupCounterPosition: "inside",
 };
 
 export const HORIZONTAL_LAYOUT_CONFIG: ProjectFoldersConfig = {

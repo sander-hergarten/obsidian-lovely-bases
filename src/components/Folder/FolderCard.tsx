@@ -16,7 +16,6 @@ type FolderCardProps = {
 	index: number;
 	totalCount: number;
 	onClick?: MouseEventHandler<HTMLDivElement>;
-	backgroundColor?: string;
 	scaleFactor?: number;
 };
 
@@ -30,7 +29,6 @@ const FolderCard = forwardRef<HTMLDivElement, FolderCardProps>(
 			isVisible,
 			index,
 			totalCount,
-			backgroundColor,
 			scaleFactor = 1,
 		},
 		ref,
@@ -63,7 +61,7 @@ const FolderCard = forwardRef<HTMLDivElement, FolderCardProps>(
 					zIndex: 10 + index,
 					left: -cardSize / 2,
 					// top: -cardHeight / 2,
-          '--hover-background': backgroundColor ?? "var(--primary)",
+          '--hover-background': "var(--primary)",
 				} as CSSProperties}
 				onClick={handleClick}
 			>

@@ -32,7 +32,7 @@ export const VerticalCards: Story = {
 	name: "Vertical Layout",
 	args: {
 		icon: "library-big",
-		gradient: "linear-gradient(135deg, #205ea6 0%, #4385be 100%)",
+    color: "#205ea6",
 		files: BOOK_ENTRIES.slice(0, 5),
     title: "Books",
 		cardConfig: {
@@ -47,7 +47,7 @@ export const HorizontalCards: Story = {
 	name: "Horizontal Layout",
 	args: {
 		icon: "newspaper",
-		gradient: "linear-gradient(135deg, #24837b 0%, #3aa99f 100%)",
+    color: "#24837b",
 		files: ARTICLE_ENTRIES.slice(0, 5),
     title: "Articles",
 		cardConfig: {
@@ -61,7 +61,7 @@ export const OverlayCards: Story = {
 	name: "Overlay Layout",
 	args: {
 		icon: "film",
-		gradient: "linear-gradient(135deg, #af3029 0%, #d14d41 100%)",
+    color: "#af3029",
 		files: MOVIES_ENTRIES.slice(0, 5),
     title: "Movies",
 		cardConfig: {
@@ -75,7 +75,7 @@ export const PolaroidCards: Story = {
 	name: "Polaroid Layout",
 	args: {
 		icon: "camera",
-		gradient: "linear-gradient(135deg, #66800b 0%, #879a39 100%)",
+    color: "#66800b",
 		files: PHOTOS_ENTRIES.slice(0, 5),
     title: "Photos",
 		cardConfig: POLAROID_LAYOUT_CONFIG
@@ -86,7 +86,7 @@ export const CircleCards: Story = {
 	name: "Circle Shape",
 	args: {
 		icon: "user",
-		gradient: "linear-gradient(135deg, #5e409d 0%, #8b7ec8 100%)",
+    color: "#5e409d",
     pageStyle: "dotted",
 		files: PERSON_ENTRIES.slice(0, 5),
     title: "People",
@@ -99,7 +99,7 @@ export const RoundedCards: Story = {
 	name: "Rounded Shape",
 	args: {
 		icon: "layers",
-		gradient: "linear-gradient(135deg, #ad8301 0%, #d0a215 100%)",
+    color: "#ad8301",
     pageStyle: "squared",
 		files: APPLICATION_ENTRIES.slice(0, 5),
     title: "Applications",

@@ -11,6 +11,9 @@
   --interactive-accent: var(--color-red-400);
   --bases-cards-background: var(--color-paper);
   --bases-cards-cover-background: var(--color-base-50);
+  --font-text: "Montserrat Alternates", "Josefin Sans", '??', ui-sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Google Sans Flex", Roboto, "Inter Variable", "Inter", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  --font-interface: "Montserrat Alternates", "Josefin Sans", '??', ui-sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Google Sans Flex", Roboto, "Inter Variable", "Inter", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  --font-monospace: "JetBrains Mono", "Iosevka SS07", '??', ui-monospace, SFMono-Regular, "Cascadia Mono", "Roboto Mono", "DejaVu Sans Mono", "Liberation Mono", Menlo, Monaco, "Consolas", "Source Code Pro", monospace;
   --font-ui-smaller: 11px;
   --font-ui-small: 13px;
   --h3-color: var(--color-base-950);
@@ -23,9 +26,10 @@
   --radius: var(--radius-m, 8px);
 
   --background: var(--color-paper);
+  --background-secondary: var(--color-base-50);
   --foreground: var(--color-base-900);
 
-  --card: var(--color-base-50);
+  --card: var(--color-paper);
   --card-foreground: var(--color-base-950);
   --popover: var(--color-base-100);
   --popover-foreground: var(--color-base-900);
@@ -72,27 +76,49 @@
   --color-blue: var(--color-blue-400);
   --color-purple: var(--color-purple-400);
   --color-pink: var(--color-pink-400);
+
+  background-color: var(--background);
 }
 
 .obsidian {
+  --font-interface: '??', '??', '??', ui-sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Google Sans Flex", Roboto, "Inter Variable", "Inter", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  --font-text: '??', '??', ui-sans-serif, -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", "Google Sans Flex", Roboto, "Inter Variable", "Inter", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  --font-monospace: '??', '??', ui-monospace, SFMono-Regular, "Cascadia Mono", "Roboto Mono", "DejaVu Sans Mono", "Liberation Mono", Menlo, Monaco, "Consolas", "Source Code Pro", monospace;
+  --background: #FFFFFF;
+  --background-modifier-border: #e0e0e0;
+  --background-secondary: #F6F6F6;
+  --bases-cards-background: #FFFFFF;
   --interactive-accent: #8A5CF4;
   --primary: #8A5CF4;
+
+  --card: var(--bases-cards-background);
+  --border: var(--background-modifier-border);
+  --input: var(--background-modifier-border);
+
+  --font-serif: var(--font-text);
+  --font-sans: var(--font-text);
+  --font-mono: var(--font-monospace);
 
   --chart-1: oklch(from var(--primary) clamp(0, calc(l + 0.18), 1) calc(c * 0.55) h);
   --chart-2: oklch(from var(--primary) clamp(0, calc(l + 0.08), 1) calc(c * 0.80) h);
   --chart-3: oklch(from var(--primary) clamp(0, calc(l + 0.00), 1) calc(c * 1.00) h);
   --chart-4: oklch(from var(--primary) clamp(0, calc(l - 0.10), 1) calc(c * 0.95) h);
   --chart-5: oklch(from var(--primary) clamp(0, calc(l - 0.20), 1) calc(c * 0.85) h);
+
+  background-color: var(--background);
+  font-family: var(--font-text);
 }
 
 .dark {
   --scrollbar-color: var(--color-base-900);
-  --bases-cards-background: var(--color-base-900);
+  --bases-cards-background: var(--color-black);
+  --background-modifier-border: var(--color-base-900);
 
-  --background: var(--color-base-900);
+  --background: var(--color-black);
+  --background-secondary: var(--color-base-950);
   --foreground: var(--color-base-50);
 
-  --card: rgba(255, 255, 255, 0.067);
+  --card: var(--bases-cards-background);
   --card-foreground: var(--color-base-50);
   --popover: rgba(255, 255, 255, 0.067);
   --popover-foreground: var(--color-base-50);
@@ -120,11 +146,18 @@
   --sidebar-accent-foreground: var(--color-base-50);
   --sidebar-border: var(--background-modifier-border);
   --sidebar-ring: var(--interactive-accent);
+
+  background-color: var(--background);
 }
 
 .obsidian.dark {
+  --scrollbar-color: #363636;
   --bases-cards-background: #1E1E1E;
   --background: #1E1E1E;
+  --background-secondary: #262626;
+  --background-modifier-border: #363636;
+
+  background-color: var(--background);
 }
 
 .markdown-renderer h3 {
@@ -143,7 +176,7 @@ body, .dark, .obsidian {
 }
 
 body {
-  font-family: ui-sans-serif, -apple-system, "system-ui", "Segoe UI", Roboto, Inter, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: var(--font-text);
 }
 
 .font-merienda {
@@ -159,4 +192,16 @@ h3, .markdown-rendered h3 {
 
 [data-layout="overlay"] h3, [data-layout="overlay"] .markdown-rendered h3 {
   color: var(--color-base-50);
+}
+
+.sb-show-main:has(.dark) {
+  background-color: #100F0F;
+}
+
+.sb-show-main:has(.obsidian) {
+  background-color: #FFFFFF;
+}
+
+.sb-show-main:has(.obsidian.dark) {
+  background-color: #1E1E1E;
 }

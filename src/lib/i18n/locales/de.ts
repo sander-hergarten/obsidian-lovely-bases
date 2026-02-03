@@ -117,6 +117,51 @@ export const de: LocaleTranslations = {
       },
     },
   },
+  group: {
+    options: {
+      behavior: {
+        title: "Gruppenverhalten",
+        clickOnGroup: {
+          title: "Klick auf Gruppe",
+          expand: "Erweitern",
+          navigate: "Navigieren",
+          none: "Keine",
+        },
+      },
+      layoutAndDisplay: {
+        title: "Gruppen-Layout",
+        groupShape: {
+          title: "Form",
+          folder: "Ordner",
+          notebook: "Notizbuch",
+        },
+        groupCounterPosition: {
+          title: "Zählerposition",
+          inside: "Innen",
+          outside: "Außen",
+          none: "Versteckt",
+        },
+        groupTitlePosition: {
+          title: "Titelposition",
+          inside: "Innen",
+          outside: "Außen",
+          none: "Versteckt",
+        },
+      },
+      appearance: {
+        title: "Gruppen-Erscheinungsbild",
+        iconProperty: {
+          title: "Symbol-Eigenschaft",
+        },
+        colorProperty: {
+          title: "Farb-Eigenschaft",
+        },
+        inferPropertiesFromLinkedNotes: {
+          title: "Eigenschaften aus verknüpften Notizen ableiten",
+        },
+      },
+    },
+  },
   infiniteGallery: {
     options: {
       grid: {
@@ -284,6 +329,12 @@ export const de: LocaleTranslations = {
         },
         colorizeFiles: {
           title: "Dateien einfärben",
+        },
+        groupCounterPosition: {
+          title: "Position des Gruppenzählers",
+          inside: "Innen",
+          outside: "Außen",
+          none: "Versteckt",
         },
         groupTitlePosition: {
           title: "Position des Gruppentitels",

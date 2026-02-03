@@ -2,7 +2,7 @@ import { isHexColor } from "@/lib/colors";
 
 export const COLOR_SCHEMES = {
   primary: [
-    "bg-card",
+    "bg-background-secondary",
     "bg-primary/10",
     "bg-primary/30",
     "bg-primary/50",
@@ -10,7 +10,7 @@ export const COLOR_SCHEMES = {
     "bg-primary",
   ],
   semaphor: [
-    "bg-card",
+    "bg-background-secondary",
     "bg-palette-red",
     "bg-palette-orange",
     "bg-palette-yellow",
@@ -18,7 +18,7 @@ export const COLOR_SCHEMES = {
     "bg-palette-cyan",
   ],
   red: [
-    "bg-card",
+    "bg-background-secondary",
     "bg-palette-red/10",
     "bg-palette-red/30",
     "bg-palette-red/50",
@@ -26,7 +26,7 @@ export const COLOR_SCHEMES = {
     "bg-palette-red",
   ],
   orange: [
-    "bg-card",
+    "bg-background-secondary",
     "bg-palette-orange/10",
     "bg-palette-orange/30",
     "bg-palette-orange/50",
@@ -34,7 +34,7 @@ export const COLOR_SCHEMES = {
     "bg-palette-orange",
   ],
   yellow: [
-    "bg-card",
+    "bg-background-secondary",
     "bg-palette-yellow/10",
     "bg-palette-yellow/30",
     "bg-palette-yellow/50",
@@ -42,7 +42,7 @@ export const COLOR_SCHEMES = {
     "bg-palette-yellow",
   ],
   green: [
-    "bg-card",
+    "bg-background-secondary",
     "bg-palette-green/10",
     "bg-palette-green/30",
     "bg-palette-green/50",
@@ -50,7 +50,7 @@ export const COLOR_SCHEMES = {
     "bg-palette-green",
   ],
   cyan: [
-    "bg-card",
+    "bg-background-secondary",
     "bg-palette-cyan/10",
     "bg-palette-cyan/30",
     "bg-palette-cyan/50",
@@ -58,7 +58,7 @@ export const COLOR_SCHEMES = {
     "bg-palette-cyan",
   ],
   blue: [
-    "bg-card",
+    "bg-background-secondary",
     "bg-palette-blue/10",
     "bg-palette-blue/30",
     "bg-palette-blue/50",
@@ -66,7 +66,7 @@ export const COLOR_SCHEMES = {
     "bg-palette-blue",
   ],
   purple: [
-    "bg-card",
+    "bg-background-secondary",
     "bg-palette-purple/10",
     "bg-palette-purple/30",
     "bg-palette-purple/50",
@@ -74,7 +74,7 @@ export const COLOR_SCHEMES = {
     "bg-palette-purple",
   ],
   magenta: [
-    "bg-card",
+    "bg-background-secondary",
     "bg-palette-magenta/10",
     "bg-palette-magenta/30",
     "bg-palette-magenta/50",

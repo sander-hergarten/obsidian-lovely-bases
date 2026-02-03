@@ -13,30 +13,35 @@ const ASPECT_RATIO = 4 / 3;
 
 type Props = {
 	width?: number;
+  color?: string;
 	colors?: ReturnType<typeof useFolderColors>;
 	icon?: string;
 	files: BasesEntry[];
 	gradient?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
+  showCounter?: boolean;
   title?: string;
   titleFont?: string;
 	cardConfig: CardConfig;
 	config: BasesViewConfig;
+  counterLayoutId?: string;
 	iconLayoutId?: string;
 	titleLayoutId?: string;
 };
 
-const AnimatedFolder: React.FC<Props> = ({
+const Folder: React.FC<Props> = ({
 	width = BASE_WIDTH,
+  color,
 	colors,
 	icon,
 	files,
-	gradient,
 	onClick,
+  showCounter = false,
   title,
   titleFont,
 	cardConfig,
 	config,
+  counterLayoutId,
 	iconLayoutId,
 	titleLayoutId,
 }) => {
@@ -46,7 +51,7 @@ const AnimatedFolder: React.FC<Props> = ({
 	const scaleFactor = width / BASE_WIDTH;
 	const height = width / ASPECT_RATIO;
 
-	const { backBg, tabBg, frontBg, fileColor, iconColor } = useFolderColors(gradient, colors);
+	const { backBg, labelBg, tabBg, frontBg, foreground } = useFolderColors(color, colors);
 
 	const previewFiles = files.slice(0, 5);
 
@@ -82,12 +87,13 @@ const AnimatedFolder: React.FC<Props> = ({
 				}}
 			/>
 			<div
-				className="absolute rounded-t-md border-t border-x border-white/10"
+				className="absolute rounded-t-md border-t border-x border-white/10 flex justify-end before:absolute before:inset-0 before:bg-black/15 before:content-['']"
 				style={{
 					width: 48 * scaleFactor,
 					height: 16 * scaleFactor,
+          paddingInline: 3 * scaleFactor,
+          paddingBlock: 1 * scaleFactor,
 					background: tabBg,
-					filter: "brightness(0.85)",
 					top: `calc(50% - ${48 * scaleFactor}px - ${12 * scaleFactor}px)`,
 					left: `calc(50% - ${64 * scaleFactor}px + ${16 * scaleFactor}px)`,
 					transformOrigin: "bottom center",
@@ -97,7 +103,25 @@ const AnimatedFolder: React.FC<Props> = ({
 					transition: "transform 700ms cubic-bezier(0.16, 1, 0.3, 1)",
 					zIndex: 10,
 				}}
-			/>
+			>
+      {showCounter && (
+        <motion.span
+          className="absolute font-semibold tracking-tight tabular-nums -rotate-1 justify-end rounded-xs flex"
+          layoutId={counterLayoutId}
+          style={{
+            backgroundColor: labelBg,
+            color: foreground,
+            textShadow: `0 0.6px 0 var(--color-muted)`,
+            paddingInline: 8 * scaleFactor,
+            paddingBlock: 1 * scaleFactor,
+            fontFamily: titleFont ?? 'var(--font-mono)',
+            fontSize: 8 * scaleFactor,
+          }}
+        >
+          {files.length}
+        </motion.span>
+      )}
+      </div>
 			<div
 				className="absolute"
 				style={{
@@ -109,7 +133,6 @@ const AnimatedFolder: React.FC<Props> = ({
 			>
 				{previewFiles.map((entry, index) => (
 					<FolderCard
-						backgroundColor={fileColor}
 						key={entry.file.path}
 						ref={(el) => {
 							cardRefs.current[index] = el;
@@ -141,10 +164,22 @@ const AnimatedFolder: React.FC<Props> = ({
 					zIndex: 30,
 				}}
 			>
+				{icon && (
+					<motion.div layoutId={iconLayoutId} className="size-1/2">
+						<LucideIcon
+							className="size-full"
+							style={{
+								color: foreground,
+							}}
+							name={icon}
+						/>
+					</motion.div>
+				)}
         {title && (
           <motion.div
-            className="bg-white/90 dark:bg-white/95 rounded-sm shadow-sm border border-black/5 flex items-center justify-center transition-all duration-500"
+            className="rounded-sm shadow-sm border border-border flex items-center justify-center transition-all duration-500"
             style={{
+              backgroundColor: labelBg,
               maxWidth: `${80 * scaleFactor}px`,
               padding: `${2 * scaleFactor}px ${12 * scaleFactor}px`,
             }}
@@ -152,8 +187,9 @@ const AnimatedFolder: React.FC<Props> = ({
             layout="position"
           >
             <motion.span
-              className="text-gray-700 dark:text-gray-800 font-medium line-clamp-1 text-center"
+              className="font-medium line-clamp-1 text-center"
               style={{
+                color: foreground,
                 fontFamily: titleFont,
                 fontSize: `${10 * scaleFactor}px`,
                 letterSpacing: "0.01em",
@@ -163,17 +199,6 @@ const AnimatedFolder: React.FC<Props> = ({
             </motion.span>
           </motion.div>
         )}
-				{icon && (
-					<motion.div layoutId={iconLayoutId} className="size-1/2">
-						<LucideIcon
-							className="size-full"
-							style={{
-								color: iconColor,
-							}}
-							name={icon}
-						/>
-					</motion.div>
-				)}
 			</div>
 			<div
 				className="absolute rounded-lg overflow-hidden pointer-events-none"
@@ -195,4 +220,4 @@ const AnimatedFolder: React.FC<Props> = ({
 	);
 };
 
-export default AnimatedFolder;
+export default Folder;

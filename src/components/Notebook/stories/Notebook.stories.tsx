@@ -32,10 +32,11 @@ export const FullExample: Story = {
 	name: "Full Example",
 	args: {
     icon: "folder",
-    gradient: "linear-gradient(135deg, #6F6E69 0%, #9F9D96 100%)",
+    color: "#6F6E69",
 		files: MOVIES_ENTRIES.slice(0, 5),
     title: "My Notebook",
     titleFont: HANDWRITTEN_FONTS,
+    showCounter: true,
 	},
 };
 

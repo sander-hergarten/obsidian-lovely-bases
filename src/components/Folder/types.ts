@@ -18,8 +18,7 @@ export type Folder = {
 export type FolderColors = {
   backBg: string;
   tabBg: string;
+  labelBg: string;
   frontBg: string;
-  colors: string[];
-  fileColor: string;
-  iconColor: string;
+  foreground: string;
 };

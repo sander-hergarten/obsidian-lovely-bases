@@ -92,7 +92,7 @@ export const HeatmapCalendar = ({
     }
 
     if (reverseColors) {
-      // we need to keep the first color as bg-card and reverse the rest
+      // we need to keep the first color as bg-background-secondary and reverse the rest
       colors = [colors[0], ...colors.slice(1).reverse()];
     }
 

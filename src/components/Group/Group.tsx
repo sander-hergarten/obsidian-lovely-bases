@@ -3,15 +3,16 @@ import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { type CSSProperties, type MouseEventHandler, useRef, useState } from "react";
 
 import type { CardConfig } from "@/components/Card/types";
-import { gradientColors } from "@/lib/colors";
+import { useEntryOpen } from "@/hooks/use-entry-open";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import type { GroupShape, GroupTitlePosition } from "@/views/ProjectFolders/types";
+import type { GroupShape } from "@/views/ProjectFolders/types";
 
 import Folder from "../Folder";
 import Notebook from "../Notebook";
-import FolderExpandedView from "./FolderExpandedView";
-import { useFolderExpand } from "./hooks/use-folder-expand";
+import GroupExpandedView from "./GroupExpandedView";
+import { useGroupExpand } from "./hooks/use-group-expand";
+import type { GroupConfig } from "./types";
 
 const getComponent = (shape: GroupShape) => {
   if (shape === "folder") {
@@ -21,36 +22,36 @@ const getComponent = (shape: GroupShape) => {
 };
 
 type Props = {
+  entry: BasesEntry | undefined;
 	title: string;
 	icon: string | null;
 	files: BasesEntry[];
 	className?: string;
-	gradient?: string;
+  color?: string;
 	onClick?: MouseEventHandler<HTMLDivElement>;
 	cardConfig: CardConfig;
+  groupConfig: GroupConfig;
 	config: BasesViewConfig;
-  groupShape: GroupShape;
-	groupTitlePosition?: GroupTitlePosition;
 };
 
-const ProjectFolder: React.FC<Props> = ({
+const Group: React.FC<Props> = ({
+  entry,
 	title,
 	icon,
 	files,
 	className,
-	gradient,
+	color,
 	onClick,
 	cardConfig,
+  groupConfig,
 	config,
-  groupShape,
-	groupTitlePosition = "outside",
 }) => {
   const { t } = useTranslation("projectFolders");
-  const Component = getComponent(groupShape);
+  const Component = getComponent(groupConfig.groupShape);
 	const [isHovered, setIsHovered] = useState(false);
-	const colors = gradient ? gradientColors(gradient) : [];
 	const cardRef = useRef<HTMLDivElement>(null);
 
+  const handleEntryOpen = useEntryOpen(entry, config, cardConfig.linkProperty);
 	const {
 		handlePointerDown,
 		handlePointerUp,
@@ -58,18 +59,16 @@ const ProjectFolder: React.FC<Props> = ({
 		handleClose,
 		isExpanded,
 		isPressing,
-	} = useFolderExpand();
-
-	const showTitleOutside = groupTitlePosition === "outside";
-	const showTitleInside = groupTitlePosition === "inside";
+	} = useGroupExpand();
 
 	const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-		// If there are files, expand the view; otherwise use original onClick
-		if (files.length > 0) {
-			handleExpandClick(e, cardRef);
-		} else if (onClick) {
-			onClick(e);
-		}
+    if (groupConfig.groupClickOnGroup === 'expand') {
+      handleExpandClick(e, cardRef);
+    } else if (groupConfig.groupClickOnGroup === 'navigate') {
+      handleEntryOpen(e);
+    } else if (onClick) {
+      onClick(e);
+    }
 	};
 
 	return (
@@ -84,7 +83,7 @@ const ProjectFolder: React.FC<Props> = ({
 					minWidth: "280px",
 					minHeight: "320px",
 					perspective: "1200px",
-					"--folder-color": colors.length > 0 ? colors?.[0] : "var(--primary)",
+					"--folder-color": color,
 				} as CSSProperties}
 				animate={{
 					scale: isPressing ? 0.98 : isHovered ? 1.04 : 1,
@@ -113,41 +112,47 @@ const ProjectFolder: React.FC<Props> = ({
 				<Component
 					icon={icon}
 					files={files}
-					gradient={gradient}
-					onClick={onClick}
+          color={color}
+					onClick={handleClick}
 					cardConfig={cardConfig}
 					config={config}
-					title={showTitleInside ? title : undefined}
-					iconLayoutId={icon ? `folder-icon-${title}` : undefined}
-					titleLayoutId={showTitleInside ? `folder-title-${title}` : undefined}
+					title={groupConfig.groupTitlePosition === 'inside' ? title : undefined}
+          counterLayoutId={groupConfig.groupCounterPosition === 'inside' ? `folder-counter-${title}` : undefined}
+					iconLayoutId={`folder-icon-${title}`}
+					titleLayoutId={`folder-title-${title}`}
+          showCounter={groupConfig.groupCounterPosition === 'inside'}
 				/>
 			</div>
-			{showTitleOutside && (
+			{(groupConfig.groupTitlePosition === 'outside' || groupConfig.groupCounterPosition === 'outside') && (
 				<div className="text-center relative z-10">
-					<motion.h3
-						className="text-base font-semibold text-foreground mt-4 transition-all duration-500 line-clamp-1"
-						layoutId={`folder-title-${title}`}
-						layout="position"
-            style={{
-							transform: isHovered ? "translateY(2px)" : "translateY(0)",
-							letterSpacing: isHovered ? "-0.01em" : "0",
-						}}
-					>
-						{title}
-					</motion.h3>
-					<motion.p
-						className="text-xs font-medium text-muted-foreground transition-all duration-500"
-						layoutId={`folder-count-${title}`}
-						style={{ opacity: isHovered ? 0.8 : 1 }}
-					>
-						{files.length === 1
-              ? t("singleItem", { count: files.length.toString() })
-              : t("totalItems", { count: files.length.toString() })}
-					</motion.p>
+			    {groupConfig.groupTitlePosition === 'outside' && (
+            <motion.h3
+              className="text-base font-semibold text-foreground mt-4 transition-all duration-500 line-clamp-1"
+              layoutId={`folder-title-${title}`}
+              layout="position"
+              style={{
+                transform: isHovered ? "translateY(2px)" : "translateY(0)",
+                letterSpacing: isHovered ? "-0.01em" : "0",
+              }}
+            >
+              {title}
+            </motion.h3>
+          )}
+          {groupConfig.groupCounterPosition === 'outside' && (
+            <motion.p
+              className="text-xs font-medium text-muted-foreground transition-all duration-500"
+              layoutId={`folder-count-${title}`}
+              style={{ opacity: isHovered ? 0.8 : 1 }}
+            >
+              {files.length === 1
+                ? t("singleItem", { count: files.length.toString() })
+                : t("totalItems", { count: files.length.toString() })}
+            </motion.p>
+          )}
 				</div>
 			)}
 		</motion.div>
-		<FolderExpandedView
+		<GroupExpandedView
 			isOpen={isExpanded}
 			title={title}
 			icon={icon}
@@ -161,4 +166,4 @@ const ProjectFolder: React.FC<Props> = ({
 	);
 };
 
-export default ProjectFolder;
+export default Group;

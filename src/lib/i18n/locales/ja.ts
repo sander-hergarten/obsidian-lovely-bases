@@ -117,6 +117,51 @@ export const ja: LocaleTranslations = {
       },
     },
   },
+  group: {
+    options: {
+      behavior: {
+        title: "グループの動作",
+        clickOnGroup: {
+          title: "グループをクリック",
+          expand: "展開",
+          navigate: "ナビゲート",
+          none: "なし",
+        },
+      },
+      layoutAndDisplay: {
+        title: "グループレイアウト",
+        groupShape: {
+          title: "形状",
+          folder: "フォルダー",
+          notebook: "ノートブック",
+        },
+        groupCounterPosition: {
+          title: "カウンターの位置",
+          inside: "内側",
+          outside: "外側",
+          none: "非表示",
+        },
+        groupTitlePosition: {
+          title: "タイトルの位置",
+          inside: "内側",
+          outside: "外側",
+          none: "非表示",
+        },
+      },
+      appearance: {
+        title: "グループの外観",
+        iconProperty: {
+          title: "アイコンプロパティ",
+        },
+        colorProperty: {
+          title: "色プロパティ",
+        },
+        inferPropertiesFromLinkedNotes: {
+          title: "リンクされたノートからプロパティを推測",
+        },
+      },
+    },
+  },
   infiniteGallery: {
     options: {
       grid: {
@@ -284,6 +329,12 @@ export const ja: LocaleTranslations = {
         },
         colorizeFiles: {
           title: "ファイルに色を付ける",
+        },
+        groupCounterPosition: {
+          title: "グループカウンターの位置",
+          inside: "内側",
+          outside: "外側",
+          none: "非表示",
         },
         groupTitlePosition: {
           title: "グループタイトルの位置",

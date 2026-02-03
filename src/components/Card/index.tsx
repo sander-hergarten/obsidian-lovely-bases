@@ -30,9 +30,9 @@ const cardContentVariants = cva(
 	{
     variants: {
       layout: {
-        horizontal: "flex flex-row h-full bg-(--bases-cards-background) border-border",
-        vertical: "flex flex-col h-full bg-(--bases-cards-background) border-border",
-        overlay: "bg-(--bases-cards-background) border-border",
+        horizontal: "flex flex-row h-full bg-card border-border",
+        vertical: "flex flex-col h-full bg-card border-border",
+        overlay: "bg-card border-border",
         polaroid: "flex flex-col h-full"
       },
 			shape: {

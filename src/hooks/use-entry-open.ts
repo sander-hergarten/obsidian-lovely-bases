@@ -4,20 +4,25 @@ import { type BasesEntry, type BasesPropertyId, type BasesViewConfig, Keymap } f
 import { useCallback } from "react";
 
 import { useObsidian } from "@/components/Obsidian/Context";
-import { useEntryProperty } from "./use-property";
 import { isWikiLink, parseWikilink } from "@/lib/properties";
+
+import { useEntryProperty } from "./use-property";
 
 const openExternal = (url: string): void => {
   window.open(url, '_blank');
 }
 
 export function useEntryOpen(
-  entry: BasesEntry, config: BasesViewConfig, linkProperty?: BasesPropertyId) {
+  entry: BasesEntry | undefined, config: BasesViewConfig, linkProperty?: BasesPropertyId) {
   const { app } = useObsidian();
   const linkValue = useEntryProperty(entry, config, linkProperty);
   const link = !linkValue || linkValue?.isEmpty ? null : linkValue.value.toString();
 
   return useCallback((event: React.MouseEvent | React.KeyboardEvent) => {
+    if (!entry?.file.path) {
+      return;
+    }
+
     const evt = event.nativeEvent;
     if (evt instanceof MouseEvent && evt.button !== 0 && evt.button !== 1) return;
     if (evt instanceof KeyboardEvent && evt.key !== "Enter" && evt.key !== " ") return;
@@ -33,6 +38,6 @@ export function useEntryOpen(
     } else {
       void app.workspace.openLinkText(entry.file.path, "", modEvent);
     }
-  }, [app.workspace.openLinkText, entry.file.path, link]);
+  }, [app.workspace.openLinkText, entry?.file.path, link]);
 }
 

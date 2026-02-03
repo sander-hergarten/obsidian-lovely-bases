@@ -3,15 +3,15 @@ import { useMemo } from "react";
 
 import { useObsidian } from "@/components/Obsidian/Context";
 import { useConfig } from "@/hooks/use-config";
-import { accent, linear } from "@/lib/colors";
+import { accent } from "@/lib/colors";
 import { isWikiLink, parseWikilink } from "@/lib/properties";
 
-import type { Folder } from "../types";
+import type { GroupItem } from "../types";
 
-export const useFolders = (
+export const useGroups = (
   data: BasesQueryResult,
   config: BasesViewConfig,
-): Folder[] => {
+): GroupItem[] => {
   const { app } = useObsidian();
   const accentColor = accent();
   const { groupColorProperty, groupIconProperty } = useConfig<{ groupColorProperty: BasesPropertyId; groupIconProperty: BasesPropertyId }>(config, {
@@ -23,7 +23,7 @@ export const useFolders = (
   const [, iconProperty] = groupIconProperty?.split(".") ?? [];
 
   return useMemo(() => {
-    const folders: Folder[] = [];
+    const folders: GroupItem[] = [];
 
     for (const group of data.groupedData) {
       const isMulti = group.key.toString().includes(",");
@@ -53,14 +53,12 @@ export const useFolders = (
           }
         }
 
-        const gradient = linear(color, 0.2);
-
-        let folder: Folder | undefined = folders.find((f) => f.title === title);
+        let folder: GroupItem | undefined = folders.find((f) => f.title === title);
         if (!folder) {
           folder = {
             title,
             icon,
-            gradient,
+            color,
             files: [],
             onClick: (event: React.MouseEvent) => {
               event.preventDefault();

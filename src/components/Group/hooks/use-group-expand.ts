@@ -2,7 +2,7 @@ import { useCallback, useRef, useState } from "react";
 
 type ExpandState = "idle" | "pressing" | "expanded";
 
-export const useFolderExpand = () => {
+export const useGroupExpand = () => {
 	const [expandState, setExpandState] = useState<ExpandState>("idle");
 	const originRectRef = useRef<DOMRect | null>(null);
 	const scrollPositionRef = useRef<number>(0);

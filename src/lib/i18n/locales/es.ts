@@ -117,6 +117,51 @@ export const es: LocaleTranslations = {
       },
     },
   },
+  group: {
+    options: {
+      behavior: {
+        title: "Comportamiento del Grupo",
+        clickOnGroup: {
+          title: "Clic en Grupo",
+          expand: "Expandir",
+          navigate: "Navegar",
+          none: "Ninguno",
+        },
+      },
+      layoutAndDisplay: {
+        title: "Diseño del Grupo",
+        groupShape: {
+          title: "Forma",
+          folder: "Carpeta",
+          notebook: "Cuaderno",
+        },
+        groupCounterPosition: {
+          title: "Posición del Contador",
+          inside: "Dentro",
+          outside: "Fuera",
+          none: "Oculto",
+        },
+        groupTitlePosition: {
+          title: "Posición del Título",
+          inside: "Dentro",
+          outside: "Fuera",
+          none: "Oculto",
+        },
+      },
+      appearance: {
+        title: "Apariencia del Grupo",
+        iconProperty: {
+          title: "Propiedad de Icono",
+        },
+        colorProperty: {
+          title: "Propiedad de Color",
+        },
+        inferPropertiesFromLinkedNotes: {
+          title: "Inferir Propiedades de Notas Enlazadas",
+        },
+      },
+    },
+  },
   infiniteGallery: {
     options: {
       grid: {
@@ -284,6 +329,12 @@ export const es: LocaleTranslations = {
         },
         colorizeFiles: {
           title: "Colorear Archivos",
+        },
+        groupCounterPosition: {
+          title: "Posición del Contador del Grupo",
+          inside: "Dentro",
+          outside: "Fuera",
+          none: "Oculto",
         },
         groupTitlePosition: {
           title: "Posición del Título del Grupo",

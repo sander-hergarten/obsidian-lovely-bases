@@ -7,10 +7,10 @@ import { estimateCardHeight } from "@/components/Card/helpers/estimate-card-heig
 import type { CardConfig } from "@/components/Card/types";
 import LucideIcon from "@/components/Obsidian/LucideIcon";
 import VirtualGrid from "@/components/VirtualGrid";
+import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 import { useObsidian } from "../Obsidian/Context";
-import { useTranslation } from "@/lib/i18n";
 
 type Props = {
   isOpen: boolean;
@@ -27,7 +27,7 @@ const EXPAND_DURATION = 0.24;
 const COLLAPSE_DURATION = 0.2;
 const EASING = [0.32, 0.72, 0, 1] as const;
 
-const FolderExpandedView = ({
+const GroupExpandedView = ({
   isOpen,
   title,
   icon,
@@ -136,7 +136,7 @@ const FolderExpandedView = ({
                 onClick={onClose}
                 className={cn(
                   "ml-4 px-4 py-2 text-sm font-medium text-foreground",
-                  "rounded-md border border-border bg-card",
+                  "rounded-md border border-border bg-background-secondary",
                   "hover:bg-muted transition-colors",
                   "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
                 )}
@@ -164,4 +164,4 @@ const FolderExpandedView = ({
   );
 };
 
-export default FolderExpandedView;
+export default GroupExpandedView;

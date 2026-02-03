@@ -131,7 +131,7 @@ function parseColor(input: string) {
     /rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)/
   );
 
-  if (!m) throw new Error("Formato de color no soportado");
+  if (!m) throw new Error(`Unsupported color format: "${input}"`);
 
   return {
     r: +m[1],

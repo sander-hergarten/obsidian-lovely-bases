@@ -2,54 +2,33 @@ import {
 	accent,
 	darken,
 	desaturate,
-	gradientColors,
 	lighten,
+	linear,
 	luminance,
-	saturate,
 } from "@/lib/colors";
+
 import type { NotebookColors } from "../types";
 
 export const getNotebookColors = (
-	gradient = `linear-gradient(135deg, ${accent()} 0%, ${lighten(accent() || "#000", 0.2)} 100%)`,
-  isPadded = false,
+	color?: string,
 ): NotebookColors => {
-	const colors = gradientColors(gradient);
-	const primaryColor = colors[0] || accent();
-
-	const coverBg = gradient;
-	const elasticBand = primaryColor;
-	const elasticBandDark = darken(primaryColor, 0.15);
-	const labelBg = "var(--card)";
-	const labelAccent = luminance(primaryColor) > 0.5 ?
-    darken(primaryColor, 0.2) :
-    lighten(primaryColor, 0.2);
-	const pageBg = isPadded ? lighten(primaryColor, 0.85) : "var(--bases-card-background)";
-	const pagePatternLine = "var(--color-border)";
-	const pagePatternDot = "var(--color-border)";
-	const iconColor = desaturate(primaryColor, 0.2);
-	const fileColor = saturate(colors[1] || primaryColor, 0.2);
-
-  const tab1Color = desaturate(primaryColor, 0.2);
-  const tab2Color = desaturate(primaryColor, 0.4);
-  const tab3Color = desaturate(primaryColor, 0.6);
-  const tab4Color = desaturate(primaryColor, 0.8);
-  const tab5Color = desaturate(primaryColor, 1.0);
+	const primary = color ?? accent();
 
 	return {
-		coverBg,
-		elasticBand,
-		elasticBandDark,
-		labelBg,
-		labelAccent,
-		pageBg,
-		pagePatternLine,
-		pagePatternDot,
-		iconColor,
-		fileColor,
-		tab1Color,
-		tab2Color,
-		tab3Color,
-		tab4Color,
-		tab5Color,
+		coverBg: linear(primary, 0.2),
+		elasticBand: primary,
+		elasticBandDark: darken(primary, 0.15),
+		labelBg: "var(--card)",
+		labelAccent: luminance(primary) > 0.5 ?
+      darken(primary, 0.2) :
+      lighten(primary, 0.2),
+		pageBg: "var(--card)",
+		pagePattern: "var(--color-border)",
+		foreground: desaturate(primary, 0.2),
+		tab1: desaturate(primary, 0.2),
+		tab2: desaturate(primary, 0.4),
+		tab3: desaturate(primary, 0.6),
+		tab4: desaturate(primary, 0.8),
+		tab5: desaturate(primary, 1.0),
 	};
 };

@@ -14,10 +14,10 @@ export const FolderSkeleton = () => (
   <SkeletonContainer>
     <div className="relative w-1/2 h-1/2 mt-4 translate-y-2 pointer-events-none">
       <div className="absolute top-[-5%] left-[10%] w-[30%] h-[15%] bg-muted/40 rounded-t-md border-t border-x border-border/50" />
-      <div className="absolute inset-0 bg-card border border-border rounded-lg shadow-sm" />
+      <div className="absolute inset-0 bg-background-secondary border border-border rounded-lg shadow-sm" />
       {[...Array(3)].map((_, i) => (
         <div key={i.toString()}
-             className="absolute left-1/2 -translate-x-1/2 bg-card border border-border rounded shadow-sm w-[60%] h-[90%]"
+             className="absolute left-1/2 -translate-x-1/2 bg-background-secondary border border-border rounded shadow-sm w-[60%] h-[90%]"
              style={{
                top: `${-15 - i * 4}%`,
                zIndex: 10 + i,
@@ -30,7 +30,7 @@ export const FolderSkeleton = () => (
           </div>
         </div>
       ))}
-      <div className="absolute inset-0 top-[8%] bg-card/90 backdrop-blur-[1px] border border-border rounded-lg shadow-md z-30 flex items-center justify-center">
+      <div className="absolute inset-0 top-[8%] bg-background-secondary/90 backdrop-blur-[1px] border border-border rounded-lg shadow-md z-30 flex items-center justify-center">
         <div className="w-[30%] aspect-square rounded-full border-2 border-muted/30 flex items-center justify-center">
            <div className="w-[50%] h-[50%] bg-muted/20 rounded-sm rotate-45" />
         </div>
@@ -51,7 +51,7 @@ export const GallerySkeleton = () => (
             <div className="grid grid-cols-4 gap-3 w-[115%] h-[115%] -rotate-1 shrink-0">
                 {[...Array(12)].map((_, i) => (
                     <div key={i.toString()}
-                         className="bg-card border-6 border-b-16 border-border/20 shadow-lg rounded-sm flex flex-col aspect-3/4"
+                         className="bg-background-secondary border-6 border-b-16 border-border/20 shadow-lg rounded-sm flex flex-col aspect-3/4"
                          style={{ transform: `rotate(${(i % 3 - 1) * 1.5}deg)` }}>
                         <div className="flex-1 bg-muted/5" />
                         <div className="h-3 bg-muted/10 mt-auto flex items-center px-1">
@@ -68,7 +68,7 @@ export const FacetCardsSkeleton = () => (
     <SkeletonContainer innerClassName="p-3 sm:p-4">
         <div className="w-full h-full grid grid-cols-2 gap-2 sm:gap-3 pointer-events-none min-w-0">
             {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="bg-card border border-border rounded shadow-sm flex flex-col min-w-0 overflow-hidden">
+                <div key={i} className="bg-background-secondary border border-border rounded shadow-sm flex flex-col min-w-0 overflow-hidden">
                     <div className="w-full h-[35%] bg-muted/10 shrink-0" />
                     <div className="p-1.5 sm:p-2 flex flex-col gap-1 sm:gap-1.5 min-w-0 flex-1">
                         <div className="w-3/4 h-2 bg-muted/40 rounded-full shrink-0" />
@@ -98,7 +98,7 @@ export const CarouselSkeleton = () => (
         <div className="relative flex-1 overflow-hidden pointer-events-none w-full">
             <div className="flex gap-4 w-full h-full">
                 {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="bg-card border border-border rounded-xl shadow-md shrink-0 w-[42%] h-full flex flex-col overflow-hidden">
+                    <div key={i} className="bg-background-secondary border border-border rounded-xl shadow-md shrink-0 w-[42%] h-full flex flex-col overflow-hidden">
                         <div className="w-full h-3/5 bg-muted/10" />
                         <div className="p-3 mt-auto">
                             <div className="w-3/4 h-2.5 bg-muted/40 rounded-full mb-2" />
@@ -119,7 +119,7 @@ export const ThreeDCarouselSkeleton = () => (
     <SkeletonContainer>
         <div className="relative w-full h-full flex items-center justify-center perspective-[1000px] pointer-events-none overflow-hidden">
             {[-1.2, 0, 1.2].map((pos, i) => (
-                <div key={i.toString()} className="absolute bg-card border border-border rounded-xl shadow-xl aspect-3/4 h-4/5"
+                <div key={i.toString()} className="absolute bg-background-secondary border border-border rounded-xl shadow-xl aspect-3/4 h-4/5"
                 style={{
                     transform: `translateX(${pos * 100}px) scale(${1 - Math.abs(pos) * 0.25}) rotateY(${pos * 35}deg)`,
                     zIndex: 10 - Math.abs(pos * 10),
@@ -138,7 +138,7 @@ export const ThreeDCarouselSkeleton = () => (
 
 export const LinearCalendarSkeleton = () => (
     <SkeletonContainer innerClassName="p-3">
-        <div className="w-full h-full flex flex-col bg-card/30 border border-border/40 rounded-md overflow-hidden pointer-events-none">
+        <div className="w-full h-full flex flex-col bg-background-secondary/30 border border-border/40 rounded-md overflow-hidden pointer-events-none">
             <div className="flex h-6 border-b border-border/50 bg-muted/5">
               {[...Array(6)].map((_, i) => (
                 <div key={i.toString()} className="flex-1 border-r border-border/30 flex items-center justify-center">
