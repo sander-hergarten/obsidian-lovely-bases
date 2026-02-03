@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { LayoutGroup, motion } from "motion/react";
 import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { type CSSProperties, type MouseEventHandler, useRef, useState } from "react";
 
@@ -72,7 +72,7 @@ const Group: React.FC<Props> = ({
 	};
 
 	return (
-		<>
+		<LayoutGroup id={`group-${title}`}>
 			<motion.div
 				ref={cardRef}
 				className={cn(
@@ -117,7 +117,7 @@ const Group: React.FC<Props> = ({
 					cardConfig={cardConfig}
 					config={config}
 					title={groupConfig.groupTitlePosition === 'inside' ? title : undefined}
-          counterLayoutId={groupConfig.groupCounterPosition === 'inside' ? `folder-counter-${title}` : undefined}
+          counterLayoutId={groupConfig.groupCounterPosition === 'inside' ? `folder-count-${title}` : undefined}
 					iconLayoutId={`folder-icon-${title}`}
 					titleLayoutId={`folder-title-${title}`}
           showCounter={groupConfig.groupCounterPosition === 'inside'}
@@ -162,7 +162,7 @@ const Group: React.FC<Props> = ({
 			config={config}
 			onClose={handleClose}
 		/>
-		</>
+		</LayoutGroup>
 	);
 };
 

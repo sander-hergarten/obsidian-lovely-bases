@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
 import type { BasesEntry } from "obsidian";
+import { memo } from "react";
 
 import LucideIcon from "@/components/Obsidian/LucideIcon";
 
 import type { NotebookColors } from "./types";
-import { memo } from "react";
 
 type Props = {
   width: number;
@@ -51,8 +51,9 @@ const NotebookCover = memo(({
 	)`;
 
   return (
-    <div
+    <motion.div
       className="absolute"
+      layout={false}
       style={{
         width,
         height,
@@ -60,14 +61,27 @@ const NotebookCover = memo(({
         background: notebookColors.coverBg,
         transformStyle: "preserve-3d",
         transformOrigin: "left center",
-        transform: isHovered ? "rotateY(-60deg)" : "rotateY(0deg)",
-        // Natural book-opening easing: starts slow (overcoming inertia),
-        // accelerates in middle, then decelerates as cover settles
-        transition: isHovered
-          ? "transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94)"
-          : "transform 450ms cubic-bezier(0.55, 0.06, 0.68, 0.19), box-shadow 400ms ease-in",
-        boxShadow: isHovered ? "20px 10px 50px rgba(0,0,0,0.2)" : "none",
         zIndex: 10,
+      }}
+      animate={{
+        boxShadow: isHovered
+          ? "20px 10px 50px rgba(0,0,0,0.2)"
+          : "0px 0px 0px rgba(0,0,0,0)",
+        rotateY: isHovered ? -60 : 0,
+      }}
+      transition={{
+        boxShadow: {
+          duration: isHovered ? 0.5 : 0.4,
+          ease: isHovered
+            ? [0.25, 0.46, 0.45, 0.94]
+            : "easeIn",
+        },
+        rotateY: {
+          duration: isHovered ? 0.6 : 0.45,
+          ease: isHovered
+            ? [0.22, 0.61, 0.36, 1]
+            : [0.55, 0.06, 0.68, 0.19],
+        },
       }}
     >
       {/* Elastic band */}
@@ -86,6 +100,7 @@ const NotebookCover = memo(({
         {showCounter && (
           <motion.span
             layoutId={counterLayoutId}
+            layout={false}
             className="font-semibold tracking-tight tabular-nums -rotate-1 text-right rounded-xs"
             style={{
               backgroundColor: notebookColors.labelBg,
@@ -121,6 +136,7 @@ const NotebookCover = memo(({
         {icon && (
           <motion.div
             layoutId={iconLayoutId}
+            layout={false}
             className="absolute"
             style={{
               width: 20 * scaleFactor,
@@ -142,7 +158,7 @@ const NotebookCover = memo(({
         {title && (
           <motion.h3
             layoutId={titleLayoutId}
-            layout="position"
+            layout={false}
             className="font-normal line-clamp-2"
             style={{
               marginTop: 18 * scaleFactor,
@@ -164,7 +180,7 @@ const NotebookCover = memo(({
           }}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }, (prevProps, nextProps) => {
   return prevProps.width === nextProps.width &&

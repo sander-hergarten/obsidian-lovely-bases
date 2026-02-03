@@ -1,4 +1,5 @@
 
+import { motion } from "motion/react";
 import type { BasesEntry, BasesViewConfig } from "obsidian";
 import { type MouseEventHandler, useMemo, useRef, useState } from "react";
 
@@ -87,18 +88,24 @@ const Notebook: React.FC<Props> = ({
 			onClick={onClick}
 		>
 			{/* Notebook container with tilt animation */}
-			<div
+			<motion.div
 				className="relative"
 				style={{
 					width,
 					height,
 					transformOrigin: "left center",
-					transform: isHovered ? "rotateZ(-10deg)" : "rotateZ(0deg)",
-					// Gentle tilt with slight overshoot for natural feel
-					transition: isHovered
-						? "transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1)"
-						: "transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 				}}
+        animate={{
+          rotateZ: isHovered ? -10 : 0,
+        }}
+        transition={{
+          rotateZ: {
+            duration: isHovered ? 0.5 : 0.4,
+            ease: isHovered
+              ? [0.34, 1.56, 0.64, 1]  // con overshoot
+              : [0.25, 0.46, 0.45, 0.94],
+          },
+        }}
 			>
 				{/* Notebook page (behind cover) */}
         <NotebookFirstPage
@@ -181,7 +188,7 @@ const Notebook: React.FC<Props> = ({
           titleFont={titleFont}
           files={previewFiles}
         />
-			</div>
+			</motion.div>
 		</div>
 	);
 };
