@@ -80,42 +80,40 @@ const GroupExpandedView = ({
         >
           {/* Backdrop - subtle dim, no blur */}
           <motion.div
-            className="absolute inset-0 bg-background/80"
+            className="absolute inset-0 backdrop-blur-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, transition: collapseTransition }}
             transition={expandTransition}
+            onClick={handleBackdropClick}
           />
 
           {/* Floating container */}
           <motion.div
-            className="absolute inset-4 bg-background rounded-2xl shadow-xl border border-border overflow-hidden flex flex-col"
+            className="absolute inset-16 bg-background rounded-xl shadow-lg border border-border overflow-hidden flex flex-col"
             layoutId={`folder-card-${title}`}
             initial={false}
             transition={expandTransition}
             exit={{ transition: collapseTransition }}
           >
             {/* Header with shared elements */}
-            <header className="flex items-center gap-3 px-6 py-4 border-b border-border bg-background/95 backdrop-blur-sm">
+            <header className="flex items-center gap-3 px-3 py-2 border-b border-border bg-background/95 backdrop-blur-sm">
               {icon && (
                 <motion.div
                   layoutId={`folder-icon-${title}`}
-                  className="shrink-0"
+                  className="shrink-0 size-5"
                   transition={expandTransition}
                   exit={{ transition: collapseTransition }}
                 >
                   <LucideIcon
                     name={icon}
-                    className="size-6"
-                    style={{
-                      color: "var(--text-normal)",
-                    }}
+                    className="size-full text-foreground"
                   />
                 </motion.div>
               )}
               <motion.h2
                 layoutId={`folder-title-${title}`}
-                className="text-lg font-semibold text-foreground flex-1 line-clamp-1"
+                className="text-base m-0 font-semibold text-foreground flex-1 line-clamp-1"
                 transition={expandTransition}
                 exit={{ transition: collapseTransition }}
               >
@@ -135,7 +133,7 @@ const GroupExpandedView = ({
                 type="button"
                 onClick={onClose}
                 className={cn(
-                  "ml-4 px-4 py-2 text-sm font-medium text-foreground",
+                  "cursor-pointer ml-4 text-sm font-medium text-foreground",
                   "rounded-md border border-border bg-background-secondary",
                   "hover:bg-muted transition-colors",
                   "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
@@ -146,8 +144,7 @@ const GroupExpandedView = ({
               </button>
             </header>
 
-            {/* Cards grid using existing VirtualGrid */}
-            <div className="flex-1 min-h-0 w-full p-2">
+            <div className="flex-1 min-h-0 w-full pt-2">
               <VirtualGrid
                 minItemWidth={cardConfig.cardSize}
                 cardConfig={cardConfig}

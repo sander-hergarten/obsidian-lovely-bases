@@ -62,6 +62,11 @@ const NotebookCover = memo(({
         transformStyle: "preserve-3d",
         transformOrigin: "left center",
         zIndex: 10,
+        // Improve anti-aliasing
+        backfaceVisibility: "hidden",
+        willChange: "transform",
+        transform: "translateZ(0.5px)",
+        WebkitFontSmoothing: "antialiased",
       }}
       animate={{
         boxShadow: isHovered

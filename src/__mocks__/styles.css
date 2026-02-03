@@ -17,8 +17,11 @@
   --font-ui-smaller: 11px;
   --font-ui-small: 13px;
   --h3-color: var(--color-base-950);
+  --input-height: 32px;
   --input-padding: 4px 8px;
+  --size-4-1: 4px;
   --size-4-2: 8px;
+  --size-4-3: 12px;
   --text-faint: #B7B5AC;
 
   /** Internal variables */
@@ -170,12 +173,12 @@
   color: var(--color-base-50);
 }
 
-body, .dark, .obsidian {
+body, .dark, .obsidian, .lovely-bases {
   scrollbar-color: var(--scrollbar-color) transparent;
   scrollbar-width: thin;
 }
 
-body {
+body * {
   font-family: var(--font-text);
 }
 
@@ -188,6 +191,14 @@ body {
 
 h3, .markdown-rendered h3 {
   color: var(--h3-color);
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--input-height);
+  padding: var(--size-4-1) var(--size-4-3);
 }
 
 [data-layout="overlay"] h3, [data-layout="overlay"] .markdown-rendered h3 {
