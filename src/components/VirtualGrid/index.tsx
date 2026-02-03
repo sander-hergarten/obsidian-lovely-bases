@@ -70,8 +70,9 @@ function PureVirtualGrid({
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: needed to measure the height of the rows
   useEffect(() => {
+    if (width === 0) return;
     return doubleRaf(() => virtualizer.measure());
-  }, [virtualizer, items]);
+  }, [virtualizer, items, width]);
 
   return (
     <div

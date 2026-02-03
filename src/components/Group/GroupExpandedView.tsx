@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import type { BasesEntry, BasesViewConfig } from "obsidian";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { estimateCardHeight } from "@/components/Card/helpers/estimate-card-height";
@@ -39,10 +39,21 @@ const GroupExpandedView = ({
 }: Props) => {
   const { t } = useTranslation("projectFolders");
   const { containerEl, contentRef } = useObsidian();
+  const [showGrid, setShowGrid] = useState(false);
+
   const cardHeight = useMemo(
     () => estimateCardHeight(cardConfig),
     [cardConfig],
   );
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        setShowGrid(true);
+      }, EXPAND_DURATION * 1000);
+      return () => clearTimeout(timer);
+    }
+    setShowGrid(false);
+  }, [isOpen]);
   const expandTransition = {
     duration: EXPAND_DURATION,
     ease: EASING,
@@ -90,7 +101,7 @@ const GroupExpandedView = ({
 
           {/* Floating container */}
           <motion.div
-            className="absolute inset-16 bg-background rounded-xl shadow-lg border border-border overflow-hidden flex flex-col"
+            className="absolute inset-6 bg-background rounded-xl shadow-lg border border-border overflow-hidden flex flex-col"
             layoutId={`folder-card-${title}`}
             initial={false}
             transition={expandTransition}
@@ -145,13 +156,13 @@ const GroupExpandedView = ({
             </header>
 
             <div className="flex-1 min-h-0 w-full pt-2">
-              <VirtualGrid
+              {showGrid &&<VirtualGrid
                 minItemWidth={cardConfig.cardSize}
                 cardConfig={cardConfig}
                 config={config}
                 items={files}
                 estimateRowHeight={cardHeight}
-              />
+              />}
             </div>
           </motion.div>
         </motion.div>
