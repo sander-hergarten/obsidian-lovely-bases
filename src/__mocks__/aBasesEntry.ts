@@ -14,9 +14,23 @@ export const aBasesEntry = (
     getValue(propertyId) {
       const [source, property] = propertyId.split('.');
       const sourceData = source === 'file' ? file : fm;
-      if (source === 'file' && property === 'name') {
-        return aValue(file.basename);
+
+      if (source === 'file') {
+        if (property === 'name') {
+          return aValue(file.basename);
+        }
       }
+
+      if (source === 'formula') {
+        if (property === 'image') {
+          return 'banner' in sourceData ?
+            aValue(sourceData.banner) :
+            'cover' in sourceData ?
+              aValue(sourceData.cover) :
+              aValue(undefined);
+        }
+      }
+
       return aValue(sourceData[property])
     },
     _frontmatter: fm,

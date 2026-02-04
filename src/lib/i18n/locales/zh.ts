@@ -135,6 +135,16 @@ export const zh: LocaleTranslations = {
           folder: "文件夹",
           notebook: "笔记本",
         },
+        groupBorder: {
+          title: "边框",
+          none: "无",
+          solid: "实线",
+          dotted: "点线",
+          dashed: "虚线",
+        },
+        groupSpacing: {
+          title: "间距",
+        },
         groupCounterPosition: {
           title: "计数器位置",
           inside: "内部",

@@ -364,7 +364,6 @@ options: () => [
 				type: "property",
 				displayName: "Image Property",
 				key: "imageProperty",
-				default: "note.cover",
 			},
 			{
 				type: "toggle",

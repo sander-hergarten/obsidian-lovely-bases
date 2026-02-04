@@ -8,11 +8,15 @@ const locale = detectLocale();
 const t = (key: NamespacedTranslationKey<'group'>) => translate(locale, 'group', key);
 
 export const DEFAULTS = {
+	groupIconProperty: undefined,
+	groupColorProperty: undefined,
   groupInferPropertiesFromLinkedNotes: false,
   groupClickOnGroup: "expand",
+  groupBorder: "none",
   groupShape: "folder",
-  groupCounterPosition: "outside",
-  groupTitlePosition: "outside",
+  groupSpacing: 0,
+  groupTitlePosition: "inside",
+  groupCounterPosition: "none",
 } satisfies GroupConfig;
 
 export const GROUP_CONFIG_OPTIONS: ViewOption[] =  [
@@ -29,6 +33,27 @@ export const GROUP_CONFIG_OPTIONS: ViewOption[] =  [
           folder: t("options.layoutAndDisplay.groupShape.folder"),
           notebook: t("options.layoutAndDisplay.groupShape.notebook"),
         },
+      },
+      {
+        type: "dropdown",
+        displayName: t("options.layoutAndDisplay.groupBorder.title"),
+        key: "groupBorder",
+        default: DEFAULTS.groupBorder,
+        options: {
+          none: t("options.layoutAndDisplay.groupBorder.none"),
+          solid: t("options.layoutAndDisplay.groupBorder.solid"),
+          dotted: t("options.layoutAndDisplay.groupBorder.dotted"),
+          dashed: t("options.layoutAndDisplay.groupBorder.dashed"),
+        },
+      },
+      {
+        type: "slider",
+        displayName: t("options.layoutAndDisplay.groupSpacing.title"),
+        key: "groupSpacing",
+        default: DEFAULTS.groupSpacing,
+        min: 0,
+        max: 100,
+        step: 1,
       },
       {
         type: "dropdown",

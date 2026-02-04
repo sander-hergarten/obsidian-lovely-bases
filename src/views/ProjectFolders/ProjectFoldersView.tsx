@@ -1,5 +1,5 @@
 import { useCardConfig } from "@/components/Card/hooks/use-card-config";
-import Group from "@/components/Group";
+import Groups from "@/components/Group";
 import { useGroupConfig } from "@/components/Group/hooks/use-group-config";
 import { useGroups } from "@/components/Group/hooks/use-groups";
 import { Container } from "@/components/Obsidian/Container";
@@ -12,7 +12,7 @@ const ProjectFoldersView = ({ config, data, isEmbedded }: ReactBaseViewProps) =>
 
 	return (
 		<Container isEmbedded={isEmbedded} style={{ overflowY: "auto" }}>
-			<Group
+			<Groups
 				cardConfig={cardConfig}
 				config={config}
         groupConfig={groupConfig}

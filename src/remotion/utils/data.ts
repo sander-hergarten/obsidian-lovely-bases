@@ -6,7 +6,7 @@ import * as FacetCards from "../../views/FacetCards/FacetCardsView.stories";
 import * as HeatmapCalendar from "../../views/HeatmapCalendar/HeatmapCalendarView.stories";
 import * as InfiniteGallery from "../../views/InfiniteGallery/InfiniteGalleryView.stories";
 import * as LinearCalendar from "../../views/LinearCalendar/LinearCalendarView.stories";
-import * as ProjectFolders from "../../views/ProjectFolders/ProjectFoldersView.stories";
+import * as ProjectFolders from "../../views/ProjectFolders/stories/ProjectFoldersView.stories";
 import * as RadarChart from "../../views/RadarChart/RadarChartView.stories";
 
 export const STORIES = {

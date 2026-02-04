@@ -135,6 +135,16 @@ export const ru: LocaleTranslations = {
           folder: "Папка",
           notebook: "Блокнот",
         },
+        groupBorder: {
+          title: "Граница",
+          none: "Нет",
+          solid: "Сплошная",
+          dotted: "Точечная",
+          dashed: "Пунктирная",
+        },
+        groupSpacing: {
+          title: "Отступ",
+        },
         groupCounterPosition: {
           title: "Позиция Счётчика",
           inside: "Внутри",

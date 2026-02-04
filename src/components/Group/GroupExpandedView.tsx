@@ -16,8 +16,7 @@ type Props = {
   isOpen: boolean;
   title: string;
   icon: string | null;
-  files: BasesEntry[];
-  filesCount: number;
+  entries: BasesEntry[];
   cardConfig: CardConfig;
   config: BasesViewConfig;
   onClose: () => void;
@@ -31,8 +30,7 @@ const GroupExpandedView = ({
   isOpen,
   title,
   icon,
-  files,
-  filesCount,
+  entries,
   cardConfig,
   config,
   onClose,
@@ -136,9 +134,9 @@ const GroupExpandedView = ({
                 transition={expandTransition}
                 exit={{ transition: collapseTransition }}
               >
-                {filesCount === 1
-                  ? t("singleItem", { count: filesCount.toString() })
-                  : t("totalItems", { count: filesCount.toString() })}
+                {entries.length === 1
+                  ? t("singleItem", { count: entries.length.toString() })
+                  : t("totalItems", { count: entries.length.toString() })}
               </motion.span>
               <button
                 type="button"
@@ -160,7 +158,7 @@ const GroupExpandedView = ({
                 minItemWidth={cardConfig.cardSize}
                 cardConfig={cardConfig}
                 config={config}
-                items={files}
+                items={entries}
                 estimateRowHeight={cardHeight}
               />}
             </div>

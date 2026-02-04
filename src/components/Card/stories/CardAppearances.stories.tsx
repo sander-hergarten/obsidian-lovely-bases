@@ -41,7 +41,7 @@ export const Colors: Story = {
     cardSize: 340,
     iconProperty: "note.icon",
     imageAspectRatio: 1,
-    imageProperty: "note.cover",
+    imageProperty: "formula.image",
   } as unknown as Story["args"],
 };
 
@@ -54,7 +54,7 @@ export const BackgroundColors: Story = {
     cardSize: 340,
     iconProperty: "note.icon",
     imageAspectRatio: 1,
-    imageProperty: "note.cover",
+    imageProperty: "formula.image",
   } as unknown as Story["args"],
 };
 
@@ -67,6 +67,6 @@ export const ContentColors: Story = {
     cardSize: 340,
     iconProperty: "note.icon",
     imageAspectRatio: 1,
-    imageProperty: "note.cover",
+    imageProperty: "formula.image",
   } as unknown as Story["args"],
 };

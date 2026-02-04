@@ -135,6 +135,16 @@ export const es: LocaleTranslations = {
           folder: "Carpeta",
           notebook: "Cuaderno",
         },
+        groupBorder: {
+          title: "Borde",
+          none: "Ninguno",
+          solid: "Sólido",
+          dotted: "Punteado",
+          dashed: "Discontinuo",
+        },
+        groupSpacing: {
+          title: "Espaciado",
+        },
         groupCounterPosition: {
           title: "Posición del Contador",
           inside: "Dentro",

@@ -135,6 +135,16 @@ export const de: LocaleTranslations = {
           folder: "Ordner",
           notebook: "Notizbuch",
         },
+        groupBorder: {
+          title: "Rahmen",
+          none: "Keine",
+          solid: "Durchgehend",
+          dotted: "Gepunktet",
+          dashed: "Gestrichelt",
+        },
+        groupSpacing: {
+          title: "Abstand",
+        },
         groupCounterPosition: {
           title: "Zählerposition",
           inside: "Innen",

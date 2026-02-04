@@ -6,7 +6,7 @@ import type { InfiniteGalleryConfig } from "../InfiniteGalleryView";
 export const DEFAULT_BASE_CONFIG: InfiniteGalleryConfig = {
   ...DEFAULTS,
   cardSize: 250,
-  imageProperty: "note.cover",
+  imageProperty: "formula.image",
   properties: [],
   masonry: false,
 };
@@ -36,7 +36,7 @@ export const POLAROID_BASE_CONFIG: InfiniteGalleryConfig = {
   tilt: "alternating",
   cardSize: 200,
   imageAspectRatio: 1,
-  imageProperty: "note.banner",
+  imageProperty: "formula.image",
   showTitle: true,
   showPropertyTitles: false,
   properties: [],

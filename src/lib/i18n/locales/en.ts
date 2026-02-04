@@ -133,6 +133,16 @@ export const en = {
           folder: "Folder",
           notebook: "Notebook",
         },
+        groupBorder: {
+          title: "Border",
+          none: "None",
+          solid: "Solid",
+          dotted: "Dotted",
+          dashed: "Dashed",
+        },
+        groupSpacing: {
+          title: "Spacing",
+        },
         groupCounterPosition: {
           title: "Counter Position",
           inside: "Inside",

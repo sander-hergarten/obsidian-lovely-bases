@@ -1,7 +1,6 @@
 import type { Meta } from "@storybook/react-vite";
 
 import { MOVIES_ENTRIES } from "@/__fixtures__/entries";
-import { HANDWRITTEN_FONTS } from "@/__fixtures__/typographies";
 import { Providers } from "@/stories/decorators";
 
 import type Notebook from "..";
@@ -10,7 +9,7 @@ import NotebookMeta, { type Story } from "./meta";
 
 const meta = {
 	...NotebookMeta,
-	title: "Design System/Notebook",
+	title: "Design System/Group/Notebook/Pages",
 	tags: ["internal"],
 	decorators: [
 		Providers,
@@ -28,27 +27,8 @@ const meta = {
 
 export default meta;
 
-export const FullExample: Story = {
-	name: "Full Example",
-	args: {
-    icon: "folder",
-    color: "#6F6E69",
-		files: MOVIES_ENTRIES.slice(0, 5),
-    title: "My Notebook",
-    titleFont: HANDWRITTEN_FONTS,
-    showCounter: true,
-	},
-};
-
-export const Default: Story = {
-	name: "Default",
-	args: {
-		files: MOVIES_ENTRIES.slice(0, 5),
-	},
-};
-
 export const RuledPages: Story = {
-	name: "Ruled Pages",
+	name: "Ruled Pattern",
 	args: {
 		files: MOVIES_ENTRIES.slice(0, 5),
     pageStyle: "ruled",
@@ -56,7 +36,7 @@ export const RuledPages: Story = {
 };
 
 export const DottedPages: Story = {
-	name: "Dotted Pages",
+	name: "Dotted Pattern",
 	args: {
 		files: MOVIES_ENTRIES.slice(0, 5),
     pageStyle: "dotted",
@@ -64,7 +44,7 @@ export const DottedPages: Story = {
 };
 
 export const SquaredPages: Story = {
-	name: "Squared Pages",
+	name: "Squared Pattern",
 	args: {
 		files: MOVIES_ENTRIES.slice(0, 5),
     pageStyle: "squared",

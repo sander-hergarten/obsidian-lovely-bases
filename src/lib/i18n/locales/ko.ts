@@ -135,6 +135,16 @@ export const ko: LocaleTranslations = {
           folder: "폴더",
           notebook: "노트북",
         },
+        groupBorder: {
+          title: "테두리",
+          none: "없음",
+          solid: "실선",
+          dotted: "점선",
+          dashed: "파선",
+        },
+        groupSpacing: {
+          title: "간격",
+        },
         groupCounterPosition: {
           title: "카운터 위치",
           inside: "내부",

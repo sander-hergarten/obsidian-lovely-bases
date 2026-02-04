@@ -8,7 +8,8 @@ import { MOVIES_ENTRIES } from "./movies";
 import { PERSON_ENTRIES } from "./people";
 import { PHOTOS_ENTRIES } from "./photos";
 import { PLANS_ENTRIES } from "./plans";
-
+import { GROUPS_ENTRIES } from "./groups";
+export * from "./groups";
 export {
   APPLICATION_ENTRIES,
   VIRTUAL_SCROLL_APPLICATION_ENTRIES,
@@ -22,6 +23,7 @@ export { PHOTOS_ENTRIES, VIRTUAL_SCROLL_PHOTOS_ENTRIES } from "./photos";
 export { PLANS_ENTRIES, VIRTUAL_SCROLL_PLANS_ENTRIES } from "./plans";
 
 export const ALL_ENTRIES: BasesEntry[] = [
+  ...GROUPS_ENTRIES,
   ...APPLICATION_ENTRIES,
   ...ARTICLE_ENTRIES,
   ...BOOK_ENTRIES,

@@ -1,18 +1,20 @@
 import { LayoutGroup, motion } from "motion/react";
-import type { BasesEntry, BasesViewConfig } from "obsidian";
-import { type CSSProperties, type MouseEventHandler, useRef, useState } from "react";
+import type { BasesEntry, BasesViewConfig, TFile } from "obsidian";
+import { type CSSProperties, useRef, useState } from "react";
 
 import type { CardConfig } from "@/components/Card/types";
-import { useEntryOpen } from "@/hooks/use-entry-open";
+import { useFileOpen } from "@/hooks/use-file-open";
 import { useTranslation } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import type { GroupShape } from "@/views/ProjectFolders/types";
 
 import Folder from "../Folder";
 import Notebook from "../Notebook";
+
 import GroupExpandedView from "./GroupExpandedView";
+import { getGroupBorder } from "./helpers/get-group-border";
+import { useGroupData } from "./hooks/use-group-data";
 import { useGroupExpand } from "./hooks/use-group-expand";
-import type { GroupConfig } from "./types";
+import type { GroupConfig, GroupItem, GroupShape } from "./types";
 
 const getComponent = (shape: GroupShape) => {
   if (shape === "folder") {
@@ -22,52 +24,51 @@ const getComponent = (shape: GroupShape) => {
 };
 
 type Props = {
-  entry: BasesEntry | undefined;
+  file?: TFile;
 	title: string;
-	icon: string | null;
-	files: BasesEntry[];
+  titleFont?: string;
+	entries?: BasesEntry[];
 	className?: string;
-  color?: string;
-	onClick?: MouseEventHandler<HTMLDivElement>;
 	cardConfig: CardConfig;
   groupConfig: GroupConfig;
 	config: BasesViewConfig;
+  width?: number;
 };
 
 const Group: React.FC<Props> = ({
-  entry,
+	file,
 	title,
-	icon,
-	files,
+  titleFont,
+	entries = [],
 	className,
-	color,
-	onClick,
 	cardConfig,
   groupConfig,
 	config,
+  width,
 }) => {
+  const { color, icon } = useGroupData({ file, title, entries } as GroupItem, groupConfig);
   const { t } = useTranslation("projectFolders");
   const Component = getComponent(groupConfig.groupShape);
 	const [isHovered, setIsHovered] = useState(false);
 	const cardRef = useRef<HTMLDivElement>(null);
 
-  const handleEntryOpen = useEntryOpen(entry, config, cardConfig.linkProperty);
+  const handleNavigate = useFileOpen(file);
 	const {
 		handlePointerDown,
 		handlePointerUp,
-		handleClick: handleExpandClick,
+		handleClick: handleExpand,
 		handleClose,
 		isExpanded,
 		isPressing,
 	} = useGroupExpand();
 
+  const borderClass = getGroupBorder(groupConfig.groupBorder);
+
 	const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (groupConfig.groupClickOnGroup === 'expand') {
-      handleExpandClick(e, cardRef);
+      handleExpand(e, cardRef);
     } else if (groupConfig.groupClickOnGroup === 'navigate') {
-      handleEntryOpen(e);
-    } else if (onClick) {
-      onClick(e);
+      handleNavigate(e);
     }
 	};
 
@@ -76,14 +77,15 @@ const Group: React.FC<Props> = ({
 			<motion.div
 				ref={cardRef}
 				className={cn(
-					"relative flex flex-col items-center justify-center p-8 rounded cursor-pointer bg-card border border-border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-2xl hover:shadow-(--folder-color)/20 hover:border-(--folder-color)/40 group",
+					"relative flex flex-col items-center justify-center rounded cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group",
+          borderClass,
 					className,
 				)}
 				style={{
-					minWidth: "280px",
-					minHeight: "320px",
+          padding: `${groupConfig.groupSpacing}px`,
 					perspective: "1200px",
 					"--folder-color": color,
+          zIndex: isHovered ? 50 : 1,
 				} as CSSProperties}
 				animate={{
 					scale: isPressing ? 0.98 : isHovered ? 1.04 : 1,
@@ -102,25 +104,27 @@ const Group: React.FC<Props> = ({
 			>
 			<div
 				className="absolute inset-0 rounded-2xl transition-opacity duration-700"
-				style={{
+				style={groupConfig.groupBorder !== "none" ? {
 					background:
 						"radial-gradient(circle at 50% 70%, var(--folder-color) 0%, transparent 70%)",
 					opacity: isHovered ? 0.12 : 0,
-				}}
+				} : undefined}
 			/>
 			<div style={{ opacity: isExpanded ? 0 : 1 }}>
 				<Component
 					icon={icon}
-					files={files}
+					files={entries}
           color={color}
 					onClick={handleClick}
 					cardConfig={cardConfig}
 					config={config}
 					title={groupConfig.groupTitlePosition === 'inside' ? title : undefined}
+          titleFont={titleFont}
           counterLayoutId={groupConfig.groupCounterPosition === 'inside' ? `folder-count-${title}` : undefined}
 					iconLayoutId={`folder-icon-${title}`}
 					titleLayoutId={`folder-title-${title}`}
           showCounter={groupConfig.groupCounterPosition === 'inside'}
+          width={width}
 				/>
 			</div>
 			{(groupConfig.groupTitlePosition === 'outside' || groupConfig.groupCounterPosition === 'outside') && (
@@ -144,9 +148,9 @@ const Group: React.FC<Props> = ({
               layoutId={`folder-count-${title}`}
               style={{ opacity: isHovered ? 0.8 : 1 }}
             >
-              {files.length === 1
-                ? t("singleItem", { count: files.length.toString() })
-                : t("totalItems", { count: files.length.toString() })}
+              {entries.length === 1
+                ? t("singleItem", { count: entries.length.toString() })
+                : t("totalItems", { count: entries.length.toString() })}
             </motion.p>
           )}
 				</div>
@@ -156,8 +160,7 @@ const Group: React.FC<Props> = ({
 			isOpen={isExpanded}
 			title={title}
 			icon={icon}
-			files={files}
-			filesCount={files.length}
+			entries={entries}
 			cardConfig={cardConfig}
 			config={config}
 			onClose={handleClose}

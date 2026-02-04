@@ -92,7 +92,7 @@ An immersive, infinite virtualized grid for exploring your notes visually. It ha
 - **Layout**: Choose between 'Default', 'Masonry', or 'Polaroid'.
 - **Card Size**: Adjust the base width of the cards.
 - **Aspect Ratio**: Fine-tune the height-to-width ratio of your gallery items.
-- **Image Property**: Select which note property to use for the image (default: `note.cover`).
+- **Image Property**: Select which note property to use for the image.
 - **Image Fit**: Choose between 'Cover' (fill) or 'Contain' (letterboxed).
 - **Shape**: Select the corner style for your cards (Square, Rounded, Squircle, or Circle).
 

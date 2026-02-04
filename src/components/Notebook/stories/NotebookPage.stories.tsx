@@ -81,7 +81,7 @@ const NotebookVariants = WithVariants(NotebookStory, [
 ]);
 
 const meta = {
-  title: "Design System/Notebook/Page",
+	title: "Design System/Group/Notebook/Pages/Card Layouts",
   component: NotebookVariants,
   parameters: {
     layout: "centered",

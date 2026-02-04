@@ -1,7 +1,9 @@
 import type { BasesEntry, BasesEntryGroup, BasesPropertyId } from "obsidian";
+
+import { aBasesEntryGroup } from "@/__mocks__";
+
 import { aBasesEntry } from "../../__mocks__/aBasesEntry";
 import { aFile } from "../../__mocks__/aFile";
-import { aBasesEntryGroup } from "@/__mocks__";
 
 const keyFn = (entry: BasesEntry, key: BasesPropertyId) => entry.getValue(key).toString();
 

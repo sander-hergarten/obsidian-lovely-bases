@@ -59,7 +59,8 @@ export const useGroups = (
             title,
             icon,
             color,
-            files: [],
+            file: projectFile,
+            entries: [],
             onClick: (event: React.MouseEvent) => {
               event.preventDefault();
 
@@ -71,7 +72,7 @@ export const useGroups = (
           };
           folders.push(folder);
         }
-        folder.files.push(...group.entries);
+        folder.entries.push(...group.entries);
       }
     }
     return folders;

@@ -1,0 +1,98 @@
+import type { Meta } from "@storybook/react-vite";
+
+import { APPLICATION_ENTRIES, ARTICLE_ENTRIES, BOOK_ENTRIES, MOVIES_ENTRIES, MY_APPLICATIONS, MY_ARTICLES, MY_BOOKS, MY_CONTACTS, MY_MOVIES, MY_PHOTOS, PERSON_ENTRIES, PHOTOS_ENTRIES } from "@/__fixtures__/entries";
+import { FULL_CONFIG as CARD_FULL_CONFIG, OVERLAY_ON_HOVER_LAYOUT_CONFIG as CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG, CIRCLE_SHAPE_CONFIG, POLAROID_LAYOUT_CONFIG, ROUNDED_SHAPE_CONFIG } from "@/components/Card/__fixtures__/configs";
+import { DEFAULTS as CARD_DEFAULTS } from "@/components/Card/constants";
+import { Providers } from "@/stories/decorators";
+
+import GroupMeta, { type GroupStory, type Story } from "./meta";
+
+const meta = {
+	...GroupMeta,
+	title: "Design System/Group/Folder/Cards",
+	tags: ["internal"],
+  args: {
+    ...GroupMeta.args,
+    groupShape: "folder",
+    groupColorProperty: "note.color",
+    groupIconProperty: "note.icon",
+  },
+	decorators: [
+		Providers,
+		(Story) => (
+			<div
+				style={{
+					padding: "40px",
+				}}
+			>
+				<Story />
+			</div>
+		),
+	],
+} satisfies Meta<typeof GroupStory>;
+
+export default meta;
+
+export const VerticalCards: Story = {
+	name: "Vertical Layout",
+	args: {
+    ...CARD_DEFAULTS,
+    file: MY_BOOKS.file,
+    title: "Books",
+		entries: BOOK_ENTRIES,
+    imageAspectRatio: 1.10,
+    imageProperty: "formula.image",
+	},
+};
+
+export const HorizontalCards: Story = {
+	name: "Horizontal Layout",
+	args: {
+    ...CARD_FULL_CONFIG,
+    file: MY_ARTICLES.file,
+    title: "Articles",
+		entries: ARTICLE_ENTRIES,
+    hoverProperty: undefined,
+	},
+};
+
+export const OverlayCards: Story = {
+	name: "Overlay Layout",
+	args: {
+    ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
+    file: MY_MOVIES.file,
+    title: "Movies",
+		entries: MOVIES_ENTRIES,
+	},
+};
+
+export const PolaroidCards: Story = {
+	name: "Polaroid Layout",
+	args: {
+    ...POLAROID_LAYOUT_CONFIG,
+    file: MY_PHOTOS.file,
+    title: "Photos",
+    entries: PHOTOS_ENTRIES,
+	},
+};
+
+export const CircleCards: Story = {
+	name: "Circle Shape",
+	args: {
+    ...CIRCLE_SHAPE_CONFIG,
+    file: MY_CONTACTS.file,
+    title: "Contacts",
+		entries: PERSON_ENTRIES,
+	},
+};
+
+
+export const RoundedCards: Story = {
+	name: "Rounded Shape",
+	args: {
+    ...ROUNDED_SHAPE_CONFIG,
+    file: MY_APPLICATIONS.file,
+    title: "Applications",
+		entries: APPLICATION_ENTRIES,
+	},
+};

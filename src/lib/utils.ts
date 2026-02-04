@@ -13,3 +13,10 @@ export function shallowEqual<T>(a: T, b: T): boolean {
   if (keysA.length !== keysB.length) return false;
   return keysA.every(key => Object.is((a as unknown)[key], (b as unknown)[key]));
 }
+
+export function pick<T extends object, K extends keyof T = keyof T>(obj: T, keys: K[]): Pick<T, K> {
+  return keys.reduce((acc, key) => {
+    acc[key] = obj[key];
+    return acc;
+  }, {} as Pick<T, K>);
+};

@@ -135,6 +135,16 @@ export const fr: LocaleTranslations = {
           folder: "Dossier",
           notebook: "Carnet",
         },
+        groupBorder: {
+          title: "Bordure",
+          none: "Aucune",
+          solid: "Pleine",
+          dotted: "Pointillée",
+          dashed: "Tirets",
+        },
+        groupSpacing: {
+          title: "Espacement",
+        },
         groupCounterPosition: {
           title: "Position du Compteur",
           inside: "Intérieur",

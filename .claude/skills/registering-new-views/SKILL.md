@@ -616,7 +616,7 @@ export const FULL_CONFIG: {ViewName}Config = {
 	...DEFAULT_CONFIG,
 	layout: "horizontal",
 	cardSize: 400,
-	imageProperty: "note.banner",
+	imageProperty: "formula.image",
 	// ... all other options
 };
 

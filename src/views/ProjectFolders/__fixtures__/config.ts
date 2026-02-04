@@ -1,15 +1,29 @@
 import { MONOSPACE_FONTS, SANS_SERIF_FONTS, SERIF_FONTS } from "@/__fixtures__/typographies";
 import { DEFAULTS as CARD_DEFAULTS } from "@/components/Card/constants";
+import { DEFAULTS as GROUP_DEFAULTS } from "@/components/Group/constants";
 
 import type { ProjectFoldersConfig } from "../types";
 
 export const DEFAULT_CONFIG: ProjectFoldersConfig = {
-	groupIconProperty: undefined,
-	groupColorProperty: undefined,
-	groupShape: "folder",
-	groupTitlePosition: "outside",
+  ...GROUP_DEFAULTS,
 	...CARD_DEFAULTS,
-	properties: ["note.author"],
+  layout: 'polaroid',
+  cardSize: 280,
+  imageAspectRatio: 1,
+  imageProperty: 'formula.image',
+  showTitle: true,
+  showPropertyTitles: false,
+  properties: [],
+  tilt: CARD_DEFAULTS.tilt,
+  linkProperty: undefined,
+  backgroundColorProperty: undefined,
+  backgroundColorApplyTo: undefined,
+  iconProperty: undefined,
+  badgesFont: undefined,
+  titleFont: undefined,
+  contentFont: undefined,
+  groupIconProperty: 'note.icon',
+  groupColorProperty: 'note.color',
 };
 
 export const FULL_CONFIG: ProjectFoldersConfig = {
@@ -17,7 +31,7 @@ export const FULL_CONFIG: ProjectFoldersConfig = {
 	layout: "horizontal",
 	shape: "square",
 	cardSize: 400,
-	imageProperty: "note.banner",
+	imageProperty: "formula.image",
 	imageAspectRatio: 0.85,
 	imageFit: "cover",
 	showTitle: true,
@@ -35,6 +49,8 @@ export const FULL_CONFIG: ProjectFoldersConfig = {
   groupColorProperty: 'note.color',
   groupTitlePosition: "inside",
   groupCounterPosition: "inside",
+  groupBorder: "dotted",
+  groupSpacing: 50,
 };
 
 export const NOTEBOOK_CONFIG: ProjectFoldersConfig = {
@@ -55,7 +71,7 @@ export const HORIZONTAL_LAYOUT_CONFIG: ProjectFoldersConfig = {
     'note.published',
     'note.excerpt',
   ],
-  imageProperty: 'note.banner',
+  imageProperty: 'formula.image',
   imageAspectRatio: 0.85,
   cardSize: 400,
   imageFit: 'cover',
@@ -77,7 +93,7 @@ export const OVERLAY_LAYOUT_CONFIG: ProjectFoldersConfig = {
   hoverProperty: undefined,
   hoverStyle: 'none',
   properties: [],
-  imageProperty: 'note.cover',
+  imageProperty: 'formula.image',
   imageAspectRatio: 1.5,
   cardSize: 340,
   imageFit: 'cover',
@@ -107,7 +123,7 @@ export const POLAROID_LAYOUT_CONFIG: ProjectFoldersConfig = {
   layout: 'polaroid',
   cardSize: 280,
   imageAspectRatio: 1,
-  imageProperty: 'note.banner',
+  imageProperty: 'formula.image',
   showTitle: true,
   showPropertyTitles: false,
   properties: [],
@@ -147,7 +163,7 @@ export const CIRCLE_SHAPE_CONFIG: ProjectFoldersConfig = {
   hoverProperty: undefined,
   hoverStyle: 'none',
   properties: [],
-  imageProperty: 'note.cover',
+  imageProperty: 'formula.image',
   imageAspectRatio: 1,
   cardSize: 340,
   imageFit: 'cover',
@@ -178,7 +194,7 @@ export const ROUNDED_SHAPE_CONFIG: ProjectFoldersConfig = {
   hoverProperty: undefined,
   hoverStyle: 'none',
   properties: [],
-  imageProperty: 'note.cover',
+  imageProperty: 'formula.image',
   imageAspectRatio: 1,
   cardSize: 340,
   imageFit: 'cover',

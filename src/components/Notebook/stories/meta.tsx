@@ -15,7 +15,7 @@ import type { File, PageStyle } from "../types";
 
 const DEFAULT_CARD_CONFIG: CardConfig = {
 	...CARD_DEFAULTS,
-	imageProperty: "note.cover",
+	imageProperty: "formula.image",
 };
 
 const DEFAULT_CONFIG = aBasesViewConfig({});
@@ -72,7 +72,7 @@ const entriesToFiles = (entries: BasesEntry[]): File[] =>
 		id: entry.file.path,
 		entry,
 		file: entry.file,
-		image: entry.getValue("note.cover")?.toString() ?? "",
+		image: entry.getValue("formula.image")?.toString() ?? "",
 		title: getTitle(entry),
 		onClick: () => console.log(`Clicked file: ${getTitle(entry)}`),
 	}));

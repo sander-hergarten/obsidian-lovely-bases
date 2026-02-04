@@ -135,6 +135,16 @@ export const ja: LocaleTranslations = {
           folder: "フォルダー",
           notebook: "ノートブック",
         },
+        groupBorder: {
+          title: "枠線",
+          none: "なし",
+          solid: "実線",
+          dotted: "点線",
+          dashed: "破線",
+        },
+        groupSpacing: {
+          title: "間隔",
+        },
         groupCounterPosition: {
           title: "カウンターの位置",
           inside: "内側",
