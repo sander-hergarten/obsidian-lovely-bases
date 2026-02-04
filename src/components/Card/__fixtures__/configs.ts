@@ -37,8 +37,6 @@ export const VERTICAL_LAYOUT_CONFIG: CardConfig = {
   ...DEFAULT_CONFIG,
   layout: 'vertical',
   shape: 'square',
-  hoverProperty: 'note.url',
-  hoverStyle: 'overlay',
   properties: [
     'note.author',
     'note.published',
@@ -61,8 +59,6 @@ export const HORIZONTAL_LAYOUT_CONFIG: CardConfig = {
   ...DEFAULT_CONFIG,
   layout: 'horizontal',
   shape: 'square',
-  hoverProperty: 'note.url',
-  hoverStyle: 'overlay',
   properties: [
     'note.author',
     'note.published',

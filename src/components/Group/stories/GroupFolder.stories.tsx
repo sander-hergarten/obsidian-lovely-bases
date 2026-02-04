@@ -39,7 +39,8 @@ export const FullExample: Story = {
     title: "My Folder",
     groupCounterPosition: "inside",
     groupBorder: "dashed",
-    groupSpacing: 10,
+    groupSpacing: 20,
+    cardSize: 148,
   },
 };
 

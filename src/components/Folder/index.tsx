@@ -62,7 +62,7 @@ const Folder: React.FC<Props> = ({
 
 	return (
 		<div
-			className="cursor-pointer relative flex items-center justify-center mb-4"
+			className="cursor-pointer relative flex items-center justify-center"
 			style={{
 				width,
 				height,

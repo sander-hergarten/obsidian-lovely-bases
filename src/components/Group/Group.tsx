@@ -1,6 +1,6 @@
 import { LayoutGroup, motion } from "motion/react";
 import type { BasesEntry, BasesViewConfig, TFile } from "obsidian";
-import { type CSSProperties, useRef, useState } from "react";
+import { type CSSProperties, useMemo, useRef, useState } from "react";
 
 import type { CardConfig } from "@/components/Card/types";
 import { useFileOpen } from "@/hooks/use-file-open";
@@ -32,7 +32,6 @@ type Props = {
 	cardConfig: CardConfig;
   groupConfig: GroupConfig;
 	config: BasesViewConfig;
-  width?: number;
 };
 
 const Group: React.FC<Props> = ({
@@ -44,13 +43,16 @@ const Group: React.FC<Props> = ({
 	cardConfig,
   groupConfig,
 	config,
-  width,
 }) => {
   const { color, icon } = useGroupData({ file, title, entries } as GroupItem, groupConfig);
   const { t } = useTranslation("projectFolders");
   const Component = getComponent(groupConfig.groupShape);
 	const [isHovered, setIsHovered] = useState(false);
 	const cardRef = useRef<HTMLDivElement>(null);
+
+  const groupWidth = useMemo(() => {
+    return cardConfig.cardSize ? cardConfig.cardSize - (groupConfig.groupSpacing ?? 0) * 2 : undefined;
+  }, [cardConfig.cardSize, groupConfig.groupSpacing]);
 
   const handleNavigate = useFileOpen(file);
 	const {
@@ -124,7 +126,7 @@ const Group: React.FC<Props> = ({
 					iconLayoutId={`folder-icon-${title}`}
 					titleLayoutId={`folder-title-${title}`}
           showCounter={groupConfig.groupCounterPosition === 'inside'}
-          width={width}
+          width={groupWidth}
 				/>
 			</div>
 			{(groupConfig.groupTitlePosition === 'outside' || groupConfig.groupCounterPosition === 'outside') && (

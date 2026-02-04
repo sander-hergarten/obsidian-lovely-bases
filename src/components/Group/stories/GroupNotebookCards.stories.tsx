@@ -42,6 +42,7 @@ export const VerticalCards: Story = {
 		entries: BOOK_ENTRIES,
     imageAspectRatio: 1.10,
     imageProperty: "formula.image",
+    cardSize: 128,
 	},
 };
 
@@ -53,6 +54,7 @@ export const HorizontalCards: Story = {
     title: "Articles",
 		entries: ARTICLE_ENTRIES,
     hoverProperty: undefined,
+    cardSize: 128,
 	},
 };
 
@@ -63,6 +65,7 @@ export const OverlayCards: Story = {
     file: MY_MOVIES.file,
     title: "Movies",
 		entries: MOVIES_ENTRIES,
+    cardSize: 128,
 	},
 };
 
@@ -73,6 +76,7 @@ export const PolaroidCards: Story = {
     file: MY_PHOTOS.file,
     title: "Photos",
     entries: PHOTOS_ENTRIES,
+    cardSize: 128,
 	},
 };
 
@@ -83,6 +87,7 @@ export const CircleCards: Story = {
     file: MY_CONTACTS.file,
     title: "Contacts",
 		entries: PERSON_ENTRIES,
+    cardSize: 128,
 	},
 };
 
@@ -94,5 +99,6 @@ export const RoundedCards: Story = {
     file: MY_APPLICATIONS.file,
     title: "Applications",
 		entries: APPLICATION_ENTRIES,
+    cardSize: 128,
 	},
 };

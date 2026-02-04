@@ -38,8 +38,8 @@ type NotebookStoryProps = {
 const VIEW_CONFIG = aBasesViewConfig({});
 
 const NotebookStory = (props: NotebookStoryProps) => {
-  const width = props.cardConfig.cardSize / 2;
-  const height = width * props.cardConfig.imageAspectRatio;
+  const width = 128;
+  const height = width / (7 / 10);
 
   return (
     <div className="relative" style={{ width, height }}>
@@ -81,7 +81,7 @@ const NotebookVariants = WithVariants(NotebookStory, [
 ]);
 
 const meta = {
-	title: "Design System/Group/Notebook/Pages/Card Layouts",
+	title: "Design System/Group/Notebook/Pages/Cards",
   component: NotebookVariants,
   parameters: {
     layout: "centered",
@@ -139,7 +139,7 @@ export const Polaroid: Story = {
 };
 
 export const Circle: Story = {
-  name: "Circle layout",
+  name: "Circle shape",
   args: {
     entry: PERSON_ENTRIES[0],
     cardConfig: CIRCLE_SHAPE_CONFIG,
@@ -148,7 +148,7 @@ export const Circle: Story = {
 };
 
 export const Rounded: Story = {
-  name: "Rounded layout",
+  name: "Rounded shape",
   args: {
     entry: APPLICATION_ENTRIES[0],
     cardConfig: ROUNDED_SHAPE_CONFIG,

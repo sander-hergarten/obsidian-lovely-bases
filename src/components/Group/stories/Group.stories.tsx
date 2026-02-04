@@ -39,7 +39,8 @@ export const FullExample: Story = {
     groupCounterPosition: "inside",
     groupShape: "notebook",
     groupBorder: "dashed",
-    groupSpacing: 10,
+    groupSpacing: 20,
+    cardSize: 148,
 	},
 };
 

@@ -69,6 +69,7 @@ export const meta = {
     onEntryClick: fn(),
     ...GROUP_DEFAULTS,
     ...CARD_POLAROID_LAYOUT_CONFIG,
+    cardSize: 128,
   },
   argTypes: {
     ...GroupMeta.argTypes,
@@ -107,7 +108,7 @@ export const FullExample: Story = {
   args: {
     layout: "horizontal",
     shape: "square",
-    cardSize: 400,
+    cardSize: 228,
     imageProperty: "formula.image",
     imageAspectRatio: 0.85,
     imageFit: "cover",
@@ -192,6 +193,7 @@ groupSpacing: 50
     },
   },
   args: {
+    cardSize: 228,
     groupSpacing: 50,
   },
 };
@@ -211,6 +213,7 @@ groupSpacing: 50
     },
   },
   args: {
+    cardSize: 228,
     groupBorder: "dashed",
     groupSpacing: 50,
   },
@@ -233,6 +236,7 @@ groupBorder: solid
     },
   },
   args: {
+    cardSize: 228,
     groupTitlePosition: "outside",
     groupCounterPosition: "outside",
     groupSpacing: 50,

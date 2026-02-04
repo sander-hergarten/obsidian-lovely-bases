@@ -35,7 +35,6 @@ export const GroupStory = ({
   title,
   entries,
   className,
-  width,
   ...props
 }: StoryProps) => {
   const groupConfig = pickGroupConfig(props);
@@ -54,7 +53,6 @@ export const GroupStory = ({
       cardConfig={cardConfig}
       groupConfig={groupConfig}
       config={obsConfig}
-      width={width}
     />
   );
 };
@@ -146,7 +144,7 @@ export const meta = {
     properties: [],
     imageProperty: "formula.image",
     imageAspectRatio: 1,
-    cardSize: 340,
+    cardSize: 128,
     imageFit: "cover",
   },
   decorators: [

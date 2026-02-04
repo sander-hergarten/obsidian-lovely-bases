@@ -47,7 +47,7 @@ export const NineXS: Story = {
     properties: ["note.author"],
     showContent: false,
     showPropertyTitles: false,
-    width: CONTAINER_WIDTHS['9XS'],
+    cardSize: CONTAINER_WIDTHS['9XS'],
   } as unknown as Story["args"],
 };
 
@@ -60,7 +60,7 @@ export const EightXS: Story = {
     properties: [],
     showContent: true,
     showPropertyTitles: false,
-    width: CONTAINER_WIDTHS['8XS'],
+    cardSize: CONTAINER_WIDTHS['8XS'],
   } as unknown as Story["args"],
 };
 
@@ -70,7 +70,7 @@ export const SevenXS: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['7XS'],
+    cardSize: CONTAINER_WIDTHS['7XS'],
   } as unknown as Story["args"],
 };
 
@@ -80,7 +80,7 @@ export const SixXS: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['6XS'],
+    cardSize: CONTAINER_WIDTHS['6XS'],
   } as unknown as Story["args"],
 };
 
@@ -90,7 +90,7 @@ export const FiveXS: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['5XS'],
+    cardSize: CONTAINER_WIDTHS['5XS'],
   } as unknown as Story["args"],
 };
 
@@ -100,7 +100,7 @@ export const FourXS: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['4XS'],
+    cardSize: CONTAINER_WIDTHS['4XS'],
   } as unknown as Story["args"],
 };
 
@@ -110,7 +110,7 @@ export const ThreeXS: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['3XS'],
+    cardSize: CONTAINER_WIDTHS['3XS'],
   } as unknown as Story["args"],
 };
 
@@ -120,7 +120,7 @@ export const TwoXS: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['2XS'],
+    cardSize: CONTAINER_WIDTHS['2XS'],
   } as unknown as Story["args"],
 };
 
@@ -130,7 +130,7 @@ export const XS: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS.XS,
+    cardSize: CONTAINER_WIDTHS.XS,
   } as unknown as Story["args"],
 };
 
@@ -140,7 +140,7 @@ export const SM: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS.SM,
+    cardSize: CONTAINER_WIDTHS.SM,
   } as unknown as Story["args"],
 };
 
@@ -150,7 +150,7 @@ export const MD: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS.MD,
+    cardSize: CONTAINER_WIDTHS.MD,
   } as unknown as Story["args"],
 };
 
@@ -160,7 +160,7 @@ export const LG: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS.LG,
+    cardSize: CONTAINER_WIDTHS.LG,
   } as unknown as Story["args"],
 };
 
@@ -170,7 +170,7 @@ export const XL: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS.XL,
+    cardSize: CONTAINER_WIDTHS.XL,
   } as unknown as Story["args"],
 };
 
@@ -180,7 +180,7 @@ export const TwoXL: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['2XL'],
+    cardSize: CONTAINER_WIDTHS['2XL'],
   } as unknown as Story["args"],
 };
 
@@ -190,7 +190,7 @@ export const ThreeXL: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['3XL'],
+    cardSize: CONTAINER_WIDTHS['3XL'],
   } as unknown as Story["args"],
 };
 
@@ -200,7 +200,7 @@ export const FourXL: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['4XL'],
+    cardSize: CONTAINER_WIDTHS['4XL'],
   } as unknown as Story["args"],
 };
 
@@ -210,7 +210,7 @@ export const FiveXL: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['5XL'],
+    cardSize: CONTAINER_WIDTHS['5XL'],
   } as unknown as Story["args"],
 };
 
@@ -220,7 +220,7 @@ export const SixXL: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['6XL'],
+    cardSize: CONTAINER_WIDTHS['6XL'],
   } as unknown as Story["args"],
 };
 
@@ -230,6 +230,6 @@ export const SevenXL: Story = {
     ...CARD_OVERLAY_ON_HOVER_LAYOUT_CONFIG,
     titleFont: HANDWRITTEN_FONTS,
     contentMaxLength: 50,
-    width: CONTAINER_WIDTHS['7XL'],
+    cardSize: CONTAINER_WIDTHS['7XL'],
   } as unknown as Story["args"],
 };
