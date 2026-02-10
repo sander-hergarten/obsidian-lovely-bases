@@ -17,7 +17,7 @@ const classVariants = cva(
 		variants: {
 			shape: {
 				circle: "rounded-full",
-        rounded: "rounded-[4px]]",
+        rounded: "rounded-[4px]",
         square: "",
 			},
 		},
