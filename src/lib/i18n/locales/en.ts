@@ -282,11 +282,19 @@ export const en = {
       },
       valueRange: {
         title: "Value Range",
+        autoValueRange: {
+          title: "Auto Value Range",
+        },
+        logScale: {
+          title: "Log Scale",
+        },
         minValue: {
           title: "Min Value",
         },
         maxValue: {
           title: "Max Value",
+          manualEntry: "Max Value (Manual Entry)",
+          placeholder: "Enter max value",
         },
       },
       appearance: {

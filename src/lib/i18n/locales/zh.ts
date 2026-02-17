@@ -284,11 +284,19 @@ export const zh: LocaleTranslations = {
       },
       valueRange: {
         title: "值范围",
+        autoValueRange: {
+          title: "自动值范围",
+        },
+        logScale: {
+          title: "对数刻度",
+        },
         minValue: {
           title: "最小值",
         },
         maxValue: {
           title: "最大值",
+          manualEntry: "最大值（手动输入）",
+          placeholder: "输入最大值",
         },
       },
       appearance: {

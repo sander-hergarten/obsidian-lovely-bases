@@ -284,11 +284,19 @@ export const fr: LocaleTranslations = {
       },
       valueRange: {
         title: "Plage de Valeurs",
+        autoValueRange: {
+          title: "Plage de Valeurs Automatique",
+        },
+        logScale: {
+          title: "Échelle Logarithmique",
+        },
         minValue: {
           title: "Valeur Minimale",
         },
         maxValue: {
           title: "Valeur Maximale",
+          manualEntry: "Valeur Maximale (Saisie Manuelle)",
+          placeholder: "Entrez la valeur maximale",
         },
       },
       appearance: {

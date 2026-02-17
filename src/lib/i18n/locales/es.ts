@@ -284,11 +284,19 @@ export const es: LocaleTranslations = {
       },
       valueRange: {
         title: "Rango de Valores",
+        autoValueRange: {
+          title: "Rango de Valores Automático",
+        },
+        logScale: {
+          title: "Escala Logarítmica",
+        },
         minValue: {
           title: "Valor Mínimo",
         },
         maxValue: {
           title: "Valor Máximo",
+          manualEntry: "Valor Máximo (Entrada Manual)",
+          placeholder: "Ingrese el valor máximo",
         },
       },
       appearance: {
