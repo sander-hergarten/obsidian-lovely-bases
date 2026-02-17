@@ -295,8 +295,6 @@ export const it: LocaleTranslations = {
         },
         maxValue: {
           title: "Valore Massimo",
-          manualEntry: "Valore Massimo (Inserimento Manuale)",
-          placeholder: "Inserisci il valore massimo",
         },
       },
       appearance: {

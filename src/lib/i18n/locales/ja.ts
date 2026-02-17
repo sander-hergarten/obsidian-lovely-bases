@@ -295,8 +295,6 @@ export const ja: LocaleTranslations = {
         },
         maxValue: {
           title: "最大値",
-          manualEntry: "最大値（手動入力）",
-          placeholder: "最大値を入力",
         },
       },
       appearance: {

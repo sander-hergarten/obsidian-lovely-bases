@@ -295,8 +295,6 @@ export const zh: LocaleTranslations = {
         },
         maxValue: {
           title: "最大值",
-          manualEntry: "最大值（手动输入）",
-          placeholder: "输入最大值",
         },
       },
       appearance: {

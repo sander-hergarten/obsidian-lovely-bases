@@ -295,8 +295,6 @@ export const ko: LocaleTranslations = {
         },
         maxValue: {
           title: "최대값",
-          manualEntry: "최대값 (수동 입력)",
-          placeholder: "최대값 입력",
         },
       },
       appearance: {

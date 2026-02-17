@@ -293,8 +293,6 @@ export const en = {
         },
         maxValue: {
           title: "Max Value",
-          manualEntry: "Max Value (Manual Entry)",
-          placeholder: "Enter max value",
         },
       },
       appearance: {

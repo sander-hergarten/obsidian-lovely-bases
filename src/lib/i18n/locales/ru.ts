@@ -295,8 +295,6 @@ export const ru: LocaleTranslations = {
         },
         maxValue: {
           title: "Максимальное Значение",
-          manualEntry: "Максимальное Значение (Ручной Ввод)",
-          placeholder: "Введите максимальное значение",
         },
       },
       appearance: {
